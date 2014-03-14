@@ -31,6 +31,7 @@ onEvent("control/contextGroup", "show", "reloadGroupList()");
 reloadGroupList(){
 	populateList("control/contextGroup/GroupList", fetchRelationshipList("ContextGroup"));
 }
+
 onEvent("Context/Context_Interpretation/ContextGroup", "click", "newContextGroup()");
 onEvent("ContextGroup/GroupTab/Update", "delayclick", "saveContextGroup()");
 onEvent("control/contextGroup/GroupList", "click", "loadContextGroup()");
@@ -56,8 +57,8 @@ loadContextGroup(){
 }
 
 newContextGroup(){
-	if (isNull(context_id)){
-		showToast("Please Save your context first.");
+	if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+		showWarning("Logic Error", "Cannot save record without id");
 		return;
 	}
 	newTabGroup("ContextGroup");
@@ -82,9 +83,6 @@ saveContextGroup(){
 	} else {
 		saveTabGroup("ContextGroup", contextGroup_id, null, null, "contextGroup_id = getLastSavedRecordId(); addReln(context_id, contextGroup_id, null); populateContextGroup();");
 	}
-
-
-
 }
 
 associateContextWithGroup(context_id){
@@ -110,12 +108,9 @@ onEvent("Context/Context_GeneralInformation/Details","click","openContextTabs()"
 
 
 openContextTabs(){
-
-	showToast("foo");
 	Object name = fetchOne("select vocabName from vocabulary where vocabid = '"+getFieldValue("Context/Context_GeneralInformation/Context_Type")+"';");
 	if (!isNull(name)){
 		String vocab = name.get(0);
-		showToast("cliky: "+vocab);
 		if ((vocab.equals("{Deposit}")) || (vocab.equals("{Natural}"))){
 			cancelTab("Context/Context_Cuts", false);
 			cancelTab("Context/Context_Structures", false);
@@ -129,6 +124,11 @@ openContextTabs(){
 			cancelTab("Context/Context_Cuts", false);
 			showTab("Context/Context_Structures");
 		}
+	} else {
+
+		cancelTab("Context/Context_Cuts", false);
+		cancelTab("Context/Context_Deposits", false);
+		cancelTab("Context/Context_Structures", false);
 	}
 }
 
@@ -139,11 +139,18 @@ onEvent("Sample/Sample_GeneralInformation/attachPhoto", "click", "attachPictureT
 onEvent("Context/Context_Attachments/Update", "delayclick", "saveContext()");
 onEvent("Context/Context_GeneralInformation/Update", "delayclick", "saveContext()");
 onEvent("Context/Context_Deposits/Update", "delayclick", "saveContext()");
+onEvent("Context/Texture_Helper/Update_Texture", "click", "setTextureActual()");
+onEvent("Context/Context_Deposits/Texture_Helper", "click", "helpSetTextureActual()");
 onEvent("Context/Context_Cuts/Update", "delayclick", "saveContext()");
+onEvent("Context/Context_Interpretation/Update", "delayclick", "saveContext()");
 
 onEvent("Context/Context_Attachments/Delete", "delayclick", "deleteContext()");
 onEvent("control/data/ContextList", "click", "loadContext()");
-onEvent("control/data/newContext", "click", "newContext()");
+onEvent("control/data/newContext", "click", "newContext();");
+onEvent("Context", "load", "showTab(\"Context/Context_Deposits\");");
+onEvent("Context", "load", "showTab(\"Context/Context_Cuts\");");
+onEvent("Context", "load", "showTab(\"Context/Context_Structures\");");
+// onEvent("Context", "load", "openContextTabs();");
 onEvent("Context/Context_Attachments/SaveAndNew", "delayclick", "saveAndNewContext()");
 onEvent("Context/Context_Attachments/Duplicate", "delayclick", "duplicateContext()");
 
@@ -187,13 +194,7 @@ String context_id = null;
 newContext(){
 	context_id = null;
 	newTabGroup("Context");
-	populateDropDown("Context/Context_GeneralInformation/AreaCode", fetchAll("select vocabid, vocabname from vocabulary join localSettings on (value=vocabid) where key = 'Area' "));
-
-    /*
-   cancelTab("Context/Context_Deposits", true);
-   cancelTab("Context/Context_Cuts", true);
-*/
-
+	setFieldValue("Context/Context_GeneralInformation/AreaCode", areaCode);
    
    setFieldValue("Context/Context_GeneralInformation/Site_Code","FAIMS13");
    
@@ -243,7 +244,8 @@ getCounterFromDB(){
 loadContextAttributes(){
     populateHierarchicalDropDown("Context/Context_Deposits/Soil_Compaction_Type", "Soil Compaction Type");
     populateDropDown("Context/Context_Deposits/Soil_Grain_Size", makeVocab("Soil Grain Size"));
-    populateHierarchicalDropDown("Context/Context_Deposits/Soil_Texture", "Soil Texture");
+    populateHierarchicalDropDown("Context/Texture_Helper/Soil_Texture", "Soil Texture");
+    populateDropDown("Context/Context_Deposits/Soil_Texture_Actual", makeVocab("Soil Texture Actual"));
 
 	populatePictureGallery("Context/Context_GeneralInformation/Context_Type", fetchAll("select vocabid, vocabname, pictureurl from vocabulary left join attributekey using (attributeid) where attributename = 'Context Type';"));
     populateHierarchicalPictureGallery("Context/Context_Deposits/Soil_Particle_Sorting", "Soil Particle Sorting");
@@ -301,7 +303,7 @@ saveAndNewContext(){
 	// first null is map data
 
 	//saveTabGroup("Context", context_id, data, null, "context_id = getLastSavedRecordId(); clearCreatedGeometry();");
-	saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();newContext()");
+	saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();newContext();openContextTabs();");
 
 }
 
@@ -341,7 +343,6 @@ doNotDelete(){
 }
 
 loadContext() {
-	//newContext();
 	context_id = getListItemValue();
 	loadContextFrom(context_id);
 	Object foo = fetchOne("select fname || ' ' || lname from user join archentity using (userid) where uuid = '"+context_id+"' group by uuid having min(aenttimestamp)");
@@ -352,7 +353,6 @@ loadContext() {
 onEvent("Context", "show", "openContextTabs();");
 
 loadContextFrom(contextid) {
-	//newContext();
 	context_id = contextid;
 	if (isNull(context_id)) return;
 	showToast(context_id);
@@ -363,7 +363,21 @@ loadContextFrom(contextid) {
 
 }
 
+helpSetTextureActual(){
+	showTab("Context/Texture_Helper");
+}
 
+setTextureActual(){
+	Object textureToSet = fetchOne("select vocabid from vocabulary join attributekey using (attributeid)where attributeName = 'Soil Texture Actual'and vocabname = (select vocabname"
+				+ " from vocabulary join attributekey using (attributeid)"
+				+ " where vocabid = '"+ getFieldValue("Context/Texture_Helper/Soil_Texture") +"'"
+				+ " and attributeName = 'Soil Texture');");
+	if(!isNull(textureToSet)){
+		setFieldValue("Context/Context_Deposits/Soil_Texture_Actual", textureToSet.get(0));
+	}
+	cancelTab("Context/Texture_Helper", false);
+	showTab("Context/Context_Deposits");
+}
 
 
 /*** Artefact Group ***/
@@ -479,7 +493,10 @@ contextList = fetchAll("select uuid, group_concat(coalesce(measure || ' ' || voc
 }
 
 makeHierReln(){
-	saveContext();
+	if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+		showWarning("Logic Error", "Cannot save record without id");
+		return;
+	}
 
 	if (isNull(context_id)){
 		showToast("You must have saved your entity.");
@@ -487,11 +504,6 @@ makeHierReln(){
 	}
 	String[] arguments = getFieldValue("Context/Context_Relationships_to_Other_Contexts/reln").split("~!~");
 	String dest = getFieldValue("Context/Context_Relationships_to_Other_Contexts/context");
-
-
-	//showToast(getFieldValue("Context/Context_GeneralInformation/Context_ID")+" is "+arguments[1]+" "+dest);
-
-
 
 	saveEntitiesToHierRel(arguments[0], context_id, dest, arguments[1], arguments[2]);
 	updateRelns();
@@ -522,8 +534,8 @@ updateRelns(){
 String artefactgroup_id = null;
 
 newArtefactGroup(){
-	if (isNull(context_id)){
-		showToast("You must save your Context first.");
+	if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+		showWarning("Logic Error", "Cannot save record without id");
 		return;
 	}
 	artefactgroup_id = null;
@@ -729,8 +741,8 @@ onEvent("Sample/Sample_Attachments/viewattached", "click", "viewArchEntAttachedF
 String sample_id = null;
 
 newSample(){
-	if (isNull(context_id)){
-		showToast("You must save your Context first.");
+	if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+		showWarning("Logic Error", "Cannot save record without id");
 		return;
 	}
 	sample_id = null;
@@ -778,8 +790,8 @@ sampleAutoNum(){
 loadSampleAttributes(){
 
 
-	populateRadioGroup("Sample/Sample_GeneralInformation/Sample_Type", makeVocab("Sample Type"));
-	populateRadioGroup("Sample/Sample_GeneralInformation/Collection_Method", makeVocab("Collection Method"));
+	populateDropDown("Sample/Sample_GeneralInformation/Sample_Type", makeVocab("Sample Type"));
+	populateDropDown("Sample/Sample_GeneralInformation/Collection_Method", makeVocab("Collection Method"));
 
 	/*
 	populateDropDown("Sample/Sample_GeneralInformation/Sample_Type", );
@@ -1050,19 +1062,26 @@ populateListForUsers();
 
 String username = "";
 String device = "";
+String areaCode = "";
 
 login(){
-	Object userResult = fetchOne("select userid,fname,lname,email from user where userid='" + getFieldValue("user/usertab/users") + "';");
-	User user = new User(userResult.get(0),userResult.get(1),userResult.get(2),userResult.get(3));
-	userid = userResult.get(0);
-	setUser(user);
-	username = userResult.get(1) + " " + userResult.get(2);
-	showTabGroup("control");
+	if(isNull(getFieldValue("user/usertab/Area_Code")) || isNull(getFieldValue("user/usertab/users"))){
+		showWarning("Warning", "Please select a User and an Area Code before logging in.");
+	} else {
+		Object userResult = fetchOne("select userid,fname,lname,email from user where userid='" + getFieldValue("user/usertab/users") + "';");
+		User user = new User(userResult.get(0),userResult.get(1),userResult.get(2),userResult.get(3));
+		userid = userResult.get(0);
+		setUser(user);
+		username = userResult.get(1) + " " + userResult.get(2);
+		showTabGroup("control");
 
-	fetchOne("REPLACE INTO localSettings(key, value) VALUES('User', '"+userid+"');");
-	fetchOne("REPLACE INTO localSettings(key, value) VALUES('Area', '"+getFieldValue("user/usertab/Area_Code")+"');");
+		fetchOne("REPLACE INTO localSettings(key, value) VALUES('User', '"+userid+"');");
+		fetchOne("REPLACE INTO localSettings(key, value) VALUES('Area', '"+getFieldValue("user/usertab/Area_Code")+"');");
 
-	getCounterFromDB();
+		areaCode = fetchOne("select vocabid, vocabname from vocabulary join localSettings on (value=vocabid) where key = 'Area' ").get(1);
+
+		getCounterFromDB();
+	}
 
 }
 

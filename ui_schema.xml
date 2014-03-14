@@ -120,19 +120,14 @@
                   <Soil_Grain_Size/>
                 </child1>
                 <child2>
-                  <Soil_Texture/>
+                  <Soil_Stone_Size/>
                 </child2>
               </container2>
               <Soil_Particle_Sorting/>
               <Soil_Stoniness/>
-              <container3>
-                <child1>
-                  <Soil_Stone_Size/>
-                </child1>
-                <child2>
-                  <Soil_Stone_Shape/>
-                </child2>
-              </container3>
+              <Soil_Texture_Actual/>
+              <Texture_Helper/>
+              <Soil_Stone_Shape/>
               <Deposit_Inclusions/>
               <Deposit_Thickness_Extent/>
               <Horizon_Boundary/>
@@ -168,6 +163,15 @@
               <Truncation/>
               <Update/>
             </Context_Cuts>
+            <Context_Structures>
+              <Structural_Components/>
+              <Bonding/>
+              <Bond_Type/>
+              <Distinguishing_Marks/>
+              <Structure_Description/>
+              <Update/>
+              <Delete/>
+            </Context_Structures>
             <Context_Relationships_to_Other_Contexts>
               <spacer/>
               <container3>
@@ -215,17 +219,9 @@
                   <Add/>
                 </child2>
               </container2>
+              <Update/>
               <ContextGroup/>
             </Context_Interpretation>
-            <Context_Structures>
-              <Structural_Components/>
-              <Bonding/>
-              <Bond_Type/>
-              <Distinguishing_Marks/>
-              <Structure_Description/>
-              <Update/>
-              <Delete/>
-            </Context_Structures>
             <Context_Attachments>
               <newArtefactGroup/>
               <container1>
@@ -256,6 +252,10 @@
               <Duplicate/>
               <Delete/>
             </Context_Attachments>
+            <Texture_Helper>
+              <Soil_Texture/>
+              <Update_Texture/>
+            </Texture_Helper>
             <map>
               <map/>
             </map>
@@ -458,13 +458,9 @@
           </group>
           <group faims_style="even" ref="child2">
             <label/>
-            <select1 faims_annotation="false" faims_attribute_name="AreaCode" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="true" ref="AreaCode">
+            <input faims_annotation="false" faims_attribute_name="AreaCode" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="true" ref="AreaCode">
               <label>Area Code:</label>
-              <item>
-                <label>placeholder</label>
-                <value>placeholder</value>
-              </item>
-            </select1>
+            </input>
           </group>
           <group faims_style="even" ref="child3">
             <label/>
@@ -509,7 +505,7 @@
           <label>Record Created By:</label>
         </input>
         <trigger ref="Update">
-          <label>{Save.Record}</label>
+          <label>Save Context</label>
         </trigger>
         <trigger ref="Details">
           <label>Fill in Context Type Details</label>
@@ -558,14 +554,9 @@
           </group>
           <group faims_style="even" ref="child2">
             <label/>
-            <!--We would like to see Dropdown-->
-            <select1 faims_attribute_name="Soil Texture" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Soil_Texture">
-              <label>{Soil_Texture}</label>
-              <item>
-                <label>placeholder</label>
-                <value>placeholder</value>
-              </item>
-            </select1>
+             <input faims_attribute_name="Soil Stone Size" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Soil_Stone_Size">
+              <label>{Soil_Stone_Size}</label>
+            </input>
           </group>
         </group>
         <!--We would like to see Dropdown-->
@@ -576,26 +567,24 @@
             <value>placeholder</value>
           </item>
         </select1>
-        <group faims_style="orientation" ref="container3">
-          <label/>
-          <group faims_style="even" ref="child1">
-            <label/>
-            <input faims_attribute_name="Soil Stone Size" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Soil_Stone_Size">
-              <label>{Soil_Stone_Size}</label>
-            </input>
-          </group>
-          <group faims_style="even" ref="child2">
-            <label/>
-            <!--We would like to see Dropdown-->
-            <select1 faims_attribute_name="Soil Stone Shape" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Soil_Stone_Shape" type="image">
-              <label>{Soil_Stone_Shape}</label>
-              <item>
-                <label>placeholder</label>
-                <value>placeholder</value>
-              </item>
-            </select1>
-          </group>
-        </group>
+        <select1 faims_attribute_name="Soil Texture Actual" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Soil_Texture_Actual">
+          <label>{Soil_Texture}</label>
+            <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <trigger ref="Texture_Helper">
+          <label>Texture Helper</label>
+        </trigger>
+        <!--We would like to see Dropdown-->
+        <select1 faims_attribute_name="Soil Stone Shape" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Soil_Stone_Shape" type="image">
+          <label>{Soil_Stone_Shape}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
         <input faims_attribute_name="Soil Stoniness" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Soil_Stoniness">
           <label>{Soil_Stoniness}</label>
         </input>
@@ -614,7 +603,7 @@
           </item>
         </select1>
         <trigger ref="Update">
-          <label>{Save.Record}</label>
+          <label>Save Context</label>
         </trigger>
       </group>
       <group faims_hidden="true" ref="Context_Cuts">
@@ -710,7 +699,95 @@
           <label>{Truncation}</label>
         </input>
         <trigger ref="Update">
-          <label>{Save.Record}</label>
+          <label>Save Context</label>
+        </trigger>
+      </group>
+      <group faims_hidden="true" ref="Context_Structures">
+        <label>{Structures}</label>
+        <!--We would like to see Dropdown-->
+        <select1 faims_attribute_name="Structural Components" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Structural_Components">
+          <label>{Structural_Components}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <!--We would like to see Dropdown-->
+        <select1 faims_attribute_name="Bonding" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Bonding">
+          <label>{Bonding}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <!--We would like to see Dropdown-->
+        <select1 faims_attribute_name="Bond Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Bond_Type" type="image">
+          <label>{Bond_Type}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <input faims_attribute_name="Distinguishing Marks" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Distinguishing_Marks">
+          <label>{Distinguishing_Marks}</label>
+        </input>
+        <input faims_attribute_name="Structure Description" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Structure_Description">
+          <label>{Structure_Description}</label>
+        </input>
+        <trigger ref="Update">
+          <label>Save Context</label>
+        </trigger>
+      </group>
+      <group ref="Context_Interpretation">
+        <label>Int</label>
+        <!--We would like to see Dropdown-->
+        <select1 appearance="full" faims_attribute_name="Your Interpretation" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Your_Interpretation">
+          <label>Your Interpretation</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <input faims_attribute_name="Your Discussion" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Your_Discussion">
+          <label>{Your_Discussion}</label>
+        </input>
+        <input faims_attribute_name="Your description" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Your_description">
+          <label>{Your_description}</label>
+        </input>
+        <group faims_style="orientation" ref="container1">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input faims_attribute_name="Start date" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Start_date">
+              <label>{Start_date}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input faims_attribute_name="End date" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="End_date">
+              <label>{End_date}</label>
+            </input>
+          </group>
+        </group>
+        <select1 appearance="full" faims_attribute_name="Phase From" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_From">
+          <label>{Phase_From}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <select1 appearance="full" faims_attribute_name="Phase To" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_To">
+          <label>{Phase_To}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <trigger ref="Update">
+          <label>Save Context</label>
+        </trigger>
+        <trigger ref="ContextGroup">
+          <label>Add to New Context Group</label>
         </trigger>
       </group>
       <group ref="Context_Relationships_to_Other_Contexts">
@@ -773,91 +850,6 @@
             </trigger>
           </group>
         </group>
-      </group>
-      <group faims_hidden="true" ref="Context_Structures">
-        <label>{Structures}</label>
-        <!--We would like to see Dropdown-->
-        <select1 faims_attribute_name="Structural Components" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Structural_Components">
-          <label>{Structural_Components}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <!--We would like to see Dropdown-->
-        <select1 faims_attribute_name="Bonding" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Bonding">
-          <label>{Bonding}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <!--We would like to see Dropdown-->
-        <select1 faims_attribute_name="Bond Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Bond_Type" type="image">
-          <label>{Bond_Type}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <input faims_attribute_name="Distinguishing Marks" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Distinguishing_Marks">
-          <label>{Distinguishing_Marks}</label>
-        </input>
-        <input faims_attribute_name="Structure Description" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Structure_Description">
-          <label>{Structure_Description}</label>
-        </input>
-        <trigger ref="Update">
-          <label>{Save.Record}</label>
-        </trigger>
-      </group>
-      <group ref="Context_Interpretation">
-        <label>Int</label>
-        <!--We would like to see Dropdown-->
-        <select1 appearance="full" faims_attribute_name="Your Interpretation" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Your_Interpretation">
-          <label>Your Interpretation</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <input faims_attribute_name="Your Discussion" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Your_Discussion">
-          <label>{Your_Discussion}</label>
-        </input>
-        <input faims_attribute_name="Your description" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Your_description">
-          <label>{Your_description}</label>
-        </input>
-        <group faims_style="orientation" ref="container1">
-          <label/>
-          <group faims_style="even" ref="child1">
-            <label/>
-            <input faims_attribute_name="Start date" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Start_date">
-              <label>{Start_date}</label>
-            </input>
-          </group>
-          <group faims_style="even" ref="child2">
-            <label/>
-            <input faims_attribute_name="End date" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="End_date">
-              <label>{End_date}</label>
-            </input>
-          </group>
-        </group>
-        <select1 appearance="full" faims_attribute_name="Phase From" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_From">
-          <label>{Phase_From}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <select1 appearance="full" faims_attribute_name="Phase To" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_To">
-          <label>{Phase_To}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <trigger ref="ContextGroup">
-          <label>Add to New Context Group</label>
-        </trigger>
       </group>
       <group ref="Context_Attachments">
         <label>ADD</label>
@@ -929,17 +921,30 @@
           <label>View Attached Files</label>
         </trigger>
         <trigger ref="Update">
-          <label>{Save.Record}</label>
+          <label>Save Context</label>
         </trigger>
         <trigger ref="SaveAndNew">
-          <label>Save and New Record</label>
+          <label>Save and New Context</label>
         </trigger>
         <trigger ref="Duplicate">
-          <label>Save and Duplicate Record (will not duplicate relationships, samples, or artefact groups).</label>
+          <label>Save and Duplicate Context (will not duplicate relationships, samples, or artefact groups).</label>
         </trigger>
         <trigger ref="Delete">
-          <label>{Delete.Record}</label>
+          <label>Delete Context</label>
         </trigger>
+      </group>
+      <group ref="Texture_Helper" faims_hidden="true">
+        <label>Texture Helper</label>
+          <select1 faims_certainty="true" faims_read_only="false" ref="Soil_Texture">
+            <label>Texture Helper</label>
+            <item>
+              <label>placeholder</label>
+              <value>placeholder</value>
+            </item>
+          </select1>
+          <trigger ref="Update_Texture">
+            <label>Update Texture</label>
+          </trigger>
       </group>
       <!--
       <group faims_scrollable="false" ref="map"><label>Map</label><input faims_certainty="false" faims_map="true" ref="map"><label/></input></group>-->
@@ -1011,16 +1016,16 @@
           <label>View Attached Files</label>
         </trigger>
         <trigger ref="Update">
-          <label>{Save.Record}</label>
+          <label>Save Artefact</label>
         </trigger>
         <trigger ref="SaveAndNew">
-          <label>Save and New Record</label>
+          <label>Save and New Artefact</label>
         </trigger>
         <trigger ref="Duplicate">
-          <label>Save and Duplicate Record.</label>
+          <label>Save and Duplicate Artefact</label>
         </trigger>
         <trigger ref="Delete">
-          <label>{Delete.Record}</label>
+          <label>Delete Artefact</label>
         </trigger>
       </group>
     </group>
@@ -1051,7 +1056,7 @@
           </group>
         </group>
         <!--We would like to see Radiogroup-->
-        <select1 appearance="full" faims_attribute_name="Sample Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Sample_Type">
+        <select1 faims_attribute_name="Sample Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Sample_Type">
           <label>{Sample_Type}</label>
           <item>
             <label>placeholder</label>
@@ -1059,7 +1064,7 @@
           </item>
         </select1>
         <!--We would like to see Radiogroup-->
-        <select1 appearance="full" faims_attribute_name="Collection Method" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Collection_Method">
+        <select1 faims_attribute_name="Collection Method" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Collection_Method">
           <label>{Collection_Method}</label>
           <item>
             <label>placeholder</label>
@@ -1096,16 +1101,16 @@
           <label>View Attached Files</label>
         </trigger>
         <trigger ref="Update">
-          <label>{Save.Record}</label>
+          <label>Save Sample</label>
         </trigger>
         <trigger ref="SaveAndNew">
-          <label>Save and New Record</label>
+          <label>Save and New Sample</label>
         </trigger>
         <trigger ref="Duplicate">
-          <label>Save and Duplicate Record.</label>
+          <label>Save and Duplicate Sample</label>
         </trigger>
         <trigger ref="Delete">
-          <label>{Delete.Record}</label>
+          <label>Delete Sample</label>
         </trigger>
       </group>
     </group>
