@@ -201,7 +201,7 @@ getCounterFromDB(){
         "                        from latestnondeletedaentvalue AS av join attributekey using (attributeid), localSettings "+
         "                       where userid = value "+
         "                         and key = 'User') as deviceMatch, value "+
-        " from latestnondeletedarchentidentifiers join (select uuid from latestnondeletedaentvalue, localSettings where key = 'Area' and value = vocabid) using (uuid), localSettings join vocabulary v on (value = v.vocabid) "+
+        " from latestnondeletedarchentidentifiers join (select uuid from latestnondeletedaentvalue av join vocabulary v on (av.vocabid = v.vocabname), localSettings where key = 'Area' and value = v.vocabid) using (uuid), localSettings join vocabulary v on (value = v.vocabid) "+
         " where attributename = 'Context ID' "+
         " and key = 'Area') "+
         " where response not in (select freetext from latestnondeletedarchentidentifiers where freetext is not null) "+
