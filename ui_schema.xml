@@ -86,7 +86,6 @@
                 </child2>
               </container2>
               <Date_Opened/>
-              <Location_Note/>
               <Excavation_Method/>
               <container3>
                 <child1>
@@ -130,10 +129,7 @@
               <Texture_Helper/>
               <Deposit_Inclusions/>
               <Deposit_Thickness_Extent/>
-              <Volume/>
-              <Contamination/>
               <Horizon_Boundary/>
-              <Your_Interpretation/>
               <newMatrix/>
               <matrixList/>
               <loadMatrix/>
@@ -157,7 +153,6 @@
               <Orientation/>
               <Inclination_of_axis/>
               <Truncation/>
-              <Your_Interpretation/>
               <Update/>
             </Context_Cuts>
             <Context_Structures>
@@ -166,14 +161,11 @@
               <Bond_Type/>
               <Distinguishing_Marks/>
               <Structure_Description/>
-              <Number_Courses/>
-              <Component_Finish/>
-              <Composition_Type/>
-              <Your_Interpretation/>
               <Update/>
               <Delete/>
             </Context_Structures>
             <Context_Interpretation>
+              <Your_Interpretation/>
               <Your_Discussion/>
               <Your_description/>
               <container1>
@@ -444,9 +436,7 @@
       <bind nodeset="/faims/Context/Context_GeneralInformation/container4/child2/Width" type="decimal"/>
       <bind nodeset="/faims/Context/Context_GeneralInformation/container4/child3/Depth" type="decimal"/>
       <bind nodeset="/faims/Context/Context_Deposits/Deposit_Inclusions" type="string"/>
-      <bind nodeset="/faims/Context/Context_Deposits/Volume" type="decimal"/>
       <bind nodeset="/faims/Context/Context_Cuts/Truncation" type="string"/>
-      <bind nodeset="/faims/Context/Context_Structures/Number_Courses" type="decimal"/>
       <bind nodeset="/faims/Context/Context_Structures/Structure_Description" type="string"/>
       <bind nodeset="/faims/Context/Context_Interpretation/Your_Discussion" type="string"/>
       <bind nodeset="/faims/Context/Context_Interpretation/Your_description" type="string"/>
@@ -652,9 +642,6 @@
         <input faims_attribute_name="Date Opened" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Date_Opened">
           <label>{Date_Opened}</label>
         </input>
-        <input faims_attribute_name="Location Note" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Location_Note">
-          <label>{Location_Note}</label>
-        </input>
         <input faims_attribute_name="Excavation Method" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Excavation_Method">
           <label>{Excavation_Method}</label>
         </input>
@@ -759,33 +746,14 @@
         <trigger ref="Texture_Helper">
           <label>Texture Helper</label>
         </trigger>
-        <!--We would like to see Dropdown-->
         <input faims_attribute_name="Deposit Inclusions" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Deposit_Inclusions">
           <label>{Deposit_Inclusions}</label>
         </input>
         <input faims_attribute_name="Deposit Thickness and Extent" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Deposit_Thickness_Extent">
           <label>Deposit Thickness &amp; Extent</label>
         </input>
-        <input faims_attribute_name="Volume" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Volume">
-          <label>Volume</label>
-        </input>
-        <select1 faims_attribute_name="Contamination" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Contamination">
-          <label>{Contamination}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <!--We would like to see Dropdown-->
         <select1 faims_attribute_name="Horizon Boundary" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Horizon_Boundary">
           <label>{Horizon_Boundary}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <select1 faims_attribute_name="Deposit Your Interpretation" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Your_Interpretation">
-          <label>Your Interpretation</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
@@ -882,13 +850,6 @@
         <input faims_attribute_name="Truncation" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Truncation">
           <label>{Truncation}</label>
         </input>
-        <select1  faims_attribute_name="Cut Your Interpretation" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Your_Interpretation">
-          <label>Your Interpretation</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
         <trigger ref="Update">
           <label>Save Context</label>
         </trigger>
@@ -925,36 +886,19 @@
         <input faims_attribute_name="Structure Description" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Structure_Description">
           <label>{Structure_Description}</label>
         </input>
-        <input faims_attribute_name="Number Courses" faims_attribute_type="freetext" faims_annotation="true" faims_certainty="true" faims_read_only="false" ref="Number_Courses">
-          <label>{Number_Courses}</label>
-        </input>
-        <select1 faims_attribute_name="Component Finish" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Component_Finish">
-          <label>{Component_Finish}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <select1 faims_attribute_name="Composition Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Composition_Type">
-          <label>{Composition_Type}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <select1 faims_attribute_name="Structure Your Interpretation" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Your_Interpretation">
-          <label>Your Interpretation</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
         <trigger ref="Update">
           <label>Save Context</label>
         </trigger>
       </group>
       <group ref="Context_Interpretation">
         <label>Int</label>
+        <select1 appearance="full" faims_attribute_name="Your Interpretation" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Your_Interpretation">
+          <label>Your Interpretation</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
         <input faims_attribute_name="Your Discussion" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Your_Discussion">
           <label>{Your_Discussion}</label>
         </input>

@@ -42,7 +42,6 @@ refreshEntities() {
     context_id = null;
     context_group_id = null;
     menu = false;
-    showToast("Fetching saved contexts...");
     search();
 }
 
@@ -414,10 +413,8 @@ loadContextAttributes(){
     populateHierarchicalDropDown("Context/Context_Deposits/Soil_Compaction_Type", "Soil Compaction Type");
     populateHierarchicalDropDown("Context/Context_Deposits/Soil_Munsell_Colour", "Soil Munsell Colour");
     populateDropDown("Context/Context_Deposits/Soil_Texture_Actual", makeVocab("Soil Texture Actual"));
-    populateDropDown("Context/Context_Deposits/Contamination", makeVocab("Contamination"));
     populateHierarchicalPictureGallery("Context/Context_Deposits/Soil_Particle_Sorting", "Soil Particle Sorting");
     populateDropDown("Context/Context_Deposits/Horizon_Boundary", makeVocab("Horizon Boundary"));
-    populateDropDown("Context/Context_Deposits/Your_Interpretation", makeVocab("Deposit Your Interpretation"));
 
     populateDropDown("Context/Context_Cuts/Shape_of_Cut", makeVocab("Shape of Cut"));
     populateRadioGroup("Context/Context_Cuts/Shape_of_Corners", makeVocab("Shape of Corners"));
@@ -425,15 +422,12 @@ loadContextAttributes(){
     populateRadioGroup("Context/Context_Cuts/Break_of_slope_Base", makeVocab("Break of slope - Base"));
     populateHierarchicalDropDown("Context/Context_Cuts/Shape_of_Base", "Shape of Base");
     populateRadioGroup("Context/Context_Cuts/Orientation", makeVocab("Orientation"));
-    populateDropDown("Context/Context_Cuts/Your_Interpretation", makeVocab("Cut Your Interpretation"));
 
     populateHierarchicalPictureGallery("Context/Context_Structures/Bond_Type", "Bond Type");
     populateHierarchicalDropDown("Context/Context_Structures/Structural_Components", "Structural Components");
     populateDropDown("Context/Context_Structures/Bonding", makeVocab("Bonding"));
-    populateDropDown("Context/Context_Structures/Component_Finish", makeVocab("Component Finish"));
-    populateDropDown("Context/Context_Structures/Composition_Type", makeVocab("Composition Type"));
-    populateDropDown("Context/Context_Structures/Your_Interpretation", makeVocab("Structure Your Interpretation"));
 
+    populateRadioGroup("Context/Context_Interpretation/Your_Interpretation", makeVocab("Your Interpretation"));
     populateRadioGroup("Context/Context_Interpretation/Phase_From", makeVocab("Phase From"));
     populateRadioGroup("Context/Context_Interpretation/Phase_To", makeVocab("Phase To"));
 
@@ -535,7 +529,6 @@ newContextGroup(menu){
 
 loadContextGroup(){
     context_group_id = getListItemValue();
-    showToast("loading: "+context_group_id);
     showTabGroup("ContextGroup", context_group_id);
     populateContextGroup();
 }
@@ -1051,7 +1044,7 @@ doNotDelete(){
 
 loadMatrixAttributes(){
     populateDropDown("Matrix/Matrix/Component_Type", makeVocab("Component Type"));
-    populateHierarchicalDropDown("Matrix/Matrix/Component", "Component");
+    populateDropDown("Matrix/Matrix/Component", makeVocab("Component"));
     populateHierarchicalPictureGallery("Matrix/Matrix/Shape", "Shape");
 }
 
