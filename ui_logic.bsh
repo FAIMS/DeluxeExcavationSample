@@ -79,6 +79,7 @@ onEvent("Context/Context_Deposits/Soil_Populate_Colour", "click", "populateSoilC
 onEvent("Context/Context_Attachments/Update", "delayclick", "saveContext()");
 onEvent("Context/Context_GeneralInformation/Update", "delayclick", "saveContext()");
 onEvent("Context/Context_Deposits/Update", "delayclick", "saveContext()");
+onEvent("Context/Context_Structures/Update", "delayclick", "saveContext()");
 onEvent("Context/Texture_Helper/Update_Texture", "click", "setTextureActual()");
 onEvent("Context/Context_Deposits/Texture_Helper", "click", "helpSetTextureActual()");
 onEvent("Context/Context_Cuts/Update", "delayclick", "saveContext()");
@@ -416,7 +417,7 @@ loadContextAttributes(){
     populateDropDown("Context/Context_Deposits/Contamination", makeVocab("Contamination"));
     populateHierarchicalPictureGallery("Context/Context_Deposits/Soil_Particle_Sorting", "Soil Particle Sorting");
     populateDropDown("Context/Context_Deposits/Horizon_Boundary", makeVocab("Horizon Boundary"));
-    populateRadioGroup("Context/Context_Deposits/Your_Interpretation", makeVocab("Deposit Your Interpretation"));
+    populateDropDown("Context/Context_Deposits/Your_Interpretation", makeVocab("Deposit Your Interpretation"));
 
     populateDropDown("Context/Context_Cuts/Shape_of_Cut", makeVocab("Shape of Cut"));
     populateRadioGroup("Context/Context_Cuts/Shape_of_Corners", makeVocab("Shape of Corners"));
@@ -424,14 +425,14 @@ loadContextAttributes(){
     populateRadioGroup("Context/Context_Cuts/Break_of_slope_Base", makeVocab("Break of slope - Base"));
     populateHierarchicalDropDown("Context/Context_Cuts/Shape_of_Base", "Shape of Base");
     populateRadioGroup("Context/Context_Cuts/Orientation", makeVocab("Orientation"));
-    populateRadioGroup("Context/Context_Cuts/Your_Interpretation", makeVocab("Cut Your Interpretation"));
+    populateDropDown("Context/Context_Cuts/Your_Interpretation", makeVocab("Cut Your Interpretation"));
 
     populateHierarchicalPictureGallery("Context/Context_Structures/Bond_Type", "Bond Type");
     populateHierarchicalDropDown("Context/Context_Structures/Structural_Components", "Structural Components");
     populateDropDown("Context/Context_Structures/Bonding", makeVocab("Bonding"));
-    populateDropDown("Context/Context_Structures/Component_Finish", makeVocab("Component_Finish"));
-    populateDropDown("Context/Context_Structures/Composition_Type", makeVocab("Composition_Type"));
-    populateRadioGroup("Context/Context_Structures/Your_Interpretation", makeVocab("Structure Your Interpretation"));
+    populateDropDown("Context/Context_Structures/Component_Finish", makeVocab("Component Finish"));
+    populateDropDown("Context/Context_Structures/Composition_Type", makeVocab("Composition Type"));
+    populateDropDown("Context/Context_Structures/Your_Interpretation", makeVocab("Structure Your Interpretation"));
 
     populateRadioGroup("Context/Context_Interpretation/Phase_From", makeVocab("Phase From"));
     populateRadioGroup("Context/Context_Interpretation/Phase_To", makeVocab("Phase To"));
@@ -564,7 +565,6 @@ onContextGroupSaved(){
 
 addToContextGroup() {
     if (isNull(context_group_id)) {
-        showToast("Saving the context group and parent context first. Then click this again.");
         saveContextGroup();
         return;
     }
@@ -957,11 +957,10 @@ loadSampleAttributes(){
     populateDropDown("Sample/Sample_GeneralInformation/Collection_Method", makeVocab("Collection Method"));
 }
 
-/*** Sample ***/
+/*** Matrix ***/
 onEvent("Matrix/Matrix/Update", "delayclick", "saveMatrix()");
 onEvent("Matrix/Matrix/Delete", "delayclick", "deleteMatrix()");
 onEvent("Matrix/Matrix/SaveAndNew", "delayclick", "saveAndNewMatrix()");
-onEvent("Matrix/Matrix/Duplicate", "delayclick", "duplicateMatrix()");
 
 String matrix_id = null;
 
@@ -979,7 +978,7 @@ newMatrix(){
 }
 
 loadMatrix() {
-    matrix_id = getFieldValue("Context/Context_Matrixs/matrixList");
+    matrix_id = getFieldValue("Context/Context_Deposits/matrixList");
     if (isNull(matrix_id)) return;
     loadMatrixAttributes();
     showTabGroup("Matrix", matrix_id);
@@ -1004,7 +1003,7 @@ saveMatrix() {
 }
 
 saveAndNewMatrix() {
-    if (isNull(getFieldValue("Matrix/Matrix/matrix_id"))) {
+    if (isNull(getFieldValue("Matrix/Matrix/Component"))) {
         showWarning("Logic Error", "Cannot save record without id");
         return;
     }
@@ -1017,24 +1016,6 @@ saveAndNewMatrix() {
         return null;
     } else {
        saveTabGroup("Matrix", matrix_id, null, null, "matrix_id = getLastSavedRecordId(); onMatrixSaved(); newMatrix();");
-    }
-}
-
-duplicateMatrix(){
-    if (isNull(getFieldValue("Matrix/Matrix/Component"))) {
-        showWarning("Logic Error", "Cannot save Matrix without Component");
-        return;
-    }
-
-    if (!isNull(matrix_id)) {
-        entity = fetchArchEnt(matrix_id);
-    }
-
-    if (isNull(context_id)) {
-        showWarning("Logic Error", "Matrix cannot be saved as parent context is not saved or loaded.");
-        return null;
-    } else {
-       saveTabGroup("Matrix", matrix_id, null, null, "matrix_id = getLastSavedRecordId(); onMatrixSaved(); matrix_id = null;");
     }
 }
 

@@ -376,7 +376,6 @@
               <Update/>
               <Delete/>
               <SaveAndNew/>
-              <Duplicate/>
             </Matrix>
           </Matrix>
 
@@ -471,7 +470,7 @@
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container4/child1/Date_From" type="decimal"/>
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container5/child2/Date_To" type="decimal"/>
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/Special_Find_Comment" type="string"/>
-      <bind nodeset="/faims/Matrix/Matrix/Percentage" type="numeric"/>
+      <bind nodeset="/faims/Matrix/Matrix/Percentage" type="decimal"/>
     </model>
   </h:head>
   <h:body>
@@ -653,7 +652,7 @@
         <input faims_attribute_name="Date Opened" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Date_Opened">
           <label>{Date_Opened}</label>
         </input>
-        <input faims_attribute_name="Location Note" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Location_Note">
+        <input faims_attribute_name="Location Note" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Location_Note">
           <label>{Location_Note}</label>
         </input>
         <input faims_attribute_name="Excavation Method" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Excavation_Method">
@@ -792,6 +791,22 @@
             <value>placeholder</value>
           </item>
         </select1>
+        <trigger ref="newMatrix">
+          <label>Add New Matrix</label>
+        </trigger>
+        <select1 faims_certainty="false" faims_read_only="false" ref="matrixList">
+          <label>Associated Matrices</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <trigger ref="loadMatrix">
+          <label>Load Matrix</label>
+        </trigger>
+        <trigger ref="deleteMatrix">
+          <label>Delete Matrix</label>
+        </trigger>
         <trigger ref="Update">
           <label>Save Context</label>
         </trigger>
@@ -910,7 +925,7 @@
         <input faims_attribute_name="Structure Description" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Structure_Description">
           <label>{Structure_Description}</label>
         </input>
-        <input faims_attribute_name="Number Courses" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Number_Courses">
+        <input faims_attribute_name="Number Courses" faims_attribute_type="freetext" faims_annotation="true" faims_certainty="true" faims_read_only="false" ref="Number_Courses">
           <label>{Number_Courses}</label>
         </input>
         <select1 faims_attribute_name="Component Finish" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Component_Finish">
@@ -927,7 +942,7 @@
             <value>placeholder</value>
           </item>
         </select1>
-        <select1  faims_attribute_name="Structure Your Interpretation" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Your_Interpretation">
+        <select1 faims_attribute_name="Structure Your Interpretation" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Your_Interpretation">
           <label>Your Interpretation</label>
           <item>
             <label>placeholder</label>
@@ -1407,7 +1422,7 @@
         <input faims_attribute_name="Sample Weight" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Sample_Weight">
           <label>{Sample_Weight}</label>
         </input>
-        <input faims_attribute_name="Sample Volume" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Sample_Volume">
+        <input faims_attribute_name="Sample Volume" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false" ref="Sample_Volume">
           <label>Sample Volume</label>
         </input>
         <input faims_attribute_name="Sample Comments" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Sample_Comments">
@@ -1457,14 +1472,14 @@
       <label>Matrix</label>
       <group ref="Matrix">
         <label>Matrix</label>
-        <select1 faims_attribute_name="Component_Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Component_Type">
+        <select1 faims_attribute_name="Component Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Component_Type">
           <label>{Component_Type}</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
           </item>
         </select1>
-        <input faims_attribute_name="Percentage" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Percentage">
+        <input faims_attribute_name="Percentage" faims_attribute_type="decimal" faims_certainty="false" faims_read_only="false" ref="Percentage">
           <label>{Percentage}</label>
         </input>
         <select1 faims_attribute_name="Component" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Component">
@@ -1475,26 +1490,23 @@
           </item>
         </select1>
          <input faims_attribute_name="Stone Size" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Stone_Size">
-          <label>{Stone_Size}</label>
+          <label>{Soil_Stone_Size}</label>
         </input>
         <select1 faims_attribute_name="Shape" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Shape" type="image">
-          <label>{Shape}</label>
+          <label>{Soil_Stone_Shape}</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
           </item>
         </select1>
         <input faims_attribute_name="Stoniness" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Stoniness">
-          <label>{Stoniness}</label>
+          <label>{Soil_Stoniness}</label>
         </input>
         <trigger ref="Update">
-          <label>Save Matrix</label>
+          <label>Save and Close</label>
         </trigger>
         <trigger ref="SaveAndNew">
           <label>Save and New Matrix</label>
-        </trigger>
-        <trigger ref="Duplicate">
-          <label>Save and Duplicate Matrix</label>
         </trigger>
         <trigger ref="Delete">
           <label>Delete Matrix</label>
