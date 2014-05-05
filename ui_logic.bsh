@@ -95,7 +95,7 @@ onEvent("Context/Context_Interpretation/RemoveFromContextGroup", "click", "remov
 
 onEvent("Context/Context_Attachments/attachPhoto", "click", "attachPictureTo(\"Context/Context_Attachments/Photo\")");
 onEvent("Context/Context_Attachments/attachSketch", "click", "attachFileTo(\"Context/Context_Attachments/Sketch\")");
-onEvent("Context/Context_Attachments/viewattached", "click", "viewArchEntAttachedFiles(entityId)");
+onEvent("Context/Context_Attachments/viewattached", "click", "viewArchEntAttachedFiles(context_id)");
 onEvent("Context/Context_Attachments/SaveAndNew", "delayclick", "saveAndNewContext()");
 onEvent("Context/Context_Attachments/Duplicate", "delayclick", "duplicateContext()");
 onEvent("Context/Context_Attachments/Delete", "delayclick", "deleteContext()");
@@ -188,6 +188,8 @@ if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
 deleteContext(){
     if (!isNull(context_id)) {
         showAlert("Confirm Deletion", "Press OK to Delete this Context!", "reallyDeleteContext()", "doNotDelete()");
+    } else {
+        cancelTabGroup("Context", true);
     }
 }
 
@@ -656,6 +658,7 @@ removeFromContextGroup() {
 /*** Artefact Group ***/
 onEvent("Artefact_Group/Artefact_Group_GeneralInformation/attachPhoto", "click", "attachPictureTo(\"Artefact_Group/Artefact_Group_GeneralInformation/Photo\")");
 onEvent("Artefact_Group/Artefact_Group_GeneralInformation/attachSketch", "click", "attachFileTo(\"Artefact_Group/Artefact_Group_GeneralInformation/Sketch\")");
+onEvent("Artefact_Group/Artefact_Group_GeneralInformation/viewattached", "click", "viewArchEntAttachedFiles(artefact_group_id)");
 onEvent("Artefact_Group/Artefact_Group_GeneralInformation/Update", "delayclick", "saveArtefactGroup()");
 onEvent("Artefact_Group/Artefact_Group_GeneralInformation/SaveAndNew", "delayclick", "saveAndNewArtefactGroup()");
 onEvent("Artefact_Group/Artefact_Group_GeneralInformation/Delete", "delayclick", "deleteArtefactGroup()");
@@ -786,6 +789,8 @@ deleteArtefactGroupFromContext(){
 deleteArtefactGroup(){
     if (!isNull(artefact_group_id)) {
         showAlert("Confirm Deletion", "Press OK to Delete this Artefact Group!", "reallyDeleteArtefactGroup()", "doNotDelete()");
+    } else {
+        cancelTabGroup("Artefact_Group", true);
     }
 }
 
@@ -807,6 +812,7 @@ loadArtefactGroupAttributes(){
 /*** Sample ***/
 onEvent("Sample/Sample_GeneralInformation/attachPhoto", "click", "attachPictureTo(\"Sample/Sample_GeneralInformation/Photo\")");
 onEvent("Sample/Sample_GeneralInformation/attachSketch", "click", "attachFileTo(\"Sample/Sample_GeneralInformation/Sketch\")");
+onEvent("Sample/Sample_GeneralInformation/viewattached", "click", "viewArchEntAttachedFiles(sample_id)");
 onEvent("Sample/Sample_GeneralInformation/Update", "delayclick", "saveSample()");
 onEvent("Sample/Sample_GeneralInformation/Delete", "delayclick", "deleteSample()");
 onEvent("Sample/Sample_GeneralInformation/SaveAndNew", "delayclick", "saveAndNewSample()");
@@ -939,6 +945,8 @@ deleteSampleFromContext(){
 deleteSample(){
     if (!isNull(sample_id)) {
         showAlert("Confirm Deletion", "Press OK to Delete this Sample!", "reallyDeleteSample()", "doNotDelete()");
+    } else {
+         cancelTabGroup("Sample", true);
     }
 }
 
@@ -1036,6 +1044,8 @@ deleteMatrixFromContext(){
 deleteMatrix(){
     if (!isNull(matrix_id)) {
         showAlert("Confirm Deletion", "Press OK to Delete this Matrix!", "reallyDeleteMatrix()", "doNotDelete()");
+    } else {
+        cancelTabGroup("Matrix", true);
     }
 }
 
@@ -1189,6 +1199,8 @@ deleteSpecialFindFromContext(){
 deleteSpecialFind(){
     if (!isNull(special_find_id)) {
         showAlert("Confirm Deletion", "Press OK to Delete this Special Find!", "reallyDeleteSpecialFind()", "doNotDelete()");
+    } else {
+        cancelTabGroup("Special_Find", true);
     }
 }
 
