@@ -812,7 +812,7 @@
         </trigger>
       </group>
       <group faims_hidden="true" ref="Context_Cuts">
-        <label>Cut</label>
+        <label>{Cut}</label>
         <!--We would like to see Dropdown-->
         <group faims_style="orientation" ref="container1">
           <label/>
