@@ -67,30 +67,24 @@ search(){
 }
 
 /*** ArchEnt: Context ***/
-onEvent("Context", "show", "openContextTabs();");
-onEvent("Context", "load", "showTab(\"Context/Context_Deposits\");");
-onEvent("Context", "load", "showTab(\"Context/Context_Cuts\");");
-onEvent("Context", "load", "showTab(\"Context/Context_Structures\");");
 
-onEvent("Context/Context_GeneralInformation/Details","click","openContextTabs()");
-onEvent("Context/Context_Deposits/Soil_Populate_Colour", "click", "populateSoilColour()");
 
 onEvent("Context/Context_Attachments/Update", "delayclick", "saveContext()");
 onEvent("Context/Context_GeneralInformation/Update", "delayclick", "saveContext()");
+onEvent("Context/Context_GeneralInformation/addGeological", "click", "showTab(\"Context/Context_Deposits\")");
+onEvent("Context/Context_GeneralInformation/addRelationships", "click", "showTab(\"Context/Context_Relationships_to_Other_Contexts\")");
 onEvent("Context/Context_Deposits/Update", "delayclick", "saveContext()");
-onEvent("Context/Context_Structures/Update", "delayclick", "saveContext()");
-onEvent("Context/Texture_Helper/Update_Texture", "click", "setTextureActual()");
-onEvent("Context/Context_Deposits/Texture_Helper", "click", "helpSetTextureActual()");
-onEvent("Context/Context_Cuts/Update", "delayclick", "saveContext()");
-onEvent("Context/Context_Interpretation/Update", "delayclick", "saveContext()");
+onEvent("Context/Context_Samples/Update", "delayclick", "saveContext()");
+
+onEvent("Context/Context_GeneralInformation/calculateVol", "click", "calculateVol()");
 
 onEvent("Context/Context_Deposits/newMatrix", "click", "newMatrix()");
 onEvent("Context/Context_Deposits/loadMatrix", "click", "loadMatrix()");
 onEvent("Context/Context_Deposits/deleteMatrix", "click", "deleteMatrixFromContext()");
 
-onEvent("Context/Context_Interpretation/AddContextGroup", "click", "newContextGroup(false)");
-onEvent("Context/Context_Interpretation/ShowContextGroup", "click", "loadContextGroupFromContext()");
-onEvent("Context/Context_Interpretation/RemoveFromContextGroup", "click", "removeContextGroupReln()");
+onEvent("Context/Context_Relationships_to_Other_Contexts/AddContextGroup", "click", "newContextGroup(false)");
+onEvent("Context/Context_Relationships_to_Other_Contexts/ShowContextGroup", "click", "loadContextGroupFromContext()");
+onEvent("Context/Context_Relationships_to_Other_Contexts/RemoveFromContextGroup", "click", "removeContextGroupReln()");
 
 onEvent("Context/Context_Attachments/attachPhoto", "click", "attachPictureTo(\"Context/Context_Attachments/Photo\")");
 onEvent("Context/Context_Attachments/attachSketch", "click", "attachFileTo(\"Context/Context_Attachments/Sketch\")");
@@ -98,6 +92,10 @@ onEvent("Context/Context_Attachments/viewattached", "click", "viewArchEntAttache
 onEvent("Context/Context_Attachments/SaveAndNew", "delayclick", "saveAndNewContext()");
 onEvent("Context/Context_Attachments/Duplicate", "delayclick", "duplicateContext()");
 onEvent("Context/Context_Attachments/Delete", "delayclick", "deleteContext()");
+onEvent("Context/Context_Attachments/newPhotoLog", "click", "newPhotoLog()");
+onEvent("Context/Context_Attachments/loadPhotoLog", "click", "loadPhotoLog()");
+onEvent("Context/Context_Attachments/deletePhotoLog", "click", "deletePhotoLogFromContext()");
+onEvent("Context/Context_Attachments", "show", "updateAllContextPhotologs()");
 
 onEvent("Context/Context_Artefacts/newArtefactGroup", "delayclick", "newArtefactGroup()");
 onEvent("Context/Context_Artefacts/loadArtefactGroup", "click", "loadArtefactGroup()");
@@ -109,9 +107,12 @@ onEvent("Context/Context_Artefacts/deleteSpecialFind", "delayclick", "deleteSpec
 onEvent("Context/Context_Samples/newSample", "click", "newSample()");
 onEvent("Context/Context_Samples/loadSample", "click", "loadSample()");
 onEvent("Context/Context_Samples/deleteSample", "click", "deleteSampleFromContext()");
+onEvent("Context/Context_Samples/newDepositVolume", "click", "newDepositVolume()");
+onEvent("Context/Context_Samples/loadDepositVolume", "click", "loadDepositVolume()");
+onEvent("Context/Context_Samples/deleteDepositVolume", "click", "deleteDepositVolumeFromContext()");
 
 onEvent("Context/Context_Deposits", "show", "updateAllContextMatrices()");
-onEvent("Context/Context_Interpretation", "show", "updateAllContextGroups()");
+onEvent("Context/Context_Relationships_to_Other_Contexts", "show", "updateAllContextGroups()");
 onEvent("Context/Context_Relationships_to_Other_Contexts", "show", "updateAllContext()");
 onEvent("Context/Context_Artefacts", "show", "updateAllContext()");
 onEvent("Context/Context_Samples", "show", "updateAllContext()");
@@ -126,7 +127,6 @@ newContext(){
     context_id = null;
     newTabGroup("Context");
     setFieldValue("Context/Context_GeneralInformation/AreaCode", areaCode);
-    setFieldValue("Context/Context_GeneralInformation/Site_Code","FAIMS13");
     setFieldValue("Context/Context_GeneralInformation/Context_ID", getFieldValue("control/data/ContextIncrement"));
     date = fetchOne("select date('now');");
     setFieldValue("Context/Context_GeneralInformation/Date_Opened", date.get(0));
@@ -154,6 +154,7 @@ loadContextFrom(contextid) {
 saveContext() {
     if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
         showWarning("Logic Error", "Cannot save record without id");
+        showTabGroup("Context");
         return;
     }
     if (!isNull(context_id)) {
@@ -170,7 +171,7 @@ saveAndNewContext(){
     if (!isNull(context_id)) {
         entity = fetchArchEnt(context_id);
     }
-    saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();newContext();openContextTabs();");
+    saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();newContext();");
 }
 
 duplicateContext(){
@@ -291,7 +292,7 @@ updateAllContextGroups() {
             "group by uuid\n"+
             "order by valuetimestamp desc, uuid, attributename;");
     }
-    populateDropDown("Context/Context_Interpretation/ContextGroupList",  contextGroups);
+    populateDropDown("Context/Context_Relationships_to_Other_Contexts/ContextGroupList",  contextGroups);
 }
 
 updateAllContext(){
@@ -301,6 +302,7 @@ updateAllContext(){
     Object localArtefactGroup = new ArrayList();
     Object localSpecialFind = new ArrayList();
     Object localSample = new ArrayList();
+    Object localDepositVolumes = new ArrayList();
     Object relnList = new ArrayList();
     Object verbList = new ArrayList();
     Object contextList = new ArrayList();
@@ -359,12 +361,29 @@ updateAllContext(){
             "        ORDER BY uuid, attributename ASC)\n"+
             "group by uuid\n"+
             "order by valuetimestamp desc, uuid, attributename;");
+        localDepositVolumes = fetchAll("select uuid, aenttypename || ': ' || group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
+            "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
+            "            FROM latestNonDeletedArchentIdentifiers\n"+
+            "           WHERE aenttypename = 'Deposit Volume'\n"+
+            "             AND uuid in (select uuid\n"+
+            "                            FROM latestNonDeletedAentReln\n"+
+            "                           where relationshipid in (select relationshipid\n"+
+            "                                                      FROM latestNonDeletedAentReln\n"+
+            "                                                      JOIN relationship using (relationshipid)\n"+
+            "                                                      JOIN relntype using (relntypeid)\n"+
+            "                                                     where uuid = "+context_id+"\n"+
+            "                                                       and relntypeName = 'ContextDepositVolume')\n"+
+            "                             and uuid != "+context_id+")\n"+
+            "        ORDER BY uuid, attributename ASC)\n"+
+            "group by uuid\n"+
+            "order by valuetimestamp desc, uuid, attributename;");
 
         contextList = fetchAll("select uuid, group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' ') as response from latestNonDeletedArchEntIdentifiers where aenttypename = 'Context' and uuid != '"+context_id+"' group by uuid;" );
     }
     populateDropDown("Context/Context_Artefacts/artefactGroupList", localArtefactGroup);
     populateDropDown("Context/Context_Artefacts/specialFindList", localSpecialFind);
     populateDropDown("Context/Context_Samples/sampleList", localSample);
+    populateDropDown("Context/Context_Samples/depositVolumeList", localDepositVolumes);
     
     populateDropDown("Context/Context_Relationships_to_Other_Contexts/context", contextList);
 
@@ -410,73 +429,16 @@ updateRelns(){
 }
 
 loadContextAttributes(){
-    populatePictureGallery("Context/Context_GeneralInformation/Context_Type", makePictureGallery("Context Type"));
+    populateCheckBoxGroup("Context/Context_GeneralInformation/Excavation_Method", makeVocab("Excavation Method"));
+    populateDropDown("Context/Context_GeneralInformation/Wet_Sieved", makeVocab("Wet Sieved"));
 
-    populateHierarchicalDropDown("Context/Context_Deposits/Soil_Compaction_Type", "Soil Compaction Type");
+
     populateHierarchicalDropDown("Context/Context_Deposits/Soil_Munsell_Colour", "Soil Munsell Colour");
-    populateDropDown("Context/Context_Deposits/Soil_Texture_Actual", makeVocab("Soil Texture Actual"));
-    populateHierarchicalPictureGallery("Context/Context_Deposits/Soil_Particle_Sorting", "Soil Particle Sorting");
-    populateDropDown("Context/Context_Deposits/Horizon_Boundary", makeVocab("Horizon Boundary"));
-
-    populateDropDown("Context/Context_Cuts/Shape_of_Cut", makeVocab("Shape of Cut"));
-    populateRadioGroup("Context/Context_Cuts/Shape_of_Corners", makeVocab("Shape of Corners"));
-    populateRadioGroup("Context/Context_Cuts/Break_of_Slope_Top", makeVocab("Break of Slope - Top"));
-    populateRadioGroup("Context/Context_Cuts/Break_of_slope_Base", makeVocab("Break of slope - Base"));
-    populateHierarchicalDropDown("Context/Context_Cuts/Shape_of_Base", "Shape of Base");
-    populateRadioGroup("Context/Context_Cuts/Orientation", makeVocab("Orientation"));
-
-    populateHierarchicalPictureGallery("Context/Context_Structures/Bond_Type", "Bond Type");
-    populateHierarchicalDropDown("Context/Context_Structures/Structural_Components", "Structural Components");
-    populateDropDown("Context/Context_Structures/Bonding", makeVocab("Bonding"));
-
-    populateRadioGroup("Context/Context_Interpretation/Your_Interpretation", makeVocab("Your Interpretation"));
-    populateRadioGroup("Context/Context_Interpretation/Phase_From", makeVocab("Phase From"));
-    populateRadioGroup("Context/Context_Interpretation/Phase_To", makeVocab("Phase To"));
-
-    populateHierarchicalDropDown("Context/Texture_Helper/Soil_Texture", "Soil Texture");
-
-
-}
-
-openContextTabs(){
-    Object name = fetchOne("select vocabName from vocabulary where vocabid = '"+getFieldValue("Context/Context_GeneralInformation/Context_Type")+"';");
-    if (!isNull(name)){
-        String vocab = name.get(0);
-        if ((vocab.equals("{Deposit}")) || (vocab.equals("{Natural}"))){
-            cancelTab("Context/Context_Cuts", false);
-            cancelTab("Context/Context_Structures", false);
-            showTab("Context/Context_Deposits");
-        } else if (vocab.equals("{Cut}")){
-            cancelTab("Context/Context_Deposits", false);
-            cancelTab("Context/Context_Structures", false);
-            showTab("Context/Context_Cuts");
-        } else if (vocab.equals("{Structure}")){
-            cancelTab("Context/Context_Deposits", false);
-            cancelTab("Context/Context_Cuts", false);
-            showTab("Context/Context_Structures");
-        }
-    } else {
-
-        cancelTab("Context/Context_Cuts", false);
-        cancelTab("Context/Context_Deposits", false);
-        cancelTab("Context/Context_Structures", false);
-    }
-}
-
-helpSetTextureActual(){
-    showTab("Context/Texture_Helper");
-}
-
-setTextureActual(){
-    Object textureToSet = fetchOne("select vocabid from vocabulary join attributekey using (attributeid)where attributeName = 'Soil Texture Actual'and vocabname = (select vocabname"
-                + " from vocabulary join attributekey using (attributeid)"
-                + " where vocabid = '"+ getFieldValue("Context/Texture_Helper/Soil_Texture") +"'"
-                + " and attributeName = 'Soil Texture');");
-    if(!isNull(textureToSet)){
-        setFieldValue("Context/Context_Deposits/Soil_Texture_Actual", textureToSet.get(0));
-    }
-    cancelTab("Context/Texture_Helper", false);
-    showTab("Context/Context_Deposits");
+    populateDropDown("Context/Context_Deposits/Soil_Compaction_Type", makeVocab("Soil Compaction Type"));
+    populateDropDown("Context/Context_Deposits/Soil_Moisture", makeVocab("Soil Moisture"));
+    populateCheckBoxGroup("Context/Context_Deposits/Deposit_Inclusions", makeVocab("Deposit Inclusions"));
+    populateCheckBoxGroup("Context/Context_Deposits/Natural_Formations", makeVocab("Natural Formations"));
+    populateCheckBoxGroup("Context/Context_Deposits/Disturbances", makeVocab("Disturbances"));
 }
 
 populateSoilColour() {
@@ -490,7 +452,7 @@ populateSoilColour() {
 }
 
 removeContextGroupReln() {
-    context_group_id = getFieldValue("Context/Context_Interpretation/ContextGroupList");
+    context_group_id = getFieldValue("Context/Context_Relationships_to_Other_Contexts/ContextGroupList");
     if(!isNull(context_id) && !isNull(context_group_id)) {
         Object obj = fetchOne("select context.uuid, contextgroup.uuid, relationshipid  " +
             "from latestnondeletedaentreln context join latestnondeletedaentreln contextgroup using (relationshipid) " +
@@ -506,6 +468,30 @@ removeContextGroupReln() {
         }
         
     }
+}
+
+calculateVol() {
+    if(!isNull(context_id)) {
+       String query = "select sum(measure) from latestnondeletedaentvalue join attributekey using (attributeid) join latestnondeletedArchEnt using (uuid) " +
+                    "where attributename = 'Volume' and  " +
+                    "uuid in ( " +
+                    "select uuid from latestNonDeletedAentReln " +
+                    "where relationshipid in ( " +
+                    "select relationshipid from latestNonDeletedAentReln join relationship using (relationshipid) join relntype using (relntypeid) where uuid = '" + context_id + "'  " +
+                    "and relntypename = 'ContextDepositVolume') " +
+                    "and uuid != " + context_id + " " +
+                    "); ";
+        ArrayList sum = fetchOne(query);
+        if(!isNull(sum.get(0))) {
+            setFieldValue("Context/Context_GeneralInformation/Deposit_Volume", sum.get(0));     
+        } else {
+            setFieldValue("Context/Context_GeneralInformation/Deposit_Volume", "0.0");
+        }
+        
+    } else {
+        setFieldValue("Context/Context_GeneralInformation/Deposit_Volume", "0.0");
+    }
+    
 }
 
 /*** RelnEnt: Context Group***/
@@ -536,7 +522,7 @@ loadContextGroup(){
 }
 
 loadContextGroupFromContext() {
-    context_group_id = getFieldValue("Context/Context_Interpretation/ContextGroupList");
+    context_group_id = getFieldValue("Context/Context_Relationships_to_Other_Contexts/ContextGroupList");
     if (isNull(context_group_id)) return;
     showTabGroup("ContextGroup", context_group_id);
     populateContextGroup();
@@ -605,9 +591,6 @@ populateContextGroup() {
 }
 
 loadContextGroupAttributes(){
-    populatePictureGallery("ContextGroup/ContextGroup_Details/Context_Type", makePictureGallery("CG Context Type"));
-    populateRadioGroup("ContextGroup/ContextGroup_Details/Phase_From", makeVocab("CG Phase From"));
-    populateRadioGroup("ContextGroup/ContextGroup_Details/Phase_To", makeVocab("CG Phase To"));
 }
 
 loadContextFromContextGroup(){
@@ -678,7 +661,6 @@ newArtefactGroup(){
 loadArtefactGroup() {
     artefact_group_id = getFieldValue("Context/Context_Artefacts/artefactGroupList");
     if (isNull(artefact_group_id)) return;
-    loadArtefactGroupAttributes();
     showTabGroup("Artefact_Group", artefact_group_id);
 }
 
@@ -832,7 +814,6 @@ newSample(){
 loadSample() {
     sample_id = getFieldValue("Context/Context_Samples/sampleList");
     if (isNull(sample_id)) return;
-    loadSampleAttributes();
     showTabGroup("Sample", sample_id);
 }
 
@@ -981,7 +962,6 @@ newMatrix(){
 loadMatrix() {
     matrix_id = getFieldValue("Context/Context_Deposits/matrixList");
     if (isNull(matrix_id)) return;
-    loadMatrixAttributes();
     showTabGroup("Matrix", matrix_id);
 }
 
@@ -1055,7 +1035,6 @@ doNotDelete(){
 loadMatrixAttributes(){
     populateDropDown("Matrix/Matrix/Component_Type", makeVocab("Component Type"));
     populateDropDown("Matrix/Matrix/Component", makeVocab("Component"));
-    populateHierarchicalPictureGallery("Matrix/Matrix/Shape", "Shape");
 }
 
 /*** Special Find ***/
@@ -1086,7 +1065,6 @@ newSpecialFind(){
 loadSpecialFind() {
     special_find_id = getFieldValue("Context/Context_Artefacts/specialFindList");
     if (isNull(special_find_id)) return;
-    loadSpecialFindAttributes();
     showTabGroup("Special_Find", special_find_id);
 }
 
@@ -1209,6 +1187,225 @@ doNotDelete(){
 
 loadSpecialFindAttributes(){
     populateHierarchicalDropDown("Special_Find/Special_Find_GeneralInformation/Special_Find_Class", "Special Find Class");
+}
+
+/*** Deposit Volume ***/
+onEvent("Deposit_Volume/Deposit_Volume/Update", "delayclick", "saveDepositVolume()");
+onEvent("Deposit_Volume/Deposit_Volume/Delete", "delayclick", "deleteDepositVolume()");
+onEvent("Deposit_Volume/Deposit_Volume/SaveAndNew", "delayclick", "saveAndNewDepositVolume()");
+onEvent("Deposit_Volume/Deposit_Volume/ReturnToContext", "delayclick", "cancelTabGroup(\"Deposit_Volume\", true)");
+
+String deposit_volume_id = null;
+
+newDepositVolume(){
+    if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        return;
+    }
+    if (isNull(context_id)){
+        showToast("You must save a context first.");
+        return;
+    }
+    deposit_volume_id = null;
+    newTabGroup("Deposit_Volume");
+    setFieldValue("Deposit_Volume/Deposit_Volume/Context_ID",  getFieldValue("Context/Context_GeneralInformation/Context_ID"));
+}
+
+loadDepositVolume() {
+    deposit_volume_id = getFieldValue("Context/Context_Samples/depositVolumeList");
+    if (isNull(deposit_volume_id)) return;
+    showTabGroup("Deposit_Volume", deposit_volume_id);
+}
+
+saveDepositVolume() {
+    if (isNull(getFieldValue("Deposit_Volume/Deposit_Volume/Deposit_ID"))) {
+        showWarning("Validation Error", "Cannot save Deposit Volume without an ID");
+        return;
+    }
+    
+    if (!isNull(deposit_volume_id)) {
+        entity = fetchArchEnt(deposit_volume_id);
+    }
+
+    if (isNull(context_id)) {
+        showWarning("Logic Error", "Deposit Volume cannot be saved as parent context is not saved or loaded.");
+        return null;
+    } else {
+       saveTabGroup("Deposit_Volume", deposit_volume_id, null, null, "deposit_volume_id = getLastSavedRecordId(); onDepositVolumeSaved(); cancelTabGroup(\"Deposit_Volume\", false);");
+    }
+}
+
+saveAndNewDepositVolume() {
+    if (isNull(getFieldValue("Deposit_Volume/Deposit_Volume/Deposit_ID"))) {
+        showWarning("Validation Error", "Cannot save Deposit Volume without an ID");
+        return;
+    }
+    if (!isNull(deposit_volume_id)) {
+        entity = fetchArchEnt(deposit_volume_id);
+    }
+
+    if (isNull(context_id)) {
+        showWarning("Logic Error", "Deposit Volume cannot be saved as parent context is not saved or loaded.");
+        return null;
+    } else {
+       saveTabGroup("Deposit_Volume", deposit_volume_id, null, null, "deposit_volume_id = getLastSavedRecordId(); onDepositVolumeSaved(); newDepositVolume();");
+    }
+}
+
+onDepositVolumeSaved(){
+    deposit_volume_id = getLastSavedRecordId();
+    saveEntitiesToRel("ContextDepositVolume", context_id, deposit_volume_id);
+    showToast("Associated with Context");
+
+}
+
+deleteDepositVolumeFromContext(){
+    deposit_volume_id = getFieldValue("Context/Context_Samples/depositVolumeList");
+    if (!isNull(deposit_volume_id)) {
+        showAlert("Confirm Deletion", "Press OK to Delete this DepositVolume!", "reallyDeleteDepositVolume()", "doNotDelete()");
+    }
+}
+
+deleteDepositVolume(){
+    if (!isNull(deposit_volume_id)) {
+        showAlert("Confirm Deletion", "Press OK to Delete this DepositVolume!", "reallyDeleteDepositVolume()", "doNotDelete()");
+    } else {
+        cancelTabGroup("Deposit_Volume", true);
+    }
+}
+
+reallyDeleteDepositVolume(){
+    deleteArchEnt(deposit_volume_id);
+    showTabGroup("Deposit_Volume");
+    cancelTabGroup("Deposit_Volume", false);
+}
+
+doNotDelete(){
+    showToast("Delete Cancelled.");
+}
+
+
+/*** Arch Ent: PhotoLog ***/
+onEvent("Photograph_Log/Photograph_Log/Update", "delayclick", "savePhotoLog()");
+onEvent("Photograph_Log/Photograph_Log/Delete", "delayclick", "deletePhotoLog()");
+onEvent("Photograph_Log/Photograph_Log/SaveAndNew", "delayclick", "saveAndNewPhotoLog()");
+onEvent("Photograph_Log/Photograph_Log/ReturnToContext", "delayclick", "cancelTabGroup(\"Photograph_Log\", true)");
+// onEvent("Photograph_Log/Photograph_Log", "show", "populateDropDown(\"Photograph_Log/Photograph_Log/Scene_Type\",  makeVocab(\"Scene Type\"))");
+
+String photolog_id = null;
+
+newPhotoLog(){
+    if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        return;
+    }
+    if (isNull(context_id)){
+        showToast("You must save a context first.");
+        return;
+    }
+    photolog_id = null;
+    newTabGroup("Photograph_Log");
+    setFieldValue("Photograph_Log/Photograph_Log/Context_ID", getFieldValue("Context/Context_GeneralInformation/Context_ID"));
+}
+
+loadPhotoLog() {
+    photolog_id = getFieldValue("Context/Context_Attachments/PhotoLogList");
+    if (isNull(photolog_id)) return;
+    showTabGroup("Photograph_Log", photolog_id);
+}
+
+loadPhotoLogAttributes(){
+    populateDropDown("Photograph_Log/Photograph_Log/Scene_Type",  makeVocab("Scene Type"));
+}
+
+savePhotoLog() {
+    if (isNull(getFieldValue("Photograph_Log/Photograph_Log/Photograph_Reference_ID"))) {
+        showWarning("Logic Error", "Cannot save Photgraph without Reference ID.");
+        return;
+    }
+    
+    if (!isNull(photolog_id)) {
+        entity = fetchArchEnt(photolog_id);
+    }
+
+    if (isNull(context_id)) {
+        showWarning("Logic Error", "DepositVolume cannot be saved as parent context is not saved or loaded.");
+        return null;
+    } else {
+       saveTabGroup("Photograph_Log", photolog_id, null, null, "photolog_id = getLastSavedRecordId(); onPhotoLogSaved(); cancelTabGroup(\"Photograph_Log\", false);");
+    }
+}
+
+saveAndNewPhotoLog() {
+    if (isNull(getFieldValue("Photograph_Log/Photograph_Log/Photograph_Reference_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        return;
+    }
+    if (!isNull(photolog_id)) {
+        entity = fetchArchEnt(photolog_id);
+    }
+
+    if (isNull(context_id)) {
+        showWarning("Logic Error", "Photograph Log cannot be saved as parent context is not saved or loaded.");
+        return null;
+    } else {
+       saveTabGroup("Photograph_Log", photolog_id, null, null, "photolog_id = getLastSavedRecordId(); onPhotoLogSaved(); newPhotoLog();");
+    }
+}
+
+onPhotoLogSaved(){
+    photolog_id = getLastSavedRecordId();
+    saveEntitiesToRel("ContextPhotographLog", context_id, photolog_id);
+    showToast("Associated with Context");
+
+}
+
+deletePhotoLogFromContext(){
+    photolog_id = getFieldValue("Context/Context_Attachments/PhotoLogList");
+    if (!isNull(photolog_id)) {
+        showAlert("Confirm Deletion", "Press OK to Delete this Photograph Log!", "reallyDeletePhotoLog()", "doNotDelete()");
+    }
+}
+
+deletePhotoLog(){
+    if (!isNull(photolog_id)) {
+        showAlert("Confirm Deletion", "Press OK to Delete this Photograph Log!", "reallyDeletePhotoLog()", "doNotDelete()");
+    } else {
+        cancelTabGroup("Photograph_Log", true);
+    }
+}
+
+reallyDeletePhotoLog(){
+    deleteArchEnt(photolog_id);
+    showTabGroup("Photograph_Log");
+    cancelTabGroup("Photograph_Log", false);
+}
+
+doNotDelete(){
+    showToast("Delete Cancelled.");
+}
+
+updateAllContextPhotologs() {
+    Object contextPhotologs = new ArrayList();
+    if (!isNull(context_id)){
+        contextPhotologs = fetchAll("select uuid, aenttypename || ': ' || group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
+            "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
+            "            FROM latestNonDeletedArchentIdentifiers\n"+
+            "           WHERE aenttypename = 'Photograph Log'\n"+
+            "             AND uuid in (select uuid\n"+
+            "                            FROM latestNonDeletedAentReln\n"+
+            "                           where relationshipid in (select relationshipid\n"+
+            "                                                      FROM latestNonDeletedAentReln\n"+
+            "                                                      JOIN relationship using (relationshipid)\n"+
+            "                                                      JOIN relntype using (relntypeid)\n"+
+            "                                                     where uuid = "+context_id+"\n"+
+            "                                                       and relntypeName = 'ContextPhotographLog')\n"+
+            "                             and uuid != "+context_id+")\n"+
+            "        ORDER BY uuid, attributename ASC)\n"+
+            "group by uuid\n"+
+            "order by valuetimestamp desc, uuid, attributename;");
+    }
+    populateDropDown("Context/Context_Attachments/PhotoLogList",  contextPhotologs);
 }
 
 /*** MISC ***/
@@ -1409,3 +1606,4 @@ loadArtefactGroupAttributes();
 loadSampleAttributes();
 loadMatrixAttributes();
 loadSpecialFindAttributes();
+loadPhotoLogAttributes()

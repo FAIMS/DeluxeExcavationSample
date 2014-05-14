@@ -2,13 +2,13 @@
 <dataSchema name="hdb_FAIMS_Community_Server" preparer="Heurist user:Penny Crook" >
   <!-- MEMSAP for Jessica -->
   <RelationshipElement name="AboveBelow" type="hierarchical">
-    <description>Implements a above below for contexts.
+    <description>Implehbments a above below for contexts.
     </description>
     <parent>Above</parent>
     <child>Below</child>
   </RelationshipElement>
-  <RelationshipElement name="Same As" type="bidirectional">
-    <description>Implements a same as for contexts
+  <RelationshipElement name="Adjacent to" type="bidirectional">
+    <description>Implements adjacent to for contexts
     </description>
   </RelationshipElement>
   <RelationshipElement name="Contains - Contained By" type="hierarchical">
@@ -16,22 +16,6 @@
     </description>
     <parent>Contains</parent>
     <child>Contained By</child>
-  </RelationshipElement>
-  <RelationshipElement name="Cuts - Cut By" type="hierarchical">
-    <description>Implements a cuts-cutby for contexts.
-    </description>
-    <parent>Cuts</parent>
-    <child>Cut By</child>
-  </RelationshipElement>
-  <RelationshipElement name="Butts - Butted By" type="hierarchical">
-    <description>Implements a Butts-ButtedBy for contexts.
-    </description>
-    <parent>Butts</parent>
-    <child>Butted By</child>
-  </RelationshipElement>
-  <RelationshipElement name="Bonded To" type="bidirectional">
-    <description>Implements a bonded to for contexts
-    </description>
   </RelationshipElement>
   <RelationshipElement name="ContextMatrix" type="bidirectional">
     <description>Implements a 1:N between contexts and matrices
@@ -53,6 +37,14 @@
     <description>Implements a 1:N between context and its special finds
     </description>
   </RelationshipElement>
+  <RelationshipElement name="ContextDepositVolume" type="bidirectional">
+    <description>Implements a 1:N between context and its deposit volumes
+    </description>
+  </RelationshipElement>
+  <RelationshipElement name="ContextPhotographLog" type="bidirectional">
+    <description>Implements a 1:N between context and its photograph logs
+    </description>
+  </RelationshipElement>
 
     <!-- CONTEXT -->
   <ArchaeologicalElement name="Context">
@@ -63,10 +55,6 @@
     </property>
     <property isIdentifier="true" name="Context ID" type="freetext">
       <description>Unique number or code for each Context.
-      </description>
-    </property>
-    <property isIdentifier="true" name="Context Name" type="freetext">
-      <description>Brief name for the Context, eg 'House A - west wall'
       </description>
     </property>
     <property name="AreaCode" type="enum">
@@ -97,44 +85,22 @@
     <property name="Grid Location Reference" type="freetext">
       <description>Reference number for the grid square(s) within which this Context falls. </description>
     </property>
-    <property name="Context Type" type="enum">
-      <description>Deposit, cut or 'other' (feature).
-      </description>
-      <lookup>
-        <term pictureURL="files/data/gallery/ContextType/Other/NA.png">No Observation
-
-          <description>data not collected
-          </description>
-        </term>
-        <term HeuristID="0-3398" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Cut.png">{Cut}
-
-          <description>Any Context which forms a negative interface, eg pits, ditches, graves and foundation and robber trenches
-          </description>
-        </term>
-        <term HeuristID="0-3397" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Deposit.png">{Deposit}
-
-          <description>Any Context with deposited soil, eg natural deposits, floor and road surfaces and pit, ditch and grave fills
-          </description>
-
-        </term>
-        <term HeuristID="0-3400" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Natural.png">
-          {Natural}
-          <description> </description>
-        </term>
-        <term HeuristID="0-3399" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Structure.png">{Structure}
-
-          <description>Any context formed independent of a Cut or negative interface, eg walls, hearths.
-          </description>
-        </term>
-      </lookup>
-    </property>
     <property name="Date Opened" type="date">
       <description>Date on which the Context was first excavated.
       </description>
     </property>
-    <property name="Excavation Method" type="blocktext">
-      <description>Method and conditions of archaeological excavation.
-      </description>
+    <property name="Excavation Method" type="enum">
+      <description>Method and conditions of archaeological excavation.</description>
+      <lookup>
+        <term>Hand-pick 
+        <description>Excavated by hand-pick.</description></term>
+        <term>Trowel 
+        <description>Excavated by trowel.</description></term>
+        <term>Pick 
+        <description>Excavated by pick.</description></term>
+        <term>Other LotID
+        <description>Excavated by another method.</description></term>
+      </lookup>
     </property>
     <property name="Highest Level" type="float">
       <description> The highest elevation, or 'starting level', recorded for that context. This may be relative to the site grid, or real world co-ordinates, depending on the method of measurement.
@@ -163,55 +129,10 @@
     <property name="Soil Compaction Type" type="enum">
       <description>The type of compaction of sediments in the deposit, eg 'Compact', 'Cemented' or 'Loose'.</description>
       <lookup>
-        <term>No Observation
-
-          <description>data not collected</description></term>
-        <term HeuristID="0-3402" StandardCode="">{Coarse-grained_sediments}
-
-          <description>Soils with coarse-grained sediments such as gravel and sand.</description>
-          <term HeuristID="0-3407" StandardCode="">
-            {Compact}
-            <description>Requires mattock for excavation.(MoLAS 2004: 30)</description></term>
-          <term HeuristID="0-3404" StandardCode="">{Indurated}
-            <description>Broken only with sharp pick blow, even when soaked. (MoLAS 2004: 30)</description></term>
-          <term HeuristID="0-3408" StandardCode="">{Loose}
-            <description>Can be excavated with hoe or trowel. (MoLAS 2004: 30)</description></term>
-          <term HeuristID="0-3405" StandardCode="">{Strongly_cemented}
-            <description>Cannot be broken with hands. (MoLAS 2004: 30)</description></term>
-          <term HeuristID="0-3406" StandardCode="">{Weakly_cemented}
-            <description>Pick removes sediment in lumps which can be broken with hands. (MoLAS 2004: 30)</description></term>
-        </term>
-        <term HeuristID="0-3403" StandardCode="">{Fine-grained_sediments}
-
-          <description>Soils with fine-grained sediments such as silt and clay.</description>
-          <term HeuristID="0-3413" StandardCode="">
-            {Friable}
-            <description>Non-plastic, crumbles in fingers.</description></term>
-          <term HeuristID="0-3409" StandardCode="">{Hard}
-            <description>Brittle or very tough. (MoLAS 2004: 30)</description></term>
-          <term HeuristID="0-3411" StandardCode="">{Soft}
-            <description>Easily moulded with fingers.</description></term>
-          <term HeuristID="0-3410" StandardCode="">{Stiff}
-            <description>Cannot be moulded with fingers.(MoLAS 2004: 30)</description></term>
-          <term HeuristID="0-3412" StandardCode="">{Very_soft}
-            <description>Exudes between fingers when squeezed.</description></term>
-        </term>
-        <term HeuristID="0-3414" StandardCode="">{Peat}
-
-          <description>Anaerobic accumulation of partially decayed vegetation.</description>
-          <term HeuristID="0-3415" StandardCode="">
-            {Firm}
-            <description>Fibres compressed together. (MoLAS 1994: 30)</description></term>
-          <term HeuristID="0-3417" StandardCode="">{Plastic}
-            <description>Can be moulded in hands and smeared between fingers. (MoLAS 1994: 30)</description></term>
-          <term HeuristID="0-3416" StandardCode="">{Spongy}
-            <description>Very compressible and open structure. (MoLAS 1994: 30)</description></term>
-        </term>
+        <term HeuristID="0-3408" StandardCode="">{aLoose} <description>Can be excavated with hoe or trowel. (MoLAS 2004: 30)</description></term>
+        <term HeuristID="0-3407" StandardCode="">{bCompact} <description>Requires mattock for excavation.(MoLAS 2004: 30)</description></term>
+        <term HeuristID="0-3408" StandardCode="">{cVery_Compact} <description></description></term>
       </lookup>
-    </property>
-    <property name="Soil Compaction Description" type="freetext">
-      <description>Description of the compaction of soil, including changes throughout the deposit. Eg ‘Varies from loose to compact.
-      </description>
     </property>
     <property name="Soil Munsell Colour" type="freetext">
       <description>The Munsell Code for the soil colour. </description>
@@ -9658,598 +9579,21 @@
       <description>Simple description of the colour of the soil. This field is interpreted from the Soil Munsell Colour
       </description>
     </property>
-    <property name="Soil Texture" type="enum">
-      <description>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.
-      </description>
-      <lookup>
-        <term HeuristID="0-3606" StandardCode="">{Soil_does_NOT_remain_in_ball_when_squeezed}
-
-          <description>Place approximately 25 g soil in palm. Add water dropwise and knead the soil to break down all aggregates. Soil is at the proper consistency when plastic and moldable, like moist putty.
-          </description>
-          <term HeuristID="0-3609" StandardCode="">
-            {Is_too_dry}
-
-            <description>The soil sample is too dry.
-            </description>
-            <term HeuristID="0-3610" StandardCode="">
-              NO RESULT: Add more water and start again
-
-              <description> </description>
-            </term>
-          </term>
-          <term HeuristID="0-3611" StandardCode="">{Is_too_wet}
-
-            <description>The soil sample is too wet.
-            </description>
-            <term HeuristID="0-3612" StandardCode="">
-              NO RESULT: Add dry soil and start again
-
-              <description>NO RESULT: add dry soil to soak up water
-              </description>
-            </term>
-          </term>
-          <term HeuristID="0-3607" StandardCode="">{NOT_too_wet_nor_too_dry}
-
-            <description>The soil is NOT too wet nor too dry.
-            </description>
-            <term HeuristID="0-3608" StandardCode="">
-              {Sand}
-
-              <description>A sand has a loose gritty feel and does not stick together. Individual sand grains can be seen or felt. (VDEPI 2009: AG0058)
-              </description>
-            </term>
-          </term>
-        </term>
-        <term HeuristID="0-3574" StandardCode="">{Soil_remains_in_ball_when_squeezed}
-
-          <description>Place approximately 25 g soil in palm. Add water dropwise and knead the soil to break down all aggregates. Soil is at the proper consistency when plastic and moldable, like moist putty.
-          </description>
-          <term HeuristID="0-3575" StandardCode="">
-            {TASK:_Roll_ribbon}
-
-            <description>Rub a ball of soil between thumb and forefinger to make a 'ribbon'
-            </description>
-            <term HeuristID="0-3604" StandardCode="">
-              {Does_NOT_form_a_ribbom}
-
-              <description>A 'ribbon' is NOT formed when a ball of soil is rubbed between thumb and forefinger.
-              </description>
-              <term HeuristID="0-3605" StandardCode="">
-                {Loamy_Sand}
-
-                <description>In a loamy sand particles barely stick together and a moulded piece of soil just holds its shape. (VDEPI 2009: AG0058)
-                </description>
-              </term>
-            </term>
-            <term HeuristID="0-3576" StandardCode="">{Forms_ribbon}
-
-              <description>A 'ribbon' is formed when a ball of soil is rubbed between thumb and forefinger.
-              </description>
-              <term HeuristID="0-3586" StandardCode="">
-                {Medium_ribbon_(2.5-5cm_long)}
-
-                <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is between 2.5 and 5cm long.
-                </description>
-                <term HeuristID="0-3587" StandardCode="">
-                  {TASK:_Wet_soil_and_rub_with_forefinger}
-
-                  <description>Excessively wet a small pinch of soil in palm and rub with forefinger.
-                  </description>
-                  <term HeuristID="0-3590" StandardCode="">
-                    {Does_NOT_feel_very_gritty}
-
-                    <description>The wetted soil does NOT feel very gritty when rubbed on the palm and with forefinger.
-                    </description>
-                    <term HeuristID="0-3591" StandardCode="">
-                      {Feels_very_smooth}
-
-                      <description>The wetted soil feels very smooth when rubbed on the palm and with forefinger.
-                      </description>
-                      <term HeuristID="0-3592" StandardCode="">
-                        {Silty_Clay_Loam}
-
-                        <description>A silty clay loam is like a clay loam but silty as well and smooth to the touch. (VDEPI 2009: AG0058)
-                        </description>
-                      </term>
-                    </term>
-                    <term HeuristID="0-3593" StandardCode="">{Neither_very_gritty_nor_very_smooth}
-
-                      <description>The wetted soil does NOT feel very smooth nor very gritty when rubbed on the palm and with forefinger.
-                      </description>
-                      <term HeuristID="0-3594" StandardCode="">
-                        {Clay_Loam}
-
-                        <description>More easily moulded into a shape than a loam, a clay loam rolls out to a thin ribbon between the palms while a loam will break-up. When dry a clay loam will form a lump but is not as tough to break as a clay.(VDEPI 2009: AG0058)
-                        </description>
-                      </term>
-                    </term>
-                  </term>
-                  <term HeuristID="0-3588" StandardCode="">{Feels_very_gritty}
-
-                    <description>The wetted soil feels very gritty when rubbed on the palm and with forefinger.
-                    </description>
-                    <term HeuristID="0-3589" StandardCode="">
-                      {Sandy_Clay_Loam}
-
-                      <description>A sandy clay loam is like a clay loam but sand grains can be felt (and heard - see Sandy Loam) (VDEPI 2009: AG0058)
-                      </description>
-                    </term>
-                  </term>
-                </term>
-              </term>
-              <term HeuristID="0-3595" StandardCode="">{Strong_ribbon}
-
-                <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is strong and over 5cm long.
-                </description>
-                <term HeuristID="0-3596" StandardCode="">
-                  {TASK:_Wet_soil_and_rub_with_forefinger}
-
-                  <description>Excessively wet a small pinch of soil in palm and rub with forefinger.
-                  </description>
-                  <term HeuristID="0-3599" StandardCode="">
-                    {Does_NOT_feel_very_gritty}
-
-                    <description>The wetted soil does NOT feel very gritty when rubbed on the palm and with forefinger.
-                    </description>
-                    <term HeuristID="0-3600" StandardCode="">
-                      {Feels_very_smooth}
-
-                      <description>The wetted soil feels very smooth when rubbed on the palm and with forefinger.
-                      </description>
-                      <term HeuristID="0-3601" StandardCode="">
-                        {Silty_Clay}
-
-                        <description>A silty clay is like a clay but smoother. (VDEPI 2009: AG0058)
-                        </description>
-                      </term>
-                    </term>
-                    <term HeuristID="0-3602" StandardCode="">{Neither_very_gritty_nor_very_smooth}
-
-                      <description>The wetted soil does NOT feel very smooth nor very gritty when rubbed on the palm and with forefinger.
-                      </description>
-                      <term HeuristID="0-3603" StandardCode="">
-                        {Clay}
-
-                        <description>Clays are tough and can be moulded into shapes when moist. Clays form a long flexible ribbon when rubbed between the palms and the ribbon can often be bent into a U shape without breaking. Clays dry into very hard clods. (VDEPI 2009: AG0058)
-                        </description>
-                      </term>
-                    </term>
-                  </term>
-                  <term HeuristID="0-3597" StandardCode="">{Feels_very_gritty}
-
-                    <description>The wetted soil feels very gritty when rubbed on the palm and with forefinger.
-                    </description>
-                    <term HeuristID="0-3598" StandardCode="">
-                      {Sandy_Clay}
-
-                      <description>A sandy clay is like a clay but sand grains can be felt (and heard - see Sandy Loam). (VDEPI 2009: AG0058)
-                      </description>
-                    </term>
-                  </term>
-                </term>
-              </term>
-              <term HeuristID="0-3577" StandardCode="">{Weak_ribbon_(Less_than_2.5cm_long)}
-
-                <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is less than 2.5cm long.
-                </description>
-                <term HeuristID="0-3578" StandardCode="">
-                  {TASK:_Wet_soil_and_rub_with_forefinger}
-
-                  <description>Excessively wet a small pinch of soil in palm and rub with forefinger.
-                  </description>
-                  <term HeuristID="0-3581" StandardCode="">
-                    {Does_NOT_feel_very_gritty}
-
-                    <description>The wetted soil does NOT feel very gritty when rubbed on the palm and with forefinger.
-                    </description>
-                    <term HeuristID="0-3582" StandardCode="">
-                      {Feels_very_smooth}
-
-                      <description>The wetted soil feels very smooth when rubbed on the palm and with forefinger.
-                      </description>
-                      <term HeuristID="0-3583" StandardCode="">
-                        {Silt_Loam}
-
-                        <description>A silty loam is like a loam but has a smooth silky feel when a moist sample is pushed between the index finger and thumb. On drying a sample can form a hard lump but this may be broken by hand. (VDEPI 2009: AG0058)
-                        </description>
-                      </term>
-                    </term>
-                    <term HeuristID="0-3584" StandardCode="">{Neither_very_gritty_nor_very_smooth}
-
-                      <description>The wetted soil does NOT feel very smooth nor very gritty when rubbed on the palm and with forefinger.
-                      </description>
-                      <term HeuristID="0-3585" StandardCode="">
-                        {Loam}
-
-                        <description>A loam breaks into crumbs but will tend to stick together. Sand grains cannot be felt in a moist sample which when squeezed will retain its shape when handled freely. Loams are usually soft to the feel. (VDEPI 2009: AG0058)
-                        </description>
-                      </term>
-                    </term>
-                  </term>
-                  <term HeuristID="0-3579" StandardCode="">{Feels_very_gritty}
-
-                    <description>The wetted soil feels very gritty when rubbed on the palm and with forefinger.
-                    </description>
-                    <term HeuristID="0-3580" StandardCode="">
-                      {Sandy_Loam}
-
-                      <description>A sandy loam sticks together more than a loamy sand but can be easily broken. Individual sand grains can be felt and heard if a wet sample is rubbed between the index finger and thumb and held close to the ear. (VDEPI 2009: AG0058)
-                      </description>
-                    </term>
-                  </term>
-                </term>
-              </term>
-            </term>
-          </term>
-        </term>
-      </lookup>
-    </property>
-    <property name="Soil Texture Actual" type="enum">
-      <description>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.
-      </description>
-      <lookup>
-        <term HeuristID="0-3608" StandardCode="">No Observation 
-          <description>No Observation. Use the Texture helper to prefil this.
-          </description>
-        </term>
-        <term HeuristID="0-3608" StandardCode="">{Sand}
-          <description>A sand has a loose gritty feel and does not stick together. Individual sand grains can be seen or felt. (VDEPI 2009: AG0058)
-          </description>
-        </term>
-        <term HeuristID="0-3605" StandardCode="">{Loamy_Sand}
-          <description>In a loamy sand particles barely stick together and a moulded piece of soil just holds its shape. (VDEPI 2009: AG0058)
-          </description>
-        </term>
-        <term HeuristID="0-3586" StandardCode="">{Medium_ribbon_(2.5-5cm_long)}
-          <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is between 2.5 and 5cm long.
-          </description>
-        </term>
-        <term HeuristID="0-3592" StandardCode="">{Silty_Clay_Loam}
-          <description>A silty clay loam is like a clay loam but silty as well and smooth to the touch. (VDEPI 2009: AG0058)
-          </description>
-        </term>
-        <term HeuristID="0-3594" StandardCode="">{Clay_Loam}
-          <description>More easily moulded into a shape than a loam, a clay loam rolls out to a thin ribbon between the palms while a loam will break-up. When dry a clay loam will form a lump but is not as tough to break as a clay.(VDEPI 2009: AG0058)
-          </description>
-        </term>
-        <term HeuristID="0-3589" StandardCode="">{Sandy_Clay_Loam}
-          <description>A sandy clay loam is like a clay loam but sand grains can be felt (and heard - see Sandy Loam) (VDEPI 2009: AG0058)
-          </description>
-        </term>
-        <term HeuristID="0-3595" StandardCode="">{Strong_ribbon}
-          <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is strong and over 5cm long.
-          </description>
-        </term>
-        <term HeuristID="0-3601" StandardCode="">{Silty_Clay}
-          <description>A silty clay is like a clay but smoother. (VDEPI 2009: AG0058)
-          </description>
-        </term>
-        <term HeuristID="0-3603" StandardCode="">{Clay}
-          <description>Clays are tough and can be moulded into shapes when moist. Clays form a long flexible ribbon when rubbed between the palms and the ribbon can often be bent into a U shape without breaking. Clays dry into very hard clods. (VDEPI 2009: AG0058)
-          </description>
-        </term>
-        <term HeuristID="0-3598" StandardCode="">{Sandy_Clay} 
-          <description>A sandy clay is like a clay but sand grains can be felt (and heard - see Sandy Loam). (VDEPI 2009: AG0058)
-          </description>
-        </term>
-        <term HeuristID="0-3577" StandardCode="">{Weak_ribbon_(Less than 2.5cm_long)}
-          <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is less than 2.5cm long.
-          </description>
-        </term>
-        <term HeuristID="0-3583" StandardCode="">{Silt_Loam}
-          <description>A silty loam is like a loam but has a smooth silky feel when a moist sample is pushed between the index finger and thumb. On drying a sample can form a hard lump but this may be broken by hand. (VDEPI 2009: AG0058)
-          </description>
-        </term>
-        <term HeuristID="0-3585" StandardCode="">{Loam}
-          <description>A loam breaks into crumbs but will tend to stick together. Sand grains cannot be felt in a moist sample which when squeezed will retain its shape when handled freely. Loams are usually soft to the feel. (VDEPI 2009: AG0058)
-          </description>
-        </term>
-        <term HeuristID="0-3580" StandardCode="">{Sandy_Loam}
-          <description>A sandy loam sticks together more than a loamy sand but can be easily broken. Individual sand grains can be felt and heard if a wet sample is rubbed between the index finger and thumb and held close to the ear. (VDEPI 2009: AG0058)
-          </description>
-        </term>
-      </lookup>
-    </property>
-    <property name="Soil Particle Sorting" type="enum">
-      <description>Assessment of the frequency with which particles of the same size occur.
-      </description>
-      <lookup>
-        <term pictureURL="files/data/gallery/Other/NA.png">No Observation
-
-          <description>data not collected
-          </description>
-        </term>
-        <term HeuristID="0-3443" StandardCode="" pictureURL="files/data/gallery/Sorting/ModeratelySorted.png">{Moderately_sorted}
-
-          <description>Particles are mostly the same size and evenly distributed, but there are some larger particles.
-          </description>
-        </term>
-        <term HeuristID="0-3444" StandardCode="" pictureURL="files/data/gallery/Sorting/PoorlySorted.png">{Poorly_sorted}
-
-          <description>Particles are different sizes and unevenly distributed.
-          </description>
-        </term>
-        <term HeuristID="0-3445" StandardCode="" pictureURL="files/data/gallery/Sorting/VeryPoorlySorted.png">{Very_poorly_sorted_}
-
-          <description>Particles are very different sizes and very unevenly distributed.
-          </description>
-        </term>
-        <term HeuristID="0-3442" StandardCode="" pictureURL="files/data/gallery/Sorting/WellSorted.png">{Well_sorted}
-
-          <description>Particles are roughly the same size and evenly distributed.
-          </description>
-        </term>
-      </lookup>
-    </property>
-    <property name="Deposit Inclusions" type="blocktext">
+    <property name="Deposit Inclusions" type="enum">
       <description>Brief description of inclusions (eg stone flecks, artefacts).
       </description>
+      <lookup>
+        <term>Cobbles<description/></term>
+        <term>Pebbles<description/></term>
+        <term>Other<description/></term>
+      </lookup>
     </property>
     <property name="Deposit Thickness and Extent" type="blocktext">
       <description>Brief description of the thickness and extent of the deposit.
       </description>
     </property>
-    <property name="Horizon Boundary" type="enum">
-      <description>Boundary to the next horizon
-      </description>
-      <lookup>
-        <term>No Observation
-
-          <description>data not collected
-          </description>
-        </term>
-        <term HeuristID="0-3462" StandardCode="">{Broken}
-
-          <description>The boundary is interrupted. (MoLAS 1994: 35)
-          </description>
-        </term>
-        <term HeuristID="0-3457" StandardCode="">{Clear}
-
-          <description>Change occurs over a distance of 25-60 mm. (MoLAS 1994: 35)
-          </description>
-        </term>
-        <term HeuristID="0-3458" StandardCode="">{Diffuse}
-
-          <description>Change occurs over a distance of 60-130 mm. (MoLAS 1994: 35)
-          </description>
-        </term>
-        <term HeuristID="0-3461" StandardCode="">{Irregular}
-
-          <description>The boundary surface has pockets that are deeper than they are wide. (MoLAS 1994: 35)
-          </description>
-        </term>
-        <term HeuristID="0-3456" StandardCode="">{Sharp}
-
-          <description>Change occurs over a distance of 5-25 mm (or less). (MoLAS 1994: 35)
-          </description>
-        </term>
-        <term HeuristID="0-3459" StandardCode="">{Smooth}
-
-          <description>The boundary surface is plane with few irregularities. (MoLAS 1994: 35)
-          </description>
-        </term>
-        <term HeuristID="0-3460" StandardCode="">{Wavy}
-
-          <description>The boundary surface has broad shallow relatively regular pockets. (MoLAS 1994: 35)
-          </description>
-        </term>
-      </lookup>
-    </property>
-    <property name="Shape of Cut" type="enum">
-      <description>The shape at the top of the cut.
-      </description>
-      <lookup>
-        <term>No Observation
-
-          <description>data not collected
-          </description>
-        </term>
-        <term HeuristID="0-3465" StandardCode="">{Circular}
-
-          <description>Round
-          </description>
-        </term>
-        <term HeuristID="0-3470" StandardCode="">{Linear}
-
-          <description>Straight sided, but not square or rectangular.
-          </description>
-        </term>
-        <term HeuristID="0-3468" StandardCode="">{Ovoid}
-
-          <description>Oval or elliptical.
-          </description>
-        </term>
-        <term HeuristID="0-3471" StandardCode="">{Rectangular}
-
-          <description>Two sides longer than the other.
-          </description>
-        </term>
-        <term HeuristID="0-3466" StandardCode="">{Semi-Circular}
-
-          <description>Half circle.
-          </description>
-        </term>
-        <term HeuristID="0-3464" StandardCode="">{Square}
-
-          <description>Equal on four sides. </description>
-        </term>
-        <term HeuristID="0-3467" StandardCode="">{Sub-Circular}
-
-          <description>Nearly circular.
-          </description>
-        </term>
-        <term HeuristID="0-3469" StandardCode="">{Sub-rectangular}
-
-          <description>Nearly rectangular in shape.
-          </description>
-        </term>
-      </lookup>
-    </property>
-    <property name="Shape of Cut - Note" type="blocktext">
-      <description>Additional notes about the shape of the cut.
-      </description>
-    </property>
-    <property name="Shape of Corners" type="enum">
-      <description>The shape of the corners of a Cut in plan: 'square', 'rounded' etc. </description>
-      <lookup>
-        <term HeuristID="0-3475" StandardCode="">{Other}
-
-          <description>Other shapes
-          </description>
-        </term>
-        <term HeuristID="0-3474" StandardCode="">{Rounded}
-
-          <description>Rounded corners.
-          </description>
-        </term>
-        <term HeuristID="0-3473" StandardCode="">{Square}
-
-          <description>Sharp, perpendicular corners.
-          </description>
-        </term>
-      </lookup>
-    </property>
-    <property name="Break of Slope - Top" type="enum">
-      <description>The degree with which the top surface of the edge of the cut breaks into the sides.
-      </description>
-      <lookup>
-        <term HeuristID="0-3478" StandardCode="">{Gradual}
-
-          <description>Some rounding to the top.
-          </description>
-        </term>
-        <term HeuristID="0-3479" StandardCode="">{Not_perceptible}
-
-          <description>Well-rounded; there is no perceptible difference between the sides of the cut and the surface into which it protrudes. </description>
-        </term>
-        <term HeuristID="0-3477" StandardCode="">{Sharp}
-
-          <description>Clear, sharp slope.
-          </description>
-        </term>
-      </lookup>
-    </property>
-    <property name="Break of slope - Base" type="enum">
-      <description>The degree with which the sides break into the base of the cut.
-      </description>
-      <lookup>
-        <term HeuristID="0-3478" StandardCode="">{Gradual}
-
-          <description>Some rounding to the top.
-          </description>
-        </term>
-        <term HeuristID="0-3479" StandardCode="">{Not_perceptible}
-
-          <description>Well-rounded; there is no perceptible difference between the sides of the cut and the surface into which it protrudes. </description>
-        </term>
-        <term HeuristID="0-3477" StandardCode="">{Sharp}
-
-          <description>Clear, sharp slope.
-          </description>
-        </term>
-      </lookup>
-    </property>
-    <property name="Sides of Cut" type="blocktext">
-      <description>Describe the sides in terms of their smoothness or irregularity, and state whether they are 'vertical', 'convex', 'concave' or 'stepped', giving details for each side of a multi-sided cut. When describing post-holes note particularly whether the sides taper or drop vertically to the base, since this may help define whether the post was set or driven. Where possible state the gradient of a sloping side. Where the side is 'concave' but meets the base at a sharp angle, give an overall gradient. If' it is 'concave' and has no perceptible break of slope with the base, then do not attempt to give a gradient. (Source: MoLAS 1994)
-      </description>
-    </property>
-    <property name="Shape of Base" type="enum">
-      <description>The shape of the base of the cut, in profile.
-      </description>
-      <lookup>
-        <term>No Observation
-
-          <description>data not collected
-          </description>
-        </term>
-        <term HeuristID="0-3482" StandardCode="">{Concave}
-
-          <description> </description>
-        </term>
-        <term HeuristID="0-3481" StandardCode="">{Flat}
-
-          <description> </description>
-        </term>
-        <term HeuristID="0-3484" StandardCode="">{Pointed}
-
-          <description> </description>
-        </term>
-        <term HeuristID="0-3483" StandardCode="">{Sloping}
-
-          <description> </description>
-        </term>
-        <term HeuristID="0-3485" StandardCode="">{Tapered}
-
-          <description> </description>
-          <term HeuristID="0-3487" StandardCode="">
-            {Blunt}
-            <description> </description>
-          </term>
-          <term HeuristID="0-3488" StandardCode="">{Sharp}
-            <description> </description>
-          </term>
-        </term>
-        <term HeuristID="0-3486" StandardCode="">{Uneven}
-
-          <description> </description>
-        </term>
-      </lookup>
-    </property>
-    <property name="Orientation" type="enum">
-      <description>Orientation of linear cuts, eg N-S.
-      </description>
-      <lookup>
-        <term>No Observation
-
-          <description>data not collected
-          </description>
-        </term>
-        <term HeuristID="0-3491" StandardCode="">{E-W}
-
-          <description>Oriented East to West.
-          </description>
-        </term>
-        <term HeuristID="0-3490" StandardCode="">{N-S}
-
-          <description>Oriented North to South.
-          </description>
-        </term>
-        <term HeuristID="0-3493" StandardCode="">{NE-SW}
-
-          <description>Oriented North-east to South-west.
-          </description>
-        </term>
-        <term HeuristID="0-3492" StandardCode="">{NW-SE}
-
-          <description>Oriented North-west to South-east.
-          </description>
-        </term>
-      </lookup>
-    </property>
-    <property name="Inclination of axis" type="freetext">
-      <description>Inclination of the axis of post- and stakeholes.
-      </description>
-    </property>
-    <property name="Truncation" type="blocktext">
-      <description>Describe the nature of truncation to the cut (where appropriate).
-      </description>
-    </property>
     <property isIdentifier="true" name="Your Interpretation" type="freetext">
       <description>Your Interpretation of the likely functional zone of the context, whether inside a structure, or part of the structure itself.</description>
-      <lookup>
-        <term>{Internal}
-
-          <description/></term>
-        <term>{External}
-
-          <description/></term>
-        <term>{Structural}
-
-          <description/></term>
-        <term>{Other}
-
-          <description/></term>
-      </lookup>
     </property>
     <property name="Your Discussion" type="blocktext">
       <description>Elaborate upon your basic interpretation.
@@ -10259,71 +9603,6 @@
       <description>Enter a simple descriptive interpretation. For example, is it a floor, midden, brickearth wall, gully or pit?
       </description>
     </property>
-    <property name="Start date" type="date">
-      <description>Start Date (may also include time and/or have fuzzy limits)
-      </description>
-    </property>
-    <property name="End date" type="date">
-      <description>End Date (may also include time and/or have fuzzy limits)
-      </description>
-    </property>
-    <property name="Phase From" type="freetext">
-      <description>The earliest phase in which this Context was likely to have been created.
-      </description>
-      <lookup>
-        <term>1 
-
-          <description>Pre-European occupation, pre-1788
-          </description>
-        </term>
-        <term>2 
-
-          <description>First settlement, 1788-1820
-          </description>
-        </term>
-        <term>3 
-
-          <description>Subdivision, 1820-1860
-          </description>
-        </term>
-        <term>4 
-
-          <description>Intense occupation, 1860-1900
-          </description>
-        </term>
-        <term>5 
-
-          <description>Industrial, 1900-
-          </description>
-        </term>
-      </lookup>
-    </property>
-    <property name="Phase To" type="freetext">
-      <description>The latest phase in which this Context was likely to have been deposited or sealed.
-      </description>
-      <lookup>
-        <term>1
-          <description>Pre-European occupation, pre-1788
-          </description>
-        </term>
-        <term>2 
-          <description>First settlement, 1788-1820
-          </description>
-        </term>
-        <term>3 
-          <description>Subdivision, 1820-1860
-          </description>
-        </term>
-        <term>4 
-          <description>Intense occupation, 1860-1900
-          </description>
-        </term>
-        <term>5 
-          <description>Industrial, 1900-
-          </description>
-        </term>
-      </lookup>
-    </property>
     <property name="Sketch" type="file">
       <description>Sketch
       </description>
@@ -10331,173 +9610,6 @@
     <property name="Photo" type="file">
       <description>Photo
       </description>
-    </property>
-    <property name="Structural Components" type="enum">
-      <description>Primary components of structure or feature, eg dry-pressed brick, rough-hewn stone.
-      </description>
-      <lookup>
-        <term>No Observation
-
-          <description>data not collected
-          </description>
-        </term>
-        <term HeuristID="0-3546" StandardCode="">{Brick}
-
-          <description>Fired or sun-dried clay block used in masonry construction.
-          </description>
-          <term HeuristID="0-3548" StandardCode="">
-            {Dry-pressed}
-
-            <description>Dry pressed brick </description>
-          </term>
-          <term HeuristID="0-3549" StandardCode="">{Glazed_brick}
-
-            <description> </description>
-          </term>
-          <term HeuristID="0-3547" StandardCode="">{Sandstock}
-
-            <description>Hand-made colonial bricks
-            </description>
-          </term>
-        </term>
-        <term HeuristID="0-3554" StandardCode="">{Earth}
-
-          <description>Compact earthen wall or floor.
-          </description>
-        </term>
-        <term HeuristID="0-3541" StandardCode="">{Stone}
-
-          <description>Worked or unworked stone used in masonry walls.
-          </description>
-          <term HeuristID="0-3542" StandardCode="">
-            {Ashlar}
-
-            <description>Finely dressed stone with flat face.
-            </description>
-          </term>
-          <term HeuristID="0-3545" StandardCode="">{Other}
-
-            <description> </description>
-          </term>
-          <term HeuristID="0-3543" StandardCode="">{Roughly-hewn}
-
-            <description>Roughly cut stone: shows some sign of shaping.
-            </description>
-          </term>
-          <term HeuristID="0-3544" StandardCode="">{Rubble}
-
-            <description>Stone fragments with few signs of shaping
-            </description>
-          </term>
-        </term>
-        <term HeuristID="0-3550" StandardCode="">{Timber}
-
-          <description>Timber uprights or other elements for a wall or fence.
-          </description>
-          <term HeuristID="0-3552" StandardCode="">
-            {Beam}
-
-            <description>Timber beam or support.
-            </description>
-          </term>
-          <term HeuristID="0-3553" StandardCode="">{Plank}
-
-            <description>Timber plank for flooring or panelling. </description>
-          </term>
-          <term HeuristID="0-3551" StandardCode="">{Post}
-
-            <description>Round or square timber post.
-            </description>
-          </term>
-        </term>
-      </lookup>
-    </property>
-    <property name="Bonding" type="enum">
-      <description>Primary bonding material of structure or feature, eg mortar.
-      </description>
-      <lookup>
-        <term>No Observation
-
-          <description>data not collected
-          </description>
-        </term>
-        <term HeuristID="0-3556" StandardCode="">{Mortar}
-
-          <description>Paste used to bind masonry blocks together. </description>
-          <term HeuristID="0-3559" StandardCode="">
-            {Cement_mortar}
-
-            <description>Cement based mortar
-            </description>
-          </term>
-          <term HeuristID="0-3558" StandardCode="">{Lime-shell_mortar}
-
-            <description>Sandy mortar with lime and burnt shell inlcusion
-            </description>
-          </term>
-        </term>
-        <term HeuristID="0-3557" StandardCode="">{Unmortared}
-
-          <description>No visible bonding material, ie unmortared
-          </description>
-        </term>
-      </lookup>
-    </property>
-    <property name="Bond Type" type="enum">
-      <description>The type of bonding course, eg 'English bond'
-      </description>
-      <lookup>
-        <term>No Observation 
-          <description>data not collected
-          </description>
-        </term>
-        <term HeuristID="0-3562" StandardCode="">{Brick}
-          <description> </description>
-          <term HeuristID="0-3570" StandardCode="" pictureURL="files/data/gallery/BrickBonds/Brown/English.png">{English_Bond}
-            <description>Full courses of headers alternating with full courses of stretchers.
-            </description>
-          </term>
-          <term HeuristID="0-3571" StandardCode="" pictureURL="files/data/gallery/BrickBonds/Brown/Flemish.png">{Flemish_Bond}
-            <description>Courses of alternating headers and stretchers.
-            </description>
-          </term>
-          <term HeuristID="0-3572" StandardCode="" pictureURL="files/data/gallery/BrickBonds/Brown/Header.png">{Header_Bond}
-            <description>Courses of headers only. 
-            </description>
-          </term>
-          <term HeuristID="0-3569" StandardCode="" pictureURL="files/data/gallery/BrickBonds/Brown/Stretcher.png">{Stretcher}
-            <description>Courses of full bricks where every course is offset half a brick from the course below.
-            </description>
-          </term>
-        </term>
-        <term HeuristID="0-3561" StandardCode="">{Stone}
-          <description> </description>
-          <term HeuristID="0-3568" StandardCode="">{Quoins_stressed}
-            <description>Large corner blocks set along side regular courses blocks.
-            </description>
-          </term>
-          <term HeuristID="0-3564" StandardCode="">{Random_coursed}
-            <description>Patterning of different shaped, rubble stone.
-            </description>
-          </term>
-          <term HeuristID="0-3563" StandardCode="">{Random_uncoursed}
-            <description>No regular pattern
-            </description>
-          </term>
-          <term HeuristID="0-3566" StandardCode="">{Regular_courses}
-            <description>Lines or courses of regular size.
-            </description>
-          </term>
-          <term HeuristID="0-3567" StandardCode="">{String_courses}
-            <description>Long stones in regular lines or courses.
-            </description>
-          </term>
-          <term HeuristID="0-3565" StandardCode="">{Uneven_courses}
-            <description>Lines or courses of different size
-            </description>
-          </term>
-        </term>
-      </lookup>
     </property>
     <property name="Distinguishing Marks" type="freetext">
       <description>stinguishing marks on brick or stone.
@@ -10507,6 +9619,124 @@
       <description>Other description about structural elements, eg slate dry-proofing.
       </description>
     </property>
+     <!--start memsap additions -->
+    <property name="Excavators" type="freetext">
+      <description>The individual(s) involved in the excavation of the Context.</description>
+    </property>
+    <property name="Checked by Square Supervisor" type="freetext">
+      <description>The date on which the record was checked by the Square Supervisor.</description>
+    </property>
+    <property name="Checked by Director" type="freetext">
+      <description>The date on which the record was checked by the Square Supervisor.</description>
+    </property>
+    <property isIdentifier="true" name="LotID" type="float">
+      <description>A running 'lot' number that is a shorthand for Site-Area-Square-Context.</description>
+    </property>
+    <property name="Highest Level NE" type="float">
+      <description>The highest elevation, or 'opening level', recorded for the NE quadrant of the Context.</description>
+    </property>
+    <property name="Highest Level SE" type="float">
+      <description>The highest elevation, or 'opening level', recorded for the SE quadrant of the Context.</description>
+    </property>
+    <property name="Highest Level SW" type="float">
+      <description>The highest elevation, or 'opening level', recorded for the SW quadrant of the Context.</description>
+    </property>
+    <property name="Highest Level NW" type="float">
+      <description>The highest elevation, or 'opening level', recorded for the NW quadrant of the Context.</description>
+    </property>
+    <property name="Highest Level Ctr" type="float">
+      <description>The highest elevation, or 'opening level', recorded for the centre of the Context.</description>
+    </property>
+    <property name="Lowest Level NE" type="float">
+      <description>The lowest elevation, or 'closing level', recorded for the NE quadrant of the Context.</description>
+    </property>
+    <property name="Lowest Level SE" type="float">
+      <description>The lowest elevation, or 'closing level', recorded for the SE quadrant of the Context.</description>
+    </property>
+    <property name="Lowest Level SW" type="float">
+      <description>The lowest elevation, or 'closing level', recorded for the SW quadrant of the Context.</description>
+    </property>
+    <property name="Lowest Level NW" type="float">
+      <description>The lowest elevation, or 'closing level', recorded for the NW quadrant of the Context.</description>
+    </property>
+    <property name="Lowest Level Ctr" type="float">
+      <description>The lowest elevation, or 'closing level', recorded for the centre of the Context.</description>
+    </property>
+    <property name="Deposit Volume" type="float">
+      <description>The volume of deposit removed from the Context, measured in litres.</description>
+    </property>
+    <property name="Texture Percentage Sand" type="float">
+      <description>Percentage of sand in the deposit.</description>
+    </property>
+    <property name="Texture Percentage Silt" type="float">
+      <description>Percentage of silt in the deposit.</description>
+    </property>
+    <property name="Texture Percentage Clay" type="float">
+      <description>Percentage of clay in the deposit.</description>
+    </property>
+    <property name="Soil Moisture" type="enum">
+      <description>The overall moisture content of the soil.</description>
+      <lookup>
+        <term> Moist
+          <description/>
+        </term>
+        <term> Dry
+          <description/>
+        </term>
+        <term> Other
+          <description/>
+        </term>
+      </lookup>
+    </property>
+    <property name="Wet Sieved" type="enum">
+      <description>Was the deposit wet sieved?</description>
+      <lookup>
+        <term> Yes
+          <description/>
+        </term>
+        <term> No
+          <description/>
+        </term>
+        <term> N/A
+          <description/>
+        </term>
+      </lookup>
+    </property>
+    <property name="Natural Formations" type="enum">
+      <description>Geological formations evident in the deposit</description>
+      <lookup>
+        <term> Carbonates
+          <description/>
+        </term>
+        <term> Iron concretions
+          <description/>
+        </term>
+        <term> Calcretions
+          <description/>
+        </term>
+        <term> Other
+          <description/>
+        </term>
+      </lookup>
+    </property>
+    <property name="Disturbances" type="enum">
+      <description>Disturbances evident in the deposit</description>
+      <lookup>
+        <term> Slips
+          <description/>
+        </term>
+        <term> Faults
+          <description/>
+        </term>
+        <term> Burrows
+          <description/>
+        </term>
+        <term> Erosion gulleys
+          <description/>
+        </term>
+      </lookup>
+    </property>
+    <!--end memsap additions -->
   </ArchaeologicalElement>
 
   <!--CONTEXT GROUP-->
@@ -10522,36 +9752,6 @@
     <property isIdentifier="true" name="Title" type="freetext">
       <description>Name of the context group
       </description>
-    </property>
-    <property name="CG Context Type" type="enum">
-      <description>
-      </description>
-      <lookup>
-        <term pictureURL="files/data/gallery/ContextType/Other/NA.png">No Observation
-          <description>data not collected
-          </description>
-        </term>
-        <term HeuristID="0-3398" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Cut.png">{Cut}
-
-          <description>Any Context which forms a negative interface, eg pits, ditches, graves and foundation and robber trenches
-          </description>
-        </term>
-        <term HeuristID="0-3397" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Deposit.png">{Deposit}
-
-          <description>Any Context with deposited soil, eg natural deposits, floor and road surfaces and pit, ditch and grave fills
-          </description>
-
-        </term>
-        <term HeuristID="0-3400" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Natural.png">
-          {Natural}
-          <description> </description>
-        </term>
-        <term HeuristID="0-3399" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Structure.png">{Structure}
-
-          <description>Any context formed independent of a Cut or negative interface, eg walls, hearths.
-          </description>
-        </term>
-      </lookup>
     </property>
     <property name="Description" type="freetext">
       <description>
@@ -10572,76 +9772,6 @@
     <property name="Your Discussion" type="freetext">
       <description>
       </description>
-    </property>
-    <property name="Start date" type="date">
-      <description>Start Date (may also include time and/or have fuzzy limits)
-      </description>
-    </property>
-    <property name="End date" type="date">
-      <description>End Date (may also include time and/or have fuzzy limits)
-      </description>
-    </property>
-    <property name="CG Phase From" type="freetext">
-      <description>The earliest phase in which this Context was likely to have been created.
-      </description>
-      <lookup>
-        <term>1
-
-          <description>Pre-European occupation, pre-1788
-          </description>
-        </term>
-        <term>2
-
-          <description>First settlement, 1788-1820
-          </description>
-        </term>
-        <term>3
-
-          <description>Subdivision, 1820-1860
-          </description>
-        </term>
-        <term>4
-
-          <description>Intense occupation, 1860-1900
-          </description>
-        </term>
-        <term>5
-
-          <description>Industrial, 1900-
-          </description>
-        </term>
-      </lookup>
-    </property>
-    <property name="CG Phase To" type="freetext">
-      <description>The latest phase in which this Context was likely to have been deposited or sealed.
-      </description>
-      <lookup>
-        <term>1
-
-          <description>Pre-European occupation, pre-1788
-          </description>
-        </term>
-        <term>2
-
-          <description>First settlement, 1788-1820
-          </description>
-        </term>
-        <term>3
-
-          <description>Subdivision, 1820-1860
-          </description>
-        </term>
-        <term>4
-
-          <description>Intense occupation, 1860-1900
-          </description>
-        </term>
-        <term>5
-
-          <description>Industrial, 1900-
-          </description>
-        </term>
-      </lookup>
     </property>
   </ArchaeologicalElement>
 
@@ -10701,66 +9831,6 @@
 
           <description/></term>
       </lookup>
-    </property>
-    <property name="Stone Size" type="freetext">
-      <description>Give an estimate of the size range of stones present in the Deposit: for example, 20mm -50mm.
-      </description>
-    </property>
-    <property name="Shape" type="enum">
-      <description>Shape and roundness of stones and pebbles in the deposit. </description>
-      <lookup>
-        <term pictureURL="files/data/gallery/Other/NA.png">No Observation
-
-          <description>data not collected
-          </description>
-        </term>
-        <term HeuristID="0-3447" StandardCode="" pictureURL="files/data/gallery/Pebbles/Angular.png">{Angular}
-
-          <description>Sharp pebbles or stones.
-          </description>
-          <term HeuristID="0-3449" StandardCode="" pictureURL="files/data/gallery/Pebbles/AngularAngular.png">
-            {Angular}
-
-            <description>Sharp and pointed.
-            </description>
-          </term>
-          <term HeuristID="0-3450" StandardCode="" pictureURL="files/data/gallery/Pebbles/AngularSub.png">{Sub-angular}
-
-            <description>A little sharp and pointed.
-            </description>
-          </term>
-          <term HeuristID="0-3448" StandardCode="" pictureURL="files/data/gallery/Pebbles/AngularVery.png">{Very_angular}
-
-            <description>Very sharp and pointed.
-            </description>
-          </term>
-        </term>
-        <term HeuristID="0-3451" StandardCode="" pictureURL="files/data/gallery/Pebbles/Rounded.png">{Rounded}
-
-          <description>Rounded stones and pebbles.
-          </description>
-          <term HeuristID="0-3453" StandardCode="" pictureURL="files/data/gallery/Pebbles/RoundedRounded.png">
-            {Rounded}
-
-            <description>Mostly rounded pebble or stone.
-            </description>
-          </term>
-          <term HeuristID="0-3452" StandardCode="" pictureURL="files/data/gallery/Pebbles/RoundedSub.png">{Sub-rounded}
-
-            <description>Some rounding to pebbles or stones.
-            </description>
-          </term>
-          <term HeuristID="0-3454" StandardCode="" pictureURL="files/data/gallery/Pebbles/RoundedWell.png">{Well-rounded}
-
-            <description>Very rounded pebble or stone.
-            </description>
-          </term>
-        </term>
-      </lookup>
-    </property>
-    <property name="Stoniness" type="freetext">
-      <description>Stoniness
-      </description>
     </property>
   </ArchaeologicalElement>
 
@@ -10872,12 +9942,6 @@
       </description>
     </property>
   </ArchaeologicalElement>
-
-
-
-
-
-
 
   <!--SAMPLE-->
   <ArchaeologicalElement name="Sample">
@@ -11101,14 +10165,6 @@
         </term>
       </lookup>
     </property>
-    <property name="Distinguishing Marks" type="freetext">
-      <description>stinguishing marks on brick or stone.
-      </description>
-    </property>
-    <property name="Structure Description" type="blocktext">
-      <description>Other description about structural elements, eg slate dry-proofing.
-      </description>
-    </property>
     <property name="Sketch" type="file">
       <description>Sketch
       </description>
@@ -11247,6 +10303,45 @@
     <property name="Photo" type="file">
       <description>Photo
       </description>
+    </property>
+  </ArchaeologicalElement>
+
+  <!-- DEPOSIT VOLUME -->
+  <ArchaeologicalElement name="Deposit Volume">
+    <description>The volume of a deposit measured in lots, usually by the bucket and following sieving.</description>
+    <property name="ContextID" type="freetext">
+      <description>Unique number or code for each Context.</description>
+    </property>
+    <property name="DepositLotID" type="freetext" isIdentifier="true">
+      <description>Unique number or code for each deposit ‘lot’.</description>
+    </property>
+    <property name="Volume" type="float">
+      <description>The volume in L of the deposit lot.</description>
+    </property>
+  </ArchaeologicalElement>
+
+  <!-- PHOTOGRAPH LOG -->
+  <ArchaeologicalElement name="Photograph Log">
+    <description>A record of images created and stored on another device, eg by a professional site photographer.</description>
+    <property name="ContextID" type="freetext">
+      <description>Unique number or code for each Context</description>
+    </property>
+    <property name="Photograph Reference ID" isIdentifier= "true" type="freetext">
+      <description>Unique number or code allocated by creator of the image. It could be a filename or a reference number</description>
+    </property>
+    <property name="Scene Type" type="enum">
+      <description>The type of scene captured, eg opening or closing view of the Context. (Vocab: Open, Close, Other)</description>
+      <lookup>
+        <term> Open
+          <description/>
+        </term>
+        <term> Close
+          <description/>
+        </term>
+        <term> Other
+          <description/>
+        </term>
+      </lookup>
     </property>
   </ArchaeologicalElement>
 </dataSchema>

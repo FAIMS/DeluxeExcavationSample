@@ -66,36 +66,77 @@
           <!--ArchEnt / Record Type: CONTEXT-->
           <Context>
             <Context_GeneralInformation>
-              <container1>
+              <container1_1>
                 <child1>
                   <Site_Code/>
                 </child1>
                 <child2>
                   <AreaCode/>
                 </child2>
-                <child3>
-                  <Grid_Location_Reference/>
-                </child3>
-              </container1>
-              <container2>
+              </container1_1>
+              <container1_2>
                 <child1>
-                  <Context_ID/>
+                  <Grid_Location_Reference/>
                 </child1>
                 <child2>
-                  <Context_Name/>
+                  <Context_ID/>
+                </child2>
+                <child3>
+                  <LotID/>
+                </child3>
+              </container1_2>
+              <container2>
+                <child1>
+                  <Date_Opened/>
+                </child1>
+                <child2>
+                  <Excavators/>
                 </child2>
               </container2>
-              <Date_Opened/>
               <Excavation_Method/>
               <container3>
                 <child1>
-                  <Context_Highest_Level/>
+                  <Excavation_Method/>
                 </child1>
                 <child2>
-                  <Context_Lowest_Level/>
+                  <Wet_Sieved/>
                 </child2>
               </container3>
-              <container4>
+              <container4_1>
+                <child1>
+                  <Context_Highest_Level_NW/>
+                </child1>
+                <child2>
+                  <Context_Highest_Level_NE/>
+                </child2>
+              </container4_1>
+              <Context_Highest_Level_Ctr/>
+              <container4_2>
+                <child1>
+                  <Context_Highest_Level_SW/>
+                </child1>
+                <child2>
+                  <Context_Highest_Level_SE/>
+                </child2>
+              </container4_2>   
+              <container5_1>
+                <child1>
+                  <Context_Lowest_Level_NW/>
+                </child1>
+                <child2>
+                  <Context_Lowest_Level_NE/>
+                </child2>
+              </container5_1>
+              <Context_Lowest_Level_Ctr/>
+              <container5_2>
+                <child1>
+                  <Context_Lowest_Level_SW/>
+                </child1>
+                <child2>
+                  <Context_Lowest_Level_SE/>
+                </child2>
+              </container5_2> 
+              <container6>
                 <child1>
                   <Length/>
                 </child1>
@@ -105,85 +146,55 @@
                 <child3>
                   <Depth/>
                 </child3>
-              </container4>
-              <Context_Type/>
+              </container6>
+              <Deposit_Volume/>
+              <calculateVol/>
+              <Your_Interpretation/>
+              <Your_Discussion/>
               <Context_Comments/>
               <CreatingUser/>
               <Update/>
-              <Details/>
+              <addGeological/>
+              <addRelationships/>
             </Context_GeneralInformation>
             <Context_Deposits>
-              <Soil_Compaction_Type/>
-              <Soil_Compaction_Description/>
-              <Soil_Munsell_Colour/>
               <container1>
                 <child1>
-                  <Soil_Populate_Colour/>
+                  <Soil_Munsell_Colour/>
                 </child1>
                 <child2>
-                  <Soil_Colour/>
+                  <Soil_Moisture/>
                 </child2>
               </container1>
-              <Soil_Particle_Sorting/>
-              <Soil_Texture_Actual/>
-              <Texture_Helper/>
-              <Deposit_Inclusions/>
-              <Deposit_Thickness_Extent/>
-              <Horizon_Boundary/>
+              <container2>
+                <child1>
+                  <Texture_Percentage_Sand/>
+                </child1>
+                <child2>
+                  <Texture_Percentage_Silt/>
+                </child2>
+                <child3>
+                  <Texture_Percentage_Clay/>
+                </child3>
+              </container2>
+              <Soil_Compaction_Type/>
+              <container3>
+                <child1>
+                  <Deposit_Inclusions/>
+                </child1>
+                <child2>
+                  <Natural_Formations/>
+                </child2>
+                <child3>
+                  <Disturbances/>
+                </child3>
+              </container3>
               <newMatrix/>
               <matrixList/>
               <loadMatrix/>
               <deleteMatrix/>
               <Update/>
             </Context_Deposits>
-            <Context_Cuts>
-              <container1>
-                <child1>
-                  <Shape_of_Cut/>
-                </child1>
-                <child2>
-                  <Shape_of_Cut_Note/>
-                </child2>
-              </container1>
-              <Shape_of_Corners/>
-              <Break_of_Slope_Top/>
-              <Break_of_slope_Base/>
-              <Sides_of_Cut/>
-              <Shape_of_Base/>
-              <Orientation/>
-              <Inclination_of_axis/>
-              <Truncation/>
-              <Update/>
-            </Context_Cuts>
-            <Context_Structures>
-              <Structural_Components/>
-              <Bonding/>
-              <Bond_Type/>
-              <Distinguishing_Marks/>
-              <Structure_Description/>
-              <Update/>
-              <Delete/>
-            </Context_Structures>
-            <Context_Interpretation>
-              <Your_Interpretation/>
-              <Your_Discussion/>
-              <Your_description/>
-              <container1>
-                <child1>
-                  <Start_date/>
-                </child1>
-                <child2>
-                  <End_date/>
-                </child2>
-              </container1>
-              <Phase_From/>
-              <Phase_To/>
-              <Update/>
-              <AddContextGroup/>
-              <ContextGroupList/>
-              <ShowContextGroup/>
-              <RemoveFromContextGroup/>
-            </Context_Interpretation>
             <Context_Relationships_to_Other_Contexts>
               <spacer/>
               <container3>
@@ -207,19 +218,11 @@
                   <showReln/>
                 </child2>
               </container4>
+              <AddContextGroup/>
+              <ContextGroupList/>
+              <ShowContextGroup/>
+              <RemoveFromContextGroup/>
             </Context_Relationships_to_Other_Contexts>
-            <Context_Attachments>
-              <Recorded_By/>
-              <Sketch/>
-              <attachSketch/>
-              <Photo/>
-              <attachPhoto/>
-              <viewattached/>
-              <Update/>
-              <SaveAndNew/>
-              <Duplicate/>
-              <Delete/>
-            </Context_Attachments>
             <Context_Artefacts>
               <newArtefactGroup/>
               <artefactGroupList/>
@@ -231,15 +234,33 @@
               <deleteSpecialFind/>
             </Context_Artefacts>
             <Context_Samples>
+              <Update/>
+              <blank/>
               <newSample/>
               <sampleList/>
               <loadSample/>
               <deleteSample/>
+              <newDepositVolume/>
+              <depositVolumeList/>
+              <loadDepositVolume/>
+              <deleteDepositVolume/>
             </Context_Samples>
-            <Texture_Helper>
-              <Soil_Texture/>
-              <Update_Texture/>
-            </Texture_Helper>
+            <Context_Attachments>
+              <Recorded_By/>
+              <Sketch/>
+              <attachSketch/>
+              <Photo/>
+              <attachPhoto/>
+              <viewattached/>
+              <newPhotoLog/>
+              <PhotoLogList/>
+              <loadPhotoLog/>
+              <deletePhotoLog/>
+              <Update/>
+              <SaveAndNew/>
+              <Duplicate/>
+              <Delete/>
+            </Context_Attachments>
             <map>
               <map/>
             </map>
@@ -257,7 +278,6 @@
                 </child2>
               </container1>
               <Title/>
-              <Context_Type/>
               <Description/>
               <container2>
                 <child1>
@@ -271,18 +291,6 @@
                 </child3>
               </container2>
               <Your_Discussion/>
-              <container3>
-                <child1>
-                  <Start_Date/>
-                </child1>
-                <child2>
-                  <End_Date/>
-                </child2>
-              </container3>
-              <Start_Date/>
-              <End_Date/>
-              <Phase_From/>
-              <Phase_To/>
               <Update/>
               <Delete/>
             </ContextGroup_Details>
@@ -425,42 +433,73 @@
               <Duplicate/>
             </Special_Find_GeneralInformation>
           </Special_Find>
+
+          <!-- ArchEnt: Deposit Volumes -->
+          <Deposit_Volume>
+            <Deposit_Volume>
+              <Context_ID/>
+              <Deposit_ID/>
+              <Volume/>
+              <Update/>
+              <SaveAndNew/>
+              <Delete/>
+              <ReturnToContext/>
+            </Deposit_Volume>
+          </Deposit_Volume>
+
+          <!-- ArchEnt: Photograph Log -->
+          <Photograph_Log>
+            <Photograph_Log>
+              <Context_ID/>
+              <Photograph_Reference_ID/>
+              <Scene_Type/>
+              <Update/>
+              <SaveAndNew/>
+              <Delete/>
+              <ReturnToContext/>
+            </Photograph_Log>
+          </Photograph_Log>
         </faims>
       </instance>
       <!--list of numeric and blocktext(memo) attributes(fields)-->
       <bind nodeset="/faims/user/help/guide" type="string"/>
       <bind nodeset="/faims/Context/Context_GeneralInformation/Context_Comments" type="string"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container3/child1/Context_Highest_Level" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container3/child2/Context_Lowest_Level" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container4/child1/Length" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container4/child2/Width" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container4/child3/Depth" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_Deposits/Deposit_Inclusions" type="string"/>
-      <bind nodeset="/faims/Context/Context_Cuts/Truncation" type="string"/>
-      <bind nodeset="/faims/Context/Context_Structures/Structure_Description" type="string"/>
-      <bind nodeset="/faims/Context/Context_Interpretation/Your_Discussion" type="string"/>
-      <bind nodeset="/faims/Context/Context_Interpretation/Your_description" type="string"/>
-      <bind nodeset="/faims/Context/Context_Interpretation/Associations" type="string"/>
-      <bind nodeset="/faims/ContextGroup/ContextGroupDetails/container2/child1/Length" type="decimal"/>
-      <bind nodeset="/faims/ContextGroup/ContextGroupDetails/container2/child2/Width" type="decimal"/>
-      <bind nodeset="/faims/ContextGroup/ContextGroupDetails/container2/child3/Depth" type="decimal"/>
-      <bind nodeset="/faims/ContextGroup/ContextGroupDetails/Your_Discussion" type="string"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/Length" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/Width" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/Depth" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/Your_Discussion" type="string"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/Context_Highest_Level_NW" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/Context_Highest_Level_NE" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/Context_Highest_Level_SW" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/Context_Highest_Level_SE" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/Context_Highest_Level_Ctr" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/Context_Lowest_Level_NW" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/Context_Lowest_Level_NE" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/Context_Lowest_Level_SW" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/Context_Lowest_Level_SE" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/Context_Lowest_Level_Ctr" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Deposits/Texture_Percentage_Sand" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Deposits/Texture_Percentage_Silt" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Deposits/Texture_Percentage_Clay" type="decimal"/>
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/Artefact_Quantity" type="decimal"/>
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/Artefact_Weight" type="decimal"/>
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/Artefact_Group_Comment" type="string"/>
       <bind nodeset="/faims/Sample/Sample_GeneralInformation/Sample_Weight" type="decimal"/>
       <bind nodeset="/faims/Sample/Sample_GeneralInformation/Sample_Volume" type="decimal"/>
       <bind nodeset="/faims/Sample/Sample_GeneralInformation/Sample_Comments" type="string"/>
-      <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container2/child1/X" type="decimal"/>
-      <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container2/child2/Y" type="decimal"/>
-      <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container2/child3/Z" type="decimal"/>
-      <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container3/child1/Latitude" type="decimal"/>
-      <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container3/child2/Longitude" type="decimal"/>
+      <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/X" type="decimal"/>
+      <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/Y" type="decimal"/>
+      <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/Z" type="decimal"/>
+      <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/Latitude" type="decimal"/>
+      <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/Longitude" type="decimal"/>
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/Special_Find_Description" type="string"/>
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container4/child1/Date_From" type="decimal"/>
-      <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container5/child2/Date_To" type="decimal"/>
+      <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/Date_To" type="decimal"/>
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/Special_Find_Comment" type="string"/>
       <bind nodeset="/faims/Matrix/Matrix/Percentage" type="decimal"/>
+      <bind nodeset="/faims/Deposit_Volume/Deposit_Volume/Volume" type="decimal"/>
+      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/Your_Discussion" type="string"/>
+
     </model>
   </h:head>
   <h:body>
@@ -593,11 +632,11 @@
       <label>{Context}</label>
       <group ref="Context_GeneralInformation">
         <label>General</label>
-        <group faims_style="orientation" ref="container1">
+        <group faims_style="orientation" ref="container1_1">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
-            <input faims_attribute_name="Site Code" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="true" ref="Site_Code">
+            <input faims_attribute_name="Site Code" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Site_Code">
               <label>{Site_Code}</label>
             </input>
           </group>
@@ -607,10 +646,25 @@
               <label>Area Code:</label>
             </input>
           </group>
-          <group faims_style="even" ref="child3">
+        </group>
+        <group faims_style="orientation" ref="container1_2">
+          <label/>
+          <group faims_style="even" ref="child1">
             <label/>
             <input faims_attribute_name="Grid Location Reference" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Grid_Location_Reference">
               <label>{Grid_Location_Reference}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input faims_attribute_name="Context ID" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="true" ref="Context_ID">
+              <label>{Context_Number}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child3">
+            <label/>
+            <input faims_attribute_name="LotID" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="LotID">
+              <label>LotID</label>
             </input>
           </group>
         </group>
@@ -618,49 +672,110 @@
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
-            <input faims_attribute_name="Context ID" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="true" ref="Context_ID">
-              <label>{Context_Number}</label>
+            <input faims_attribute_name="Date Opened" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Date_Opened">
+              <label>{Date_Opened}</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
-            <input faims_attribute_name="Context Name" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Context_Name">
-              <label>{Context_Name}</label>
+            <input faims_attribute_name="Excavators" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Excavators">
+              <label>Excavators</label>
             </input>
           </group>
         </group>
-        <select1 faims_attribute_name="Context Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Context_Type" type="image">
-          <label>{Context_Type}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <input faims_attribute_name="Context Comments" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Context_Comments">
-          <label>{Context_Comments}</label>
-        </input>
-        <input faims_attribute_name="Date Opened" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Date_Opened">
-          <label>{Date_Opened}</label>
-        </input>
-        <input faims_attribute_name="Excavation Method" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Excavation_Method">
-          <label>{Excavation_Method}</label>
-        </input>
         <group faims_style="orientation" ref="container3">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
-            <input faims_attribute_name="Highest Level" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Context_Highest_Level">
-              <label>Highest Level</label>
+            <select faims_attribute_name="Excavation Method" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Excavation_Method">
+              <label>{Excavation_Method}</label>
+              <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <select1 faims_attribute_name="Wet Sieved" faims_attribute_type="enum" faims_certainty="false" faims_read_only="false" ref="Wet_Sieved">
+              <label>Wet Sieved</label>
+              <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select1>
+          </group>
+        </group>
+        <group faims_style="orientation" ref="container4_1">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+             <input faims_attribute_name="Highest Level NW" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Highest_Level_NW">
+              <label>Highest Level NW</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
-            <input faims_attribute_name="Lowest Level" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Context_Lowest_Level">
-              <label>Lowest Level</label>
+            <input faims_attribute_name="Highest Level NE" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Highest_Level_NE">
+              <label>Highest Level NE</label>
             </input>
           </group>
         </group>
-        <group faims_style="orientation" ref="container4">
+        <input faims_attribute_name="Highest Level Ctr" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Highest_Level_Ctr">
+          <label>Highest Level Ctr</label>
+        </input>
+        <group faims_style="orientation" ref="container4_2">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input faims_attribute_name="Highest Level SW" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Highest_Level_SW">
+              <label>Highest Level SW</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input faims_attribute_name="Highest Level SE" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Highest_Level_SE">
+              <label>Highest Level SE</label>
+            </input>
+          </group>
+        </group>
+
+
+
+        <group faims_style="orientation" ref="container5_1">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+             <input faims_attribute_name="Lowest Level NW" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Lowest_Level_NW">
+              <label>Lowest Level NW</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input faims_attribute_name="Lowest Level NE" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Lowest_Level_NE">
+              <label>Lowest Level NE</label>
+            </input>
+          </group>
+        </group>
+        <input faims_attribute_name="Lowest Level Ctr" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Lowest_Level_Ctr">
+          <label>Lowest Level Ctr</label>
+        </input>
+        <group faims_style="orientation" ref="container5_2">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input faims_attribute_name="Lowest Level SW" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Lowest_Level_SW">
+              <label>Lowest Level SW</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input faims_attribute_name="Lowest Level SE" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Lowest_Level_SE">
+              <label>Lowest Level SE</label>
+            </input>
+          </group>
+        </group>
+        <group faims_style="orientation" ref="container6">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
@@ -681,6 +796,21 @@
             </input>
           </group>
         </group>
+        <input faims_attribute_name="Deposit Volume" faims_attribute_type="measure" faims_certainty="true" faims_read_only="true" ref="Deposit_Volume">
+          <label>{Deposit_Volume}</label>
+        </input>
+        <trigger ref="calculateVol">
+          <label>Calculate Volume</label>
+        </trigger> 
+        <input faims_attribute_name="Your Interpretation" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Your_Interpretation">
+          <label>Your Interpretation</label>
+        </input>
+        <input faims_attribute_name="Your Discussion" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Your_Discussion">
+          <label>{Your_Discussion}</label>
+        </input>
+        <input faims_attribute_name="Context Comments" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Context_Comments">
+          <label>{Context_Comments}</label>
+        </input>
         <!--We would like to see Dropdown-->
         <input faims_certainty="false" faims_read_only="true" ref="CreatingUser">
           <label>Record Created By:</label>
@@ -688,14 +818,61 @@
         <trigger ref="Update">
           <label>Save Context</label>
         </trigger>
-        <trigger ref="Details">
-          <label>Fill in Context Type Details</label>
+        <trigger ref="addGeological">
+          <label>Add Geological Characteristics</label>
+        </trigger>
+        <trigger ref="addRelationships">
+          <label>Add Relationships</label>
         </trigger>
       </group>
 
-      <group faims_hidden="true" ref="Context_Deposits">
-        <label>Dep</label>
+      <group ref="Context_Deposits">
+        <label>Geology</label>
         <!--We would like to see Dropdown-->
+        <group faims_style="orientation" ref="container1">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <select1 faims_attribute_name="Soil Munsell Colour" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Soil_Munsell_Colour">
+              <label>{Soil_Munsell_Colour}</label>
+              <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select1>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <select1 faims_attribute_name="Soil Moisture" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Soil_Moisture">
+              <label>{Soil_Moisture}</label>
+              <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select1>
+          </group>
+        </group>
+        <group faims_style="orientation" ref="container2">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input faims_attribute_name="Texture Percentage Sand" faims_attribute_type="measure" faims_read_only="false" ref="Texture_Percentage_Sand">
+              <label>{Texture_Percentage_Sand}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input faims_attribute_name="Texture Percentage Silt" faims_attribute_type="measure" faims_read_only="false" ref="Texture_Percentage_Silt">
+              <label>{Texture_Percentage_Silt}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child3">
+            <label/>
+            <input faims_attribute_name="Texture Percentage Clay" faims_attribute_type="measure" faims_read_only="false" ref="Texture_Percentage_Clay">
+              <label>{Texture_Percentage_Clay}</label>
+            </input>
+          </group>
+        </group>
         <select1 faims_attribute_name="Soil Compaction Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Soil_Compaction_Type">
           <label>{Soil_Compaction_Type}</label>
           <item>
@@ -703,62 +880,39 @@
             <value>placeholder</value>
           </item>
         </select1>
-        <input faims_attribute_name="Soil Compaction Description" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Soil_Compaction_Description">
-          <label>{Soil_Compaction_Description}</label>
-        </input>
-        <select1 faims_attribute_name="Soil Munsell Colour" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Soil_Munsell_Colour">
-          <label>{Soil_Munsell_Colour}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <group faims_style="orientation" ref="container1">
+        <group faims_style="orientation" ref="container3">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
-            <trigger ref="Soil_Populate_Colour">
-              <label>Fill Soil Colour</label>
-            </trigger>
+            <select faims_attribute_name="Deposit Inclusions" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Deposit_Inclusions">
+              <label>{Deposit_Inclusions}</label>
+              <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
-              <input faims_attribute_name="Soil Colour" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="true" ref="Soil_Colour">
-                <label>{Soil_Colour}</label>
-              </input>
+            <select faims_attribute_name="Natural Formations" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Natural_Formations">
+              <label>{Natural_Formations}</label>
+              <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select>
+          </group>
+          <group faims_style="even" ref="child3">
+            <label/>
+            <select faims_attribute_name="Disturbances" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Disturbances">
+              <label>{Disturbances}</label>
+              <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select>
           </group>
         </group>
-        <!--We would like to see Dropdown-->
-        <select1 faims_attribute_name="Soil Particle Sorting" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Soil_Particle_Sorting" type="image">
-          <label>{Soil_Particle_Sorting}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <select1 faims_attribute_name="Soil Texture Actual" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Soil_Texture_Actual">
-          <label>{Soil_Texture}</label>
-            <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <trigger ref="Texture_Helper">
-          <label>Texture Helper</label>
-        </trigger>
-        <input faims_attribute_name="Deposit Inclusions" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Deposit_Inclusions">
-          <label>{Deposit_Inclusions}</label>
-        </input>
-        <input faims_attribute_name="Deposit Thickness and Extent" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Deposit_Thickness_Extent">
-          <label>Deposit Thickness &amp; Extent</label>
-        </input>
-        <select1 faims_attribute_name="Horizon Boundary" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Horizon_Boundary">
-          <label>{Horizon_Boundary}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
         <trigger ref="newMatrix">
           <label>Add New Matrix</label>
         </trigger>
@@ -779,186 +933,11 @@
           <label>Save Context</label>
         </trigger>
       </group>
-      <group faims_hidden="true" ref="Context_Cuts">
-        <label>Cut</label>
-        <!--We would like to see Dropdown-->
-        <group faims_style="orientation" ref="container1">
-          <label/>
-          <group faims_style="even" ref="child1">
-            <label/>
-            <select1 faims_attribute_name="Shape of Cut" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Shape_of_Cut">
-              <label>{Shape_of_Cut}</label>
-              <item>
-                <label>placeholder</label>
-                <value>placeholder</value>
-              </item>
-            </select1>
-          </group>
-          <group faims_style="even" ref="child2">
-            <label/>
-            <input faims_attribute_name="Shape of Cut - Note" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Shape_of_Cut_Note">
-              <label>{Shape_of_Cut_-_Note}</label>
-            </input>
-          </group>
-        </group>
-        <!--We would like to see Radiogroup-->
-        <select1 appearance="full" faims_attribute_name="Shape of Corners" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Shape_of_Corners">
-          <label>{Shape_of_Corners}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <!--We would like to see Radiogroup-->
-        <select1 appearance="full" faims_attribute_name="Break of Slope - Top" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Break_of_Slope_Top">
-          <label>{Break_of_Slope_-_Top}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <!--We would like to see Radiogroup-->
-        <select1 appearance="full" faims_attribute_name="Break of slope - Base" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Break_of_slope_Base">
-          <label>{Break_of_slope_-_Base}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <input faims_attribute_name="Sides of Cut" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Sides_of_Cut">
-          <label>{Sides_of_Cut}</label>
-        </input>
-        <!--We would like to see Dropdown-->
-        <select1 faims_attribute_name="Shape of Base" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Shape_of_Base">
-          <label>{Shape_of_Base}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <!--We would like to see Dropdown-->
-        <select1 appearance="full" faims_attribute_name="Orientation" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Orientation">
-          <label>{Orientation}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <input faims_attribute_name="Inclination of axis" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Inclination_of_axis">
-          <label>{Inclination_of_axis}</label>
-        </input>
-        <input faims_attribute_name="Truncation" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Truncation">
-          <label>{Truncation}</label>
-        </input>
-        <trigger ref="Update">
-          <label>Save Context</label>
-        </trigger>
-      </group>
-      <group faims_hidden="true" ref="Context_Structures">
-        <label>{Structures}</label>
-        <!--We would like to see Dropdown-->
-        <select1 faims_attribute_name="Structural Components" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Structural_Components">
-          <label>{Structural_Components}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <!--We would like to see Dropdown-->
-        <select1 faims_attribute_name="Bonding" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Bonding">
-          <label>{Bonding}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <!--We would like to see Dropdown-->
-        <select1 faims_attribute_name="Bond Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Bond_Type" type="image">
-          <label>{Bond_Type}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <input faims_attribute_name="Distinguishing Marks" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Distinguishing_Marks">
-          <label>{Distinguishing_Marks}</label>
-        </input>
-        <input faims_attribute_name="Structure Description" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Structure_Description">
-          <label>{Structure_Description}</label>
-        </input>
-        <trigger ref="Update">
-          <label>Save Context</label>
-        </trigger>
-      </group>
-      <group ref="Context_Interpretation">
-        <label>Int</label>
-        <select1 appearance="full" faims_attribute_name="Your Interpretation" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Your_Interpretation">
-          <label>Your Interpretation</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <input faims_attribute_name="Your Discussion" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Your_Discussion">
-          <label>{Your_Discussion}</label>
-        </input>
-        <input faims_attribute_name="Your description" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Your_description">
-          <label>{Your_description}</label>
-        </input>
-        <group faims_style="orientation" ref="container1">
-          <label/>
-          <group faims_style="even" ref="child1">
-            <label/>
-            <input faims_attribute_name="Start date" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Start_date">
-              <label>{Start_date}</label>
-            </input>
-          </group>
-          <group faims_style="even" ref="child2">
-            <label/>
-            <input faims_attribute_name="End date" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="End_date">
-              <label>{End_date}</label>
-            </input>
-          </group>
-        </group>
-        <select1 appearance="full" faims_attribute_name="Phase From" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_From">
-          <label>{Phase_From}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <select1 appearance="full" faims_attribute_name="Phase To" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_To">
-          <label>{Phase_To}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <trigger ref="Update">
-          <label>Save Context</label>
-        </trigger>
-        <trigger ref="AddContextGroup">
-          <label>Add New Context Group</label>
-        </trigger>
-        <select1 faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="ContextGroupList">
-          <label>List of Related Context Groups</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <trigger ref="ShowContextGroup">
-          <label>Load Context Group</label>
-        </trigger>
-        <trigger ref="RemoveFromContextGroup">
-          <label>Remove From Context Group</label>
-        </trigger>
-      </group>
       <group ref="Context_Relationships_to_Other_Contexts">
         <label>Rel</label>
         <!-- Brian todo, figure out how to model this -->
         <input faims_certainty="false" faims_read_only="true" ref="spacer">
-          <label>Use this tab to enter relationships between contexts, eg ‘Above’ and ‘Below’. Select the Type of Relationship on the left, the related Context from the list on the right, and click the button ‘Relate Contexts’.</label>
+          <label>Here you can enter relationships between contexts, eg ‘Above’ and ‘Below’. Select the Type of Relationship on the left, the related Context from the list on the right, and click the button ‘Relate Contexts’.</label>
         </input>
         <group faims_style="orientation" ref="container3">
           <label/>
@@ -1014,43 +993,21 @@
             </trigger>
           </group>
         </group>
-      </group>
-      <group ref="Context_Attachments">
-        <label>ADD</label>
-        <select faims_annotation="false" faims_attribute_name="Sketch" faims_attribute_type="freetext" faims_certainty="false" ref="Sketch" type="file">
-          <label>{Sketch}</label>
+        <trigger ref="AddContextGroup">
+          <label>Add New Context Group</label>
+        </trigger>
+        <select1 faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="ContextGroupList">
+          <label>List of Related Context Groups</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
           </item>
-        </select>
-        <trigger ref="attachSketch">
-          <label>Attach Sketch</label>
+        </select1>
+        <trigger ref="ShowContextGroup">
+          <label>Load Context Group</label>
         </trigger>
-        <select faims_annotation="false" faims_attribute_name="Photo" faims_attribute_type="freetext" faims_certainty="true" faims_sync="true" ref="Photo" type="camera">
-          <label>{Photo}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select>
-        <trigger ref="attachPhoto">
-          <label>Take Picture</label>
-        </trigger>
-        <trigger ref="viewattached">
-          <label>View Attached Files</label>
-        </trigger>
-        <trigger ref="Update">
-          <label>Save Context</label>
-        </trigger>
-        <trigger ref="SaveAndNew">
-          <label>Save and New Context</label>
-        </trigger>
-        <trigger ref="Duplicate">
-          <label>Save and Duplicate Context (will not duplicate relationships, samples, or artefact groups).</label>
-        </trigger>
-        <trigger ref="Delete">
-          <label>Delete Context</label>
+        <trigger ref="RemoveFromContextGroup">
+          <label>Remove From Context Group</label>
         </trigger>
       </group>
       <group ref="Context_Artefacts">
@@ -1090,6 +1047,12 @@
       </group>
       <group ref="Context_Samples">
         <label>Samples</label>
+        <trigger ref="Update">
+          <label>Save Context</label>
+        </trigger>
+        <input ref="blank" faims_read_only="false" faims_certainty="false" faims_annotation="false">
+          <label/>
+        </input>
         <trigger ref="newSample">
           <label>Add Sample</label>
         </trigger>
@@ -1106,19 +1069,76 @@
         <trigger ref="deleteSample">
           <label>Delete Sample</label>
         </trigger>
+        <trigger ref="newDepositVolume">
+          <label>Add {Deposit_Volume}</label>
+        </trigger>
+        <select1 faims_certainty="false" faims_read_only="false" ref="depositVolumeList">
+          <label>Select a {Deposit_Volume}:</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <trigger ref="loadDepositVolume">
+          <label>Load {Deposit_Volume}</label>
+        </trigger>
+        <trigger ref="deleteDepositVolume">
+          <label>Delete {Deposit_Volume}</label>
+        </trigger>
       </group>
-      <group ref="Texture_Helper" faims_hidden="true">
-        <label>Texture Helper</label>
-          <select1 faims_certainty="true" faims_read_only="false" ref="Soil_Texture">
-            <label>Texture Helper</label>
-            <item>
-              <label>placeholder</label>
-              <value>placeholder</value>
-            </item>
-          </select1>
-          <trigger ref="Update_Texture">
-            <label>Update Texture</label>
-          </trigger>
+      <group ref="Context_Attachments">
+        <label>FILES</label>
+        <select faims_annotation="false" faims_attribute_name="Sketch" faims_attribute_type="freetext" faims_certainty="false" ref="Sketch" type="file">
+          <label>{Sketch}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select>
+        <trigger ref="attachSketch">
+          <label>Attach Sketch</label>
+        </trigger>
+        <select faims_annotation="false" faims_attribute_name="Photo" faims_attribute_type="freetext" faims_certainty="true" faims_sync="true" ref="Photo" type="camera">
+          <label>{Photo}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select>
+        <trigger ref="attachPhoto">
+          <label>Take Picture</label>
+        </trigger>
+        <trigger ref="viewattached">
+          <label>View Attached Files</label>
+        </trigger>
+        <trigger ref="newPhotoLog">
+          <label>Add Photograph Log</label>
+        </trigger>
+        <select1 faims_certainty="false" faims_read_only="false" ref="PhotoLogList">
+          <label>Select a Photograph Log:</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <trigger ref="loadPhotoLog">
+          <label>Load Photograph Log</label>
+        </trigger>
+        <trigger ref="deletePhotoLog">
+          <label>Delete Photograph Log</label>
+        </trigger>
+        <trigger ref="Update">
+          <label>Save Context</label>
+        </trigger>
+        <trigger ref="SaveAndNew">
+          <label>Save and New Context</label>
+        </trigger>
+        <trigger ref="Duplicate">
+          <label>Save and Duplicate Context (will not duplicate relationships, samples, or artefact groups).</label>
+        </trigger>
+        <trigger ref="Delete">
+          <label>Delete Context</label>
+        </trigger>
       </group>
     </group>
 
@@ -1131,7 +1151,7 @@
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
-            <input faims_attribute_name="Site Code" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="true" ref="Site_Code">
+            <input faims_attribute_name="Site Code" faims_attribute_type="freetext" faims_read_only="false" faims_certainty="false" ref="Site_Code">
               <label>{Site_Code}</label>
             </input>
           </group>
@@ -1145,13 +1165,6 @@
         <input faims_attribute_name="Title" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Title">
           <label>Context Group Title</label>
         </input>
-        <select1 faims_attribute_name="CG Context Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Context_Type" type="image">
-          <label>{Context_Type}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
         <group faims_style="orientation" ref="container2">
           <label/>
           <group faims_style="even" ref="child1">
@@ -1176,35 +1189,6 @@
         <input ref="Your_Discussion" faims_attribute_type="freetext" faims_attribute_name="Your Discussion">
           <label>Your Discussion</label>
         </input>
-        <group faims_style="orientation" ref="container3">
-          <label/>
-          <group faims_style="even" ref="child1">
-            <label/>
-            <input faims_attribute_name="Start date" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Start_Date">
-              <label>{Start_date}</label>
-            </input>
-          </group>
-          <group faims_style="even" ref="child2">
-            <label/>
-            <input faims_attribute_name="End date" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="End_Date">
-              <label>{End_date}</label>
-            </input>
-          </group>
-        </group>
-        <select1 appearance="full" faims_attribute_name="CG Phase From" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_From">
-          <label>{Phase_From}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <select1 appearance="full" faims_attribute_name="CG Phase To" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_To">
-          <label>{Phase_To}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
         <trigger ref="Update">
           <label>Save Context Group</label>
         </trigger>
@@ -1433,19 +1417,6 @@
             <value>placeholder</value>
           </item>
         </select1>
-         <input faims_attribute_name="Stone Size" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Stone_Size">
-          <label>{Soil_Stone_Size}</label>
-        </input>
-        <select1 faims_attribute_name="Shape" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Shape" type="image">
-          <label>{Soil_Stone_Shape}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <input faims_attribute_name="Stoniness" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Stoniness">
-          <label>{Soil_Stoniness}</label>
-        </input>
         <trigger ref="Update">
           <label>Save and Close</label>
         </trigger>
@@ -1577,6 +1548,68 @@
           <label>Delete Special Find</label>
         </trigger>
       </group>
+    </group>
+
+    <!-- ArchEnt: DEPOSIT VOLUME -->
+    <group ref="Deposit_Volume" faims_archent_type="Deposit Volume">
+      <label>{Deposit_Volume}</label>
+        <group ref="Deposit_Volume">
+          <label>{Deposit_Volume}</label>
+            <input faims_attribute_name="ContextID" faims_attribute_type="freetext" faims_read_only="true" ref="Context_ID">
+              <label>Context ID</label>
+            </input>
+            <input faims_attribute_name="DepositLotID" faims_attribute_type="freetext" faims_read_only="false" ref="Deposit_ID" faims_certainty="false">
+              <label>Deposit ID</label>
+            </input>
+          <input faims_attribute_name="Volume" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Volume">
+            <label>Volume</label>
+          </input>
+          <trigger ref="Update">
+            <label>Save and Close</label>
+          </trigger>
+          <trigger ref="SaveAndNew">
+            <label>Save and New</label>
+          </trigger>
+          <trigger ref="Delete">
+            <label>Delete {Deposit_Volume}</label>
+          </trigger>
+          <trigger ref="ReturnToContext">
+            <label>Return To Context</label>
+          </trigger>
+        </group>
+    </group>
+
+    <!-- ArchEnt: Photograph Log -->
+    <group ref="Photograph_Log" faims_archent_type="Photograph Log">
+      <label>Photograph Log</label>
+        <group ref="Photograph_Log">
+          <label>Photograph Log</label>
+            <input faims_attribute_name="ContextID" faims_attribute_type="freetext" faims_read_only="true" ref="Context_ID">
+              <label>Context ID</label>
+            </input>
+            <input faims_attribute_name="Photograph Reference ID" faims_attribute_type="freetext" faims_read_only="false" ref="Photograph_Reference_ID" faims_certainty="false">
+              <label>Photograph Log ID</label>
+            </input>
+          <select1 faims_attribute_name="Scene Type" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Scene_Type">
+            <label>Scene Type</label>
+            <item>
+              <label>placeholder</label>
+              <value>placeholder</value>
+            </item>
+          </select1>
+          <trigger ref="Update">
+            <label>Save and Close</label>
+          </trigger>
+          <trigger ref="SaveAndNew">
+            <label>Save and New</label>
+          </trigger>
+          <trigger ref="Delete">
+            <label>Delete Photograph Log</label>
+          </trigger>
+          <trigger ref="ReturnToContext">
+            <label>Return To Context</label>
+          </trigger>
+        </group>
     </group>
   </h:body>
 </h:html>
