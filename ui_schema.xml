@@ -218,6 +218,7 @@
                   <showReln/>
                 </child2>
               </container4>
+              <guide/>
               <AddContextGroup/>
               <ContextGroupList/>
               <ShowContextGroup/>
@@ -993,6 +994,19 @@
             </trigger>
           </group>
         </group>
+
+      <select1 appearance="compact" ref="guide" >
+          <label></label>
+            <item>
+              <!-- I'm using fancy spaces here. Be careful of copying -->
+            <label> 
+
+
+Here you can group contexts into a single Context Group or Feature</label>
+            <value>Help</value>
+          </item>
+        </select1>
+
         <trigger ref="AddContextGroup">
           <label>Add New Context Group</label>
         </trigger>
