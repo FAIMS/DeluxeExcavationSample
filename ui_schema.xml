@@ -255,6 +255,7 @@
               <Photo/>
               <attachPhoto/>
               <viewattached/>
+              <guide/>
               <newPhotoLog/>
               <PhotoLogList/>
               <loadPhotoLog/>
@@ -1098,7 +1099,7 @@ Here you can add the Volume of individual lots of a single Context, eg a bucket 
             <value>Help</value>
           </item>
         </select1>
-        
+
         <trigger ref="newDepositVolume">
           <label>Add {Deposit_Volume}</label>
         </trigger>
@@ -1141,6 +1142,22 @@ Here you can add the Volume of individual lots of a single Context, eg a bucket 
         <trigger ref="viewattached">
           <label>View Attached Files</label>
         </trigger>
+
+
+
+         <select1 appearance="compact" ref="guide" >
+          <label></label>
+            <item>
+              <!-- I'm using fancy spaces here. Be careful of copying -->
+            <label> 
+
+
+Here you can enter filenames or unique reference numbers for image stored on another device.</label>
+            <value>Help</value>
+          </item>
+        </select1>
+
+        
         <trigger ref="newPhotoLog">
           <label>Add Photograph Log</label>
         </trigger>
