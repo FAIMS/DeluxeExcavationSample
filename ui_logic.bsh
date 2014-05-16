@@ -430,12 +430,12 @@ updateRelns(){
 
 loadContextAttributes(){
     populateCheckBoxGroup("Context/Context_GeneralInformation/Excavation_Method", makeVocab("Excavation Method"));
-    populateDropDown("Context/Context_GeneralInformation/Wet_Sieved", makeVocab("Wet Sieved"));
+    populateRadioGroup("Context/Context_GeneralInformation/Wet_Sieved", makeVocab("Wet Sieved"));
 
 
     populateHierarchicalDropDown("Context/Context_Deposits/Soil_Munsell_Colour", "Soil Munsell Colour");
     populateDropDown("Context/Context_Deposits/Soil_Compaction_Type", makeVocab("Soil Compaction Type"));
-    populateDropDown("Context/Context_Deposits/Soil_Moisture", makeVocab("Soil Moisture"));
+    populateRadioGroup("Context/Context_Deposits/Soil_Moisture", makeVocab("Soil Moisture"));
     populateCheckBoxGroup("Context/Context_Deposits/Deposit_Inclusions", makeVocab("Deposit Inclusions"));
     populateCheckBoxGroup("Context/Context_Deposits/Natural_Formations", makeVocab("Natural Formations"));
     populateCheckBoxGroup("Context/Context_Deposits/Disturbances", makeVocab("Disturbances"));
