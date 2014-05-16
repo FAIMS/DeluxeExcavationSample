@@ -241,6 +241,8 @@
               <sampleList/>
               <loadSample/>
               <deleteSample/>
+
+              <guide/>
               <newDepositVolume/>
               <depositVolumeList/>
               <loadDepositVolume/>
@@ -1083,6 +1085,20 @@ Here you can group contexts into a single Context Group or Feature</label>
         <trigger ref="deleteSample">
           <label>Delete Sample</label>
         </trigger>
+
+
+        <select1 appearance="compact" ref="guide" >
+          <label></label>
+            <item>
+              <!-- I'm using fancy spaces here. Be careful of copying -->
+            <label> 
+
+
+Here you can add the Volume of individual lots of a single Context, eg a bucket load, and have the total volume of the Context tallied on the General tab.</label>
+            <value>Help</value>
+          </item>
+        </select1>
+        
         <trigger ref="newDepositVolume">
           <label>Add {Deposit_Volume}</label>
         </trigger>
