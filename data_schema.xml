@@ -45,6 +45,10 @@
     <description>Implements a 1:N between context and its photograph logs
     </description>
   </RelationshipElement>
+  <RelationshipElement name="SpecialFindSpecialFindLocation" type="bidirectional">
+    <description>Implements a 1:N between special finds and their locations
+    </description>
+  </RelationshipElement>
 
     <!-- CONTEXT -->
   <ArchaeologicalElement name="Context">
@@ -110,17 +114,22 @@
       <description>The lowest elevation recorded for that context. This may be relative to the site grid, or real world co-ordinates, depending on the method of measurement.
       </description>
     </property>
-    <property name="Length" type="float">
-      <description>Length of the longest side, in mm.
-      </description>
+    <property name="Target Spit Thickness" type="enum">
+      <description>The minimum thickness of deposit</description>
+      <lookup>
+       <term>{a2cm}<description/></term>
+       <term>{b5cm}<description/></term>
+       <term>{c10cm}<description/></term>
+       <term>{d20cm}<description/></term>
+       <term>{e25cm}<description/></term>
+       <term>{f50cm}<description/></term>
+      </lookup>
     </property>
-    <property name="Width" type="float">
-      <description>Width or diameter, in mm.
-      </description>
+    <property name="Minimum Context Thickness" type="float">
+      <description>The minimum thickness of the deposit base on the highest and lowest in each quadrant</description>
     </property>
-    <property name="Depth" type="float">
-      <description>Depth or Height, in mm.
-      </description>
+    <property name="Maximum Context Thickness" type="float">
+      <description>The maximum thickness of the deposit base on the highest and lowest in each quadrant</description>
     </property>
     <property name="Context Comments" type="blocktext">
       <description>Additional comments on the description of the Context.
@@ -140,7 +149,7 @@
         <term>
           <description> </description>
         </term>
-       <term>R
+        <term>R
           <description/>
           <term>
             2.5R
@@ -7350,6 +7359,298 @@
     <property name="Texture Percentage Clay" type="float">
       <description>Percentage of clay in the deposit.</description>
     </property>
+    <property name="Soil Texture" type="enum">
+      <description>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.
+      </description>
+      <lookup>
+        <term HeuristID="0-3606" StandardCode="">{Soil_does_NOT_remain_in_ball_when_squeezed}
+
+          <description>Place approximately 25 g soil in palm. Add water dropwise and knead the soil to break down all aggregates. Soil is at the proper consistency when plastic and moldable, like moist putty.
+          </description>
+          <term HeuristID="0-3609" StandardCode="">
+            {Is_too_dry}
+
+            <description>The soil sample is too dry.
+            </description>
+            <term HeuristID="0-3610" StandardCode="">
+              NO RESULT: Add more water and start again
+
+              <description> </description>
+            </term>
+          </term>
+          <term HeuristID="0-3611" StandardCode="">{Is_too_wet}
+
+            <description>The soil sample is too wet.
+            </description>
+            <term HeuristID="0-3612" StandardCode="">
+              NO RESULT: Add dry soil and start again
+
+              <description>NO RESULT: add dry soil to soak up water
+              </description>
+            </term>
+          </term>
+          <term HeuristID="0-3607" StandardCode="">{NOT_too_wet_nor_too_dry}
+
+            <description>The soil is NOT too wet nor too dry.
+            </description>
+            <term HeuristID="0-3608" StandardCode="">
+              {Sand}
+
+              <description>A sand has a loose gritty feel and does not stick together. Individual sand grains can be seen or felt. (VDEPI 2009: AG0058)
+              </description>
+            </term>
+          </term>
+        </term>
+        <term HeuristID="0-3574" StandardCode="">{Soil_remains_in_ball_when_squeezed}
+
+          <description>Place approximately 25 g soil in palm. Add water dropwise and knead the soil to break down all aggregates. Soil is at the proper consistency when plastic and moldable, like moist putty.
+          </description>
+          <term HeuristID="0-3575" StandardCode="">
+            {TASK:_Roll_ribbon}
+
+            <description>Rub a ball of soil between thumb and forefinger to make a 'ribbon'
+            </description>
+            <term HeuristID="0-3604" StandardCode="">
+              {Does_NOT_form_a_ribbom}
+
+              <description>A 'ribbon' is NOT formed when a ball of soil is rubbed between thumb and forefinger.
+              </description>
+              <term HeuristID="0-3605" StandardCode="">
+                {Loamy_Sand}
+
+                <description>In a loamy sand particles barely stick together and a moulded piece of soil just holds its shape. (VDEPI 2009: AG0058)
+                </description>
+              </term>
+            </term>
+            <term HeuristID="0-3576" StandardCode="">{Forms_ribbon}
+
+              <description>A 'ribbon' is formed when a ball of soil is rubbed between thumb and forefinger.
+              </description>
+              <term HeuristID="0-3586" StandardCode="">
+                {Medium_ribbon_(2.5-5cm_long)}
+
+                <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is between 2.5 and 5cm long.
+                </description>
+                <term HeuristID="0-3587" StandardCode="">
+                  {TASK:_Wet_soil_and_rub_with_forefinger}
+
+                  <description>Excessively wet a small pinch of soil in palm and rub with forefinger.
+                  </description>
+                  <term HeuristID="0-3590" StandardCode="">
+                    {Does_NOT_feel_very_gritty}
+
+                    <description>The wetted soil does NOT feel very gritty when rubbed on the palm and with forefinger.
+                    </description>
+                    <term HeuristID="0-3591" StandardCode="">
+                      {Feels_very_smooth}
+
+                      <description>The wetted soil feels very smooth when rubbed on the palm and with forefinger.
+                      </description>
+                      <term HeuristID="0-3592" StandardCode="">
+                        {Silty_Clay_Loam}
+
+                        <description>A silty clay loam is like a clay loam but silty as well and smooth to the touch. (VDEPI 2009: AG0058)
+                        </description>
+                      </term>
+                    </term>
+                    <term HeuristID="0-3593" StandardCode="">{Neither_very_gritty_nor_very_smooth}
+
+                      <description>The wetted soil does NOT feel very smooth nor very gritty when rubbed on the palm and with forefinger.
+                      </description>
+                      <term HeuristID="0-3594" StandardCode="">
+                        {Clay_Loam}
+
+                        <description>More easily moulded into a shape than a loam, a clay loam rolls out to a thin ribbon between the palms while a loam will break-up. When dry a clay loam will form a lump but is not as tough to break as a clay.(VDEPI 2009: AG0058)
+                        </description>
+                      </term>
+                    </term>
+                  </term>
+                  <term HeuristID="0-3588" StandardCode="">{Feels_very_gritty}
+
+                    <description>The wetted soil feels very gritty when rubbed on the palm and with forefinger.
+                    </description>
+                    <term HeuristID="0-3589" StandardCode="">
+                      {Sandy_Clay_Loam}
+
+                      <description>A sandy clay loam is like a clay loam but sand grains can be felt (and heard - see Sandy Loam) (VDEPI 2009: AG0058)
+                      </description>
+                    </term>
+                  </term>
+                </term>
+              </term>
+              <term HeuristID="0-3595" StandardCode="">{Strong_ribbon}
+
+                <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is strong and over 5cm long.
+                </description>
+                <term HeuristID="0-3596" StandardCode="">
+                  {TASK:_Wet_soil_and_rub_with_forefinger}
+
+                  <description>Excessively wet a small pinch of soil in palm and rub with forefinger.
+                  </description>
+                  <term HeuristID="0-3599" StandardCode="">
+                    {Does_NOT_feel_very_gritty}
+
+                    <description>The wetted soil does NOT feel very gritty when rubbed on the palm and with forefinger.
+                    </description>
+                    <term HeuristID="0-3600" StandardCode="">
+                      {Feels_very_smooth}
+
+                      <description>The wetted soil feels very smooth when rubbed on the palm and with forefinger.
+                      </description>
+                      <term HeuristID="0-3601" StandardCode="">
+                        {Silty_Clay}
+
+                        <description>A silty clay is like a clay but smoother. (VDEPI 2009: AG0058)
+                        </description>
+                      </term>
+                    </term>
+                    <term HeuristID="0-3602" StandardCode="">{Neither_very_gritty_nor_very_smooth}
+
+                      <description>The wetted soil does NOT feel very smooth nor very gritty when rubbed on the palm and with forefinger.
+                      </description>
+                      <term HeuristID="0-3603" StandardCode="">
+                        {Clay}
+
+                        <description>Clays are tough and can be moulded into shapes when moist. Clays form a long flexible ribbon when rubbed between the palms and the ribbon can often be bent into a U shape without breaking. Clays dry into very hard clods. (VDEPI 2009: AG0058)
+                        </description>
+                      </term>
+                    </term>
+                  </term>
+                  <term HeuristID="0-3597" StandardCode="">{Feels_very_gritty}
+
+                    <description>The wetted soil feels very gritty when rubbed on the palm and with forefinger.
+                    </description>
+                    <term HeuristID="0-3598" StandardCode="">
+                      {Sandy_Clay}
+
+                      <description>A sandy clay is like a clay but sand grains can be felt (and heard - see Sandy Loam). (VDEPI 2009: AG0058)
+                      </description>
+                    </term>
+                  </term>
+                </term>
+              </term>
+              <term HeuristID="0-3577" StandardCode="">{Weak_ribbon_(Less_than_2.5cm_long)}
+
+                <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is less than 2.5cm long.
+                </description>
+                <term HeuristID="0-3578" StandardCode="">
+                  {TASK:_Wet_soil_and_rub_with_forefinger}
+
+                  <description>Excessively wet a small pinch of soil in palm and rub with forefinger.
+                  </description>
+                  <term HeuristID="0-3581" StandardCode="">
+                    {Does_NOT_feel_very_gritty}
+
+                    <description>The wetted soil does NOT feel very gritty when rubbed on the palm and with forefinger.
+                    </description>
+                    <term HeuristID="0-3582" StandardCode="">
+                      {Feels_very_smooth}
+
+                      <description>The wetted soil feels very smooth when rubbed on the palm and with forefinger.
+                      </description>
+                      <term HeuristID="0-3583" StandardCode="">
+                        {Silt_Loam}
+
+                        <description>A silty loam is like a loam but has a smooth silky feel when a moist sample is pushed between the index finger and thumb. On drying a sample can form a hard lump but this may be broken by hand. (VDEPI 2009: AG0058)
+                        </description>
+                      </term>
+                    </term>
+                    <term HeuristID="0-3584" StandardCode="">{Neither_very_gritty_nor_very_smooth}
+
+                      <description>The wetted soil does NOT feel very smooth nor very gritty when rubbed on the palm and with forefinger.
+                      </description>
+                      <term HeuristID="0-3585" StandardCode="">
+                        {Loam}
+
+                        <description>A loam breaks into crumbs but will tend to stick together. Sand grains cannot be felt in a moist sample which when squeezed will retain its shape when handled freely. Loams are usually soft to the feel. (VDEPI 2009: AG0058)
+                        </description>
+                      </term>
+                    </term>
+                  </term>
+                  <term HeuristID="0-3579" StandardCode="">{Feels_very_gritty}
+
+                    <description>The wetted soil feels very gritty when rubbed on the palm and with forefinger.
+                    </description>
+                    <term HeuristID="0-3580" StandardCode="">
+                      {Sandy_Loam}
+
+                      <description>A sandy loam sticks together more than a loamy sand but can be easily broken. Individual sand grains can be felt and heard if a wet sample is rubbed between the index finger and thumb and held close to the ear. (VDEPI 2009: AG0058)
+                      </description>
+                    </term>
+                  </term>
+                </term>
+              </term>
+            </term>
+          </term>
+        </term>
+      </lookup>
+    </property>
+    <property name="Soil Texture Actual" type="enum">
+      <description>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.
+      </description>
+      <lookup>
+        <term HeuristID="0-3608" StandardCode="">No Observation 
+          <description>No Observation. Use the Texture helper to prefil this.
+          </description>
+        </term>
+        <term HeuristID="0-3608" StandardCode="">{Sand}
+          <description>A sand has a loose gritty feel and does not stick together. Individual sand grains can be seen or felt. (VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3605" StandardCode="">{Loamy_Sand}
+          <description>In a loamy sand particles barely stick together and a moulded piece of soil just holds its shape. (VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3586" StandardCode="">{Medium_ribbon_(2.5-5cm_long)}
+          <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is between 2.5 and 5cm long.
+          </description>
+        </term>
+        <term HeuristID="0-3592" StandardCode="">{Silty_Clay_Loam}
+          <description>A silty clay loam is like a clay loam but silty as well and smooth to the touch. (VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3594" StandardCode="">{Clay_Loam}
+          <description>More easily moulded into a shape than a loam, a clay loam rolls out to a thin ribbon between the palms while a loam will break-up. When dry a clay loam will form a lump but is not as tough to break as a clay.(VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3589" StandardCode="">{Sandy_Clay_Loam}
+          <description>A sandy clay loam is like a clay loam but sand grains can be felt (and heard - see Sandy Loam) (VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3595" StandardCode="">{Strong_ribbon}
+          <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is strong and over 5cm long.
+          </description>
+        </term>
+        <term HeuristID="0-3601" StandardCode="">{Silty_Clay}
+          <description>A silty clay is like a clay but smoother. (VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3603" StandardCode="">{Clay}
+          <description>Clays are tough and can be moulded into shapes when moist. Clays form a long flexible ribbon when rubbed between the palms and the ribbon can often be bent into a U shape without breaking. Clays dry into very hard clods. (VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3598" StandardCode="">{Sandy_Clay} 
+          <description>A sandy clay is like a clay but sand grains can be felt (and heard - see Sandy Loam). (VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3577" StandardCode="">{Weak_ribbon_(Less_than_2.5cm_long)}
+          <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is less than 2.5cm long.
+          </description>
+        </term>
+        <term HeuristID="0-3583" StandardCode="">{Silt_Loam}
+          <description>A silty loam is like a loam but has a smooth silky feel when a moist sample is pushed between the index finger and thumb. On drying a sample can form a hard lump but this may be broken by hand. (VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3585" StandardCode="">{Loam}
+          <description>A loam breaks into crumbs but will tend to stick together. Sand grains cannot be felt in a moist sample which when squeezed will retain its shape when handled freely. Loams are usually soft to the feel. (VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3580" StandardCode="">{Sandy_Loam}
+          <description>A sandy loam sticks together more than a loamy sand but can be easily broken. Individual sand grains can be felt and heard if a wet sample is rubbed between the index finger and thumb and held close to the ear. (VDEPI 2009: AG0058)
+          </description>
+        </term>
+      </lookup>
+    </property>
     <property name="Soil Moisture" type="enum">
       <description>The overall moisture content of the soil.</description>
       <lookup>
@@ -8018,6 +8319,22 @@
           <description/>
         </term>
       </lookup>
+    </property>
+  </ArchaeologicalElement>
+
+  <!-- SPECIAL FIND LOCATION -->
+  <ArchaeologicalElement name="Special Find Location">
+    <property name="Latitude" isIdentifier="true">
+      <description>Latitude of Special Find</description>
+    </property>
+    <property name="Longitude" isIdentifier="true">
+      <description>Longitude of Special Find</description>
+    </property>
+    <property name="Northing">
+      <description>Northing of Special Find</description>
+    </property>
+    <property name="Easting">
+      <description>Easting of Special Find</description>
     </property>
   </ArchaeologicalElement>
 </dataSchema>

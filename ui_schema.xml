@@ -126,33 +126,32 @@
                  <Context_Lowest_Level_SE/>
                  <Context_Lowest_Level_SW/>
                 </child2>
-              </container4_2>   
-             
- 
-
-
-
+              </container4_2> 
+              <Target_Spit_Thickness/>
               <container6>
                 <child1>
-                  <Length/>
+                  <Min_Context_Thickness/>
                 </child1>
                 <child2>
-                  <Width/>
+                  <Caclulate_Min/>
                 </child2>
-                <child3>
-                  <Depth/>
-                </child3>
               </container6>
-
-
-              <VolumeContainer>
+              <container7>
                 <child1>
-              <Deposit_Volume/>
-            </child1>
-            <child2>
-              <calculateVol/>
-            </child2>
-              </VolumeContainer>
+                  <Max_Context_Thickness/>
+                </child1>
+                <child2>
+                  <Caclulate_Max/>
+                </child2>
+              </container7>
+              <container8>
+                <child1>
+                  <Deposit_Volume/>
+                </child1>
+                <child2>
+                  <calculateVol/>
+                </child2>
+              </container8>
               <Your_Interpretation/>
               <Your_Discussion/>
               <Context_Comments/>
@@ -181,6 +180,8 @@
                   <Texture_Percentage_Clay/>
                 </child3>
               </container2>
+              <Soil_Texture_Actual/>
+              <Texture_Helper/>
               <Soil_Compaction_Type/>
               <container3>
                 <child1>
@@ -239,13 +240,10 @@
               <deleteSpecialFind/>
             </Context_Artefacts>
             <Context_Samples>
-              <Update/>
-              <blank/>
               <newSample/>
               <sampleList/>
               <loadSample/>
               <deleteSample/>
-
               <guide/>
               <newDepositVolume/>
               <depositVolumeList/>
@@ -269,6 +267,10 @@
               <Duplicate/>
               <Delete/>
             </Context_Attachments>
+            <Texture_Helper>
+              <Soil_Texture/>
+              <Update_Texture/>
+            </Texture_Helper>
             <map>
               <map/>
             </map>
@@ -440,7 +442,24 @@
               <SaveAndNew/>
               <Duplicate/>
             </Special_Find_GeneralInformation>
+            <Special_Find_Location>
+              <New_Special_Find_Location/>
+              <List_Special_Find_Location/>
+            </Special_Find_Location>
           </Special_Find>
+
+          <!-- ArchEnt: Special Find Locations -->
+          <Special_Find_Location>
+            <Special_Find_Location>
+              <Latitude/>
+              <Longitude/>
+              <Northing/>
+              <Easting/>
+              <TakeGPS/>
+              <Update/>
+              <Delete/>
+            </Special_Find_Location>
+          </Special_Find_Location>
 
           <!-- ArchEnt: Deposit Volumes -->
           <Deposit_Volume>
@@ -472,23 +491,26 @@
       <!--list of numeric and blocktext(memo) attributes(fields)-->
       <bind nodeset="/faims/user/help/guide" type="string"/>
       <bind nodeset="/faims/Context/Context_GeneralInformation/Context_Comments" type="string"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container6/child1/Length" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container6/child2/Width" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container6/child3/Depth" type="decimal"/>
       <bind nodeset="/faims/Context/Context_GeneralInformation/Your_Discussion" type="string"/>
       <bind nodeset="/faims/Context/Context_GeneralInformation/container4_2/child1/Context_Highest_Level_NW" type="decimal"/>
       <bind nodeset="/faims/Context/Context_GeneralInformation/container4_2/child1/Context_Highest_Level_NE" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container4_2/child1/Context_Highest_Level_SW" type="decimal"/>
       <bind nodeset="/faims/Context/Context_GeneralInformation/container4_2/child1/Context_Highest_Level_SE" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/container4_2/child1/Context_Highest_Level_SW" type="decimal"/>
       <bind nodeset="/faims/Context/Context_GeneralInformation/container4_2/child1/Context_Highest_Level_Ctr" type="decimal"/>
       <bind nodeset="/faims/Context/Context_GeneralInformation/container4_2/child2/Context_Lowest_Level_NW" type="decimal"/>
       <bind nodeset="/faims/Context/Context_GeneralInformation/container4_2/child2/Context_Lowest_Level_NE" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container4_2/child2/Context_Lowest_Level_SW" type="decimal"/>
       <bind nodeset="/faims/Context/Context_GeneralInformation/container4_2/child2/Context_Lowest_Level_SE" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container4_2/child12Context_Lowest_Level_Ctr" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/container4_2/child2/Context_Lowest_Level_SW" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/container4_2/child2/Context_Lowest_Level_Ctr" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/container6/child1/Min_Context_Thickness" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/container7/child1/Max_Context_Thickness" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/container8/child1/Deposit_Volume" type="decimal"/>
       <bind nodeset="/faims/Context/Context_Deposits/container2/child1/Texture_Percentage_Sand" type="decimal"/>
       <bind nodeset="/faims/Context/Context_Deposits/container2/child2/Texture_Percentage_Silt" type="decimal"/>
       <bind nodeset="/faims/Context/Context_Deposits/container2/child3/Texture_Percentage_Clay" type="decimal"/>
+      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container2/child1/Length" type="decimal"/>
+      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container2/child2/Width" type="decimal"/>
+      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container2/child3/Depth" type="decimal"/>
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/Artefact_Quantity" type="decimal"/>
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/Artefact_Weight" type="decimal"/>
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/Artefact_Group_Comment" type="string"/>
@@ -503,9 +525,9 @@
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/Special_Find_Description" type="string"/>
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container4/child1/Date_From" type="decimal"/>
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container4/child2/Date_To" type="decimal"/>
+      <bind nodeset="/faims/Deposit_Volume/Deposit_Volume/Volume" type="decimal"/>
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/Special_Find_Comment" type="string"/>
       <bind nodeset="/faims/Matrix/Matrix/Percentage" type="decimal"/>
-      <bind nodeset="/faims/Deposit_Volume/Deposit_Volume/Volume" type="decimal"/>
       <bind nodeset="/faims/ContextGroup/ContextGroup_Details/Your_Discussion" type="string"/>
 
     </model>
@@ -665,7 +687,7 @@
           </group>
           <group faims_style="even" ref="child2">
             <label/>
-            <input faims_attribute_name="Context ID" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="true" ref="Context_ID">
+            <input faims_attribute_name="Context ID" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Context_ID">
               <label>{Context_Number}</label>
             </input>
           </group>
@@ -716,8 +738,6 @@
         </group>
         <group faims_style="orientation" ref="container4_1">
           <label/>
-
-
           <group faims_style="even" ref="child1">
             <label/>
 
@@ -751,7 +771,6 @@ Closing Levels</label>
 
           </group>
         </group>
-
         <group faims_style="orientation" ref="container4_2">
           <label/>
           <group faims_style="even" ref="child1">
@@ -802,48 +821,58 @@ Closing Levels</label>
 
           </group>
         </group>
-
-
+        <select1 faims_attribute_name="Target Spit Thickness" faims_certainty="true" faims_annotation="true" faims_attribute_type="vocab" ref="Target_Spit_Thickness">
+          <label>{Target_Spit_Thickness}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
         <group faims_style="orientation" ref="container6">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
-            <input faims_attribute_name="Length" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Length">
-              <label>Length</label>
+            <input faims_attribute_name="Minimum Context Thickness" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Min_Context_Thickness">
+              <label>{Minimum_Context_Thickness}</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
-            <input faims_attribute_name="Width" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Width">
-              <label>Width</label>
-            </input>
-          </group>
-          <group faims_style="even" ref="child3">
-            <label/>
-            <input faims_attribute_name="Depth" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Depth">
-              <label>{Depth}</label>
-            </input>
+            <trigger ref="Caclulate_Min">
+              <label>Calculate</label>
+            </trigger>
           </group>
         </group>
-
-
-        <group faims_style="orientation" ref="VolumeContainer">
+        <group faims_style="orientation" ref="container7">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
-
-
-        <input faims_attribute_name="Deposit Volume" faims_attribute_type="measure" faims_certainty="false" faims_read_only="true" ref="Deposit_Volume">
-          <label>{Deposit_Volume}</label>
-        </input>
-      </group>
-      <group faims_style="even" ref="child2">
+            <input faims_attribute_name="Maximum Context Thickness" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Max_Context_Thickness">
+              <label>{Maximum_Context_Thickness}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
             <label/>
-        <trigger ref="calculateVol">
-          <label>Calculate Volume</label>
-        </trigger> 
-      </group>
-    </group>
+            <trigger ref="Caclulate_Max">
+              <label>Calculate</label>
+            </trigger>
+          </group>
+        </group>
+        <group faims_style="orientation" ref="container8">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input faims_attribute_name="Deposit Volume" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Deposit_Volume">
+              <label>{Deposit_Volume}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <trigger ref="calculateVol">
+              <label>Calculate Volume</label>
+            </trigger> 
+          </group>
+        </group>
         <input faims_attribute_name="Your Interpretation" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Your_Interpretation">
           <label>Your Interpretation</label>
         </input>
@@ -915,6 +944,16 @@ Closing Levels</label>
             </input>
           </group>
         </group>
+        <select1 faims_attribute_name="Soil Texture Actual" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Soil_Texture_Actual">
+          <label>{Soil_Texture}</label>
+            <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <trigger ref="Texture_Helper">
+          <label>Texture Helper</label>
+        </trigger>
         <select1 faims_attribute_name="Soil Compaction Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Soil_Compaction_Type">
           <label>{Soil_Compaction_Type}</label>
           <item>
@@ -1102,12 +1141,6 @@ Here you can group contexts into a single Context Group or Feature</label>
       </group>
       <group ref="Context_Samples">
         <label>Samples</label>
-        <trigger ref="Update">
-          <label>Save Context</label>
-        </trigger>
-        <input ref="blank" faims_read_only="false" faims_certainty="false" faims_annotation="false">
-          <label/>
-        </input>
         <trigger ref="newSample">
           <label>Add Sample</label>
         </trigger>
@@ -1224,6 +1257,19 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         <trigger ref="Delete">
           <label>Delete Context</label>
         </trigger>
+      </group>
+      <group ref="Texture_Helper" faims_hidden="true">
+        <label>Texture Helper</label>
+          <select1 faims_certainty="true" faims_read_only="false" ref="Soil_Texture">
+            <label>Texture Helper</label>
+            <item>
+              <label>placeholder</label>
+              <value>placeholder</value>
+            </item>
+          </select1>
+          <trigger ref="Update_Texture">
+            <label>Update Texture</label>
+          </trigger>
       </group>
     </group>
 
@@ -1541,7 +1587,7 @@ Here you can enter filenames or unique reference numbers for image stored on ano
           </group>
         </group>
         <select1 faims_attribute_name="Special Find Class" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Special_Find_Class">
-          <label>Artefact Class</label>
+          <label>{Special_Find_Class}</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
@@ -1576,13 +1622,13 @@ Here you can enter filenames or unique reference numbers for image stored on ano
           <group faims_style="even" ref="child1">
             <label/>
             <input faims_attribute_name="Latitude" faims_attribute_type="measure" faims_read_only="false" ref="Latitude">
-              <label>Latitude</label>
+              <label>{Latitude}</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
             <input faims_attribute_name="Longitude" faims_attribute_type="measure" faims_read_only="false" ref="Longitude">
-              <label>Longitude</label>
+              <label>{Longitude}</label>
             </input>
           </group>
         </group>
@@ -1631,6 +1677,48 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         </trigger>
         <trigger ref="Delete">
           <label>Delete {Special_Find}</label>
+        </trigger>
+      </group>
+      <group ref="Special_Find_Location" faims_scrollable="false">
+        <label> {Special_Find} Location </label>
+        <trigger ref="New_Special_Find_Location">
+          <label> New {Special_Find} Location</label>
+        </trigger>
+        <select1 appearance="compact" ref="List_Special_Find_Location" faims_certainty="false" faims_annotation="false">
+          <label>List of {Special_Find} Locations:</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+      </group>
+    </group>
+
+    <!-- SPECIAL FIND LOCATION -->
+    <group ref="Special_Find_Location" faims_archent_type="Special Find Location">
+      <label> {Special_Find} Location </label>
+      <group ref="Special_Find_Location">
+        <label> {Special_Find} Location </label>
+        <input ref="Latitude" faims_attribute_name="Latitude" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true">
+          <label>{Latitude}</label>
+        </input>
+        <input ref="Longitude" faims_attribute_name="Longitude" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true">
+          <label>{Longitude}</label>
+        </input>
+        <input ref="Northing" faims_attribute_name="Northing" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true">
+          <label>{Northing}</label>
+        </input>
+        <input ref="Easting" faims_attribute_name="Easting" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true">
+          <label>{Easting}</label>
+        </input>
+        <trigger ref="TakeGPS">
+          <label>Take From GPS</label>
+        </trigger>
+        <trigger ref="Update">
+          <label>Save {Special_Find} Location</label>
+        </trigger>
+        <trigger ref="Delete">
+          <label>Delete {Special_Find} Location</label>
         </trigger>
       </group>
     </group>
