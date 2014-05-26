@@ -11,9 +11,6 @@ makeLocalID(){
 }
 
 makeLocalID();
-
-showWarning("Thanks for trying this module!", "We have provided this module for Demonstration purposes only. You can customise the module yourself or we can help you. Contact info@fedarch.org for help.");
-
     
 /*** control ***/
 
@@ -74,11 +71,12 @@ onEvent("Context/Context_GeneralInformation/Update", "delayclick", "saveContext(
 onEvent("Context/Context_GeneralInformation/addGeological", "click", "showTab(\"Context/Context_Deposits\")");
 onEvent("Context/Context_GeneralInformation/addRelationships", "click", "showTab(\"Context/Context_Relationships_to_Other_Contexts\")");
 onEvent("Context/Context_Deposits/Update", "delayclick", "saveContext()");
-onEvent("Context/Context_Samples/Update", "delayclick", "saveContext()");
 
 onEvent("Context/Context_GeneralInformation/calculateVol", "click", "calculateVol()");
+onEvent("Context/Context_GeneralInformation/Caclulate_Min", "click", "calculateMin()");
+onEvent("Context/Context_GeneralInformation/Caclulate_Max", "click", "calculateMax()");
 
-onEvent("Context/Context_Deposits/newMatrix", "click", "newMatrix()");
+onEvent("Context/Context_Deposits/newMatrix", "click", "saveContextAndNewMatrix()");
 onEvent("Context/Context_Deposits/loadMatrix", "click", "loadMatrix()");
 onEvent("Context/Context_Deposits/deleteMatrix", "click", "deleteMatrixFromContext()");
 
@@ -92,22 +90,23 @@ onEvent("Context/Context_Attachments/viewattached", "click", "viewArchEntAttache
 onEvent("Context/Context_Attachments/SaveAndNew", "delayclick", "saveAndNewContext()");
 onEvent("Context/Context_Attachments/Duplicate", "delayclick", "duplicateContext()");
 onEvent("Context/Context_Attachments/Delete", "delayclick", "deleteContext()");
-onEvent("Context/Context_Attachments/newPhotoLog", "click", "newPhotoLog()");
+
+onEvent("Context/Context_Attachments/newPhotoLog", "click", "saveContextAndNewPhotoLog()");
 onEvent("Context/Context_Attachments/loadPhotoLog", "click", "loadPhotoLog()");
 onEvent("Context/Context_Attachments/deletePhotoLog", "click", "deletePhotoLogFromContext()");
 onEvent("Context/Context_Attachments", "show", "updateAllContextPhotologs()");
 
-onEvent("Context/Context_Artefacts/newArtefactGroup", "delayclick", "newArtefactGroup()");
+onEvent("Context/Context_Artefacts/newArtefactGroup", "delayclick", "saveContextAndNewArtefactGroup()");
 onEvent("Context/Context_Artefacts/loadArtefactGroup", "click", "loadArtefactGroup()");
 onEvent("Context/Context_Artefacts/deleteArtefactGroup", "delayclick", "deleteArtefactGroupFromContext()");
-onEvent("Context/Context_Artefacts/newSpecialFind", "delayclick", "newSpecialFind()");
+onEvent("Context/Context_Artefacts/newSpecialFind", "delayclick", "saveContextAndNewSpecialFind()");
 onEvent("Context/Context_Artefacts/loadSpecialFind", "click", "loadSpecialFind()");
 onEvent("Context/Context_Artefacts/deleteSpecialFind", "delayclick", "deleteSpecialFindFromContext()");
 
-onEvent("Context/Context_Samples/newSample", "click", "newSample()");
+onEvent("Context/Context_Samples/newSample", "click", "saveContextAndNewSample()");
 onEvent("Context/Context_Samples/loadSample", "click", "loadSample()");
 onEvent("Context/Context_Samples/deleteSample", "click", "deleteSampleFromContext()");
-onEvent("Context/Context_Samples/newDepositVolume", "click", "newDepositVolume()");
+onEvent("Context/Context_Samples/newDepositVolume", "click", "saveContextAndNewDepositVolume()");
 onEvent("Context/Context_Samples/loadDepositVolume", "click", "loadDepositVolume()");
 onEvent("Context/Context_Samples/deleteDepositVolume", "click", "deleteDepositVolumeFromContext()");
 
@@ -161,6 +160,78 @@ saveContext() {
         entity = fetchArchEnt(context_id);
     }
     saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();");
+}
+
+saveContextAndNewArtefactGroup() {
+    if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        showTabGroup("Context");
+        return;
+    }
+    if (!isNull(context_id)) {
+        entity = fetchArchEnt(context_id);
+    }
+    saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();newArtefactGroup();");
+}
+
+saveContextAndNewSpecialFind() {
+    if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        showTabGroup("Context");
+        return;
+    }
+    if (!isNull(context_id)) {
+        entity = fetchArchEnt(context_id);
+    }
+    saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();newSpecialFind();");
+}
+
+saveContextAndNewSample() {
+    if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        showTabGroup("Context");
+        return;
+    }
+    if (!isNull(context_id)) {
+        entity = fetchArchEnt(context_id);
+    }
+    saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();newSample();");
+}
+
+saveContextAndNewDepositVolume() {
+    if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        showTabGroup("Context");
+        return;
+    }
+    if (!isNull(context_id)) {
+        entity = fetchArchEnt(context_id);
+    }
+    saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();newDepositVolume();");
+}
+
+saveContextAndNewMatrix() {
+    if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        showTabGroup("Context");
+        return;
+    }
+    if (!isNull(context_id)) {
+        entity = fetchArchEnt(context_id);
+    }
+    saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();newMatrix();");
+}
+
+saveContextAndNewPhotoLog() {
+    if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        showTabGroup("Context");
+        return;
+    }
+    if (!isNull(context_id)) {
+        entity = fetchArchEnt(context_id);
+    }
+    saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();newPhotoLog();");
 }
 
 saveAndNewContext(){
@@ -431,7 +502,7 @@ updateRelns(){
 loadContextAttributes(){
     populateCheckBoxGroup("Context/Context_GeneralInformation/Excavation_Method", makeVocab("Excavation Method"));
     populateDropDown("Context/Context_GeneralInformation/Wet_Sieved", makeVocab("Wet Sieved"));
-
+    populateDropDown("Context/Context_GeneralInformation/Target_Spit_Thickness", makeVocab("Target Spit Thickness"));
 
     populateHierarchicalDropDown("Context/Context_Deposits/Soil_Munsell_Colour", "Soil Munsell Colour");
     populateDropDown("Context/Context_Deposits/Soil_Compaction_Type", makeVocab("Soil Compaction Type"));
@@ -493,6 +564,97 @@ calculateVol() {
     }
     
 }
+
+calculateMin() {
+    ArrayList vals = new ArrayList();
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NW"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NW"));
+    }
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NE"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NE"));
+    }
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_Ctr"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_Ctr"));
+    }
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SW"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SW"));
+    }
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SE"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SE"));
+    }
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NW"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NW"));
+    }
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NE"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NE"));
+    }
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_Ctr"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_Ctr"));
+    }
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SW"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SW"));
+    }
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SE"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SE"));
+    }
+    if(vals.size() == 0) {
+        setFieldValue("Context/Context_GeneralInformation/Min_Context_Thickness", 0);
+    } else {
+        double min = Double.parseDouble(vals.get(0));
+        for(int i = 1; i < vals.size(); i++) {
+            if(Double.parseDouble(vals.get(i)) < min) {
+                min = Double.parseDouble(vals.get(i));
+            }
+        }
+        setFieldValue("Context/Context_GeneralInformation/Min_Context_Thickness", min);
+    }
+}
+
+calculateMax() {
+    ArrayList vals = new ArrayList();
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NW"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NW"));
+    }
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NE"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NE"));
+    }
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_Ctr"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_Ctr"));
+    }
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SW"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SW"));
+    }
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SE"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SE"));
+    }
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NW"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NW"));
+    }
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NE"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NE"));
+    }
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_Ctr"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_Ctr"));
+    }
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SW"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SW"));
+    }
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SE"))) {
+        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SE"));
+    }
+    if(vals.size() == 0) {
+        setFieldValue("Context/Context_GeneralInformation/Max_Context_Thickness", 0);
+    } else {
+        double max = Double.parseDouble(vals.get(0));
+        for(int i = 1; i < vals.size(); i++) {
+            if(Double.parseDouble(vals.get(i)) > max) {
+                max = Double.parseDouble(vals.get(i));
+            }
+        }
+        setFieldValue("Context/Context_GeneralInformation/Max_Context_Thickness", max);
+    }
+}
+
 
 /*** RelnEnt: Context Group***/
 onEvent("ContextGroup/ContextGroup_Details/Update", "delayclick", "saveContextGroup()");
@@ -1044,6 +1206,10 @@ onEvent("Special_Find/Special_Find_GeneralInformation/Delete", "delayclick", "de
 onEvent("Special_Find/Special_Find_GeneralInformation/SaveAndNew", "delayclick", "saveAndNewSpecialFind()");
 onEvent("Special_Find/Special_Find_GeneralInformation/Duplicate", "delayclick", "duplicateSpecialFind()");
 
+onEvent("Special_Find/Special_Find_Location", "show", "refreshSpecialFindLocations()");
+onEvent("Special_Find/Special_Find_Location/New_Special_Find_Location", "delayclick", "saveAndNewSpecialFindLocation()");
+onEvent("Special_Find/Special_Find_Location/List_Special_Find_Location", "click", "loadSpecialFindLocation()");
+
 String special_find_id = null;
 
 newSpecialFind(){
@@ -1118,6 +1284,24 @@ saveSpecialFind() {
     }
 }
 
+saveAndNewSpecialFindLocation() {
+    if (isNull(getFieldValue("Special_Find/Special_Find_GeneralInformation/Special_Find_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        return;
+    }
+    
+    if (!isNull(special_find_id)) {
+        entity = fetchArchEnt(special_find_id);
+    }
+
+    if (isNull(context_id)) {
+        showWarning("Logic Error", "Special_Find cannot be saved as parent context is not saved or loaded.");
+        return null;
+    } else {
+       saveTabGroup("Special_Find", special_find_id, null, null, "special_find_id = getLastSavedRecordId(); onSpecialFindSaved(); newSpecialFindLocation()");
+    }    
+}
+
 saveAndNewSpecialFind() {
     if (isNull(getFieldValue("Special_Find/Special_Find_GeneralInformation/Special_Find_ID"))) {
         showWarning("Logic Error", "Cannot save record without id");
@@ -1187,6 +1371,29 @@ doNotDelete(){
 
 loadSpecialFindAttributes(){
     populateHierarchicalDropDown("Special_Find/Special_Find_GeneralInformation/Special_Find_Class", "Special Find Class");
+}
+
+refreshSpecialFindLocations() {
+    Object specialFindLocations = new ArrayList();
+    if (!isNull(special_find_id)){
+        specialFindLocations = fetchAll("select uuid, aenttypename || ': ' || group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
+            "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
+            "            FROM latestNonDeletedArchentIdentifiers\n"+
+            "           WHERE aenttypename = 'Special Find Location'\n"+
+            "             AND uuid in (select uuid\n"+
+            "                            FROM latestNonDeletedAentReln\n"+
+            "                           where relationshipid in (select relationshipid\n"+
+            "                                                      FROM latestNonDeletedAentReln\n"+
+            "                                                      JOIN relationship using (relationshipid)\n"+
+            "                                                      JOIN relntype using (relntypeid)\n"+
+            "                                                     where uuid = "+special_find_id+"\n"+
+            "                                                       and relntypeName = 'SpecialFindSpecialFindLocation')\n"+
+            "                             and uuid != "+special_find_id+")\n"+
+            "        ORDER BY uuid, attributename ASC)\n"+
+            "group by uuid\n"+
+            "order by valuetimestamp desc, uuid, attributename;");
+    }
+    populateList("Special_Find/Special_Find_Location/List_Special_Find_Location",  specialFindLocations);    
 }
 
 /*** Deposit Volume ***/
@@ -1290,7 +1497,6 @@ onEvent("Photograph_Log/Photograph_Log/Update", "delayclick", "savePhotoLog()");
 onEvent("Photograph_Log/Photograph_Log/Delete", "delayclick", "deletePhotoLog()");
 onEvent("Photograph_Log/Photograph_Log/SaveAndNew", "delayclick", "saveAndNewPhotoLog()");
 onEvent("Photograph_Log/Photograph_Log/ReturnToContext", "delayclick", "cancelTabGroup(\"Photograph_Log\", true)");
-// onEvent("Photograph_Log/Photograph_Log", "show", "populateDropDown(\"Photograph_Log/Photograph_Log/Scene_Type\",  makeVocab(\"Scene Type\"))");
 
 String photolog_id = null;
 
@@ -1406,6 +1612,77 @@ updateAllContextPhotologs() {
             "order by valuetimestamp desc, uuid, attributename;");
     }
     populateDropDown("Context/Context_Attachments/PhotoLogList",  contextPhotologs);
+}
+
+/*** Special Find Locations***/
+onEvent("Special_Find_Location/Special_Find_Location/TakeGPS", "click", "takeSpecialFindLocationGPS()");
+onEvent("Special_Find_Location/Special_Find_Location/Update", "delayclick", "saveSpecialFindLocation()");
+onEvent("Special_Find_Location/Special_Find_Location/Delete", "delayclick", "deleteSpecialFindLocation()");
+
+String special_find_location_id = null;
+
+newSpecialFindLocation(){
+    special_find_location_id = null;
+    newTabGroup("Special_Find_Location");
+}
+
+loadSpecialFindLocation() {
+    special_find_location_id = getListItemValue();
+    loadSpecialFindLocationFrom(special_find_location_id);
+}
+
+loadSpecialFindLocationFrom(archent_id) {
+    special_find_location_id = archent_id;
+    if (isNull(special_find_location_id)) return;
+    
+    showTabGroup("Special_Find_Location", special_find_location_id);
+}
+
+saveSpecialFindLocation() {
+    if (isNull(getFieldValue("Special_Find_Location/Special_Find_Location/Latitude")) || isNull(getFieldValue("Special_Find_Location/Special_Find_Location/Longitude"))) {
+        showWarning("Logic Error", "Cannot save Special Find Location without Latitdue or Longitude");
+        return;
+    }
+    if (!isNull(special_find_location_id)) {
+        entity = fetchArchEnt(special_find_location_id);
+    }
+    saveTabGroup("Special_Find_Location", special_find_location_id, null, null, "special_find_location_id = getLastSavedRecordId(); onSpecialFindLocationSaved(); cancelTabGroup(\"Special_Find_Location\", false);");
+}
+
+onSpecialFindLocationSaved(){
+    special_find_location_id = getLastSavedRecordId();
+    saveEntitiesToRel("SpecialFindSpecialFindLocation", special_find_location_id, special_find_id);
+    showToast("Associated with Special Find");
+}
+
+deleteSpecialFindLocation(){
+    if (!isNull(special_find_location_id)) {
+        showAlert("Confirm Deletion", "Press OK to Delete this Special Find Location Record!", "reallyDeleteSpecialFindLocation()", "doNotDelete()");
+    } else {
+        cancelTabGroup("Special_Find_Location", true);
+    }
+}
+
+reallyDeleteSpecialFindLocation(){
+    deleteArchEnt(special_find_location_id);
+    cancelTabGroup("Special_Find_Location", false);
+}
+
+takeSpecialFindLocationGPS(){
+    Object position = getGPSPosition();
+    Object projPosition = getGPSPositionProjected();
+    if (projPosition != null ){
+        Double latitude = position.getLatitude();
+        Double longitude = position.getLongitude();
+        Double northing = projPosition.getLatitude();
+        Double easting = projPosition.getLongitude();
+        setFieldValue("Special_Find_Location/Special_Find_Location/Latitude", latitude);
+        setFieldValue("Special_Find_Location/Special_Find_Location/Longitude", longitude);
+        setFieldValue("Special_Find_Location/Special_Find_Location/Northing", northing);
+        setFieldValue("Special_Find_Location/Special_Find_Location/Easting", easting);
+    } else {
+        showToast("GPS Not initialized");
+    }
 }
 
 /*** MISC ***/
@@ -1525,6 +1802,31 @@ saveGPSTrack(List attributes) {
     saveArchEnt(null, "gps_track", l, attributes);
 }
 */
+
+// Texture helper stuff
+
+onEvent("Context/Texture_Helper/Update_Texture", "click", "setTextureActual()");
+onEvent("Context/Context_Deposits/Texture_Helper", "click", "helpSetTextureActual()");
+
+helpSetTextureActual(){
+    showTab("Context/Texture_Helper");
+}
+
+setTextureActual(){
+    Object textureToSet = fetchOne("select vocabid from vocabulary join attributekey using (attributeid)where attributeName = 'Soil Texture Actual'and vocabname = (select vocabname"
+                + " from vocabulary join attributekey using (attributeid)"
+                + " where vocabid = '"+ getFieldValue("Context/Texture_Helper/Soil_Texture") +"'"
+                + " and attributeName = 'Soil Texture');");
+    if(!isNull(textureToSet)){
+        setFieldValue("Context/Context_Deposits/Soil_Texture_Actual", textureToSet.get(0));
+    }
+    cancelTab("Context/Texture_Helper", false);
+    showTab("Context/Context_Deposits");
+}
+
+populateDropDown("Context/Context_Deposits/Soil_Texture_Actual", makeVocab("Soil Texture Actual"));
+populateHierarchicalDropDown("Context/Texture_Helper/Soil_Texture", "Soil Texture");
+
 /*** USER ***/
 
 getDefaultUsersList() {
