@@ -84,7 +84,7 @@ onEvent("Context/Context_Deposits/Texture_Helper", "click", "helpSetTextureActua
 onEvent("Context/Context_Cuts/Update", "delayclick", "saveContext()");
 onEvent("Context/Context_Interpretation/Update", "delayclick", "saveContext()");
 
-onEvent("Context/Context_Deposits/newMatrix", "click", "newMatrix()");
+onEvent("Context/Context_Deposits/newMatrix", "click", "saveContextAndNewMatrix()");
 onEvent("Context/Context_Deposits/loadMatrix", "click", "loadMatrix()");
 onEvent("Context/Context_Deposits/deleteMatrix", "click", "deleteMatrixFromContext()");
 
@@ -195,6 +195,18 @@ saveContextAndNewSample() {
         entity = fetchArchEnt(context_id);
     }
     saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();newSample();");
+}
+
+saveContextAndNewMatrix() {
+    if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        showTabGroup("Context");
+        return;
+    }
+    if (!isNull(context_id)) {
+        entity = fetchArchEnt(context_id);
+    }
+    saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();newMatrix();");
 }
 
 saveAndNewContext(){
