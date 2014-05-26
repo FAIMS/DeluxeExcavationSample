@@ -99,14 +99,14 @@ onEvent("Context/Context_Attachments/SaveAndNew", "delayclick", "saveAndNewConte
 onEvent("Context/Context_Attachments/Duplicate", "delayclick", "duplicateContext()");
 onEvent("Context/Context_Attachments/Delete", "delayclick", "deleteContext()");
 
-onEvent("Context/Context_Artefacts/newArtefactGroup", "delayclick", "newArtefactGroup()");
+onEvent("Context/Context_Artefacts/newArtefactGroup", "delayclick", "saveContextAndNewArtefactGroup()");
 onEvent("Context/Context_Artefacts/loadArtefactGroup", "click", "loadArtefactGroup()");
 onEvent("Context/Context_Artefacts/deleteArtefactGroup", "delayclick", "deleteArtefactGroupFromContext()");
-onEvent("Context/Context_Artefacts/newSpecialFind", "delayclick", "newSpecialFind()");
+onEvent("Context/Context_Artefacts/newSpecialFind", "delayclick", "saveContextAndNewSpecialFind()");
 onEvent("Context/Context_Artefacts/loadSpecialFind", "click", "loadSpecialFind()");
 onEvent("Context/Context_Artefacts/deleteSpecialFind", "delayclick", "deleteSpecialFindFromContext()");
 
-onEvent("Context/Context_Samples/newSample", "click", "newSample()");
+onEvent("Context/Context_Samples/newSample", "click", "saveContextAndNewSample()");
 onEvent("Context/Context_Samples/loadSample", "click", "loadSample()");
 onEvent("Context/Context_Samples/deleteSample", "click", "deleteSampleFromContext()");
 
@@ -159,6 +159,42 @@ saveContext() {
         entity = fetchArchEnt(context_id);
     }
     saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();");
+}
+
+saveContextAndNewArtefactGroup() {
+    if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        showTabGroup("Context");
+        return;
+    }
+    if (!isNull(context_id)) {
+        entity = fetchArchEnt(context_id);
+    }
+    saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();newArtefactGroup();");
+}
+
+saveContextAndNewSpecialFind() {
+    if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        showTabGroup("Context");
+        return;
+    }
+    if (!isNull(context_id)) {
+        entity = fetchArchEnt(context_id);
+    }
+    saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();newSpecialFind();");
+}
+
+saveContextAndNewSample() {
+    if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        showTabGroup("Context");
+        return;
+    }
+    if (!isNull(context_id)) {
+        entity = fetchArchEnt(context_id);
+    }
+    saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();newSample();");
 }
 
 saveAndNewContext(){
@@ -1305,7 +1341,6 @@ takeSpecialFindLocationGPS(){
     } else {
         showToast("GPS Not initialized");
     }
-
 }
 
 /*** MISC ***/
