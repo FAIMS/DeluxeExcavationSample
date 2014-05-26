@@ -424,7 +424,23 @@
               <SaveAndNew/>
               <Duplicate/>
             </Special_Find_GeneralInformation>
+            <Special_Find_Location>
+              <New_Special_Find_Location/>
+              <List_Special_Find_Location/>
+            </Special_Find_Location>
           </Special_Find>
+          <Special_Find_Location>
+            <Special_Find_Location>
+              <Latitude/>
+              <Longitude/>
+              <Northing/>
+              <Easting/>
+              <TakeGPS/>
+              <Update/>
+              <Delete/>
+            </Special_Find_Location>
+          </Special_Find_Location>
+
         </faims>
       </instance>
       <!--list of numeric and blocktext(memo) attributes(fields)-->
@@ -1072,20 +1088,20 @@
           <label>Delete Artefact Group</label>
         </trigger>
         <trigger ref="newSpecialFind">
-          <label>Add Special Find</label>
+          <label>Add {Special_Find}</label>
         </trigger>
         <select1 faims_certainty="false" faims_read_only="false" ref="specialFindList">
-          <label>Select a Special Find:</label>
+          <label>Select a {Special_Find}:</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
           </item>
         </select1>
         <trigger ref="loadSpecialFind">
-          <label>Load Special Find</label>
+          <label>Load {Special_Find}</label>
         </trigger>
         <trigger ref="deleteSpecialFind">
-          <label>Delete Special Find</label>
+          <label>Delete {Special_Find}</label>
         </trigger>
       </group>
       <group ref="Context_Samples">
@@ -1460,9 +1476,9 @@
 
     <!-- ArchEnt: SPECIAL_FIND -->
     <group faims_archent_type="Special Find" ref="Special_Find">
-      <label>Special Find</label>
+      <label>{Special_Find}</label>
       <group ref="Special_Find_GeneralInformation">
-        <label>Special Find</label>
+        <label>{Special_Find}</label>
         <group faims_style="orientation" ref="container1">
           <label/>
           <group faims_style="even" ref="child1">
@@ -1480,19 +1496,19 @@
           <group faims_style="even" ref="child3">
             <label/>
             <input faims_attribute_name="Special Find ID" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Special_Find_ID">
-              <label>Special Find ID</label>
+              <label>{Special_Find} ID</label>
             </input>
           </group>
         </group>
         <select1 faims_attribute_name="Special Find Class" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Special_Find_Class">
-          <label>Artefact Class</label>
+          <label>{Special_Find_Class}</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
           </item>
         </select1>
         <input faims_attribute_name="Special Find Name" faims_attribute_type="freetext" faims_read_only="false" ref="Special_Find_Name">
-          <label>Special Find Name</label>
+          <label>{Special_Find} Name</label>
         </input>
         <group faims_style="orientation" ref="container2">
           <label/>
@@ -1531,7 +1547,7 @@
           </group>
         </group>
         <input faims_attribute_name="Special Find Description" faims_attribute_type="freetext" faims_read_only="false" ref="Special_Find_Description">
-          <label>Special Find Description</label>
+          <label>{Special_Find} Description</label>
         </input>
         <group faims_style="orientation" ref="container4">
           <label/>
@@ -1549,7 +1565,7 @@
           </group>
         </group>
         <input faims_attribute_name="Special Find Comment" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Special_Find_Comment">
-          <label>Special Find Comment</label>
+          <label>{Special_Find} Comment</label>
         </input>
         <select faims_annotation="false" faims_attribute_name="Photo" faims_attribute_type="freetext" faims_certainty="true" faims_sync="true" ref="Photo" type="camera">
           <label>{Photo}</label>
@@ -1565,16 +1581,58 @@
           <label>View Attached Files</label>
         </trigger>
         <trigger ref="Update">
-          <label>Save Special Find</label>
+          <label>Save {Special_Find}</label>
         </trigger>
         <trigger ref="SaveAndNew">
-          <label>Save and New Special Find</label>
+          <label>Save and New {Special_Find}</label>
         </trigger>
         <trigger ref="Duplicate">
-          <label>Save and Duplicate Special Find</label>
+          <label>Save and Duplicate {Special_Find}</label>
         </trigger>
         <trigger ref="Delete">
-          <label>Delete Special Find</label>
+          <label>Delete {Special_Find}</label>
+        </trigger>
+      </group>
+      <group ref="Special_Find_Location" faims_scrollable="false">
+        <label> {Special_Find} Location </label>
+        <trigger ref="New_Special_Find_Location">
+          <label> New {Special_Find} Location</label>
+        </trigger>
+        <select1 appearance="compact" ref="List_Special_Find_Location" faims_certainty="false" faims_annotation="false">
+          <label>List of {Special_Find} Locations:</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+      </group>
+    </group>
+
+    <!-- SPECIAL FIND LOCATION -->
+    <group ref="Special_Find_Location" faims_archent_type="Special Find Location">
+      <label> {Special_Find} Location </label>
+      <group ref="Special_Find_Location">
+        <label> {Special_Find} Location </label>
+        <input ref="Latitude" faims_attribute_name="Latitude" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true">
+          <label>{Latitude}</label>
+        </input>
+        <input ref="Longitude" faims_attribute_name="Longitude" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true">
+          <label>{Longitude}</label>
+        </input>
+        <input ref="Northing" faims_attribute_name="Northing" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true">
+          <label>{Northing}</label>
+        </input>
+        <input ref="Easting" faims_attribute_name="Easting" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true">
+          <label>{Easting}</label>
+        </input>
+        <trigger ref="TakeGPS">
+          <label>Take From GPS</label>
+        </trigger>
+        <trigger ref="Update">
+          <label>Save {Special_Find} Location</label>
+        </trigger>
+        <trigger ref="Delete">
+          <label>Delete {Special_Find} Location</label>
         </trigger>
       </group>
     </group>

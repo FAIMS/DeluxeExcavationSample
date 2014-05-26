@@ -53,6 +53,10 @@
     <description>Implements a 1:N between context and its special finds
     </description>
   </RelationshipElement>
+  <RelationshipElement name="SpecialFindSpecialFindLocation" type="bidirectional">
+    <description>Implements a 1:N between special finds and their locations
+    </description>
+  </RelationshipElement>
 
     <!-- CONTEXT -->
   <ArchaeologicalElement name="Context">
@@ -11247,6 +11251,22 @@
     <property name="Photo" type="file">
       <description>Photo
       </description>
+    </property>
+  </ArchaeologicalElement>
+
+  <!-- SPECIAL FIND LOCATION -->
+  <ArchaeologicalElement name="Special Find Location">
+    <property name="Latitude" isIdentifier="true">
+      <description>Latitude of Special Find</description>
+    </property>
+    <property name="Longitude" isIdentifier="true">
+      <description>Longitude of Special Find</description>
+    </property>
+    <property name="Northing">
+      <description>Northing of Special Find</description>
+    </property>
+    <property name="Easting">
+      <description>Easting of Special Find</description>
     </property>
   </ArchaeologicalElement>
 </dataSchema>

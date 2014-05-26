@@ -148,9 +148,8 @@ loadContextFrom(contextid) {
     showTabGroup("Context", context_id);    
     updateAllContext();
     updateRelns();
-
-
 }
+
 saveContext() {
     if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
         showWarning("Logic Error", "Cannot save record without id");
@@ -1065,6 +1064,10 @@ onEvent("Special_Find/Special_Find_GeneralInformation/Delete", "delayclick", "de
 onEvent("Special_Find/Special_Find_GeneralInformation/SaveAndNew", "delayclick", "saveAndNewSpecialFind()");
 onEvent("Special_Find/Special_Find_GeneralInformation/Duplicate", "delayclick", "duplicateSpecialFind()");
 
+onEvent("Special_Find/Special_Find_Location", "show", "refreshSpecialFindLocations()");
+onEvent("Special_Find/Special_Find_Location/New_Special_Find_Location", "delayclick", "newSpecialFindLocation()");
+onEvent("Special_Find/Special_Find_Location/List_Special_Find_Location", "click", "loadSpecialFindLocation()");
+
 String special_find_id = null;
 
 newSpecialFind(){
@@ -1179,7 +1182,6 @@ onSpecialFindSaved(){
     special_find_id = getLastSavedRecordId();
     saveEntitiesToRel("ContextSpecialFind", context_id, special_find_id);
     showToast("Associated with Context");
-
 }
 
 deleteSpecialFindFromContext(){
@@ -1209,6 +1211,101 @@ doNotDelete(){
 
 loadSpecialFindAttributes(){
     populateHierarchicalDropDown("Special_Find/Special_Find_GeneralInformation/Special_Find_Class", "Special Find Class");
+}
+
+refreshSpecialFindLocations() {
+    Object specialFindLocations = new ArrayList();
+    if (!isNull(special_find_id)){
+        specialFindLocations = fetchAll("select uuid, aenttypename || ': ' || group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
+            "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
+            "            FROM latestNonDeletedArchentIdentifiers\n"+
+            "           WHERE aenttypename = 'Special Find Location'\n"+
+            "             AND uuid in (select uuid\n"+
+            "                            FROM latestNonDeletedAentReln\n"+
+            "                           where relationshipid in (select relationshipid\n"+
+            "                                                      FROM latestNonDeletedAentReln\n"+
+            "                                                      JOIN relationship using (relationshipid)\n"+
+            "                                                      JOIN relntype using (relntypeid)\n"+
+            "                                                     where uuid = "+special_find_id+"\n"+
+            "                                                       and relntypeName = 'SpecialFindSpecialFindLocation')\n"+
+            "                             and uuid != "+special_find_id+")\n"+
+            "        ORDER BY uuid, attributename ASC)\n"+
+            "group by uuid\n"+
+            "order by valuetimestamp desc, uuid, attributename;");
+    }
+    populateList("Special_Find/Special_Find_Location/List_Special_Find_Location",  specialFindLocations);    
+}
+
+/*** Special Find Locations***/
+onEvent("Special_Find_Location/Special_Find_Location/TakeGPS", "click", "takeSpecialFindLocationGPS()");
+onEvent("Special_Find_Location/Special_Find_Location/Update", "delayclick", "saveSpecialFindLocation()");
+onEvent("Special_Find_Location/Special_Find_Location/Delete", "delayclick", "deleteSpecialFindLocation()");
+
+String special_find_location_id = null;
+
+newSpecialFindLocation(){
+    special_find_location_id = null;
+    newTabGroup("Special_Find_Location");
+}
+
+loadSpecialFindLocation() {
+    special_find_location_id = getListItemValue();
+    loadSpecialFindLocationFrom(special_find_location_id);
+}
+
+loadSpecialFindLocationFrom(archent_id) {
+    special_find_location_id = archent_id;
+    if (isNull(special_find_location_id)) return;
+    
+    showTabGroup("Special_Find_Location", special_find_location_id);
+}
+
+saveSpecialFindLocation() {
+    if (isNull(getFieldValue("Special_Find_Location/Special_Find_Location/Latitude")) || isNull(getFieldValue("Special_Find_Location/Special_Find_Location/Longitude"))) {
+        showWarning("Logic Error", "Cannot save Special Find Location without Latitdue or Longitude");
+        return;
+    }
+    if (!isNull(special_find_location_id)) {
+        entity = fetchArchEnt(special_find_location_id);
+    }
+    saveTabGroup("Special_Find_Location", special_find_location_id, null, null, "special_find_location_id = getLastSavedRecordId(); onSpecialFindLocationSaved(); cancelTabGroup(\"Special_Find_Location\", false);");
+}
+
+onSpecialFindLocationSaved(){
+    special_find_location_id = getLastSavedRecordId();
+    saveEntitiesToRel("SpecialFindSpecialFindLocation", special_find_location_id, special_find_id);
+    showToast("Associated with Special Find");
+}
+
+deleteSpecialFindLocation(){
+    if (!isNull(special_find_location_id)) {
+        showAlert("Confirm Deletion", "Press OK to Delete this Special Find Location Record!", "reallyDeleteSpecialFindLocation()", "doNotDelete()");
+    } else {
+        cancelTabGroup("Special_Find_Location", true);
+    }
+}
+
+reallyDeleteSpecialFindLocation(){
+    deleteArchEnt(special_find_location_id);
+    cancelTabGroup("Special_Find_Location", false);
+}
+
+takeSpecialFindLocationGPS(){
+    Object position = getGPSPosition();
+    Object projPosition = getGPSPositionProjected();
+    if (projPosition != null ){
+        Double latitude = position.getLatitude();
+        Double longitude = position.getLongitude();
+        Double northing = projPosition.getLatitude();
+        Double easting = projPosition.getLongitude();
+        setFieldValue("Special_Find_Location/Special_Find_Location/Latitude", latitude);
+        setFieldValue("Special_Find_Location/Special_Find_Location/Longitude", longitude);
+        setFieldValue("Special_Find_Location/Special_Find_Location/Northing", northing);
+        setFieldValue("Special_Find_Location/Special_Find_Location/Easting", easting);
+    } else {
+        showToast("GPS Not initialized");
+    }
+
 }
 
 /*** MISC ***/
