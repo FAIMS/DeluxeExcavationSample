@@ -98,7 +98,7 @@
         <description>Excavated by trowel.</description></term>
         <term>Pick 
         <description>Excavated by pick.</description></term>
-        <term>Other LotID
+        <term>Other
         <description>Excavated by another method.</description></term>
       </lookup>
     </property>
