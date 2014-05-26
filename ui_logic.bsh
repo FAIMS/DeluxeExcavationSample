@@ -1282,6 +1282,7 @@ String special_find_location_id = null;
 newSpecialFindLocation(){
     special_find_location_id = null;
     newTabGroup("Special_Find_Location");
+    saveSpecialFind();
 }
 
 loadSpecialFindLocation() {
