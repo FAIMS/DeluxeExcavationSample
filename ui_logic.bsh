@@ -1101,7 +1101,7 @@ onEvent("Special_Find/Special_Find_GeneralInformation/SaveAndNew", "delayclick",
 onEvent("Special_Find/Special_Find_GeneralInformation/Duplicate", "delayclick", "duplicateSpecialFind()");
 
 onEvent("Special_Find/Special_Find_Location", "show", "refreshSpecialFindLocations()");
-onEvent("Special_Find/Special_Find_Location/New_Special_Find_Location", "delayclick", "newSpecialFindLocation()");
+onEvent("Special_Find/Special_Find_Location/New_Special_Find_Location", "delayclick", "saveAndNewSpecialFindLocation()");
 onEvent("Special_Find/Special_Find_Location/List_Special_Find_Location", "click", "loadSpecialFindLocation()");
 
 String special_find_id = null;
@@ -1177,6 +1177,24 @@ saveSpecialFind() {
     } else {
        saveTabGroup("Special_Find", special_find_id, null, null, "special_find_id = getLastSavedRecordId(); onSpecialFindSaved(); cancelTabGroup(\"Special_Find\", false);");
     }
+}
+
+saveAndNewSpecialFindLocation() {
+    if (isNull(getFieldValue("Special_Find/Special_Find_GeneralInformation/Special_Find_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        return;
+    }
+    
+    if (!isNull(special_find_id)) {
+        entity = fetchArchEnt(special_find_id);
+    }
+
+    if (isNull(context_id)) {
+        showWarning("Logic Error", "Special_Find cannot be saved as parent context is not saved or loaded.");
+        return null;
+    } else {
+       saveTabGroup("Special_Find", special_find_id, null, null, "special_find_id = getLastSavedRecordId(); onSpecialFindSaved(); newSpecialFindLocation()");
+    }    
 }
 
 saveAndNewSpecialFind() {
@@ -1282,7 +1300,6 @@ String special_find_location_id = null;
 newSpecialFindLocation(){
     special_find_location_id = null;
     newTabGroup("Special_Find_Location");
-    saveSpecialFind();
 }
 
 loadSpecialFindLocation() {
