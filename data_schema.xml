@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSchema name="hdb_FAIMS_Community_Server" preparer="Heurist user:Penny Crook" >
-
+  <!-- MEMSAP for Jessica -->
   <RelationshipElement name="AboveBelow" type="hierarchical">
     <description>Implements a above below for contexts.
     </description>
