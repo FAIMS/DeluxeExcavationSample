@@ -129,7 +129,7 @@ newContext(){
     context_id = null;
     newTabGroup("Context");
     setFieldValue("Context/Context_GeneralInformation/AreaCode", areaCode);
-    setFieldValue("Context/Context_GeneralInformation/Site_Code","FAIMS13");
+    setFieldValue("Context/Context_GeneralInformation/Site_Code","PAZC14");
     setFieldValue("Context/Context_GeneralInformation/Context_ID", getFieldValue("control/data/ContextIncrement"));
     date = fetchOne("select date('now');");
     setFieldValue("Context/Context_GeneralInformation/Date_Opened", date.get(0));
@@ -265,7 +265,7 @@ doNotDelete(){
 getCounterFromDB(){
     Object counter = fetchOne(""+
         "select response, deviceMatch, aenttimestamp "+
-        "from (select freetext, v.vocabName || ':0'|| coalesce(substr('0000'||(substr(freetext,-4)+1),-4),'') as response, aenttimestamp,  "+
+        "from (select freetext, v.vocabName || '-0'|| coalesce(substr('0000'||(substr(freetext,-4)+1),-4),'') as response, aenttimestamp,  "+
         "             uuid in (select uuid "+
         "                        from latestnondeletedaentvalue AS av join attributekey using (attributeid), localSettings "+
         "                        where userid = value "+
@@ -275,7 +275,7 @@ getCounterFromDB(){
         " and key = 'Area') "+
         " where response not in (select freetext from latestnondeletedarchentidentifiers where freetext is not null) "+
         "union select response, -1, aenttimestamp "+
-        "from (select vocabName || ':0001' as response, datetime(1, 'unixepoch') as aenttimestamp from localSettings join vocabulary on (value = vocabid) where key = 'Area') "+
+        "from (select vocabName || '-00001' as response, datetime(1, 'unixepoch') as aenttimestamp from localSettings join vocabulary on (value = vocabid) where key = 'Area') "+
         "order by deviceMatch desc, aenttimestamp desc limit 1;");
     String out = "";
 
