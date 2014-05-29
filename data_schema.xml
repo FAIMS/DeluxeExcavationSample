@@ -110,21 +110,21 @@
           <description>data not collected
           </description>
         </term>
-        <term HeuristID="0-3398" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Cut.png">{Cut}
+        <term pictureURL="files/data/gallery/ContextType/Orange/Cut.png">{Cut}
 
           <description>Any Context which forms a negative interface, eg pits, ditches, graves and foundation and robber trenches
           </description>
         </term>
-        <term HeuristID="0-3397" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Deposit.png">{Deposit}
+        <term pictureURL="files/data/gallery/ContextType/Orange/Deposit.png">{Deposit}
 
           <description>Any Context with deposited soil, eg natural deposits, floor and road surfaces and pit, ditch and grave fills
           </description>
 
         </term>
-        <term HeuristID="0-3400" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Natural.png">{Natural}
+        <term pictureURL="files/data/gallery/ContextType/Orange/Natural.png">{Natural}
           <description> </description>
         </term>
-        <term HeuristID="0-3399" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Structure.png">{Structure}
+        <term pictureURL="files/data/gallery/ContextType/Orange/Structure.png">{Structure}
 
           <description>Any context formed independent of a Cut or negative interface, eg walls, hearths.
           </description>
@@ -7631,22 +7631,22 @@
           <description>data not collected
           </description>
         </term>
-        <term HeuristID="0-3443" StandardCode="" pictureURL="files/data/gallery/Sorting/ModeratelySorted.png">{Moderately_sorted}
+        <term pictureURL="files/data/gallery/Sorting/ModeratelySorted.png">{Moderately_sorted}
 
           <description>Particles are mostly the same size and evenly distributed, but there are some larger particles.
           </description>
         </term>
-        <term HeuristID="0-3444" StandardCode="" pictureURL="files/data/gallery/Sorting/PoorlySorted.png">{Poorly_sorted}
+        <term pictureURL="files/data/gallery/Sorting/PoorlySorted.png">{Poorly_sorted}
 
           <description>Particles are different sizes and unevenly distributed.
           </description>
         </term>
-        <term HeuristID="0-3445" StandardCode="" pictureURL="files/data/gallery/Sorting/VeryPoorlySorted.png">{Very_poorly_sorted_}
+        <term pictureURL="files/data/gallery/Sorting/VeryPoorlySorted.png">{Very_poorly_sorted_}
 
           <description>Particles are very different sizes and very unevenly distributed.
           </description>
         </term>
-        <term HeuristID="0-3442" StandardCode="" pictureURL="files/data/gallery/Sorting/WellSorted.png">{Well_sorted}
+        <term pictureURL="files/data/gallery/Sorting/WellSorted.png">{Well_sorted}
 
           <description>Particles are roughly the same size and evenly distributed.
           </description>
@@ -8126,19 +8126,19 @@
         </term>
         <term HeuristID="0-3562" StandardCode="">{Brick}
           <description> </description>
-          <term HeuristID="0-3570" StandardCode="" pictureURL="files/data/gallery/BrickBonds/Brown/English.png">{English_Bond}
+          <term pictureURL="files/data/gallery/BrickBonds/Brown/English.png">{English_Bond}
             <description>Full courses of headers alternating with full courses of stretchers.
             </description>
           </term>
-          <term HeuristID="0-3571" StandardCode="" pictureURL="files/data/gallery/BrickBonds/Brown/Flemish.png">{Flemish_Bond}
+          <term pictureURL="files/data/gallery/BrickBonds/Brown/Flemish.png">{Flemish_Bond}
             <description>Courses of alternating headers and stretchers.
             </description>
           </term>
-          <term HeuristID="0-3572" StandardCode="" pictureURL="files/data/gallery/BrickBonds/Brown/Header.png">{Header_Bond}
+          <term pictureURL="files/data/gallery/BrickBonds/Brown/Header.png">{Header_Bond}
             <description>Courses of headers only. 
             </description>
           </term>
-          <term HeuristID="0-3569" StandardCode="" pictureURL="files/data/gallery/BrickBonds/Brown/Stretcher.png">{Stretcher}
+          <term pictureURL="files/data/gallery/BrickBonds/Brown/Stretcher.png">{Stretcher}
             <description>Courses of full bricks where every course is offset half a brick from the course below.
             </description>
           </term>
@@ -8204,21 +8204,21 @@
           <description>data not collected
           </description>
         </term>
-        <term HeuristID="0-3398" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Cut.png">{Cut}
+        <term pictureURL="files/data/gallery/ContextType/Orange/Cut.png">{Cut}
 
           <description>Any Context which forms a negative interface, eg pits, ditches, graves and foundation and robber trenches
           </description>
         </term>
-        <term HeuristID="0-3397" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Deposit.png">{Deposit}
+        <term pictureURL="files/data/gallery/ContextType/Orange/Deposit.png">{Deposit}
 
           <description>Any Context with deposited soil, eg natural deposits, floor and road surfaces and pit, ditch and grave fills
           </description>
 
         </term>
-        <term HeuristID="0-3400" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Natural.png">{Natural}
+        <term pictureURL="files/data/gallery/ContextType/Orange/Natural.png">{Natural}
           <description> </description>
         </term>
-        <term HeuristID="0-3399" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Structure.png">{Structure}
+        <term pictureURL="files/data/gallery/ContextType/Orange/Structure.png">{Structure}
 
           <description>Any context formed independent of a Cut or negative interface, eg walls, hearths.
           </description>
@@ -8386,41 +8386,41 @@
           <description>data not collected
           </description>
         </term>
-        <term HeuristID="0-3447" StandardCode="" pictureURL="files/data/gallery/Pebbles/Angular.png">{Angular}
+        <term pictureURL="files/data/gallery/Pebbles/Angular.png">{Angular}
 
           <description>Sharp pebbles or stones.
           </description>
-          <term HeuristID="0-3449" StandardCode="" pictureURL="files/data/gallery/Pebbles/AngularAngular.png">{Angular}
+          <term pictureURL="files/data/gallery/Pebbles/AngularAngular.png">{Angular}
 
             <description>Sharp and pointed.
             </description>
           </term>
-          <term HeuristID="0-3450" StandardCode="" pictureURL="files/data/gallery/Pebbles/AngularSub.png">{Sub-angular}
+          <term pictureURL="files/data/gallery/Pebbles/AngularSub.png">{Sub-angular}
 
             <description>A little sharp and pointed.
             </description>
           </term>
-          <term HeuristID="0-3448" StandardCode="" pictureURL="files/data/gallery/Pebbles/AngularVery.png">{Very_angular}
+          <term pictureURL="files/data/gallery/Pebbles/AngularVery.png">{Very_angular}
 
             <description>Very sharp and pointed.
             </description>
           </term>
         </term>
-        <term HeuristID="0-3451" StandardCode="" pictureURL="files/data/gallery/Pebbles/Rounded.png">{Rounded}
+        <term pictureURL="files/data/gallery/Pebbles/Rounded.png">{Rounded}
 
           <description>Rounded stones and pebbles.
           </description>
-          <term HeuristID="0-3453" StandardCode="" pictureURL="files/data/gallery/Pebbles/RoundedRounded.png">{Rounded}
+          <term pictureURL="files/data/gallery/Pebbles/RoundedRounded.png">{Rounded}
 
             <description>Mostly rounded pebble or stone.
             </description>
           </term>
-          <term HeuristID="0-3452" StandardCode="" pictureURL="files/data/gallery/Pebbles/RoundedSub.png">{Sub-rounded}
+          <term pictureURL="files/data/gallery/Pebbles/RoundedSub.png">{Sub-rounded}
 
             <description>Some rounding to pebbles or stones.
             </description>
           </term>
-          <term HeuristID="0-3454" StandardCode="" pictureURL="files/data/gallery/Pebbles/RoundedWell.png">{Well-rounded}
+          <term pictureURL="files/data/gallery/Pebbles/RoundedWell.png">{Well-rounded}
 
             <description>Very rounded pebble or stone.
             </description>
