@@ -87,15 +87,49 @@
               </container2>
               <Date_Opened/>
               <Excavation_Method/>
-              <container3>
+              <Context_Type/>
+              <Context_Comments/>
+              <container5>
+                <child1>
+                  <CreatingUser/>
+                </child1>
+                <child2>
+                  <Date_Closed/>
+                </child2>
+                <child3>
+                  <close/>
+                </child3>
+              </container5>
+              <Your_description/>
+              <Update/>
+              <Details/>
+            </Context_GeneralInformation>
+            <Context_Measure>
+              <container1>
                 <child1>
                   <Context_Highest_Level/>
                 </child1>
                 <child2>
                   <Context_Lowest_Level/>
                 </child2>
-              </container3>
-              <container4>
+              </container1>
+              <container2>
+                <child1>
+                  <Context_Highest_Level_NW/>
+                  <Context_Highest_Level_NE/>
+                  <Context_Highest_Level_SE/>
+                  <Context_Highest_Level_SW/>
+                  <Context_Highest_Level_Ctr/>
+                </child1>
+                <child2>
+                 <Context_Lowest_Level_NW/>
+                 <Context_Lowest_Level_NE/>
+                 <Context_Lowest_Level_Ctr/>
+                 <Context_Lowest_Level_SE/>
+                 <Context_Lowest_Level_SW/>
+                </child2>
+              </container2> 
+              <container3>
                 <child1>
                   <Length/>
                 </child1>
@@ -105,35 +139,31 @@
                 <child3>
                   <Depth/>
                 </child3>
-              </container4>
-              <Context_Type/>
-              <Context_Comments/>
-              <CreatingUser/>
+              </container3>
               <Update/>
-              <Details/>
-            </Context_GeneralInformation>
+            </Context_Measure>
             <Context_Deposits>
               <Soil_Compaction_Type/>
               <Soil_Compaction_Description/>
-              <Soil_Munsell_Colour/>
               <container1>
                 <child1>
-                  <Soil_Populate_Colour/>
+                  <Soil_Munsell_Colour/>
                 </child1>
                 <child2>
-                  <Soil_Colour/>
+                  <Soil_Populate_Colour/>
                 </child2>
               </container1>
+              <Soil_Colour/>
               <Soil_Particle_Sorting/>
               <Soil_Texture_Actual/>
               <Texture_Helper/>
-              <Deposit_Inclusions/>
-              <Deposit_Thickness_Extent/>
-              <Horizon_Boundary/>
               <newMatrix/>
               <matrixList/>
               <loadMatrix/>
               <deleteMatrix/>
+              <Deposit_Inclusions/>
+              <Deposit_Thickness_Extent/>
+              <Horizon_Boundary/>
               <Update/>
             </Context_Deposits>
             <Context_Cuts>
@@ -167,7 +197,7 @@
             <Context_Interpretation>
               <Your_Interpretation/>
               <Your_Discussion/>
-              <Your_description/>
+              
               <container1>
                 <child1>
                   <Start_date/>
@@ -229,6 +259,7 @@
               <specialFindList/>
               <loadSpecialFind/>
               <deleteSpecialFind/>
+              <Update/>
             </Context_Artefacts>
             <Context_Samples>
               <newSample/>
@@ -239,6 +270,7 @@
             <Texture_Helper>
               <Soil_Texture/>
               <Update_Texture/>
+              <Return/>
             </Texture_Helper>
             <map>
               <map/>
@@ -258,7 +290,7 @@
               </container1>
               <Title/>
               <Context_Type/>
-              <Description/>
+              <Descriptior/>
               <container2>
                 <child1>
                   <Length/>
@@ -446,21 +478,36 @@
       <!--list of numeric and blocktext(memo) attributes(fields)-->
       <bind nodeset="/faims/user/help/guide" type="string"/>
       <bind nodeset="/faims/Context/Context_GeneralInformation/Context_Comments" type="string"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container3/child1/Context_Highest_Level" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container3/child2/Context_Lowest_Level" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container4/child1/Length" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container4/child2/Width" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container4/child3/Depth" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/Your_description" type="string"/>
+      <bind nodeset="/faims/Context/Context_Measure/container1/child1/Context_Highest_Level" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Measure/container1/child2/Context_Lowest_Level" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Measure/container2_1/child1/Context_Highest_Level_NW" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Measure/container2_1/child2/Context_Highest_Level_NE" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Measure/Context_Highest_Level_Ctr" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Measure/container2_2/child1/Context_Highest_Level_SW" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Measure/container2_2/child2/Context_Highest_Level_SE" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Measure/container3_1/child1/Context_Lowest_Level_NW" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Measure/container3_1/child2/Context_Lowest_Level_NE" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Measure/Context_Lowest_Level_Ctr" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Measure/container3_2/child1/Context_Lowest_Level_SW" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Measure/container3_2/child2/Context_Lowest_Level_SE" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Measure/container4/child1/Length" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Measure/container4/child2/Width" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Measure/container4/child3/Depth" type="decimal"/>
       <bind nodeset="/faims/Context/Context_Deposits/Deposit_Inclusions" type="string"/>
       <bind nodeset="/faims/Context/Context_Cuts/Truncation" type="string"/>
       <bind nodeset="/faims/Context/Context_Structures/Structure_Description" type="string"/>
       <bind nodeset="/faims/Context/Context_Interpretation/Your_Discussion" type="string"/>
-      <bind nodeset="/faims/Context/Context_Interpretation/Your_description" type="string"/>
+      <bind nodeset="/faims/Context/Context_Interpretation/container1/child1/Start_date" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Interpretation/container1/child2/End_date" type="decimal"/>
       <bind nodeset="/faims/Context/Context_Interpretation/Associations" type="string"/>
-      <bind nodeset="/faims/ContextGroup/ContextGroupDetails/container2/child1/Length" type="decimal"/>
-      <bind nodeset="/faims/ContextGroup/ContextGroupDetails/container2/child2/Width" type="decimal"/>
-      <bind nodeset="/faims/ContextGroup/ContextGroupDetails/container2/child3/Depth" type="decimal"/>
-      <bind nodeset="/faims/ContextGroup/ContextGroupDetails/Your_Discussion" type="string"/>
+      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container2/child1/Length" type="decimal"/>
+      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container2/child2/Width" type="decimal"/>
+      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container2/child3/Depth" type="decimal"/>
+      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/Your_Discussion" type="string"/>
+      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container3/child1/Start_Date" type="decimal"/>
+      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container3/child2/End_Date" type="decimal"/>
+
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/Artefact_Quantity" type="decimal"/>
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/Artefact_Weight" type="decimal"/>
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/Artefact_Group_Comment" type="string"/>
@@ -509,33 +556,37 @@
         <select1 ref="users">
           <label>{Users}:</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
         <select1 appearance="full" ref="Area_Code">
-          <label>Area Code:</label>
+          <label>{Area Code:}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
         <trigger ref="login">
-          <label>Login</label>
+          <label>{Login}</label>
         </trigger>
         <trigger ref="guide">
-          <label>Module Guide</label>
+          <label>{Module Guide}</label>
         </trigger>
       </group>
       <group ref="help">
-        <label>Help</label>
+        <label>{Help}</label>
         <select1 appearance="compact" ref="guide">
-          <label>Module Guide</label>
+          <label>{Module Guide}</label>
             <item>
-            <label>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tincidunt imperdiet libero quis rutrum. Integer nec neque tortor. Mauris a tellus vitae tellus iaculis viverra at id ipsum. Etiam tincidunt ac purus in placerat. Donec suscipit et dui ut accumsan. Ut tincidunt, eros nec pellentesque facilisis, odio orci ultrices dolor, eget commodo tellus nibh ac tellus. Aenean tincidunt sapien sed eros ultricies varius. Sed et nunc erat. Nullam ligula tellus, laoreet et molestie pretium, pretium vel sem. Vivamus gravida ipsum a suscipit adipiscing. 
+            <label>{The FAIMS Excavation Demo Module was prepared in 2013 following a detailed comparison of 11 excavation recording sheets submitted by FAIMS partners. It serves the workflow of single-context, multi-trench excavation and the core definitions are derived from the Museum of London workbook. 
 
+            The module was the first one prepared using Heurist. It has been the basis of several other modules developed for specific projects, and is updated with key features required by partners. | 
 
-            Vestibulum non sodales tortor, sit amet euismod ligula. Morbi et risus sem. Maecenas feugiat, nisl id luctus suscipit, nibh mauris accumsan metus, ut semper arcu diam non tortor. Mauris at imperdiet neque, vel porta dui. Vestibulum a nibh pellentesque, pharetra sapien vel, bibendum lacus. Duis vehicula lacus id urna fermentum, quis commodo est commodo.</label>
+            The purpose of this Guide is to provide an overview of the features and navigation of the Module. definitions and vocabulary lists for each Attribute are accessible via the Help button alongside each attribute.  
+
+            ...MORE TO COME
+            }</label>
             <value>Help</value>
           </item>
         </select1>
@@ -544,62 +595,62 @@
     <group ref="control">
       <label/>
       <group faims_scrollable="false" ref="data">
-        <label>Contexts</label>
+        <label>{Contexts}</label>
         <input faims_certainty="false" faims_read_only="false" ref="ContextIncrement">
-          <label>Context Starting ID</label>
+          <label>{Context Starting ID}</label>
         </input>
         <trigger ref="newContext">
-          <label>Create New Context</label>
+          <label>{Create New Context}</label>
         </trigger>
         <group faims_style="orientation" ref="container1">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
             <input faims_certainty="false" faims_read_only="false" ref="Search">
-              <label>Search Term</label>
+              <label>{Search Term}</label>
             </input>
           </group>
           <group faims_style="large" ref="child2">
             <label/>
             <trigger ref="searchButton">
-              <label>Search</label>
+              <label>{Search}</label>
             </trigger>
           </group>
         </group>
         <select1 appearance="compact" faims_annotation="false" faims_certainty="false" ref="ContextList">
-          <label>Tap Context ID in list below to load it.</label>
+          <label>{Tap Context ID in list below to load it.}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
       </group>
       <group faims_scrollable="false" ref="contextGroup">
-        <label>Context Groups</label>
+        <label>{Context Groups}</label>
         <trigger ref="newContextGroup">
-          <label>New Context Group</label>
+          <label>{New Context Group}</label>
         </trigger>
         <select1 appearance="compact" faims_annotation="false" faims_certainty="false" ref="GroupList">
-          <label>Tap Context Group in list below to load it.</label>
+          <label>{Tap Context Group in list below to load it.}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
       </group>
       <group ref="gps">
-        <label>Control</label>
+        <label>{Control}</label>
         <trigger ref="connectexternal">
-          <label>Connect To External GPS</label>
+          <label>{Connect To External GPS}</label>
         </trigger>
         <trigger ref="connectinternal">
-          <label>Connect To Internal GPS</label>
+          <label>{Connect To Internal GPS}</label>
         </trigger>
         <trigger ref="startsync">
-          <label>Start Synching</label>
+          <label>{Start Synching}</label>
         </trigger>
         <trigger ref="stopsync">
-          <label>Stop Synching</label>
+          <label>{Stop Synching}</label>
         </trigger>
       </group>
     </group>
@@ -608,7 +659,7 @@
     <group faims_archent_type="Context" ref="Context">
       <label>{Context}</label>
       <group ref="Context_GeneralInformation">
-        <label>General</label>
+        <label>{General}</label>
         <group faims_style="orientation" ref="container1">
           <label/>
           <group faims_style="even" ref="child1">
@@ -620,7 +671,7 @@
           <group faims_style="even" ref="child2">
             <label/>
             <input faims_annotation="false" faims_attribute_name="AreaCode" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="true" ref="AreaCode">
-              <label>Area Code:</label>
+              <label>{Area Code:}</label>
             </input>
           </group>
           <group faims_style="even" ref="child3">
@@ -648,7 +699,7 @@
         <select1 faims_attribute_name="Context Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Context_Type" type="image">
           <label>{Context_Type}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
@@ -661,142 +712,218 @@
         <input faims_attribute_name="Excavation Method" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Excavation_Method">
           <label>{Excavation_Method}</label>
         </input>
-        <group faims_style="orientation" ref="container3">
+        <!--We would like to see Dropdown-->
+        <group faims_style="orientation" ref="container5">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input faims_certainty="false" faims_read_only="true" ref="CreatingUser">
+              <label>{Record Created By:}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input faims_certainty="false" faims_read_only="false" ref="Date_Closed" faims_attribute_name="Date Closed" faims_attribute_type="date">
+              <label>{Date Closed:}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child3">
+            <label/>
+            <trigger ref="close">
+              <label>{Closed Today}</label>
+            </trigger>
+          </group>
+        </group>
+        <input faims_attribute_name="Your description" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Your_description">
+          <label>{Your_description}</label>
+        </input>
+        <trigger ref="Update">
+          <label>{Save Context}</label>
+        </trigger>
+        <trigger ref="Details">
+          <label>{Fill in Context Type Details}</label>
+        </trigger>
+      </group>
+
+      <group ref="Context_Measure">
+        <label>{Measure}</label>
+        <group faims_style="orientation" ref="container1">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
             <input faims_attribute_name="Highest Level" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Context_Highest_Level">
-              <label>Highest Level</label>
+              <label>{Highest Level}</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
             <input faims_attribute_name="Lowest Level" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Context_Lowest_Level">
-              <label>Lowest Level</label>
+              <label>{Lowest Level}</label>
             </input>
           </group>
         </group>
-        <group faims_style="orientation" ref="container4">
+        <group faims_style="orientation" ref="container2">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label></label>
+
+            <input faims_attribute_name="Highest Level NW" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Highest_Level_NW">
+              <label>{Highest_Level_NW}</label>
+            </input>
+            <input faims_attribute_name="Highest Level NE" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Highest_Level_NE">
+              <label>{Highest_Level_NE}</label>
+            </input>
+        
+            
+            <input faims_attribute_name="Highest Level SE" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Highest_Level_SE">
+              <label>{Highest_Level_SE}</label>
+            </input>
+
+            <input faims_attribute_name="Highest Level SW" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Highest_Level_SW">
+              <label>{Highest_Level_SW}</label>
+            </input>
+
+
+            <input faims_attribute_name="Highest Level Ctr" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Highest_Level_Ctr">
+              <label>{Highest_Level_Ctr}</label>
+            </input>
+
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+
+            <input faims_attribute_name="Lowest Level NW" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Lowest_Level_NW">
+              <label>{Lowest_Level_NW}</label>
+            </input>
+            <input faims_attribute_name="Lowest Level NE" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Lowest_Level_NE">
+              <label>{Lowest_Level_NE}</label>
+            </input>
+       
+            <input faims_attribute_name="Lowest Level SE" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Lowest_Level_SE">
+              <label>{Lowest_Level_SE}</label>
+            </input>
+            <input faims_attribute_name="Lowest Level SW" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Lowest_Level_SW">
+              <label>{Lowest_Level_SW}</label>
+            </input>
+
+             <input faims_attribute_name="Lowest Level Ctr" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Context_Lowest_Level_Ctr">
+              <label>{Lowest_Level_Ctr}</label>
+            </input>
+
+          </group>
+        </group>
+        <group faims_style="orientation" ref="container3">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
             <input faims_attribute_name="Length" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Length">
-              <label>Length</label>
+              <label>{Length}</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
             <input faims_attribute_name="Width" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Width">
-              <label>Width</label>
+              <label>{Width}</label>
             </input>
           </group>
           <group faims_style="even" ref="child3">
             <label/>
             <input faims_attribute_name="Depth" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Depth">
-              <label>Depth</label>
+              <label>{Depth}</label>
             </input>
           </group>
         </group>
-        <!--We would like to see Dropdown-->
-        <input faims_certainty="false" faims_read_only="true" ref="CreatingUser">
-          <label>Record Created By:</label>
-        </input>
-        <trigger ref="Update">
-          <label>Save Context</label>
-        </trigger>
-        <trigger ref="Details">
-          <label>Fill in Context Type Details</label>
-        </trigger>
       </group>
 
+
       <group faims_hidden="true" ref="Context_Deposits">
-        <label>Dep</label>
+        <label>{Dep}</label>
         <!--We would like to see Dropdown-->
         <select1 faims_attribute_name="Soil Compaction Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Soil_Compaction_Type">
           <label>{Soil_Compaction_Type}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
         <input faims_attribute_name="Soil Compaction Description" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Soil_Compaction_Description">
           <label>{Soil_Compaction_Description}</label>
         </input>
-        <select1 faims_attribute_name="Soil Munsell Colour" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Soil_Munsell_Colour">
-          <label>{Soil_Munsell_Colour}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <group faims_style="orientation" ref="container1">
+      <group faims_style="orientation" ref="container1">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
-            <trigger ref="Soil_Populate_Colour">
-              <label>Fill Soil Colour</label>
-            </trigger>
+            <select1 faims_attribute_name="Soil Munsell Colour" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Soil_Munsell_Colour">
+              <label>{Soil_Munsell_Colour}</label>
+              <item>
+                <label>{placeholder}</label>
+                <value>placeholder</value>
+              </item>
+            </select1>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
-              <input faims_attribute_name="Soil Colour" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="true" ref="Soil_Colour">
-                <label>{Soil_Colour}</label>
-              </input>
+            <trigger ref="Soil_Populate_Colour">
+              <label>{Fill Soil Colour}</label>
+            </trigger>
           </group>
         </group>
+        <input faims_attribute_name="Soil Colour" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="true" ref="Soil_Colour">
+                <label>{Soil_Colour}</label>
+        </input>
         <!--We would like to see Dropdown-->
         <select1 faims_attribute_name="Soil Particle Sorting" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Soil_Particle_Sorting" type="image">
           <label>{Soil_Particle_Sorting}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
-        <select1 faims_attribute_name="Soil Texture Actual" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Soil_Texture_Actual">
+        <select1 faims_attribute_name="Soil Texture" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Soil_Texture_Actual">
           <label>{Soil_Texture}</label>
             <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
         <trigger ref="Texture_Helper">
-          <label>Texture Helper</label>
+          <label>{Texture Helper}</label>
+        </trigger>
+        <trigger ref="newMatrix">
+          <label>{Add New Matrix}</label>
+        </trigger>
+        <select1 faims_certainty="false" faims_read_only="false" ref="matrixList">
+          <label>{Associated Matrices}</label>
+          <item>
+            <label>{placeholder}</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <trigger ref="loadMatrix">
+          <label>{Load Matrix}</label>
+        </trigger>
+        <trigger ref="deleteMatrix">
+          <label>{Delete Matrix}</label>
         </trigger>
         <input faims_attribute_name="Deposit Inclusions" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Deposit_Inclusions">
           <label>{Deposit_Inclusions}</label>
         </input>
         <input faims_attribute_name="Deposit Thickness and Extent" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Deposit_Thickness_Extent">
-          <label>Deposit Thickness &amp; Extent</label>
+          <label>{Deposit Thickness &amp; Extent}</label>
         </input>
         <select1 faims_attribute_name="Horizon Boundary" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Horizon_Boundary">
           <label>{Horizon_Boundary}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
-        <trigger ref="newMatrix">
-          <label>Add New Matrix</label>
-        </trigger>
-        <select1 faims_certainty="false" faims_read_only="false" ref="matrixList">
-          <label>Associated Matrices</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <trigger ref="loadMatrix">
-          <label>Load Matrix</label>
-        </trigger>
-        <trigger ref="deleteMatrix">
-          <label>Delete Matrix</label>
-        </trigger>
         <trigger ref="Update">
-          <label>Save Context</label>
+          <label>{Save Context}</label>
         </trigger>
       </group>
       <group faims_hidden="true" ref="Context_Cuts">
-        <label>Cut</label>
+        <label>{Cut}</label>
         <!--We would like to see Dropdown-->
         <group faims_style="orientation" ref="container1">
           <label/>
@@ -805,7 +932,7 @@
             <select1 faims_attribute_name="Shape of Cut" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Shape_of_Cut">
               <label>{Shape_of_Cut}</label>
               <item>
-                <label>placeholder</label>
+                <label>{placeholder}</label>
                 <value>placeholder</value>
               </item>
             </select1>
@@ -821,7 +948,7 @@
         <select1 appearance="full" faims_attribute_name="Shape of Corners" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Shape_of_Corners">
           <label>{Shape_of_Corners}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
@@ -829,7 +956,7 @@
         <select1 appearance="full" faims_attribute_name="Break of Slope - Top" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Break_of_Slope_Top">
           <label>{Break_of_Slope_-_Top}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
@@ -837,18 +964,26 @@
         <select1 appearance="full" faims_attribute_name="Break of slope - Base" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Break_of_slope_Base">
           <label>{Break_of_slope_-_Base}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
-        <input faims_attribute_name="Sides of Cut" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Sides_of_Cut">
+        <!--<input faims_attribute_name="Sides of Cut" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Sides_of_Cut">
           <label>{Sides_of_Cut}</label>
-        </input>
+        </input>-->
+        <select1 faims_attribute_name="Sides of Cut" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Sides_of_Cut">
+          <label>{Sides_of_Cut}</label>
+          <item>
+            <label>{placeholder}</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+
         <!--We would like to see Dropdown-->
         <select1 faims_attribute_name="Shape of Base" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Shape_of_Base">
           <label>{Shape_of_Base}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
@@ -856,7 +991,7 @@
         <select1 appearance="full" faims_attribute_name="Orientation" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Orientation">
           <label>{Orientation}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
@@ -867,7 +1002,7 @@
           <label>{Truncation}</label>
         </input>
         <trigger ref="Update">
-          <label>Save Context</label>
+          <label>{Save Context}</label>
         </trigger>
       </group>
       <group faims_hidden="true" ref="Context_Structures">
@@ -876,7 +1011,7 @@
         <select1 faims_attribute_name="Structural Components" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Structural_Components">
           <label>{Structural_Components}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
@@ -884,7 +1019,7 @@
         <select1 faims_attribute_name="Bonding" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Bonding">
           <label>{Bonding}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
@@ -892,7 +1027,7 @@
         <select1 faims_attribute_name="Bond Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Bond_Type" type="image">
           <label>{Bond_Type}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
@@ -903,24 +1038,22 @@
           <label>{Structure_Description}</label>
         </input>
         <trigger ref="Update">
-          <label>Save Context</label>
+          <label>{Save Context}</label>
         </trigger>
       </group>
       <group ref="Context_Interpretation">
-        <label>Int</label>
+        <label>{Int}</label>
         <select1 appearance="full" faims_attribute_name="Your Interpretation" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Your_Interpretation">
-          <label>Your Interpretation</label>
+          <label>{Your Interpretation}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
         <input faims_attribute_name="Your Discussion" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Your_Discussion">
           <label>{Your_Discussion}</label>
         </input>
-        <input faims_attribute_name="Your description" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Your_description">
-          <label>{Your_description}</label>
-        </input>
+        
         <group faims_style="orientation" ref="container1">
           <label/>
           <group faims_style="even" ref="child1">
@@ -939,57 +1072,57 @@
         <select1 appearance="full" faims_attribute_name="Phase From" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_From">
           <label>{Phase_From}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
         <select1 appearance="full" faims_attribute_name="Phase To" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_To">
           <label>{Phase_To}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
         <trigger ref="Update">
-          <label>Save Context</label>
+          <label>{Save Context}</label>
         </trigger>
         <trigger ref="AddContextGroup">
-          <label>Add New Context Group</label>
+          <label>{Add New Context Group}</label>
         </trigger>
         <select1 faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="ContextGroupList">
-          <label>List of Related Context Groups</label>
+          <label>{List of Related Context Groups}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
         <trigger ref="ShowContextGroup">
-          <label>Load Context Group</label>
+          <label>{Load Context Group}</label>
         </trigger>
         <trigger ref="RemoveFromContextGroup">
-          <label>Remove From Context Group</label>
+          <label>{Remove From Context Group}</label>
         </trigger>
       </group>
       <group ref="Context_Relationships_to_Other_Contexts">
-        <label>Rel</label>
+        <label>{Rel}</label>
         <!-- Brian todo, figure out how to model this -->
         <input faims_certainty="false" faims_read_only="true" ref="spacer">
-          <label>Use this tab to enter relationships between contexts, eg ‘Above’ and ‘Below’. Select the Type of Relationship on the left, the related Context from the list on the right, and click the button ‘Relate Contexts’.</label>
+          <label>{Use this tab to enter relationships between contexts, eg ‘Above’ and ‘Below’. Select the Type of Relationship on the left, the related Context from the list on the right, and click the button ‘Relate Contexts’.}</label>
         </input>
         <group faims_style="orientation" ref="container3">
           <label/>
           <group faims_style="even" ref="child0">
             <label/>
             <input faims_certainty="false" faims_read_only="true" ref="context_id">
-              <label>This Context:</label>
+              <label>{This Context:}</label>
             </input>
           </group>
           <group faims_style="even" ref="child1">
             <label/>
             <select1 faims_certainty="false" faims_read_only="false" ref="reln">
-              <label>Relationship</label>
+              <label>{Relationship}</label>
               <item>
-                <label>placeholder</label>
+                <label>{placeholder}</label>
                 <value>placeholder</value>
               </item>
             </select1>
@@ -997,21 +1130,21 @@
           <group faims_style="even" ref="child3">
             <label/>
             <select1 faims_certainty="false" faims_read_only="false" ref="context">
-              <label>to Context</label>
+              <label>{to Context}</label>
               <item>
-                <label>placeholder</label>
+                <label>{placeholder}</label>
                 <value>placeholder</value>
               </item>
             </select1>
           </group>
         </group>
         <trigger ref="relate">
-          <label>Relate Contexts</label>
+          <label>{Relate Contexts}</label>
         </trigger>
         <select1 faims_certainty="false" faims_read_only="false" ref="listRelns">
-          <label>Associated Entities:</label>
+          <label>{Associated Entities:}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
@@ -1020,129 +1153,136 @@
           <group faims_style="even" ref="child1">
             <label/>
             <trigger ref="deleteReln">
-              <label>Remove Reln</label>
+              <label>{Remove Reln}</label>
             </trigger>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
             <trigger ref="showReln">
-              <label>Load Context</label>
+              <label>{Load Context}</label>
             </trigger>
           </group>
         </group>
       </group>
       <group ref="Context_Attachments">
-        <label>ADD</label>
+        <label>{ADD}</label>
         <select faims_annotation="false" faims_attribute_name="Sketch" faims_attribute_type="freetext" faims_certainty="false" ref="Sketch" type="file">
           <label>{Sketch}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select>
         <trigger ref="attachSketch">
-          <label>Attach Sketch</label>
+          <label>{Attach Sketch}</label>
         </trigger>
         <select faims_annotation="false" faims_attribute_name="Photo" faims_attribute_type="freetext" faims_certainty="true" faims_sync="true" ref="Photo" type="camera">
           <label>{Photo}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select>
         <trigger ref="attachPhoto">
-          <label>Take Picture</label>
+          <label>{Take Picture}</label>
         </trigger>
         <trigger ref="viewattached">
-          <label>View Attached Files</label>
+          <label>{View Attached Files}</label>
         </trigger>
         <trigger ref="Update">
-          <label>Save Context</label>
+          <label>{Save Context}</label>
         </trigger>
         <trigger ref="SaveAndNew">
-          <label>Save and New Context</label>
+          <label>{Save and New Context}</label>
         </trigger>
         <trigger ref="Duplicate">
-          <label>Save and Duplicate Context (will not duplicate relationships, samples, or artefact groups).</label>
+          <label>{Save and Duplicate Context (will not duplicate relationships, samples, or artefact groups).}</label>
         </trigger>
         <trigger ref="Delete">
-          <label>Delete Context</label>
+          <label>{Delete Context}</label>
         </trigger>
       </group>
       <group ref="Context_Artefacts">
-        <label>Artefacts</label>
+        <label>{Artefacts}</label>
         <trigger ref="newArtefactGroup">
-          <label>Add Artefact Group</label>
+          <label>{Add Artefact Group}</label>
         </trigger>
         <select1 faims_certainty="false" faims_read_only="false" ref="artefactGroupList">
-          <label>Select an Artefact Group:</label>
+          <label>{Select an Artefact Group:}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
         <trigger ref="loadArtefactGroup">
-          <label>Load Artefact Group</label>
+          <label>{Load Artefact Group}</label>
         </trigger>
         <trigger ref="deleteArtefactGroup">
-          <label>Delete Artefact Group</label>
+          <label>{Delete Artefact Group}</label>
         </trigger>
         <trigger ref="newSpecialFind">
-          <label>Add {Special_Find}</label>
+          <label>{Add }{Special_Find}</label>
         </trigger>
         <select1 faims_certainty="false" faims_read_only="false" ref="specialFindList">
-          <label>Select a {Special_Find}:</label>
+          <label>{Select a }{Special_Find}:</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
         <trigger ref="loadSpecialFind">
-          <label>Load {Special_Find}</label>
+          <label>{Load }{Special_Find}</label>
         </trigger>
         <trigger ref="deleteSpecialFind">
-          <label>Delete {Special_Find}</label>
+          <label>{Delete }{Special_Find}</label>
+        </trigger>
+
+        <trigger ref="Update">
+          <label>{Save Context}</label>
         </trigger>
       </group>
       <group ref="Context_Samples">
-        <label>Samples</label>
+        <label>{Samples}</label>
         <trigger ref="newSample">
-          <label>Add Sample</label>
+          <label>{Add Sample}</label>
         </trigger>
         <select1 faims_certainty="false" faims_read_only="false" ref="sampleList">
-          <label>Select a Sample:</label>
+          <label>{Select a Sample:}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
         <trigger ref="loadSample">
-          <label>Load Sample</label>
+          <label>{Load Sample}</label>
         </trigger>
         <trigger ref="deleteSample">
-          <label>Delete Sample</label>
+          <label>{Delete Sample}</label>
         </trigger>
       </group>
       <group ref="Texture_Helper" faims_hidden="true">
-        <label>Texture Helper</label>
+        <label>{Texture Helper}</label>
           <select1 faims_certainty="true" faims_read_only="false" ref="Soil_Texture">
-            <label>Texture Helper</label>
+            <label>{Texture Helper}</label>
             <item>
-              <label>placeholder</label>
+              <label>{placeholder}</label>
               <value>placeholder</value>
             </item>
           </select1>
           <trigger ref="Update_Texture">
-            <label>Update Texture</label>
+            <label>{Update Texture}</label>
+          </trigger>
+          <trigger ref="Return">
+            <label>{Return to Context}</label>
           </trigger>
       </group>
     </group>
 
     <!-- ArchEnt: CONTEXT_GROUP -->
     <group faims_archent_type="Context Group" ref="ContextGroup">
-      <label>Context Group</label>
+      <label>{Context Group}</label>
       <group ref="ContextGroup_Details">
-        <label>GEN</label>
+        <label>{GEN}</label>
          <group faims_style="orientation" ref="container1">
           <label/>
           <group faims_style="even" ref="child1">
@@ -1154,17 +1294,17 @@
           <group faims_style="even" ref="child2">
             <label/>
             <input faims_attribute_name="Area Code" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="true" ref="Area_Code">
-              <label>Area Code</label>
+              <label>{Area Code}</label>
             </input>
           </group>
         </group>
         <input faims_attribute_name="Title" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Title">
-          <label>Context Group Title</label>
+          <label>{Context Group Title}</label>
         </input>
         <select1 faims_attribute_name="CG Context Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Context_Type" type="image">
           <label>{Context_Type}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
@@ -1173,24 +1313,24 @@
           <group faims_style="even" ref="child1">
             <label/>
             <input faims_attribute_name="Length" faims_attribute_type="measure" faims_read_only="false" ref="Length">
-              <label>Length</label>
+              <label>{Length}</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
             <input faims_attribute_name="Width" faims_attribute_type="measure" faims_read_only="false" ref="Width">
-              <label>Width</label>
+              <label>{Width}</label>
             </input>
           </group>
           <group faims_style="even" ref="child3">
             <label/>
             <input faims_attribute_name="Depth" faims_attribute_type="measure" faims_read_only="false" ref="Depth">
-              <label>Depth</label>
+              <label>{Depth}</label>
             </input>
           </group>
         </group>
         <input ref="Your_Discussion" faims_attribute_type="freetext" faims_attribute_name="Your Discussion">
-          <label>Your Discussion</label>
+          <label>{Your Discussion}</label>
         </input>
         <group faims_style="orientation" ref="container3">
           <label/>
@@ -1210,48 +1350,48 @@
         <select1 appearance="full" faims_attribute_name="CG Phase From" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_From">
           <label>{Phase_From}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
         <select1 appearance="full" faims_attribute_name="CG Phase To" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_To">
           <label>{Phase_To}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
         <trigger ref="Update">
-          <label>Save Context Group</label>
+          <label>{Save Context Group}</label>
         </trigger>
         <trigger ref="Delete">
-          <label>Delete Context Group</label>
+          <label>{Delete Context Group}</label>
         </trigger>
       </group>
       <group ref="ContextGroup_Contexts" faims_scrollable="false">
-        <label>Contexts</label>
+        <label>{Contexts}</label>
         <select1 faims_certainty="false" faims_read_only="false" ref="AddContextList">
-          <label>Add Additional Context:</label>
+          <label>{Add Additional Context:}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
         <trigger ref="AddContext">
-          <label>Add Context to Group</label>
+          <label>{Add Context to Group}</label>
         </trigger>
         <select1 faims_certainty="false" faims_read_only="false" ref="ContextList">
-          <label>Contexts in group:</label>
+          <label>{Contexts in group:}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
         <trigger ref="ShowContext">
-          <label>Load Context</label>
+          <label>{Load Context}</label>
         </trigger>
         <trigger ref="RemoveContext">
-          <label>Remove Context from Group</label>
+          <label>{Remove Context from Group}</label>
         </trigger>
       </group>
     </group>
@@ -1260,7 +1400,7 @@
     <group faims_archent_type="Artefact Group" ref="Artefact_Group">
       <label>{Artefact_Group}</label>
       <group ref="Artefact_Group_GeneralInformation">
-        <label>Artefact Group</label>
+        <label>{Artefact Group}</label>
         <group faims_style="orientation" ref="container1">
           <label/>
           <group faims_style="even" ref="child1">
@@ -1286,7 +1426,7 @@
         <select1 faims_attribute_name="Artefact Class" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Artefact_Class">
           <label>{Artefact_Class}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
@@ -1302,37 +1442,37 @@
         <select faims_annotation="false" faims_attribute_name="Sketch" faims_attribute_type="freetext" faims_certainty="false" ref="Sketch" type="file">
           <label>{Sketch}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select>
         <trigger ref="attachSketch">
-          <label>Attach Sketch</label>
+          <label>{Attach Sketch}</label>
         </trigger>
         <select faims_annotation="false" faims_attribute_name="Photo" faims_attribute_type="freetext" faims_certainty="true" faims_sync="true" ref="Photo" type="camera">
           <label>{Photo}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select>
         <trigger ref="attachPhoto">
-          <label>Take Picture</label>
+          <label>{Take Picture}</label>
         </trigger>
         <trigger ref="viewattached">
-          <label>View Attached Files</label>
+          <label>{View Attached Files}</label>
         </trigger>
         <trigger ref="Update">
-          <label>Save Artefact</label>
+          <label>{Save Artefact}</label>
         </trigger>
         <trigger ref="SaveAndNew">
-          <label>Save and New Artefact</label>
+          <label>{Save and New Artefact}</label>
         </trigger>
         <trigger ref="Duplicate">
-          <label>Save and Duplicate Artefact</label>
+          <label>{Save and Duplicate Artefact}</label>
         </trigger>
         <trigger ref="Delete">
-          <label>Delete Artefact</label>
+          <label>{Delete Artefact}</label>
         </trigger>
       </group>
     </group>
@@ -1341,7 +1481,7 @@
     <group faims_archent_type="Sample" ref="Sample">
       <label>{Sample}</label>
       <group ref="Sample_GeneralInformation">
-        <label>Deposit Samples</label>
+        <label>{Deposit Samples}</label>
         <group faims_style="orientation" ref="container1">
           <label/>
           <group faims_style="even" ref="child1">
@@ -1367,7 +1507,7 @@
         <select1 faims_attribute_name="Sample Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Sample_Type">
           <label>{Sample_Type}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
@@ -1375,7 +1515,7 @@
         <select1 faims_attribute_name="Collection Method" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Collection_Method">
           <label>{Collection_Method}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
@@ -1383,7 +1523,7 @@
           <label>{Sample_Weight}</label>
         </input>
         <input faims_attribute_name="Sample Volume" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false" ref="Sample_Volume">
-          <label>Sample Volume</label>
+          <label>{Sample Volume}</label>
         </input>
         <input faims_attribute_name="Sample Comments" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Sample_Comments">
           <label>{Sample_Comments}</label>
@@ -1391,37 +1531,37 @@
         <select faims_annotation="false" faims_attribute_name="Sketch" faims_attribute_type="freetext" faims_certainty="false" ref="Sketch" type="file">
           <label>{Sketch}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select>
         <trigger ref="attachSketch">
-          <label>Attach Sketch</label>
+          <label>{Attach Sketch}</label>
         </trigger>
         <select faims_annotation="false" faims_attribute_name="Photo" faims_attribute_type="freetext" faims_certainty="true" faims_sync="true" ref="Photo" type="camera">
           <label>{Photo}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select>
         <trigger ref="attachPhoto">
-          <label>Take Picture</label>
+          <label>{Take Picture}</label>
         </trigger>
         <trigger ref="viewattached">
-          <label>View Attached Files</label>
+          <label>{View Attached Files}</label>
         </trigger>
         <trigger ref="Update">
-          <label>Save Sample</label>
+          <label>{Save Sample}</label>
         </trigger>
         <trigger ref="SaveAndNew">
-          <label>Save and New Sample</label>
+          <label>{Save and New Sample}</label>
         </trigger>
         <trigger ref="Duplicate">
-          <label>Save and Duplicate Sample</label>
+          <label>{Save and Duplicate Sample}</label>
         </trigger>
         <trigger ref="Delete">
-          <label>Delete Sample</label>
+          <label>{Delete Sample}</label>
         </trigger>
       </group>
     </group>
@@ -1429,33 +1569,34 @@
 
     <!-- Matrix, an archent on deposits -->
     <group ref="Matrix" faims_archent_type="Matrix">
-      <label>Matrix</label>
+      <label>{Matrix}</label>
       <group ref="Matrix">
-        <label>Matrix</label>
+        <label>{Matrix}</label>
         <select1 faims_attribute_name="Component Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Component_Type">
           <label>{Component_Type}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+
+        <select1 faims_attribute_name="Component" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Component">
+          <label>{Component}</label>
+          <item>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
         <input faims_attribute_name="Percentage" faims_attribute_type="decimal" faims_certainty="false" faims_read_only="false" ref="Percentage">
           <label>{Percentage}</label>
-        </input>
-        <select1 faims_attribute_name="Component" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Component">
-          <label>{Component}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
+        </input>        
          <input faims_attribute_name="Stone Size" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Stone_Size">
           <label>{Soil_Stone_Size}</label>
         </input>
         <select1 faims_attribute_name="Shape" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Shape" type="image">
           <label>{Soil_Stone_Shape}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
@@ -1463,13 +1604,13 @@
           <label>{Soil_Stoniness}</label>
         </input>
         <trigger ref="Update">
-          <label>Save and Close</label>
+          <label>{Save and Close}</label>
         </trigger>
         <trigger ref="SaveAndNew">
-          <label>Save and New Matrix</label>
+          <label>{Save and New Matrix}</label>
         </trigger>
         <trigger ref="Delete">
-          <label>Delete Matrix</label>
+          <label>{Delete Matrix}</label>
         </trigger>
       </group>
     </group>
@@ -1503,7 +1644,7 @@
         <select1 faims_attribute_name="Special Find Class" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Special_Find_Class">
           <label>{Special_Find_Class}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
@@ -1515,19 +1656,19 @@
           <group faims_style="even" ref="child1">
             <label/>
             <input faims_attribute_name="X" faims_attribute_type="measure" faims_read_only="false" ref="X">
-              <label>X</label>
+              <label>{X}</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
             <input faims_attribute_name="Y" faims_attribute_type="measure" faims_read_only="false" ref="Y">
-              <label>Y</label>
+              <label>{Y}</label>
             </input>
           </group>
           <group faims_style="even" ref="child3">
             <label/>
             <input faims_attribute_name="Z" faims_attribute_type="measure" faims_read_only="false" ref="Z">
-              <label>Z</label>
+              <label>{Z}</label>
             </input>
           </group>
         </group>
@@ -1536,13 +1677,13 @@
           <group faims_style="even" ref="child1">
             <label/>
             <input faims_attribute_name="Latitude" faims_attribute_type="measure" faims_read_only="false" ref="Latitude">
-              <label>Latitude</label>
+              <label>{Latitude}</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
             <input faims_attribute_name="Longitude" faims_attribute_type="measure" faims_read_only="false" ref="Longitude">
-              <label>Longitude</label>
+              <label>{Longitude}</label>
             </input>
           </group>
         </group>
@@ -1554,13 +1695,13 @@
           <group faims_style="even" ref="child1">
             <label/>
             <input faims_attribute_name="Date From" faims_attribute_type="measure" faims_read_only="false" ref="Date_From">
-              <label>Date From</label>
+              <label>{Date From}</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
             <input faims_attribute_name="Date To" faims_attribute_type="measure" faims_read_only="false" ref="Date_To">
-              <label>Date To</label>
+              <label>{Date To}</label>
             </input>
           </group>
         </group>
@@ -1570,38 +1711,42 @@
         <select faims_annotation="false" faims_attribute_name="Photo" faims_attribute_type="freetext" faims_certainty="true" faims_sync="true" ref="Photo" type="camera">
           <label>{Photo}</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select>
         <trigger ref="attachPhoto">
-          <label>Take Picture</label>
+          <label>{Take Picture}</label>
         </trigger>
-        <trigger ref="viewattached">
-          <label>View Attached Files</label>
+        <!--<trigger ref="viewattached">
+          <label>{View Attached Files}</label>
         </trigger>
+
+        Kind of pointless without file attachments
+      -->
+
         <trigger ref="Update">
-          <label>Save {Special_Find}</label>
+          <label>{Save }{Special_Find}</label>
         </trigger>
         <trigger ref="SaveAndNew">
-          <label>Save and New {Special_Find}</label>
+          <label>{Save and New }{Special_Find}</label>
         </trigger>
         <trigger ref="Duplicate">
-          <label>Save and Duplicate {Special_Find}</label>
+          <label>{Save and Duplicate }{Special_Find}</label>
         </trigger>
         <trigger ref="Delete">
-          <label>Delete {Special_Find}</label>
+          <label>{Delete }{Special_Find}</label>
         </trigger>
       </group>
       <group ref="Special_Find_Location" faims_scrollable="false">
-        <label> {Special_Find} Location </label>
+        <label>{ }{Special_Find} Location </label>
         <trigger ref="New_Special_Find_Location">
-          <label> New {Special_Find} Location</label>
+          <label>{ New }{Special_Find} Location</label>
         </trigger>
         <select1 appearance="compact" ref="List_Special_Find_Location" faims_certainty="false" faims_annotation="false">
-          <label>List of {Special_Find} Locations:</label>
+          <label>{List of }{Special_Find} Locations:</label>
           <item>
-            <label>placeholder</label>
+            <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
@@ -1610,9 +1755,9 @@
 
     <!-- SPECIAL FIND LOCATION -->
     <group ref="Special_Find_Location" faims_archent_type="Special Find Location">
-      <label> {Special_Find} Location </label>
+      <label>{ }{Special_Find} Location </label>
       <group ref="Special_Find_Location">
-        <label> {Special_Find} Location </label>
+        <label>{ }{Special_Find} Location </label>
         <input ref="Latitude" faims_attribute_name="Latitude" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true">
           <label>{Latitude}</label>
         </input>
@@ -1626,13 +1771,13 @@
           <label>{Easting}</label>
         </input>
         <trigger ref="TakeGPS">
-          <label>Take From GPS</label>
+          <label>{Take From GPS}</label>
         </trigger>
         <trigger ref="Update">
-          <label>Save {Special_Find} Location</label>
+          <label>{Save }{Special_Find} Location</label>
         </trigger>
         <trigger ref="Delete">
-          <label>Delete {Special_Find} Location</label>
+          <label>{Delete }{Special_Find} Location</label>
         </trigger>
       </group>
     </group>

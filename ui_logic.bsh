@@ -72,7 +72,8 @@ onEvent("Context", "load", "showTab(\"Context/Context_Deposits\");");
 onEvent("Context", "load", "showTab(\"Context/Context_Cuts\");");
 onEvent("Context", "load", "showTab(\"Context/Context_Structures\");");
 
-onEvent("Context/Context_GeneralInformation/Details","click","openContextTabs()");
+onEvent("Context/Context_GeneralInformation/Details","click","saveContextAndOpenContextTabs()");
+onEvent("Context/Context_GeneralInformation/close", "click", "fillInCloseDate()");
 onEvent("Context/Context_Deposits/Soil_Populate_Colour", "click", "populateSoilColour()");
 
 onEvent("Context/Context_Attachments/Update", "delayclick", "saveContext()");
@@ -80,8 +81,10 @@ onEvent("Context/Context_GeneralInformation/Update", "delayclick", "saveContext(
 onEvent("Context/Context_Deposits/Update", "delayclick", "saveContext()");
 onEvent("Context/Context_Structures/Update", "delayclick", "saveContext()");
 onEvent("Context/Texture_Helper/Update_Texture", "click", "setTextureActual()");
+onEvent("Context/Texture_Helper/Return", "click", "returnToContext()");
 onEvent("Context/Context_Deposits/Texture_Helper", "click", "helpSetTextureActual()");
 onEvent("Context/Context_Cuts/Update", "delayclick", "saveContext()");
+onEvent("Context/Context_Artefacts/Update", "delayclick", "saveContext()");
 onEvent("Context/Context_Interpretation/Update", "delayclick", "saveContext()");
 
 onEvent("Context/Context_Deposits/newMatrix", "click", "saveContextAndNewMatrix()");
@@ -159,6 +162,17 @@ saveContext() {
         entity = fetchArchEnt(context_id);
     }
     saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();");
+}
+
+saveContextAndOpenContextTabs() {
+    if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        return;
+    }
+    if (!isNull(context_id)) {
+        entity = fetchArchEnt(context_id);
+    }
+    saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();openContextTabs();");
 }
 
 saveContextAndNewArtefactGroup() {
@@ -251,7 +265,7 @@ doNotDelete(){
 getCounterFromDB(){
     Object counter = fetchOne(""+
         "select response, deviceMatch, aenttimestamp "+
-        "from (select freetext, v.vocabName || ':'|| coalesce(substr('0000'||(substr(freetext,-4)+1),-4),'') as response, aenttimestamp,  "+
+        "from (select freetext, v.vocabName || ':0'|| coalesce(substr('0000'||(substr(freetext,-4)+1),-4),'') as response, aenttimestamp,  "+
         "             uuid in (select uuid "+
         "                        from latestnondeletedaentvalue AS av join attributekey using (attributeid), localSettings "+
         "                        where userid = value "+
@@ -292,6 +306,15 @@ deleteReln(){
     fetchOne(query);
     deleteRel(relnid);
     updateRelns();
+}
+
+fillInCloseDate(){
+    if(getFieldValue("Context/Context_GeneralInformation/Date_Closed").equals("")){
+        date = fetchOne("select date('now');");
+        setFieldValue("Context/Context_GeneralInformation/Date_Closed", date.get(0));
+    } else {
+        showToast("To avoid accidents, please clear the Date Closed field before updating.");
+    }
 }
 
 updateAllContextMatrices() {
@@ -461,11 +484,12 @@ loadContextAttributes(){
 
     populateHierarchicalDropDown("Context/Context_Deposits/Soil_Compaction_Type", "Soil Compaction Type");
     populateHierarchicalDropDown("Context/Context_Deposits/Soil_Munsell_Colour", "Soil Munsell Colour");
-    populateDropDown("Context/Context_Deposits/Soil_Texture_Actual", makeVocab("Soil Texture Actual"));
+    populateDropDown("Context/Context_Deposits/Soil_Texture_Actual", makeVocab("Soil Texture"));
     populateHierarchicalPictureGallery("Context/Context_Deposits/Soil_Particle_Sorting", "Soil Particle Sorting");
     populateDropDown("Context/Context_Deposits/Horizon_Boundary", makeVocab("Horizon Boundary"));
 
     populateDropDown("Context/Context_Cuts/Shape_of_Cut", makeVocab("Shape of Cut"));
+    populateDropDown("Context/Context_Cuts/Sides_of_Cut", makeVocab("Sides of Cut"));
     populateRadioGroup("Context/Context_Cuts/Shape_of_Corners", makeVocab("Shape of Corners"));
     populateRadioGroup("Context/Context_Cuts/Break_of_Slope_Top", makeVocab("Break of Slope - Top"));
     populateRadioGroup("Context/Context_Cuts/Break_of_slope_Base", makeVocab("Break of slope - Base"));
@@ -480,7 +504,7 @@ loadContextAttributes(){
     populateRadioGroup("Context/Context_Interpretation/Phase_From", makeVocab("Phase From"));
     populateRadioGroup("Context/Context_Interpretation/Phase_To", makeVocab("Phase To"));
 
-    populateHierarchicalDropDown("Context/Texture_Helper/Soil_Texture", "Soil Texture");
+    populateHierarchicalDropDown("Context/Texture_Helper/Soil_Texture", "Soil Texture Helper");
 
 
 }
@@ -522,6 +546,11 @@ setTextureActual(){
     if(!isNull(textureToSet)){
         setFieldValue("Context/Context_Deposits/Soil_Texture_Actual", textureToSet.get(0));
     }
+    cancelTab("Context/Texture_Helper", false);
+    showTab("Context/Context_Deposits");
+}
+
+returnToContext(){
     cancelTab("Context/Texture_Helper", false);
     showTab("Context/Context_Deposits");
 }
@@ -571,7 +600,7 @@ newContextGroup(menu){
     }
     newTabGroup("ContextGroup");
     context_group_id = null;
-    setFieldValue("ContextGroup/ContextGroup_Details/Site_Code","FAIMS13");
+    setFieldValue("ContextGroup/ContextGroup_Details/Site_Code","PAZC14");
     setFieldValue("ContextGroup/ContextGroup_Details/Area_Code", areaCode);
     populateContextGroup();
 }
