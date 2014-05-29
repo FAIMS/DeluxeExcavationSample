@@ -8363,7 +8363,7 @@
         <term HeuristID="0-3422" StandardCode="">{Fine_sand}
 
           <description>0.02–0.06 mm</description></term>
-        <term HeuristID="0-3426" StandardCode="">{Medium_Pebbles}
+        <term>{Medium_Pebbles}
 
           <description>6.00–20.0mm</description></term>
         <term HeuristID="0-3423" StandardCode="">{Medium_Sand}
