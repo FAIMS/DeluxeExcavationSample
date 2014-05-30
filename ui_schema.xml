@@ -585,7 +585,7 @@
       <bind nodeset="/faims/ContextGroup/ContextGroup_Details/Your_Discussion" type="string"/>
       <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container3/child1/Start_Date" type="decimal"/>
       <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container3/child2/End_Date" type="decimal"/>
-	  
+
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/Artefact_Quantity" type="decimal"/>
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/Artefact_Weight" type="decimal"/>
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/Artefact_Group_Comment" type="string"/>
