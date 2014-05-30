@@ -12,7 +12,6 @@ makeLocalID(){
 
 makeLocalID();
 
-showWarning("Thanks for trying this module!", "We have provided this module for Demonstration purposes only. You can customise the module yourself or we can help you. Contact info@fedarch.org for help.");
 
     
 /*** control ***/
@@ -126,14 +125,33 @@ onEvent("Context/Context_Relationships_to_Other_Contexts/deleteReln", "delayclic
 String context_id = null;
 
 newContext(){
-    context_id = null;
-    newTabGroup("Context");
-    setFieldValue("Context/Context_GeneralInformation/AreaCode", areaCode);
-    setFieldValue("Context/Context_GeneralInformation/Site_Code","PAZC14");
-    setFieldValue("Context/Context_GeneralInformation/Context_ID", getFieldValue("control/data/ContextIncrement"));
-    date = fetchOne("select date('now');");
-    setFieldValue("Context/Context_GeneralInformation/Date_Opened", date.get(0));
-    setFieldValue("Context/Context_GeneralInformation/CreatingUser", username);
+
+    contextIncrement = getFieldValue("control/data/ContextIncrement");
+    contextIncMatch = fetchOne("select count(freetext), '"+contextIncrement+"' LIKE '___-____' AND trim('"+contextIncrement+"','0123456789') = '-' from latestnondeletedaentvalue where freetext = '"+contextIncrement+"';");
+
+    if (!isNull(contextIncMatch) && (contextIncMatch.get(0).equals("0")) && (contextIncMatch.get(1).equals("1"))){
+        context_id = null;
+        newTabGroup("Context");
+        setFieldValue("Context/Context_GeneralInformation/AreaCode", areaCode.substring(0,3));
+        setFieldValue("Context/Context_GeneralInformation/Grid_Location_Reference", areaCode.substring(0,4));
+        setFieldValue("Context/Context_Measure/Datum", areaCode.substring(0,4));
+
+        setFieldValue("Context/Context_GeneralInformation/Site_Code","PAZC14");
+        setFieldValue("Context/Context_GeneralInformation/Context_ID", contextIncrement);
+        date = fetchOne("select date('now');");
+        setFieldValue("Context/Context_GeneralInformation/Date_Opened", date.get(0));
+        setFieldValue("Context/Context_GeneralInformation/CreatingUser", username);
+    } else {
+        if (!contextIncMatch.get(0).equals("0")) {
+            showWarning("Alert!","You tried to create a context with a duplicate ID. Please choose a different one. ");
+        }
+        else if (! contextIncMatch.get(1).equals("1")) {
+            showWarning("alert!","your context ID doesn't match the required pattern");
+        }
+        else {
+            showWarning("um","Something went wrong.");
+        }
+    }
 }
 
 loadContext() {
@@ -265,17 +283,17 @@ doNotDelete(){
 getCounterFromDB(){
     Object counter = fetchOne(""+
         "select response, deviceMatch, aenttimestamp "+
-        "from (select freetext, v.vocabName || '-0'|| coalesce(substr('0000'||(substr(freetext,-4)+1),-4),'') as response, aenttimestamp,  "+
+        "from (select freetext, v.vocabName || coalesce(substr('000'||(substr(freetext,-3)+1),-3),'') as response, aenttimestamp,  "+
         "             uuid in (select uuid "+
         "                        from latestnondeletedaentvalue AS av join attributekey using (attributeid), localSettings "+
         "                        where userid = value "+
         "                         and key = 'User') as deviceMatch, value "+
-        " from latestnondeletedarchentidentifiers join (select uuid from latestnondeletedaentvalue av join vocabulary v on (av.vocabid = v.vocabname), localSettings where key = 'Area' and value = v.vocabid) using (uuid), localSettings join vocabulary v on (value = v.vocabid) "+
+        " from latestnondeletedarchentidentifiers join (select uuid from latestnondeletedaentvalue av join vocabulary v on (av.vocabid = substr(v.vocabname,0,4)), localSettings where key = 'Area' and value = v.vocabid) using (uuid), localSettings join vocabulary v on (value = v.vocabid) "+
         " where attributename = 'Context ID' "+
         " and key = 'Area') "+
         " where response not in (select freetext from latestnondeletedarchentidentifiers where freetext is not null) "+
         "union select response, -1, aenttimestamp "+
-        "from (select vocabName || '-00001' as response, datetime(1, 'unixepoch') as aenttimestamp from localSettings join vocabulary on (value = vocabid) where key = 'Area') "+
+        "from (select vocabName || '001' as response, datetime(1, 'unixepoch') as aenttimestamp from localSettings join vocabulary on (value = vocabid) where key = 'Area') "+
         "order by deviceMatch desc, aenttimestamp desc limit 1;");
     String out = "";
 
@@ -481,7 +499,7 @@ updateRelns(){
 
 loadContextAttributes(){
     populatePictureGallery("Context/Context_GeneralInformation/Context_Type", makePictureGallery("Context Type"));
-
+    populateDropDown("Context/Context_GeneralInformation/Type_of_Definition", makeVocab("Type of Definition"));
     populateHierarchicalDropDown("Context/Context_Deposits/Soil_Compaction_Type", "Soil Compaction Type");
     populateHierarchicalDropDown("Context/Context_Deposits/Soil_Munsell_Colour", "Soil Munsell Colour");
     populateDropDown("Context/Context_Deposits/Soil_Texture_Actual", makeVocab("Soil Texture"));
@@ -489,6 +507,7 @@ loadContextAttributes(){
     populateDropDown("Context/Context_Deposits/Horizon_Boundary", makeVocab("Horizon Boundary"));
 
     populateDropDown("Context/Context_Cuts/Shape_of_Cut", makeVocab("Shape of Cut"));
+
     populateDropDown("Context/Context_Cuts/Sides_of_Cut", makeVocab("Sides of Cut"));
     populateRadioGroup("Context/Context_Cuts/Shape_of_Corners", makeVocab("Shape of Corners"));
     populateRadioGroup("Context/Context_Cuts/Break_of_Slope_Top", makeVocab("Break of Slope - Top"));
@@ -601,7 +620,7 @@ newContextGroup(menu){
     newTabGroup("ContextGroup");
     context_group_id = null;
     setFieldValue("ContextGroup/ContextGroup_Details/Site_Code","PAZC14");
-    setFieldValue("ContextGroup/ContextGroup_Details/Area_Code", areaCode);
+    setFieldValue("ContextGroup/ContextGroup_Details/Area_Code", areaCode.substring(0,3));
     populateContextGroup();
 }
 
@@ -1528,7 +1547,7 @@ getDefaultUsersList() {
 
 populateListForUsers(){
     populateDropDown("user/usertab/users", getDefaultUsersList());
-    populateRadioGroup("user/usertab/Area_Code", makeVocab("AreaCode"));
+    populateDropDown("user/usertab/Area_Code", makeVocab("AreaCode"));
 
     Object localArea = fetchOne("select value from localSettings where key = 'Area';");
     Object localUser = fetchOne("select value from localSettings where key = 'User';");

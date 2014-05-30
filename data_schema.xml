@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSchema name="hdb_FAIMS_Community_Server" preparer="Heurist user:Penny Crook" >
+<dataSchema name="PAZC" preparer="Penny Crook" >
   <!-- PAZC 2014 for University of Vermont -->
   <RelationshipElement name="AboveBelow" type="hierarchical">
     <description>Implements a above below for contexts.
@@ -76,26 +76,57 @@
     <property name="AreaCode" type="enum">
       <description>The working subdivision of a total archaeological site.</description>
        <lookup>
-        <term>123
+        <term>123-0
           <description>{Site} 123. 
 		  </description>
         </term>
-        <term>125
+        <term>125-0
           <description>{Site} 125.
 		  </description>
         </term>
-        <term>128
+        <term>128-0
           <description>{Site} 128.
 		  </description>
         </term>
-        <term>131
+        <term>131-0
           <description>{Site} 131.
 		  </description>
         </term>
-        <term>136
+        <term>136-0
           <description>{Site} 136.
 		  </description>
         </term>
+        <term>123-1
+          <description>{Site} 123. 
+      </description>
+        </term>
+        <term>125-1
+          <description>{Site} 125.
+      </description>
+        </term>
+        <term>128-1
+          <description>{Site} 128.
+      </description>
+        </term>
+        <term>131-1
+          <description>{Site} 131.
+      </description>
+        </term>
+        <term>136-1 
+          <description>{Site} 136.
+      </description>
+        </term>
+
+      </lookup>
+    </property>
+    <property name="Device Code" type="::sigh::">
+      <description/>
+      <lookup>
+        <term>0<description/></term>
+        <term>1<description/></term>
+        <term>2<description/></term>
+        <term>3<description/></term>
+        <term>4<description/></term>
       </lookup>
     </property>
     <property name="Grid Location Reference" type="freetext">
@@ -110,21 +141,21 @@
           <description>data not collected
           </description>
         </term>
-        <term HeuristID="0-3398" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Cut.png">{Cut}
+        <term pictureURL="files/data/gallery/ContextType/Orange/Cut.png">{Cut}
 
           <description>Any Context which forms a negative interface, eg pits, ditches, graves and foundation and robber trenches
           </description>
         </term>
-        <term HeuristID="0-3397" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Deposit.png">{Deposit}
+        <term pictureURL="files/data/gallery/ContextType/Orange/Deposit.png">{Deposit}
 
           <description>Any Context with deposited soil, eg natural deposits, floor and road surfaces and pit, ditch and grave fills
           </description>
 
         </term>
-        <term HeuristID="0-3400" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Natural.png">{Natural}
+        <term pictureURL="files/data/gallery/ContextType/Orange/Natural.png">{Natural}
           <description> </description>
         </term>
-        <term HeuristID="0-3399" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Structure.png">{Structure}
+        <term pictureURL="files/data/gallery/ContextType/Orange/Structure.png">{Structure}
 
           <description>Any context formed independent of a Cut or negative interface, eg walls, hearths.
           </description>
@@ -203,42 +234,42 @@
         <term>No Observation
 
           <description>data not collected</description></term>
-        <term HeuristID="0-3402" StandardCode="">{Coarse-grained_sediments}
+        <term>{Coarse-grained_sediments}
 
           <description>Soils with coarse-grained sediments such as gravel and sand.</description>
-          <term HeuristID="0-3407" StandardCode="">{Compact}
+          <term>{Compact}
             <description>Requires mattock for excavation.(MoLAS 2004: 30)</description></term>
-          <term HeuristID="0-3404" StandardCode="">{Indurated}
+          <term>{Indurated}
             <description>Broken only with sharp pick blow, even when soaked. (MoLAS 2004: 30)</description></term>
-          <term HeuristID="0-3408" StandardCode="">{Loose}
+          <term>{Loose}
             <description>Can be excavated with hoe or trowel. (MoLAS 2004: 30)</description></term>
-          <term HeuristID="0-3405" StandardCode="">{Strongly_cemented}
+          <term>{Strongly_cemented}
             <description>Cannot be broken with hands. (MoLAS 2004: 30)</description></term>
-          <term HeuristID="0-3406" StandardCode="">{Weakly_cemented}
+          <term>{Weakly_cemented}
             <description>Pick removes sediment in lumps which can be broken with hands. (MoLAS 2004: 30)</description></term>
         </term>
-        <term HeuristID="0-3403" StandardCode="">{Fine-grained_sediments}
+        <term>{Fine-grained_sediments}
 
           <description>Soils with fine-grained sediments such as silt and clay.</description>
-          <term HeuristID="0-3413" StandardCode="">{Friable}
+          <term>{Friable}
             <description>Non-plastic, crumbles in fingers.</description></term>
-          <term HeuristID="0-3409" StandardCode="">{Hard}
+          <term>{Hard}
             <description>Brittle or very tough. (MoLAS 2004: 30)</description></term>
-          <term HeuristID="0-3411" StandardCode="">{Soft}
+          <term>{Soft}
             <description>Easily moulded with fingers.</description></term>
-          <term HeuristID="0-3410" StandardCode="">{Stiff}
+          <term>{Stiff}
             <description>Cannot be moulded with fingers.(MoLAS 2004: 30)</description></term>
-          <term HeuristID="0-3412" StandardCode="">{Very_soft}
+          <term>{Very_soft}
             <description>Exudes between fingers when squeezed.</description></term>
         </term>
-        <term HeuristID="0-3414" StandardCode="">{Peat}
+        <term>{Peat}
 
           <description>Anaerobic accumulation of partially decayed vegetation.</description>
-          <term HeuristID="0-3415" StandardCode="">{Firm}
+          <term>{Firm}
             <description>Fibres compressed together. (MoLAS 1994: 30)</description></term>
-          <term HeuristID="0-3417" StandardCode="">{Plastic}
+          <term>{Plastic}
             <description>Can be moulded in hands and smeared between fingers. (MoLAS 1994: 30)</description></term>
-          <term HeuristID="0-3416" StandardCode="">{Spongy}
+          <term>{Spongy}
             <description>Very compressible and open structure. (MoLAS 1994: 30)</description></term>
         </term>
       </lookup>
@@ -7372,100 +7403,100 @@
       <description>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.
       </description>
       <lookup>
-        <term HeuristID="0-3606" StandardCode="">{Soil_does_NOT_remain_in_ball_when_squeezed}
+        <term>{Soil_does_NOT_remain_in_ball_when_squeezed}
 
           <description>Place approximately 25 g soil in palm. Add water dropwise and knead the soil to break down all aggregates. Soil is at the proper consistency when plastic and moldable, like moist putty.
           </description>
-          <term HeuristID="0-3609" StandardCode="">{Is_too_dry}
+          <term>{Is_too_dry}
 
             <description>The soil sample is too dry.
             </description>
-            <term HeuristID="0-3610" StandardCode="">{NO RESULT: Add more water and start again}
+            <term>{NO RESULT: Add more water and start again}
 
               <description> </description>
             </term>
           </term>
-          <term HeuristID="0-3611" StandardCode="">{Is_too_wet}
+          <term>{Is_too_wet}
 
             <description>The soil sample is too wet.
             </description>
-            <term HeuristID="0-3612" StandardCode="">{NO RESULT: Add dry soil and start again}
+            <term>{NO RESULT: Add dry soil and start again}
 
               <description>NO RESULT: add dry soil to soak up water
               </description>
             </term>
           </term>
-          <term HeuristID="0-3607" StandardCode="">{NOT_too_wet_nor_too_dry}
+          <term>{NOT_too_wet_nor_too_dry}
 
             <description>The soil is NOT too wet nor too dry.
             </description>
-            <term HeuristID="0-3608" StandardCode="">{Sand}
+            <term>{Sand}
 
               <description>A sand has a loose gritty feel and does not stick together. Individual sand grains can be seen or felt. (VDEPI 2009: AG0058)
               </description>
             </term>
           </term>
         </term>
-        <term HeuristID="0-3574" StandardCode="">{Soil_remains_in_ball_when_squeezed}
+        <term>{Soil_remains_in_ball_when_squeezed}
 
           <description>Place approximately 25 g soil in palm. Add water dropwise and knead the soil to break down all aggregates. Soil is at the proper consistency when plastic and moldable, like moist putty.
           </description>
-          <term HeuristID="0-3575" StandardCode="">{TASK:_Roll_ribbon}
+          <term>{TASK:_Roll_ribbon}
 
             <description>Rub a ball of soil between thumb and forefinger to make a 'ribbon'
             </description>
-            <term HeuristID="0-3604" StandardCode="">{Does_NOT_form_a_ribbom}
+            <term>{Does_NOT_form_a_ribbom}
 
               <description>A 'ribbon' is NOT formed when a ball of soil is rubbed between thumb and forefinger.
               </description>
-              <term HeuristID="0-3605" StandardCode="">{Loamy_Sand}
+              <term>{Loamy_Sand}
 
                 <description>In a loamy sand particles barely stick together and a moulded piece of soil just holds its shape. (VDEPI 2009: AG0058)
                 </description>
               </term>
             </term>
-            <term HeuristID="0-3576" StandardCode="">{Forms_ribbon}
+            <term>{Forms_ribbon}
 
               <description>A 'ribbon' is formed when a ball of soil is rubbed between thumb and forefinger.
               </description>
-              <term HeuristID="0-3586" StandardCode="">{Medium_ribbon_(2.5-5cm_long)}
+              <term>{Medium_ribbon_(2.5-5cm_long)}
 
                 <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is between 2.5 and 5cm long.
                 </description>
-                <term HeuristID="0-3587" StandardCode="">{TASK:_Wet_soil_and_rub_with_forefinger}
+                <term>{TASK:_Wet_soil_and_rub_with_forefinger}
 
                   <description>Excessively wet a small pinch of soil in palm and rub with forefinger.
                   </description>
-                  <term HeuristID="0-3590" StandardCode="">{Does_NOT_feel_very_gritty}
+                  <term>{Does_NOT_feel_very_gritty}
 
                     <description>The wetted soil does NOT feel very gritty when rubbed on the palm and with forefinger.
                     </description>
-                    <term HeuristID="0-3591" StandardCode="">{Feels_very_smooth}
+                    <term>{Feels_very_smooth}
 
                       <description>The wetted soil feels very smooth when rubbed on the palm and with forefinger.
                       </description>
-                      <term HeuristID="0-3592" StandardCode="">{Silty_Clay_Loam}
+                      <term>{Silty_Clay_Loam}
 
                         <description>A silty clay loam is like a clay loam but silty as well and smooth to the touch. (VDEPI 2009: AG0058)
                         </description>
                       </term>
                     </term>
-                    <term HeuristID="0-3593" StandardCode="">{Neither_very_gritty_nor_very_smooth}
+                    <term>{Neither_very_gritty_nor_very_smooth}
 
                       <description>The wetted soil does NOT feel very smooth nor very gritty when rubbed on the palm and with forefinger.
                       </description>
-                      <term HeuristID="0-3594" StandardCode="">{Clay_Loam}
+                      <term>{Clay_Loam}
 
                         <description>More easily moulded into a shape than a loam, a clay loam rolls out to a thin ribbon between the palms while a loam will break-up. When dry a clay loam will form a lump but is not as tough to break as a clay.(VDEPI 2009: AG0058)
                         </description>
                       </term>
                     </term>
                   </term>
-                  <term HeuristID="0-3588" StandardCode="">{Feels_very_gritty}
+                  <term>{Feels_very_gritty}
 
                     <description>The wetted soil feels very gritty when rubbed on the palm and with forefinger.
                     </description>
-                    <term HeuristID="0-3589" StandardCode="">{Sandy_Clay_Loam}
+                    <term>{Sandy_Clay_Loam}
 
                       <description>A sandy clay loam is like a clay loam but sand grains can be felt (and heard - see Sandy Loam) (VDEPI 2009: AG0058)
                       </description>
@@ -7473,44 +7504,44 @@
                   </term>
                 </term>
               </term>
-              <term HeuristID="0-3595" StandardCode="">{Strong_ribbon}
+              <term>{Strong_ribbon}
 
                 <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is strong and over 5cm long.
                 </description>
-                <term HeuristID="0-3596" StandardCode="">{TASK:_Wet_soil_and_rub_with_forefinger}
+                <term>{TASK:_Wet_soil_and_rub_with_forefinger}
 
                   <description>Excessively wet a small pinch of soil in palm and rub with forefinger.
                   </description>
-                  <term HeuristID="0-3599" StandardCode="">{Does_NOT_feel_very_gritty}
+                  <term>{Does_NOT_feel_very_gritty}
 
                     <description>The wetted soil does NOT feel very gritty when rubbed on the palm and with forefinger.
                     </description>
-                    <term HeuristID="0-3600" StandardCode="">{Feels_very_smooth}
+                    <term>{Feels_very_smooth}
 
                       <description>The wetted soil feels very smooth when rubbed on the palm and with forefinger.
                       </description>
-                      <term HeuristID="0-3601" StandardCode="">{Silty_Clay}
+                      <term>{Silty_Clay}
 
                         <description>A silty clay is like a clay but smoother. (VDEPI 2009: AG0058)
                         </description>
                       </term>
                     </term>
-                    <term HeuristID="0-3602" StandardCode="">{Neither_very_gritty_nor_very_smooth}
+                    <term>{Neither_very_gritty_nor_very_smooth}
 
                       <description>The wetted soil does NOT feel very smooth nor very gritty when rubbed on the palm and with forefinger.
                       </description>
-                      <term HeuristID="0-3603" StandardCode="">{Clay}
+                      <term>{Clay}
 
                         <description>Clays are tough and can be moulded into shapes when moist. Clays form a long flexible ribbon when rubbed between the palms and the ribbon can often be bent into a U shape without breaking. Clays dry into very hard clods. (VDEPI 2009: AG0058)
                         </description>
                       </term>
                     </term>
                   </term>
-                  <term HeuristID="0-3597" StandardCode="">{Feels_very_gritty}
+                  <term>{Feels_very_gritty}
 
                     <description>The wetted soil feels very gritty when rubbed on the palm and with forefinger.
                     </description>
-                    <term HeuristID="0-3598" StandardCode="">{Sandy_Clay}
+                    <term>{Sandy_Clay}
 
                       <description>A sandy clay is like a clay but sand grains can be felt (and heard - see Sandy Loam). (VDEPI 2009: AG0058)
                       </description>
@@ -7518,44 +7549,44 @@
                   </term>
                 </term>
               </term>
-              <term HeuristID="0-3577" StandardCode="">{Weak_ribbon_(Less_than_2.5cm_long)}
+              <term>{Weak_ribbon_(Less_than_2.5cm_long)}
 
                 <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is less than 2.5cm long.
                 </description>
-                <term HeuristID="0-3578" StandardCode="">{TASK:_Wet_soil_and_rub_with_forefinger}
+                <term>{TASK:_Wet_soil_and_rub_with_forefinger}
 
                   <description>Excessively wet a small pinch of soil in palm and rub with forefinger.
                   </description>
-                  <term HeuristID="0-3581" StandardCode="">{Does_NOT_feel_very_gritty}
+                  <term>{Does_NOT_feel_very_gritty}
 
                     <description>The wetted soil does NOT feel very gritty when rubbed on the palm and with forefinger.
                     </description>
-                    <term HeuristID="0-3582" StandardCode="">{Feels_very_smooth}
+                    <term>{Feels_very_smooth}
 
                       <description>The wetted soil feels very smooth when rubbed on the palm and with forefinger.
                       </description>
-                      <term HeuristID="0-3583" StandardCode="">{Silt_Loam}
+                      <term>{Silt_Loam}
 
                         <description>A silty loam is like a loam but has a smooth silky feel when a moist sample is pushed between the index finger and thumb. On drying a sample can form a hard lump but this may be broken by hand. (VDEPI 2009: AG0058)
                         </description>
                       </term>
                     </term>
-                    <term HeuristID="0-3584" StandardCode="">{Neither_very_gritty_nor_very_smooth}
+                    <term>{Neither_very_gritty_nor_very_smooth}
 
                       <description>The wetted soil does NOT feel very smooth nor very gritty when rubbed on the palm and with forefinger.
                       </description>
-                      <term HeuristID="0-3585" StandardCode="">{Loam}
+                      <term>{Loam}
 
                         <description>A loam breaks into crumbs but will tend to stick together. Sand grains cannot be felt in a moist sample which when squeezed will retain its shape when handled freely. Loams are usually soft to the feel. (VDEPI 2009: AG0058)
                         </description>
                       </term>
                     </term>
                   </term>
-                  <term HeuristID="0-3579" StandardCode="">{Feels_very_gritty}
+                  <term>{Feels_very_gritty}
 
                     <description>The wetted soil feels very gritty when rubbed on the palm and with forefinger.
                     </description>
-                    <term HeuristID="0-3580" StandardCode="">{Sandy_Loam}
+                    <term>{Sandy_Loam}
 
                       <description>A sandy loam sticks together more than a loamy sand but can be easily broken. Individual sand grains can be felt and heard if a wet sample is rubbed between the index finger and thumb and held close to the ear. (VDEPI 2009: AG0058)
                       </description>
@@ -7572,51 +7603,51 @@
       <description>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.
       </description>
       <lookup>
-        <term HeuristID="0-3608" StandardCode="">{No Observation }
+        <term>{No Observation }
           <description>No Observation. Use the Texture helper to prefil this.
           </description>
         </term>
-        <term HeuristID="0-3608" StandardCode="">{Sand}
+        <term>{Sand}
           <description>A sand has a loose gritty feel and does not stick together. Individual sand grains can be seen or felt. (VDEPI 2009: AG0058)
           </description>
         </term>
-        <term HeuristID="0-3605" StandardCode="">{Loamy_Sand}
+        <term>{Loamy_Sand}
           <description>In a loamy sand particles barely stick together and a moulded piece of soil just holds its shape. (VDEPI 2009: AG0058)
           </description>
         </term>
-        <term HeuristID="0-3592" StandardCode="">{Silty_Clay_Loam}
+        <term>{Silty_Clay_Loam}
           <description>A silty clay loam is like a clay loam but silty as well and smooth to the touch. (VDEPI 2009: AG0058)
           </description>
         </term>
-        <term HeuristID="0-3594" StandardCode="">{Clay_Loam}
+        <term>{Clay_Loam}
           <description>More easily moulded into a shape than a loam, a clay loam rolls out to a thin ribbon between the palms while a loam will break-up. When dry a clay loam will form a lump but is not as tough to break as a clay.(VDEPI 2009: AG0058)
           </description>
         </term>
-        <term HeuristID="0-3589" StandardCode="">{Sandy_Clay_Loam}
+        <term>{Sandy_Clay_Loam}
           <description>A sandy clay loam is like a clay loam but sand grains can be felt (and heard - see Sandy Loam) (VDEPI 2009: AG0058)
           </description>
         </term>
-        <term HeuristID="0-3601" StandardCode="">{Silty_Clay}
+        <term>{Silty_Clay}
           <description>A silty clay is like a clay but smoother. (VDEPI 2009: AG0058)
           </description>
         </term>
-        <term HeuristID="0-3603" StandardCode="">{Clay}
+        <term>{Clay}
           <description>Clays are tough and can be moulded into shapes when moist. Clays form a long flexible ribbon when rubbed between the palms and the ribbon can often be bent into a U shape without breaking. Clays dry into very hard clods. (VDEPI 2009: AG0058)
           </description>
         </term>
-        <term HeuristID="0-3598" StandardCode="">{Sandy_Clay} 
+        <term>{Sandy_Clay} 
           <description>A sandy clay is like a clay but sand grains can be felt (and heard - see Sandy Loam). (VDEPI 2009: AG0058)
           </description>
         </term>
-        <term HeuristID="0-3583" StandardCode="">{Silt_Loam}
+        <term>{Silt_Loam}
           <description>A silty loam is like a loam but has a smooth silky feel when a moist sample is pushed between the index finger and thumb. On drying a sample can form a hard lump but this may be broken by hand. (VDEPI 2009: AG0058)
           </description>
         </term>
-        <term HeuristID="0-3585" StandardCode="">{Loam}
+        <term>{Loam}
           <description>A loam breaks into crumbs but will tend to stick together. Sand grains cannot be felt in a moist sample which when squeezed will retain its shape when handled freely. Loams are usually soft to the feel. (VDEPI 2009: AG0058)
           </description>
         </term>
-        <term HeuristID="0-3580" StandardCode="">{Sandy_Loam}
+        <term>{Sandy_Loam}
           <description>A sandy loam sticks together more than a loamy sand but can be easily broken. Individual sand grains can be felt and heard if a wet sample is rubbed between the index finger and thumb and held close to the ear. (VDEPI 2009: AG0058)
           </description>
         </term>
@@ -7631,22 +7662,22 @@
           <description>data not collected
           </description>
         </term>
-        <term HeuristID="0-3443" StandardCode="" pictureURL="files/data/gallery/Sorting/ModeratelySorted.png">{Moderately_sorted}
+        <term pictureURL="files/data/gallery/Sorting/ModeratelySorted.png">{Moderately_sorted}
 
           <description>Particles are mostly the same size and evenly distributed, but there are some larger particles.
           </description>
         </term>
-        <term HeuristID="0-3444" StandardCode="" pictureURL="files/data/gallery/Sorting/PoorlySorted.png">{Poorly_sorted}
+        <term pictureURL="files/data/gallery/Sorting/PoorlySorted.png">{Poorly_sorted}
 
           <description>Particles are different sizes and unevenly distributed.
           </description>
         </term>
-        <term HeuristID="0-3445" StandardCode="" pictureURL="files/data/gallery/Sorting/VeryPoorlySorted.png">{Very_poorly_sorted}
+        <term pictureURL="files/data/gallery/Sorting/VeryPoorlySorted.png">{Very_poorly_sorted}
 
           <description>Particles are very different sizes and very unevenly distributed.
           </description>
         </term>
-        <term HeuristID="0-3442" StandardCode="" pictureURL="files/data/gallery/Sorting/WellSorted.png">{Well_sorted}
+        <term pictureURL="files/data/gallery/Sorting/WellSorted.png">{Well_sorted}
 
           <description>Particles are roughly the same size and evenly distributed.
           </description>
@@ -7670,37 +7701,37 @@
           <description>data not collected
           </description>
         </term>
-        <term HeuristID="0-3462" StandardCode="">{Broken}
+        <term>{Broken}
 
           <description>The boundary is interrupted. (MoLAS 1994: 35)
           </description>
         </term>
-        <term HeuristID="0-3457" StandardCode="">{Clear}
+        <term>{Clear}
 
           <description>Change occurs over a distance of 25-60 mm. (MoLAS 1994: 35)
           </description>
         </term>
-        <term HeuristID="0-3458" StandardCode="">{Diffuse}
+        <term>{Diffuse}
 
           <description>Change occurs over a distance of 60-130 mm. (MoLAS 1994: 35)
           </description>
         </term>
-        <term HeuristID="0-3461" StandardCode="">{Irregular}
+        <term>{Irregular}
 
           <description>The boundary surface has pockets that are deeper than they are wide. (MoLAS 1994: 35)
           </description>
         </term>
-        <term HeuristID="0-3456" StandardCode="">{Sharp}
+        <term>{Sharp}
 
           <description>Change occurs over a distance of 5-25 mm (or less). (MoLAS 1994: 35)
           </description>
         </term>
-        <term HeuristID="0-3459" StandardCode="">{Smooth}
+        <term>{Smooth}
 
           <description>The boundary surface is plane with few irregularities. (MoLAS 1994: 35)
           </description>
         </term>
-        <term HeuristID="0-3460" StandardCode="">{Wavy}
+        <term>{Wavy}
 
           <description>The boundary surface has broad shallow relatively regular pockets. (MoLAS 1994: 35)
           </description>
@@ -7716,41 +7747,41 @@
           <description>data not collected
           </description>
         </term>
-        <term HeuristID="0-3465" StandardCode="">{Circular}
+        <term>{Circular}
 
           <description>Round
           </description>
         </term>
-        <term HeuristID="0-3470" StandardCode="">{Linear}
+        <term>{Linear}
 
           <description>Straight sided, but not square or rectangular.
           </description>
         </term>
-        <term HeuristID="0-3468" StandardCode="">{Ovoid}
+        <term>{Ovoid}
 
           <description>Oval or elliptical.
           </description>
         </term>
-        <term HeuristID="0-3471" StandardCode="">{Rectangular}
+        <term>{Rectangular}
 
           <description>Two sides longer than the other.
           </description>
         </term>
-        <term HeuristID="0-3466" StandardCode="">{Semi-Circular}
+        <term>{Semi-Circular}
 
           <description>Half circle.
           </description>
         </term>
-        <term HeuristID="0-3464" StandardCode="">{Square}
+        <term>{Square}
 
           <description>Equal on four sides. </description>
         </term>
-        <term HeuristID="0-3467" StandardCode="">{Sub-Circular}
+        <term>{Sub-Circular}
 
           <description>Nearly circular.
           </description>
         </term>
-        <term HeuristID="0-3469" StandardCode="">{Sub-rectangular}
+        <term>{Sub-rectangular}
 
           <description>Nearly rectangular in shape.
           </description>
@@ -7764,17 +7795,17 @@
     <property name="Shape of Corners" type="enum">
       <description>The shape of the corners of a Cut in plan: 'square', 'rounded' etc. </description>
       <lookup>
-        <term HeuristID="0-3475" StandardCode="">{Other}
+        <term>{Other}
 
           <description>Other shapes
           </description>
         </term>
-        <term HeuristID="0-3474" StandardCode="">{Rounded}
+        <term>{Rounded}
 
           <description>Rounded corners.
           </description>
         </term>
-        <term HeuristID="0-3473" StandardCode="">{Square}
+        <term>{Square}
 
           <description>Sharp, perpendicular corners.
           </description>
@@ -7785,16 +7816,16 @@
       <description>The degree with which the top surface of the edge of the cut breaks into the sides.
       </description>
       <lookup>
-        <term HeuristID="0-3478" StandardCode="">{Gradual}
+        <term>{Gradual}
 
           <description>Some rounding to the top.
           </description>
         </term>
-        <term HeuristID="0-3479" StandardCode="">{Not_perceptible}
+        <term>{Not_perceptible}
 
           <description>Well-rounded; there is no perceptible difference between the sides of the cut and the surface into which it protrudes. </description>
         </term>
-        <term HeuristID="0-3477" StandardCode="">{Sharp}
+        <term>{Sharp}
 
           <description>Clear, sharp slope.
           </description>
@@ -7805,16 +7836,16 @@
       <description>The degree with which the sides break into the base of the cut.
       </description>
       <lookup>
-        <term HeuristID="0-3478" StandardCode="">{Gradual}
+        <term>{Gradual}
 
           <description>Some rounding to the top.
           </description>
         </term>
-        <term HeuristID="0-3479" StandardCode="">{Not_perceptible}
+        <term>{Not_perceptible}
 
           <description>Well-rounded; there is no perceptible difference between the sides of the cut and the surface into which it protrudes. </description>
         </term>
-        <term HeuristID="0-3477" StandardCode="">{Sharp}
+        <term>{Sharp}
 
           <description>Clear, sharp slope.
           </description>
@@ -7840,33 +7871,33 @@
           <description>data not collected
           </description>
         </term>
-        <term HeuristID="0-3482" StandardCode="">{Concave}
+        <term>{Concave}
 
           <description> </description>
         </term>
-        <term HeuristID="0-3481" StandardCode="">{Flat}
+        <term>{Flat}
 
           <description> </description>
         </term>
-        <term HeuristID="0-3484" StandardCode="">{Pointed}
+        <term>{Pointed}
 
           <description> </description>
         </term>
-        <term HeuristID="0-3483" StandardCode="">{Sloping}
+        <term>{Sloping}
 
           <description> </description>
         </term>
-        <term HeuristID="0-3485" StandardCode="">{Tapered}
+        <term>{Tapered}
 
           <description> </description>
-          <term HeuristID="0-3487" StandardCode="">{Blunt}
+          <term>{Blunt}
             <description> </description>
           </term>
-          <term HeuristID="0-3488" StandardCode="">{Sharp}
+          <term>{Sharp}
             <description> </description>
           </term>
         </term>
-        <term HeuristID="0-3486" StandardCode="">{Uneven}
+        <term>{Uneven}
 
           <description> </description>
         </term>
@@ -7881,22 +7912,22 @@
           <description>data not collected
           </description>
         </term>
-        <term HeuristID="0-3491" StandardCode="">{E-W}
+        <term>{E-W}
 
           <description>Oriented East to West.
           </description>
         </term>
-        <term HeuristID="0-3490" StandardCode="">{N-S}
+        <term>{N-S}
 
           <description>Oriented North to South.
           </description>
         </term>
-        <term HeuristID="0-3493" StandardCode="">{NE-SW}
+        <term>{NE-SW}
 
           <description>Oriented North-east to South-west.
           </description>
         </term>
-        <term HeuristID="0-3492" StandardCode="">{NW-SE}
+        <term>{NW-SE}
 
           <description>Oriented North-west to South-east.
           </description>
@@ -8145,21 +8176,21 @@
           <description>data not collected
           </description>
         </term>
-        <term HeuristID="0-3556" StandardCode="">{Mortar}
+        <term>{Mortar}
 
           <description>Paste used to bind masonry blocks together. </description>
-          <term HeuristID="0-3559" StandardCode="">{Cement_mortar}
+          <term>{Cement_mortar}
 
             <description>Cement based mortar
             </description>
           </term>
-          <term HeuristID="0-3558" StandardCode="">{Lime-shell_mortar}
+          <term>{Lime-shell_mortar}
 
             <description>Sandy mortar with lime and burnt shell inlcusion
             </description>
           </term>
         </term>
-        <term HeuristID="0-3557" StandardCode="">{Unmortared}
+        <term>{Unmortared}
 
           <description>No visible bonding material, ie unmortared
           </description>
@@ -8174,48 +8205,48 @@
           <description>data not collected
           </description>
         </term>
-        <term HeuristID="0-3562" StandardCode="">{Brick}
+        <term>{Brick}
           <description> </description>
-          <term HeuristID="0-3570" StandardCode="" pictureURL="files/data/gallery/BrickBonds/Brown/English.png">{English_Bond}
+          <term pictureURL="files/data/gallery/BrickBonds/Brown/English.png">{English_Bond}
             <description>Full courses of headers alternating with full courses of stretchers.
             </description>
           </term>
-          <term HeuristID="0-3571" StandardCode="" pictureURL="files/data/gallery/BrickBonds/Brown/Flemish.png">{Flemish_Bond}
+          <term pictureURL="files/data/gallery/BrickBonds/Brown/Flemish.png">{Flemish_Bond}
             <description>Courses of alternating headers and stretchers.
             </description>
           </term>
-          <term HeuristID="0-3572" StandardCode="" pictureURL="files/data/gallery/BrickBonds/Brown/Header.png">{Header_Bond}
+          <term pictureURL="files/data/gallery/BrickBonds/Brown/Header.png">{Header_Bond}
             <description>Courses of headers only. 
             </description>
           </term>
-          <term HeuristID="0-3569" StandardCode="" pictureURL="files/data/gallery/BrickBonds/Brown/Stretcher.png">{Stretcher}
+          <term pictureURL="files/data/gallery/BrickBonds/Brown/Stretcher.png">{Stretcher}
             <description>Courses of full bricks where every course is offset half a brick from the course below.
             </description>
           </term>
         </term>
-        <term HeuristID="0-3561" StandardCode="">{Stone}
+        <term>{Stone}
           <description> </description>
-          <term HeuristID="0-3568" StandardCode="">{Quoins_stressed}
+          <term>{Quoins_stressed}
             <description>Large corner blocks set along side regular courses blocks.
             </description>
           </term>
-          <term HeuristID="0-3564" StandardCode="">{Random_coursed}
+          <term>{Random_coursed}
             <description>Patterning of different shaped, rubble stone.
             </description>
           </term>
-          <term HeuristID="0-3563" StandardCode="">{Random_uncoursed}
+          <term>{Random_uncoursed}
             <description>No regular pattern
             </description>
           </term>
-          <term HeuristID="0-3566" StandardCode="">{Regular_courses}
+          <term>{Regular_courses}
             <description>Lines or courses of regular size.
             </description>
           </term>
-          <term HeuristID="0-3567" StandardCode="">{String_courses}
+          <term>{String_courses}
             <description>Long stones in regular lines or courses.
             </description>
           </term>
-          <term HeuristID="0-3565" StandardCode="">{Uneven_courses}
+          <term>{Uneven_courses}
             <description>Lines or courses of different size
             </description>
           </term>
@@ -8278,21 +8309,21 @@
           <description>data not collected
           </description>
         </term>
-        <term HeuristID="0-3398" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Cut.png">{Cut}
+        <term pictureURL="files/data/gallery/ContextType/Orange/Cut.png">{Cut}
 
           <description>Any Context which forms a negative interface, eg pits, ditches, graves and foundation and robber trenches
           </description>
         </term>
-        <term HeuristID="0-3397" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Deposit.png">{Deposit}
+        <term pictureURL="files/data/gallery/ContextType/Orange/Deposit.png">{Deposit}
 
           <description>Any Context with deposited soil, eg natural deposits, floor and road surfaces and pit, ditch and grave fills
           </description>
 
         </term>
-        <term HeuristID="0-3400" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Natural.png">{Natural}
+        <term pictureURL="files/data/gallery/ContextType/Orange/Natural.png">{Natural}
           <description> </description>
         </term>
-        <term HeuristID="0-3399" StandardCode="" pictureURL="files/data/gallery/ContextType/Orange/Structure.png">{Structure}
+        <term pictureURL="files/data/gallery/ContextType/Orange/Structure.png">{Structure}
 
           <description>Any context formed independent of a Cut or negative interface, eg walls, hearths.
           </description>
@@ -8473,31 +8504,31 @@
         <term>No Observation
 
           <description>data not collected</description></term>
-        <term HeuristID="0-3420" StandardCode="">{Clay}
+        <term>{Clay}
 
           <description/></term>
-        <term HeuristID="0-3427" StandardCode="">{Coarse_Pebbles}
+        <term>{Coarse_Pebbles}
 
           <description>20.00–60.00mm</description></term>
-        <term HeuristID="0-3424" StandardCode="">{Coarse_Sand}
+        <term>{Coarse_Sand}
 
           <description>0.20–2.00mm</description></term>
-        <term HeuristID="0-3428" StandardCode="">{Cobbles}
+        <term>{Cobbles}
 
           <description>60mm–200mm</description></term>
-        <term HeuristID="0-3425" StandardCode="">{Fine_Pebbles}
+        <term>{Fine_Pebbles}
 
           <description>2.00–6.00mm</description></term>
-        <term HeuristID="0-3422" StandardCode="">{Fine_sand}
+        <term>{Fine_sand}
 
           <description>0.02–0.06 mm</description></term>
-        <term HeuristID="0-3426" StandardCode="">{Medium_Pebbles}
+        <term>{Medium_Pebbles}
 
           <description>6.00–20.0mm</description></term>
-        <term HeuristID="0-3423" StandardCode="">{Medium_Sand}
+        <term>{Medium_Sand}
 
           <description>0.06–0.20mm</description></term>
-        <term HeuristID="0-3421" StandardCode="">{Silt}
+        <term>{Silt}
 
           <description/></term>
       </lookup>
@@ -8514,41 +8545,41 @@
           <description>data not collected
           </description>
         </term>
-        <term HeuristID="0-3447" StandardCode="" pictureURL="files/data/gallery/Pebbles/Angular.png">{Angular}
+        <term pictureURL="files/data/gallery/Pebbles/Angular.png">{Angular}
 
           <description>Sharp pebbles or stones.
           </description>
-          <term HeuristID="0-3449" StandardCode="" pictureURL="files/data/gallery/Pebbles/AngularAngular.png">{Angular}
+          <term pictureURL="files/data/gallery/Pebbles/AngularAngular.png">{Angular}
 
             <description>Sharp and pointed.
             </description>
           </term>
-          <term HeuristID="0-3450" StandardCode="" pictureURL="files/data/gallery/Pebbles/AngularSub.png">{Sub-angular}
+          <term pictureURL="files/data/gallery/Pebbles/AngularSub.png">{Sub-angular}
 
             <description>A little sharp and pointed.
             </description>
           </term>
-          <term HeuristID="0-3448" StandardCode="" pictureURL="files/data/gallery/Pebbles/AngularVery.png">{Very_angular}
+          <term pictureURL="files/data/gallery/Pebbles/AngularVery.png">{Very_angular}
 
             <description>Very sharp and pointed.
             </description>
           </term>
         </term>
-        <term HeuristID="0-3451" StandardCode="" pictureURL="files/data/gallery/Pebbles/Rounded.png">{Rounded}
+        <term pictureURL="files/data/gallery/Pebbles/Rounded.png">{Rounded}
 
           <description>Rounded stones and pebbles.
           </description>
-          <term HeuristID="0-3453" StandardCode="" pictureURL="files/data/gallery/Pebbles/RoundedRounded.png">{Rounded}
+          <term pictureURL="files/data/gallery/Pebbles/RoundedRounded.png">{Rounded}
 
             <description>Mostly rounded pebble or stone.
             </description>
           </term>
-          <term HeuristID="0-3452" StandardCode="" pictureURL="files/data/gallery/Pebbles/RoundedSub.png">{Sub-rounded}
+          <term pictureURL="files/data/gallery/Pebbles/RoundedSub.png">{Sub-rounded}
 
             <description>Some rounding to pebbles or stones.
             </description>
           </term>
-          <term HeuristID="0-3454" StandardCode="" pictureURL="files/data/gallery/Pebbles/RoundedWell.png">{Well-rounded}
+          <term pictureURL="files/data/gallery/Pebbles/RoundedWell.png">{Well-rounded}
 
             <description>Very rounded pebble or stone.
             </description>
@@ -8746,58 +8777,58 @@
       <description>Primary components of structure or feature, eg dry-pressed brick, rough-hewn stone.
       </description>
       <lookup>
-        <term HeuristID="0-3546" StandardCode="">{Brick}
+        <term>{Brick}
 
           <description>Fired or sun-dried clay block used in masonry construction.
           </description>
-          <term HeuristID="0-3548" StandardCode="">{Dry-pressed}
+          <term>{Dry-pressed}
             <description>Dry pressed brick </description>
           </term>
-          <term HeuristID="0-3549" StandardCode="">{Glazed_brick}
+          <term>{Glazed_brick}
             <description> </description>
           </term>
-          <term HeuristID="0-3547" StandardCode="">{Sandstock}
+          <term>{Sandstock}
             <description>Hand-made colonial bricks
             </description>
           </term>
         </term>
-        <term HeuristID="0-3554" StandardCode="">{Earth}
+        <term>{Earth}
 
           <description>Compact earthen wall or floor.
           </description>
         </term>
-        <term HeuristID="0-3541" StandardCode="">{Stone}
+        <term>{Stone}
 
           <description>Worked or unworked stone used in masonry walls.
           </description>
-          <term HeuristID="0-3542" StandardCode="">{Ashlar}
+          <term>{Ashlar}
             <description>Finely dressed stone with flat face.
             </description>
           </term>
-          <term HeuristID="0-3545" StandardCode="">{Other}
+          <term>{Other}
             <description> </description>
           </term>
-          <term HeuristID="0-3543" StandardCode="">{Roughly-hewn}
+          <term>{Roughly-hewn}
             <description>Roughly cut stone: shows some sign of shaping.
             </description>
           </term>
-          <term HeuristID="0-3544" StandardCode="">{Rubble}
+          <term>{Rubble}
             <description>Stone fragments with few signs of shaping
             </description>
           </term>
         </term>
-        <term HeuristID="0-3550" StandardCode="">{Timber}
+        <term>{Timber}
 
           <description>Timber uprights or other elements for a wall or fence.
           </description>
-          <term HeuristID="0-3552" StandardCode="">{Beam}
+          <term>{Beam}
             <description>Timber beam or support.
             </description>
           </term>
-          <term HeuristID="0-3553" StandardCode="">{Plank}
+          <term>{Plank}
             <description>Timber plank for flooring or panelling. </description>
           </term>
-          <term HeuristID="0-3551" StandardCode="">{Post}
+          <term>{Post}
             <description>Round or square timber post.
             </description>
           </term>
@@ -8808,19 +8839,19 @@
       <description>Primary bonding material of structure or feature, eg mortar.
       </description>
       <lookup>
-        <term HeuristID="0-3556" StandardCode="">{Mortar}
+        <term>{Mortar}
 
           <description>Paste used to bind masonry blocks together. </description>
-          <term HeuristID="0-3559" StandardCode="">{Cement_mortar}
+          <term>{Cement_mortar}
             <description>Cement based mortar
             </description>
           </term>
-          <term HeuristID="0-3558" StandardCode="">{Lime-shell_mortar}
+          <term>{Lime-shell_mortar}
             <description>Sandy mortar with lime and burnt shell inlcusion
             </description>
           </term>
         </term>
-        <term HeuristID="0-3557" StandardCode="">{Unmortared}
+        <term>{Unmortared}
 
           <description>No visible bonding material, ie unmortared
           </description>
@@ -8831,49 +8862,49 @@
       <description>The type of bonding course, eg 'English bond'
       </description>
       <lookup>
-        <term HeuristID="0-3562" StandardCode="">{Brick}
+        <term>{Brick}
 
           <description> </description>
-          <term HeuristID="0-3570" StandardCode="">{English_Bond}
+          <term>{English_Bond}
             <description>Full courses of headers alternating with full courses of stretchers.
             </description>
           </term>
-          <term HeuristID="0-3571" StandardCode="">{Flemish_Bond}
+          <term>{Flemish_Bond}
             <description>Courses of alternating headers and stretchers.
             </description>
           </term>
-          <term HeuristID="0-3572" StandardCode="">{Header_Bond}
+          <term>{Header_Bond}
             <description>Courses of headers only. </description>
           </term>
-          <term HeuristID="0-3569" StandardCode="">{Stretcher}
+          <term>{Stretcher}
             <description>Courses of full bricks where every course is offset half a brick from the course below.
             </description>
           </term>
         </term>
-        <term HeuristID="0-3561" StandardCode="">{Stone}
+        <term>{Stone}
 
           <description> </description>
-          <term HeuristID="0-3568" StandardCode="">{Quoins_stressed}
+          <term>{Quoins_stressed}
             <description>Large corner blocks set along side regular courses blocks.
             </description>
           </term>
-          <term HeuristID="0-3564" StandardCode="">{Random_coursed}
+          <term>{Random_coursed}
             <description>Patterning of different shaped, rubble stone.
             </description>
           </term>
-          <term HeuristID="0-3563" StandardCode="">{Random_uncoursed}
+          <term>{Random_uncoursed}
             <description>No regular pattern
             </description>
           </term>
-          <term HeuristID="0-3566" StandardCode="">{Regular_courses}
+          <term>{Regular_courses}
             <description>Lines or courses of regular size.
             </description>
           </term>
-          <term HeuristID="0-3567" StandardCode="">{String_courses}
+          <term>{String_courses}
             <description>Long stones in regular lines or courses.
             </description>
           </term>
-          <term HeuristID="0-3565" StandardCode="">{Uneven_courses}
+          <term>{Uneven_courses}
             <description>Lines or courses of different size
             </description>
           </term>
