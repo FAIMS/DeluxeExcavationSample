@@ -1990,14 +1990,14 @@
             </input>
 
 <select1 faims_attribute_name="AdobeShape" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Shape">
-            <label>Shape</label>
+            <label>{Shape}</label>
             <item>
               <label>placeholder</label>
               <value>placeholder</value>
             </item>
           </select1>
           <select1 faims_attribute_name="Method_Manufacture" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Method_Manufacture">
-            <label>Method_Manufacture</label>
+            <label>{Method_Manufacture}</label>
             <item>
               <label>placeholder</label>
               <value>placeholder</value>
@@ -2006,16 +2006,16 @@
 
           
           <trigger ref="Update">
-            <label>Save and Close</label>
+            <label>{Save_and_Close}</label>
           </trigger>
           <trigger ref="SaveAndNew">
-            <label>Save and New</label>
+            <label>{Save_and_New}</label>
           </trigger>
           <trigger ref="Delete">
-            <label>Delete {Photograph_Log}</label>
+            <label>{Delete_Adobe_Element}</label>
           </trigger>
           <trigger ref="ReturnToContext">
-            <label>Return To Context</label>
+            <label>{Return_To_Context}</label>
           </trigger>        
       </group>
     </group>
@@ -2040,7 +2040,7 @@
               <label>{Photograph_Log}</label>
             </input>
           <select1 faims_attribute_name="Scene Type" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Scene_Type">
-            <label>Scene Type</label>
+            <label>{Scene_Type}</label>
             <item>
               <label>placeholder</label>
               <value>placeholder</value>
@@ -2051,16 +2051,16 @@
               <label>{Caption}</label>
             </input>
           <trigger ref="Update">
-            <label>Save and Close</label>
+            <label>{Save_and_Close}</label>
           </trigger>
           <trigger ref="SaveAndNew">
-            <label>Save and New</label>
+            <label>{Save_and_New}</label>
           </trigger>
           <trigger ref="Delete">
-            <label>Delete {Photograph_Log}</label>
+            <label>{Delete_Photograph_Log}</label>
           </trigger>
           <trigger ref="ReturnToContext">
-            <label>Return To Context</label>
+            <label>{Return_To_Context}</label>
           </trigger>
         </group>
     </group>

@@ -86,11 +86,7 @@
     <property name="AreaCode" type="enum">
       <description>The working subdivision of a total archaeological site.</description>
        <lookup>
-        <term>No Observation
-          <description>data not collected 
-		  </description>
-        </term>
-		<term>123-0
+        <term>123-0
           <description>{Site} 123. 
 		  </description>
         </term>
@@ -8017,15 +8013,15 @@
 		 <description>No description
           </description>
 		</term>
-		<term>{Sicán_Temprano} 
+		<term>{Sican_Temprano} 
           <description>No description
           </description>
         </term>
-        <term>{Sicán_Medio} 
+        <term>{Sican_Medio} 
           <description>No description
           </description>
         </term>
-        <term>{Sicán_Tardío} 
+        <term>{Sican_Tardío} 
           <description>No description
           </description>
         </term>
@@ -8079,15 +8075,15 @@
 		 <description>No description
           </description>
 		</term>
-		<term>{Sicán_Temprano} 
+		<term>{Sican_Temprano} 
           <description>No description
           </description>
         </term>
-        <term>{Sicán_Medio} 
+        <term>{Sican_Medio} 
           <description>No description
           </description>
         </term>
-        <term>{Sicán_Tardío} 
+        <term>{Sican_Tardío} 
           <description>No description
           </description>
         </term>
