@@ -86,7 +86,11 @@
     <property name="AreaCode" type="enum">
       <description>The working subdivision of a total archaeological site.</description>
        <lookup>
-        <term>123-0
+        <term>No Observation
+          <description>data not collected 
+		  </description>
+        </term>
+		<term>123-0
           <description>{Site} 123. 
 		  </description>
         </term>
@@ -146,7 +150,7 @@
       <description>Deposit, cut or 'other' (feature).
       </description>
       <lookup>
-        <term pictureURL="files/data/gallery/ContextType/Other/NA.png">{No Observation}
+        <term pictureURL="files/data/gallery/ContextType/Other/NA.png">No Observation
 
           <description>data not collected
           </description>
@@ -7613,7 +7617,7 @@
       <description>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.
       </description>
       <lookup>
-        <term>{No Observation }
+        <term>No Observation
           <description>No Observation. Use the Texture helper to prefil this.
           </description>
         </term>
@@ -7667,7 +7671,7 @@
       <description>Assessment of the frequency with which particles of the same size occur.
       </description>
       <lookup>
-        <term pictureURL="files/data/gallery/Other/NA.png">{No Observation}
+        <term pictureURL="files/data/gallery/Other/NA.png">No Observation
 
           <description>data not collected
           </description>
@@ -7989,7 +7993,11 @@
       <description>The earliest phase in which this Context was likely to have been created.
       </description>
       <lookup>
-        <term>{Formativo} 
+         <term>No Observation
+          <description>data not collected 
+		  </description>
+        </term>
+		<term>{Formativo} 
           <description>No description
           </description>
         </term>
@@ -8047,7 +8055,11 @@
 	  <description>The latest phase in which this Context was likely to have been deposited or sealed.
       </description>
       <lookup>
-	    <term>{Formativo} 
+	     <term>No Observation
+          <description>data not collected 
+		  </description>
+        </term>
+		<term>{Formativo} 
           <description>No description
           </description>
         </term>
@@ -8277,7 +8289,8 @@
 	<property name="Type of Definition" type="enum">   
   	<description> The reason why the {Context} was declared, ie because of a change in soil color or consistency, a change in the characteristics of material culture recovered, or for arbitrary reasons.</description> 
   	<lookup>
-    	<term>{Natural}<description>No description.</description></term>
+    	<term>No Observation<description>data not collected</description></term>
+		<term>{Natural}<description>No description.</description></term>
     	<term>{Cultural}<description>No description.</description></term>
     	<term>{Arbitrary}<description>No description.</description></term>
     	<term>{Other}<description>No description.</description></term>
@@ -8316,7 +8329,7 @@
       <description>
       </description>
       <lookup>
-        <term pictureURL="files/data/gallery/ContextType/Other/NA.png">{No Observation}
+        <term pictureURL="files/data/gallery/ContextType/Other/NA.png">No Observation
           <description>data not collected
           </description>
         </term>
@@ -8373,7 +8386,11 @@
       <description>The earliest phase in which this Context was likely to have been created.
       </description>
             <lookup>
-        <term>{Formativo} 
+         <term>No Observation
+          <description>data not collected 
+		  </description>
+        </term>
+		<term>{Formativo} 
           <description>No description
           </description>
         </term>
@@ -8431,7 +8448,11 @@
       <description>The latest phase in which this Context was likely to have been deposited or sealed.
       </description>
       <lookup>
-        <term>{Formativo} 
+         <term>No Observation
+          <description>data not collected 
+		  </description>
+        </term>
+		<term>{Formativo} 
           <description>No description
           </description>
         </term>
@@ -8551,7 +8572,7 @@
     <property name="Shape" type="enum">
       <description>Shape and roundness of stones and pebbles in the deposit. </description>
       <lookup>
-        <term pictureURL="files/data/gallery/Other/NA.png">{No Observation}
+        <term pictureURL="files/data/gallery/Other/NA.png">No Observation
 
           <description>data not collected
           </description>
@@ -8769,7 +8790,7 @@
       <description>Method of collecting the sample.
       </description>
       <lookup>
-        <term>No_Observation
+        <term>No Observation
 
           <description>data not collected
           </description>
@@ -9110,7 +9131,8 @@
   <property name="AdobeShape" type="enum">
     <description>Shape of the adobe brick.</description>
     <lookup>
-      <term>{Flat}<description>No description.</description></term>
+      <term>No Observation<description>data not collected</description></term>
+	  <term>{Flat}<description>No description.</description></term>
       <term>{Rounded}<description>No description.</description></term>
       <term>{Loaf-shaped}<description>No description.</description></term>
     </lookup>
@@ -9118,11 +9140,9 @@
   <property name="Method_Manufacture" type="enum">
     <description>The method of adobe manufacture.</description>
     <lookup>
-      <term>{Mold_made}
-        <description>Bears evidence of having been made in a {Mould}.</description></term>
-      <term>{Non_mold_made}
-        <description>Free form, or bears no evidence of having been made in a {Mould}.
-    </description></term>
+      <term>No Observation<description>data not collected</description></term>
+	  <term>{Mold_made}<description>Bears evidence of having been made in a {Mould}.</description></term>
+      <term>{Non_mold_made}<description>Free form, or bears no evidence of having been made in a {Mould}.</description></term>
   </lookup>
   </property>
 </ArchaeologicalElement>
@@ -9140,7 +9160,8 @@
     <property name="Scene Type" type="enum">
       <description>The type of scene captured, eg opening or closing view of the Context. (Vocab: Open, Close, Other)</description>
       <lookup>
-        <term> Open
+        <term>No Observation<description>data not collected</description></term>
+		<term> Open
           <description/>
         </term>
         <term> Close
