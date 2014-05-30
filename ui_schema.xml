@@ -1273,7 +1273,7 @@
           <label>{Relate_Contexts}</label>
         </trigger>
         <select1 faims_certainty="false" faims_read_only="false" ref="listRelns">
-          <label>{Associated_Entities:}</label>
+          <label>{Associated_Entities}</label>
           <item>
             <label>{placeholder}</label>
             <value>placeholder</value>
@@ -1371,7 +1371,7 @@
           </trigger>
       </group>
       <group ref="Context_Attachments">
-        <label>{ADD}</label>
+        <label>{Attach}</label>
         <select faims_annotation="false" faims_attribute_name="Sketch" faims_attribute_type="freetext" faims_certainty="false" ref="Sketch" type="file">
           <label>{Sketch}</label>
           <item>

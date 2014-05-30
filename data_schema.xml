@@ -144,7 +144,7 @@
       </lookup>
     </property>
     <property name="Grid Location Reference" type="freetext">
-      <description>Reference number for the grid square(s) within which this Context falls. </description>
+      <description>Reference number for the Unit or grid square(s) within which this Context falls. </description>
     </property>
     <property name="Context Type" type="enum">
       <description>Deposit, cut or 'other' (feature).
@@ -8660,7 +8660,7 @@
         <term>{Beads}
 		<description></description>
 		</term>
-		<term>{Carbon}<description>No description.</description></term>
+		<term>{Charcoal}<description>No description.</description></term>
 		<term>{Macrobotanical}<description></description></term>
         <term>{Building_Materials}
           <description> </description>
@@ -8751,8 +8751,8 @@
           <description>Data not collected.
           </description>
         </term>
-        <term>{Carbon}
-		<description>Sample of {Carbon}.</description>
+        <term>{Charcoal}
+		<description>Sample of {Charcoal}.</description>
 		</term>
 		<term>{Ceramic}
 		<description>Sample of {Ceramic} sherds.</description>
@@ -9018,7 +9018,7 @@
         <term>{Beads}
 		<description></description>
 		</term>
-		<term>{Carbon}<description>No description.</description></term>
+		<term>{Charcoal}<description>No description.</description></term>
 		<term>{Macrobotanical}<description></description></term>
         <term>{Building_Materials}
           <description> </description>
