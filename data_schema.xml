@@ -9157,13 +9157,13 @@
       <description>The type of scene captured, eg opening or closing view of the Context. (Vocab: Open, Close, Other)</description>
       <lookup>
         <term>No Observation<description>data not collected</description></term>
-		<term> Open
+		<term>{Open}
           <description/>
         </term>
-        <term> Close
+        <term>{Close}
           <description/>
         </term>
-        <term> Other
+        <term>{Other}
           <description/>
         </term>
       </lookup>
@@ -9171,6 +9171,7 @@
     <property name="Camera" type="enum">
   <description>The name or type of camera on which the photograph was taken. </description>
   <lookup>
+  <term>No Observation<description>data not collected</description></term>
   <term>{Parker_Nikon_D90}<description>Parker's Nikon D90</description></term>
   <term>{Parker_Canon_SX260HS}<description>Parker's Canon SX260HS</description></term>
   <term>{Parker_Canon_S100}<description>Parker CanonS100</description></term>
