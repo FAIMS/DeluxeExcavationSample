@@ -58,6 +58,16 @@
     </description>
   </RelationshipElement>
 
+  <RelationshipElement name="ContextPhotographLog" type="bidirectional">
+    <description>Implements a 1:N between context and its photograph logs
+    </description>
+  </RelationshipElement>
+
+  <RelationshipElement name="ContextAdobe" type="bidirectional">
+    <description>Implements a 1:N between context and its Adobe bricks
+    </description>
+  </RelationshipElement>
+
   <!-- CONTEXT -->
   <ArchaeologicalElement name="Context">
     <description>The physical result of any single action, whether it leaves a positive or negative record within the stratigraphic sequence. (MoLAS 1994)
@@ -8107,32 +8117,32 @@
           <description>data not collected
           </description>
         </term>
-		<term>{Adobe}
-		 <description>Sun-dried brick.
-          </description>
-		<term>{With_Straw}<description>{Adobe} {brick} with straw temper.</description></term>
-		<term>{With_Straw}<description>{Adobe} {brick} with straw temper.</description></term>
-		</term>
-		<term>{Brick}
+    		<term>{Adobe}
+    		 <description>Sun-dried brick.
+              </description>
+      		<term>{With_Straw}<description>{Adobe} {brick} with straw temper.</description></term>
+      		<term>{Without_Straw}<description>{Adobe} {brick} without straw temper.</description></term>
+    		</term>
+		    <term>{Brick}
           <description>Fired clay block used in masonry construction.
           </description>
         </term>
         <term>{Stone}
           <description>Worked or unworked stone used in masonry walls.
           </description>
-          <term HeuristID="0-3542">
+          <term>
             {Ashlar}
             <description>Finely dressed stone with flat face.
             </description>
           </term>
-          <term HeuristID="0-3545">{Other}
+          <term>{Other}
             <description> </description>
           </term>
-          <term HeuristID="0-3543">{Roughly-hewn}
+          <term>{Roughly-hewn}
             <description>Roughly cut stone: shows some sign of shaping.
             </description>
           </term>
-          <term HeuristID="0-3544">{Rubble}
+          <term>{Rubble}
             <description>Stone fragments with few signs of shaping
             </description>
           </term>
@@ -8148,15 +8158,15 @@
 		<term>{Timber}
           <description>{Timber} uprights or other elements for a wall or fence.
           </description>
-          <term HeuristID="0-3552">
+          <term>
             {Beam}
             <description>Timber beam or support.
             </description>
           </term>
-          <term HeuristID="0-3553">{Plank}
+          <term>{Plank}
             <description>Timber plank for flooring or panelling. </description>
           </term>
-          <term HeuristID="0-3551">{Post}
+          <term>{Post}
             <description>Round or square timber post.
             </description>
           </term>
@@ -8265,13 +8275,13 @@
 	<description>Squares within an excavation {Grid_Location_Reference}, eg A1, B2 etc.</description>
 	</property>
 	<property name="Type of Definition" type="enum">   
-	<description> The reason why the {Context} was declared, ie because of a change in soil color or consistency, a change in the characteristics of material culture recovered, or for arbitrary reasons.</description> 
-	<lookup>
-	<term>{Natural}<description>No description.</description></term>
-	<term>{Cultural}<description>No description.</description></term>
-	<term>{Arbitrary}<description>No description.</description></term>
-	<term>{Other}<description>No description.</description></term>
-	</lookup> 
+  	<description> The reason why the {Context} was declared, ie because of a change in soil color or consistency, a change in the characteristics of material culture recovered, or for arbitrary reasons.</description> 
+  	<lookup>
+    	<term>{Natural}<description>No description.</description></term>
+    	<term>{Cultural}<description>No description.</description></term>
+    	<term>{Arbitrary}<description>No description.</description></term>
+    	<term>{Other}<description>No description.</description></term>
+  	</lookup> 
 	</property>
 	<property name="Excavator" type="freetext">   
 	<description> The primary excavator of the {Context}.</description> 
@@ -8285,6 +8295,7 @@
 	<property name="Drawings" type="freetext">
 	<description>The reference numbers for drawings of this {Context}.</description>
 	</property>
+
   </ArchaeologicalElement>
 
   <!--CONTEXT GROUP-->
@@ -8671,6 +8682,30 @@
       <description>Photo
       </description>
     </property>
+    <property name="Bag_Number" type="freetext">
+      <description>The number of the bag</description>
+    </property>
+    <property name="Box_Number" type="freetext">
+      <description>The number of the box in which the {Artefact_Group} is stored.</description>
+    </property>
+    <property name="Registered" type="freetext">
+      <description>The initials and date the {Artefact_Group} was registered, eg ‘AB 5/27’.</description>
+    </property>
+    <property name="Counted" type="freetext">
+      <description>The initials and date the {Artefact_Group} was {Counted}, eg ‘AB 5/27’.</description>
+    </property>
+    <property name="Weighed" type="freetext">
+      <description>The initials and date the {Artefact_Group} was {Weighed}, eg ‘AB 5/27’.</description>
+    </property>
+    <property name="Labeled" type="freetext">
+      <description>The initials and date the {Artefact_Group} was {Labeled}, eg ‘AB 5/27’.</description>
+    </property>
+    <property name="Analysed" type="freetext">
+      <description>The initials and date the {Artefact_Group} was {Analysed}, eg ‘AB 5/27’.</description>
+    </property>
+    <property name="Stored" type="freetext">
+      <description>The initials and date the {Artefact_Group} was put away in storage, eg ‘AB 5/27’.</description>
+    </property>
   </ArchaeologicalElement>
 
   <!--SAMPLE-->
@@ -9046,4 +9081,93 @@
       <description>Easting of Special Find</description>
     </property>
   </ArchaeologicalElement>
+
+<!-- ADOBE ELEMENT -->
+
+   <ArchaeologicalElement name="Adobe Element">
+    <description>An individual adobe brick within a structure.
+    </description>  
+    <property name="Site Code" type="freetext">
+      <description>Short code to signify the excavation site and often the year of excavation. </description>
+    </property>
+    <property name="Context ID" type="freetext">
+      <description>Unique number or code for each Context.
+      </description>
+    </property>
+    <property isIdentifier="true" name="Adobe Element ID" type="freetext">
+      <description>Unique number or code for the {Adobe_Element}.
+      </description>
+    </property> 
+  <property name="Height" type="freetext">
+    <description>Maximum height of the adobe brick. </description>
+  </property>
+  <property name="Width"  type="freetext">
+    <description>Maximum width of the adobe brick.</description>
+  </property>
+  <property name="Length" type="freetext">
+   <description>Maximum length of the adobe brick</description>
+  </property>
+  <property name="AdobeShape" type="enum">
+    <description>Shape of the adobe brick.</description>
+    <lookup>
+      <term>{Flat}<description>No description.</description></term>
+      <term>{Rounded}<description>No description.</description></term>
+      <term>{Loaf-shaped}<description>No description.</description></term>
+    </lookup>
+  </property>
+  <property name="Method_Manufacture" type="enum">
+    <description>The method of adobe manufacture.</description>
+    <lookup>
+      <term>{Mold_made}
+        <description>Bears evidence of having been made in a {Mould}.</description></term>
+      <term>{Non_mold_made}
+        <description>Free form, or bears no evidence of having been made in a {Mould}.
+    </description></term>
+  </lookup>
+  </property>
+</ArchaeologicalElement>
+
+<!-- photograph log -->
+
+  <ArchaeologicalElement name="Photograph Log">
+    <description>A record of images created and stored on another device, eg by a professional site photographer.</description>
+    <property name="ContextID" type="freetext">
+      <description>Unique number or code for each Context</description>
+    </property>
+    <property name="Photograph Reference ID" isIdentifier= "true" type="freetext">
+      <description>Unique number or code allocated by creator of the image. It could be a filename or a reference number</description>
+    </property>
+    <property name="Scene Type" type="enum">
+      <description>The type of scene captured, eg opening or closing view of the Context. (Vocab: Open, Close, Other)</description>
+      <lookup>
+        <term> Open
+          <description/>
+        </term>
+        <term> Close
+          <description/>
+        </term>
+        <term> Other
+          <description/>
+        </term>
+      </lookup>
+    </property>
+    <property name="Camera" type="enum">
+  <description>The name or type of camera on which the photograph was taken. </description>
+  <lookup>
+  <term>{Parker_Nikon_D90}<description>Parker's Nikon D90</description></term>
+  <term>{Parker_Canon_SX260HS}<description>Parker's Canon SX260HS</description></term>
+  <term>{Parker_Canon_S100}<description>Parker CanonS100</description></term>
+  <term>{Carlos_Camara}<description>Carlo's Camara</description></term>
+  <term>{Theo_Camara}<description>Theo'd Camara</description></term>
+  <term>{Alex_Nikon_D300}<description>Alex's Nikon D300</description></term>
+  <term>{Noa_Camara}<description>Noa's Camara</description></term>
+  </lookup>
+  </property>
+
+  <property name="Caption" type="freetext">
+    <description>A brief description of the photograph</description>
+  </property>
+  </ArchaeologicalElement>
+
+
 </dataSchema>

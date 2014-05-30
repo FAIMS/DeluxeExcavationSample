@@ -210,6 +210,12 @@
               <Bond_Type/>
               <Distinguishing_Marks/>
               <Structure_Description/>
+
+              <newAdobe/>
+              <AdobeList/>
+              <loadAdobe/>
+              <deleteAdobe/>  
+
               <Update/>
               <Delete/>
             </Context_Structures>
@@ -260,10 +266,15 @@
             <Context_Attachments>
               <Recorded_By/>
               <Sketch/>
+              <Drawings/>
               <attachSketch/>
               <Photo/>
               <attachPhoto/>
               <viewattached/>
+              <newPhotoLog/>
+              <PhotoLogList/>
+              <loadPhotoLog/>
+              <deletePhotoLog/>              
               <Update/>
               <SaveAndNew/>
               <Duplicate/>
@@ -361,6 +372,14 @@
                 </child3>
               </container1>
               <Artefact_Class/>
+              <Bag_Number/>
+              <Box_Number/>
+              <Registered/>
+              <Counted/>
+              <Weighted/>
+              <Labeled/>
+              <Analysed/>
+              <Stored/>
               <Artefact_Quantity/>
               <Artefact_Weight/>
               <Artefact_Group_Comment/>
@@ -491,6 +510,44 @@
               <Delete/>
             </Special_Find_Location>
           </Special_Find_Location>
+
+
+          <!-- ArchEnt: Adobe Element-->
+          <Adobe_Element>
+            <Adobe_Element>
+              <Context_ID/>
+              <Site_Code/>
+              <Adobe_Element_ID/>
+              <Height/>
+              <Width/>
+              <Length/>
+              <Shape/>
+              <Method_Manufacture/>
+              <Update/>
+              <SaveAndNew/>
+              <Delete/>
+              <ReturnToContext/>
+            </Adobe_Element>
+          </Adobe_Element>
+
+          
+
+          <!-- ArchEnt: Photograph Log -->
+          <Photograph_Log>
+            <Photograph_Log>
+              <Context_ID/>
+              <Photograph_Reference_ID/>
+              <Camera/>
+              <Caption/>
+              <Scene_Type/>
+              <Update/>
+              <SaveAndNew/>
+              <Delete/>
+              <ReturnToContext/>
+            </Photograph_Log>
+          </Photograph_Log>
+
+
 
         </faims>
       </instance>
@@ -1094,6 +1151,23 @@
         <input faims_attribute_name="Structure Description" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Structure_Description">
           <label>{Structure_Description}</label>
         </input>
+         <trigger ref="newAdobe">
+          <label>Add {Adobe}</label>
+        </trigger>
+        <select1 faims_certainty="false" faims_read_only="false" ref="AdobeList">
+          <label>Select a {Adobe}:</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <trigger ref="loadAdobe">
+          <label>Load {Adobe}</label>
+        </trigger>
+        <trigger ref="deleteAdobe">
+          <label>Delete {Adobe}</label>
+        </trigger>
+
         <trigger ref="Update">
           <label>{Save_Context}</label>
         </trigger>
@@ -1126,14 +1200,14 @@
             </input>
           </group>
         </group>
-        <select1 appearance="full" faims_attribute_name="Phase From" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_From">
+        <select1 faims_attribute_name="Phase From" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_From">
           <label>{Phase_From}</label>
           <item>
             <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
-        <select1 appearance="full" faims_attribute_name="Phase To" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_To">
+        <select1 faims_attribute_name="Phase To" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_To">
           <label>{Phase_To}</label>
           <item>
             <label>{placeholder}</label>
@@ -1221,44 +1295,7 @@
           </group>
         </group>
       </group>
-      <group ref="Context_Attachments">
-        <label>{ADD}</label>
-        <select faims_annotation="false" faims_attribute_name="Sketch" faims_attribute_type="freetext" faims_certainty="false" ref="Sketch" type="file">
-          <label>{Sketch}</label>
-          <item>
-            <label>{placeholder}</label>
-            <value>placeholder</value>
-          </item>
-        </select>
-        <trigger ref="attachSketch">
-          <label>{Attach_Sketch}</label>
-        </trigger>
-        <select faims_annotation="false" faims_attribute_name="Photo" faims_attribute_type="freetext" faims_certainty="true" faims_sync="true" ref="Photo" type="camera">
-          <label>{Photo}</label>
-          <item>
-            <label>{placeholder}</label>
-            <value>placeholder</value>
-          </item>
-        </select>
-        <trigger ref="attachPhoto">
-          <label>{Take_Picture}</label>
-        </trigger>
-        <trigger ref="viewattached">
-          <label>{View_Attached_Files}</label>
-        </trigger>
-        <trigger ref="Update">
-          <label>{Save_Context}</label>
-        </trigger>
-        <trigger ref="SaveAndNew">
-          <label>{Save_and_New_Context}</label>
-        </trigger>
-        <trigger ref="Duplicate">
-          <label>{Save_and_Duplicate_Context}</label>
-        </trigger>
-        <trigger ref="Delete">
-          <label>{Delete_Context}</label>
-        </trigger>
-      </group>
+      
       <group ref="Context_Artefacts">
         <label>{Artefacts}</label>
         <trigger ref="newArtefactGroup">
@@ -1333,6 +1370,65 @@
             <label>{Return_to_Context}</label>
           </trigger>
       </group>
+      <group ref="Context_Attachments">
+        <label>{ADD}</label>
+        <select faims_annotation="false" faims_attribute_name="Sketch" faims_attribute_type="freetext" faims_certainty="false" ref="Sketch" type="file">
+          <label>{Sketch}</label>
+          <item>
+            <label>{placeholder}</label>
+            <value>placeholder</value>
+          </item>
+        </select>
+
+         <input faims_attribute_name="Drawings" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Drawings">
+              <label>{Drawings}</label>
+            </input>
+
+        <trigger ref="attachSketch">
+          <label>{Attach_Sketch}</label>
+        </trigger>
+        <select faims_annotation="false" faims_attribute_name="Photo" faims_attribute_type="freetext" faims_certainty="true" faims_sync="true" ref="Photo" type="camera">
+          <label>{Photo}</label>
+          <item>
+            <label>{placeholder}</label>
+            <value>placeholder</value>
+          </item>
+        </select>
+        <trigger ref="attachPhoto">
+          <label>{Take_Picture}</label>
+        </trigger>
+        <trigger ref="viewattached">
+          <label>{View_Attached_Files}</label>
+        </trigger>
+        <trigger ref="newPhotoLog">
+          <label>Add {Photograph_Log}</label>
+        </trigger>
+        <select1 faims_certainty="false" faims_read_only="false" ref="PhotoLogList">
+          <label>Select a {Photograph_Log}:</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <trigger ref="loadPhotoLog">
+          <label>Load {Photograph_Log}</label>
+        </trigger>
+        <trigger ref="deletePhotoLog">
+          <label>Delete {Photograph_Log}</label>
+        </trigger>
+        <trigger ref="Update">
+          <label>{Save_Context}</label>
+        </trigger>
+        <trigger ref="SaveAndNew">
+          <label>{Save_and_New_Context}</label>
+        </trigger>
+        <trigger ref="Duplicate">
+          <label>{Save_and_Duplicate_Context}</label>
+        </trigger>
+        <trigger ref="Delete">
+          <label>{Delete_Context}</label>
+        </trigger>
+      </group>
     </group>
 
     <!-- ArchEnt: CONTEXT_GROUP -->
@@ -1404,14 +1500,14 @@
             </input>
           </group>
         </group>
-        <select1 appearance="full" faims_attribute_name="CG Phase From" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_From">
+        <select1 faims_attribute_name="CG Phase From" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_From">
           <label>{Phase_From}</label>
           <item>
             <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
-        <select1 appearance="full" faims_attribute_name="CG Phase To" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_To">
+        <select1 faims_attribute_name="CG Phase To" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_To">
           <label>{Phase_To}</label>
           <item>
             <label>{placeholder}</label>
@@ -1487,15 +1583,42 @@
             <value>placeholder</value>
           </item>
         </select1>
+
+        <input faims_attribute_name="Bag_Number" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Bag_Number">
+          <label>{Bag_Number}</label>
+        </input>
+
+
         <input faims_attribute_name="Artefact Quantity" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Artefact_Quantity">
           <label>{Artefact_Quantity}</label>
         </input>
         <input faims_attribute_name="Artefact Weight" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Artefact_Weight">
           <label>{Artefact_Weight}</label>
         </input>
+        <input faims_attribute_name="Box_Number" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Box_Number">
+          <label>{Box_Number}</label>
+        </input>        
         <input faims_attribute_name="Artefact Group Comment" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Artefact_Group_Comment">
           <label>{Artefact_Group_Comment}</label>
         </input>
+        <input faims_attribute_name="Registered" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Registered">
+          <label>{Registered}</label>
+        </input>        
+        <input faims_attribute_name="Counted" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Counted">
+          <label>{Counted}</label>
+        </input>  
+        <input faims_attribute_name="Weighed" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Weighted">
+          <label>{Weighted}</label>
+        </input>  
+        <input faims_attribute_name="Labeled" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Labeled">
+          <label>{Labeled}</label>
+        </input>  
+        <input faims_attribute_name="Analysed" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Analysed">
+          <label>{Analysed}</label>
+        </input>  
+        <input faims_attribute_name="Stored" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Stored">
+          <label>{Stored}</label>
+        </input>                                          
         <select faims_annotation="false" faims_attribute_name="Sketch" faims_attribute_type="freetext" faims_certainty="false" ref="Sketch" type="file">
           <label>{Sketch}</label>
           <item>
@@ -1838,5 +1961,109 @@
         </trigger>
       </group>
     </group>
+
+    <!-- ADOBE ELEMENT -->
+
+    <group ref="Adobe_Element" faims_archent_type="Adobe Element">
+      <label>{Adobe} </label>
+      <group ref="Adobe_Element">
+        <label>{Adobe} </label>
+ <input faims_attribute_name="Context ID" faims_attribute_type="freetext" faims_read_only="true" ref="Context_ID">
+              <label>{ContextID}</label>
+            </input>
+             <input faims_attribute_name="Site Code" faims_attribute_type="freetext" faims_read_only="true" ref="Site_Code">
+              <label>{Site_Code}</label>
+            </input>
+            
+            <input faims_attribute_name="Adobe Element ID" faims_attribute_type="freetext" faims_read_only="false" ref="Adobe_Element_ID" faims_certainty="false">
+              <label>{Adobe_Element_ID}</label>
+            </input>
+
+            <input faims_attribute_name="Height" faims_attribute_type="measure" faims_read_only="false" ref="Height" faims_certainty="true">
+              <label>{Height}</label>
+            </input>
+             <input faims_attribute_name="Width" faims_attribute_type="measure" faims_read_only="false" ref="Width" faims_certainty="true">
+              <label>{Width}</label>
+            </input>
+             <input faims_attribute_name="Length" faims_attribute_type="measure" faims_read_only="false" ref="Length" faims_certainty="true">
+              <label>{Length}</label>
+            </input>
+
+<select1 faims_attribute_name="AdobeShape" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Shape">
+            <label>Shape</label>
+            <item>
+              <label>placeholder</label>
+              <value>placeholder</value>
+            </item>
+          </select1>
+          <select1 faims_attribute_name="Method_Manufacture" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Method_Manufacture">
+            <label>Method_Manufacture</label>
+            <item>
+              <label>placeholder</label>
+              <value>placeholder</value>
+            </item>
+          </select1>
+
+          
+          <trigger ref="Update">
+            <label>Save and Close</label>
+          </trigger>
+          <trigger ref="SaveAndNew">
+            <label>Save and New</label>
+          </trigger>
+          <trigger ref="Delete">
+            <label>Delete {Photograph_Log}</label>
+          </trigger>
+          <trigger ref="ReturnToContext">
+            <label>Return To Context</label>
+          </trigger>        
+      </group>
+    </group>
+
+
+    <!-- ArchEnt: Photograph Log -->
+    <group ref="Photograph_Log" faims_archent_type="Photograph Log">
+      <label>{Photograph_Log}</label>
+        <group ref="Photograph_Log">
+          <label>{Photograph_Log}</label>
+            <input faims_attribute_name="ContextID" faims_attribute_type="freetext" faims_read_only="true" ref="Context_ID">
+              <label>{ContextID}</label>
+            </input>
+            <select1 faims_attribute_name="Camera" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Camera">
+            <label>{Camera}</label>
+            <item>
+              <label>placeholder</label>
+              <value>placeholder</value>
+            </item>
+          </select1>
+            <input faims_attribute_name="Photograph Reference ID" faims_attribute_type="freetext" faims_read_only="false" ref="Photograph_Reference_ID" faims_certainty="false">
+              <label>{Photograph_Log}</label>
+            </input>
+          <select1 faims_attribute_name="Scene Type" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Scene_Type">
+            <label>Scene Type</label>
+            <item>
+              <label>placeholder</label>
+              <value>placeholder</value>
+            </item>
+          </select1>
+
+          <input faims_attribute_name="Caption" faims_attribute_type="freetext" faims_read_only="false" ref="Caption" faims_certainty="false">
+              <label>{Caption}</label>
+            </input>
+          <trigger ref="Update">
+            <label>Save and Close</label>
+          </trigger>
+          <trigger ref="SaveAndNew">
+            <label>Save and New</label>
+          </trigger>
+          <trigger ref="Delete">
+            <label>Delete {Photograph_Log}</label>
+          </trigger>
+          <trigger ref="ReturnToContext">
+            <label>Return To Context</label>
+          </trigger>
+        </group>
+    </group>
+
   </h:body>
 </h:html>

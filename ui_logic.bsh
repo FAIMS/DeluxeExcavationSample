@@ -94,6 +94,21 @@ onEvent("Context/Context_Interpretation/AddContextGroup", "click", "newContextGr
 onEvent("Context/Context_Interpretation/ShowContextGroup", "click", "loadContextGroupFromContext()");
 onEvent("Context/Context_Interpretation/RemoveFromContextGroup", "click", "removeContextGroupReln()");
 
+
+
+onEvent("Context/Context_Structures/newAdobe", "click", "saveContextAndNewAdobe()");
+onEvent("Context/Context_Structures/loadAdobe", "click", "loadAdobe()");
+onEvent("Context/Context_Structures/deleteAdobe", "click", "deleteAdobeFromContext()");
+onEvent("Context/Context_Structures", "show", "updateAllContextAdobes()");
+
+
+onEvent("Context/Context_Attachments/newPhotoLog", "click", "saveContextAndNewPhotoLog()");
+onEvent("Context/Context_Attachments/loadPhotoLog", "click", "loadPhotoLog()");
+onEvent("Context/Context_Attachments/deletePhotoLog", "click", "deletePhotoLogFromContext()");
+onEvent("Context/Context_Attachments", "show", "updateAllContextPhotologs()");
+
+
+
 onEvent("Context/Context_Attachments/attachPhoto", "click", "attachPictureTo(\"Context/Context_Attachments/Photo\")");
 onEvent("Context/Context_Attachments/attachSketch", "click", "attachFileTo(\"Context/Context_Attachments/Sketch\")");
 onEvent("Context/Context_Attachments/viewattached", "click", "viewArchEntAttachedFiles(context_id)");
@@ -180,6 +195,32 @@ saveContext() {
         entity = fetchArchEnt(context_id);
     }
     saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();");
+}
+
+
+
+saveContextAndNewAdobe() {
+    if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        showTabGroup("Context");
+        return;
+    }
+    if (!isNull(context_id)) {
+        entity = fetchArchEnt(context_id);
+    }
+    saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();newAdobe();");
+}
+
+saveContextAndNewPhotoLog() {
+    if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        showTabGroup("Context");
+        return;
+    }
+    if (!isNull(context_id)) {
+        entity = fetchArchEnt(context_id);
+    }
+    saveTabGroup("Context", context_id, null, null, "context_id = getLastSavedRecordId();getCounterFromDB();newPhotoLog();");
 }
 
 saveContextAndOpenContextTabs() {
@@ -520,8 +561,8 @@ loadContextAttributes(){
     populateDropDown("Context/Context_Structures/Bonding", makeVocab("Bonding"));
 
     populateRadioGroup("Context/Context_Interpretation/Your_Interpretation", makeVocab("Your Interpretation"));
-    populateRadioGroup("Context/Context_Interpretation/Phase_From", makeVocab("Phase From"));
-    populateRadioGroup("Context/Context_Interpretation/Phase_To", makeVocab("Phase To"));
+    populateDropDown("Context/Context_Interpretation/Phase_From", makeVocab("Phase From"));
+    populateDropDown("Context/Context_Interpretation/Phase_To", makeVocab("Phase To"));
 
     populateHierarchicalDropDown("Context/Texture_Helper/Soil_Texture", "Soil Texture Helper");
 
@@ -701,8 +742,8 @@ populateContextGroup() {
 
 loadContextGroupAttributes(){
     populatePictureGallery("ContextGroup/ContextGroup_Details/Context_Type", makePictureGallery("CG Context Type"));
-    populateRadioGroup("ContextGroup/ContextGroup_Details/Phase_From", makeVocab("CG Phase From"));
-    populateRadioGroup("ContextGroup/ContextGroup_Details/Phase_To", makeVocab("CG Phase To"));
+    populateDropDown("ContextGroup/ContextGroup_Details/Phase_From", makeVocab("CG Phase From"));
+    populateDropDown("ContextGroup/ContextGroup_Details/Phase_To", makeVocab("CG Phase To"));
 }
 
 loadContextFromContextGroup(){
@@ -779,31 +820,13 @@ loadArtefactGroup() {
 
 autoNumArtefactGroup(){
     Object autoNum = fetchOne(""+
-        "select freetext||'-A'||foo as response, foo  "+
-        "  from (select substr(freetext,9)+1 as foo  "+
-        "          from latestnondeletedarchentidentifiers  "+
-        "         where uuid in (select uuid  "+
-        "                          from latestnondeletedaentreln  "+
-        "                         where relationshipid in (select distinct relationshipid  "+
-        "                                                   from latestnondeletedaentreln join latestnondeletedrelationship using (relationshipid)  "+
-        "                                                   join relntype using (relntypeid) "+
-        "                                                  where uuid = "+context_id+"  "+
-        "                                                    and relntypename = 'ContextArtefactGroup')   "+
-        "                           and uuid != "+context_id+")),  "+
-        "       (select freetext  "+
-        "          from latestnondeletedarchentidentifiers  "+
-        "         where uuid = "+context_id+"  "+
-        "           and attributename = 'Context ID') as contexta "+
-        " where response not in (select freetext  "+
-        "                          from latestnondeletedarchentidentifiers  "+
-        "                         where freetext is not null) "+
-        " union select freetext||'-A1', -1 from "+ 
-        "       (select freetext  "+
-        "          from latestnondeletedarchentidentifiers  "+
-        "         where uuid = "+context_id+"  "+
-        "           and attributename = 'Context ID') as contextb "+
-        " order by foo desc "+
-        " limit 1; ");
+       " select bar || substr('0000'||foo,-4) "+
+" from ( "+
+" select count(distinct uuid)+1 as foo "+
+" from latestnondeletedarchent join aenttype using (aenttypeid) "+
+" where aenttypename='Artefact Group'),( "+
+" select '2014-'||substr(vocabname,-1) as bar "+
+" from localsettings join vocabulary on (value = vocabid)); ");
 
     setFieldValue("Artefact_Group/Artefact_Group_GeneralInformation/Artefact_Group_ID", autoNum.get(0));
 }
@@ -935,7 +958,7 @@ sampleAutoNum(){
 
     Object autoNum = fetchOne(""+
         "select freetext||'-S'||foo as response, foo  "+
-        "  from (select substr(freetext,9)+1 as foo  "+
+        "  from (select count(distinct uuid)+1 as foo  "+
         "          from latestnondeletedarchentidentifiers  "+
         "         where uuid in (select uuid  "+
         "                          from latestnondeletedaentreln  "+
@@ -1193,7 +1216,7 @@ specialFindAutoNum(){
 
     Object autoNum = fetchOne(""+
         "select freetext||'-SF'||foo as response, foo  "+
-        "  from (select substr(freetext,10)+1 as foo  "+
+        "  from (select count(distinct uuid)+1 as foo  "+
         "          from latestnondeletedarchentidentifiers  "+
         "         where uuid in (select uuid  "+
         "                          from latestnondeletedaentreln  "+
@@ -1421,6 +1444,297 @@ takeSpecialFindLocationGPS(){
     }
 }
 
+
+/*** Arch Ent: Adobe Element ***/
+onEvent("Adobe_Element/Adobe_Element/Update", "delayclick", "saveAdobe()");
+onEvent("Adobe_Element/Adobe_Element/Delete", "delayclick", "deleteAdobe()");
+onEvent("Adobe_Element/Adobe_Element/SaveAndNew", "delayclick", "saveAndNewAdobe()");
+onEvent("Adobe_Element/Adobe_Element/ReturnToContext", "delayclick", "cancelTabGroup(\"Adobe_Element\", true)");
+
+String adobe_id = null;
+
+newAdobe(){
+    if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        return;
+    }
+    if (isNull(context_id)){
+        showToast("You must save a context first.");
+        return;
+    }
+    adobe_id = null;
+    newTabGroup("Adobe_Element");
+    adobeAutoNum();
+    setFieldValue("Adobe_Element/Adobe_Element/Context_ID", getFieldValue("Context/Context_GeneralInformation/Context_ID"));
+    setFieldValue("Adobe_Element/Adobe_Element/Site_Code", getFieldValue("Context/Context_GeneralInformation/Site_Code"));
+}
+
+loadAdobe() {
+    adobe_id = getFieldValue("Context/Context_Structures/AdobeList");
+    if (isNull(adobe_id)) return;
+    showTabGroup("Adobe_Element", adobe_id);
+}
+
+loadAdobeAttributes(){
+    populateDropDown("Adobe_Element/Adobe_Element/Method_Manufacture",  makeVocab("Method_Manufacture"));
+    populateDropDown("Adobe_Element/Adobe_Element/Shape",  makeVocab("AdobeShape"));
+
+
+}
+
+saveAdobe() {
+    if (isNull(getFieldValue("Adobe_Element/Adobe_Element/Adobe_Element_ID"))) {
+        showWarning("Logic Error", "Cannot save Adobe without Reference ID.");
+        return;
+    }
+    
+    if (!isNull(adobe_id)) {
+        entity = fetchArchEnt(adobe_id);
+    }
+
+    if (isNull(context_id)) {
+        showWarning("Logic Error", "Adobe cannot be saved as parent context is not saved or loaded.");
+        return null;
+    } else {
+       saveTabGroup("Adobe_Element", adobe_id, null, null, "adobe_id = getLastSavedRecordId(); onAdobeSaved(); cancelTabGroup(\"Adobe_Element\", false);");
+    }
+}
+
+saveAndNewAdobe() {
+    if (isNull(getFieldValue("Adobe_Element/Adobe_Element/Adobe_Element_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        return;
+    }
+    if (!isNull(adobe_id)) {
+        entity = fetchArchEnt(adobe_id);
+    }
+
+    if (isNull(context_id)) {
+        showWarning("Logic Error", "Adobe cannot be saved as parent context is not saved or loaded.");
+        return null;
+    } else {
+       saveTabGroup("Adobe_Element", adobe_id, null, null, "adobe_id = getLastSavedRecordId(); onAdobeSaved(); newAdobe();");
+    }
+}
+
+onAdobeSaved(){
+    adobe_id = getLastSavedRecordId();
+    saveEntitiesToRel("ContextAdobe", context_id, adobe_id);
+    showToast("Associated with Context");
+
+}
+
+deleteAdobeFromContext(){
+    adobe_id = getFieldValue("Context/Context_Structures/AdobeList");
+    if (!isNull(adobe_id)) {
+        showAlert("Confirm Deletion", "Press OK to Delete this Photograph Log!", "reallyDeleteAdobe()", "doNotDelete()");
+    }
+}
+
+deleteAdobe(){
+    if (!isNull(adobe_id)) {
+        showAlert("Confirm Deletion", "Press OK to Delete this Adobe!", "reallyDeleteAdobe()", "doNotDelete()");
+    } else {
+        cancelTabGroup("Adobe_Element", true);
+    }
+}
+
+reallyDeleteAdobe(){
+    deleteArchEnt(adobe_id);
+    showTabGroup("Adobe_Element");
+    cancelTabGroup("Adobe_Element", false);
+}
+
+doNotDelete(){
+    showToast("Delete Cancelled.");
+}
+
+
+
+adobeAutoNum(){
+
+    Object autoNum = fetchOne(""+
+        "select freetext||'-AE'||foo as response, foo  "+
+        "  from (select count(distinct uuid)+1 as foo  "+
+        "          from latestnondeletedarchentidentifiers  "+
+        "         where uuid in (select uuid  "+
+        "                          from latestnondeletedaentreln  "+
+        "                         where relationshipid in (select distinct relationshipid  "+
+        "                                                   from latestnondeletedaentreln join latestnondeletedrelationship using (relationshipid)  "+
+        "                                                   join relntype using (relntypeid) "+
+        "                                                  where uuid = "+context_id+"  "+
+        "                                                    and relntypename = 'ContextAdobe')   "+
+        "                           and uuid != "+context_id+")),  "+
+        "       (select freetext  "+
+        "          from latestnondeletedarchentidentifiers  "+
+        "         where uuid = "+context_id+"  "+
+        "           and attributename = 'Context ID') as contexta "+
+        " where response not in (select freetext  "+
+        "                          from latestnondeletedarchentidentifiers  "+
+        "                         where freetext is not null) "+
+        " union select freetext||'-AE1', -1 from "+ 
+        "       (select freetext  "+
+        "          from latestnondeletedarchentidentifiers  "+
+        "         where uuid = "+context_id+"  "+
+        "           and attributename = 'Context ID') as contextb "+
+        " order by foo desc "+
+        " limit 1; ");
+    setFieldValue("Adobe_Element/Adobe_Element/Adobe_Element_ID", autoNum.get(0));
+}
+
+
+
+updateAllContextAdobes() {
+    Object contextAdobes = new ArrayList();
+    if (!isNull(context_id)){
+        contextAdobes = fetchAll("select uuid, aenttypename || ': ' || group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
+            "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
+            "            FROM latestNonDeletedArchentIdentifiers\n"+
+            "           WHERE aenttypename = 'Adobe Element'\n"+
+            "             AND uuid in (select uuid\n"+
+            "                            FROM latestNonDeletedAentReln\n"+
+            "                           where relationshipid in (select relationshipid\n"+
+            "                                                      FROM latestNonDeletedAentReln\n"+
+            "                                                      JOIN relationship using (relationshipid)\n"+
+            "                                                      JOIN relntype using (relntypeid)\n"+
+            "                                                     where uuid = "+context_id+"\n"+
+            "                                                       and relntypeName = 'ContextAdobe')\n"+
+            "                             and uuid != "+context_id+")\n"+
+            "        ORDER BY uuid, attributename ASC)\n"+
+            "group by uuid\n"+
+            "order by valuetimestamp desc, uuid, attributename;");
+    }
+    populateDropDown("Context/Context_Structures/AdobeList",  contextAdobes);
+}
+
+
+
+
+/*** Arch Ent: PhotoLog ***/
+onEvent("Photograph_Log/Photograph_Log/Update", "delayclick", "savePhotoLog()");
+onEvent("Photograph_Log/Photograph_Log/Delete", "delayclick", "deletePhotoLog()");
+onEvent("Photograph_Log/Photograph_Log/SaveAndNew", "delayclick", "saveAndNewPhotoLog()");
+onEvent("Photograph_Log/Photograph_Log/ReturnToContext", "delayclick", "cancelTabGroup(\"Photograph_Log\", true)");
+
+String photolog_id = null;
+
+newPhotoLog(){
+    if (isNull(getFieldValue("Context/Context_GeneralInformation/Context_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        return;
+    }
+    if (isNull(context_id)){
+        showToast("You must save a context first.");
+        return;
+    }
+    photolog_id = null;
+    newTabGroup("Photograph_Log");
+    setFieldValue("Photograph_Log/Photograph_Log/Context_ID", getFieldValue("Context/Context_GeneralInformation/Context_ID"));
+}
+
+loadPhotoLog() {
+    photolog_id = getFieldValue("Context/Context_Attachments/PhotoLogList");
+    if (isNull(photolog_id)) return;
+    showTabGroup("Photograph_Log", photolog_id);
+}
+
+loadPhotoLogAttributes(){
+    populateDropDown("Photograph_Log/Photograph_Log/Scene_Type",  makeVocab("Scene Type"));
+    populateDropDown("Photograph_Log/Photograph_Log/Camera", makeVocab("Camera"));
+
+}
+
+savePhotoLog() {
+    if (isNull(getFieldValue("Photograph_Log/Photograph_Log/Photograph_Reference_ID"))) {
+        showWarning("Logic Error", "Cannot save Photgraph without Reference ID.");
+        return;
+    }
+    
+    if (!isNull(photolog_id)) {
+        entity = fetchArchEnt(photolog_id);
+    }
+
+    if (isNull(context_id)) {
+        showWarning("Logic Error", "DepositVolume cannot be saved as parent context is not saved or loaded.");
+        return null;
+    } else {
+       saveTabGroup("Photograph_Log", photolog_id, null, null, "photolog_id = getLastSavedRecordId(); onPhotoLogSaved(); cancelTabGroup(\"Photograph_Log\", false);");
+    }
+}
+
+saveAndNewPhotoLog() {
+    if (isNull(getFieldValue("Photograph_Log/Photograph_Log/Photograph_Reference_ID"))) {
+        showWarning("Logic Error", "Cannot save record without id");
+        return;
+    }
+    if (!isNull(photolog_id)) {
+        entity = fetchArchEnt(photolog_id);
+    }
+
+    if (isNull(context_id)) {
+        showWarning("Logic Error", "Photograph Log cannot be saved as parent context is not saved or loaded.");
+        return null;
+    } else {
+       saveTabGroup("Photograph_Log", photolog_id, null, null, "photolog_id = getLastSavedRecordId(); onPhotoLogSaved(); newPhotoLog();");
+    }
+}
+
+onPhotoLogSaved(){
+    photolog_id = getLastSavedRecordId();
+    saveEntitiesToRel("ContextPhotographLog", context_id, photolog_id);
+    showToast("Associated with Context");
+
+}
+
+deletePhotoLogFromContext(){
+    photolog_id = getFieldValue("Context/Context_Attachments/PhotoLogList");
+    if (!isNull(photolog_id)) {
+        showAlert("Confirm Deletion", "Press OK to Delete this Photograph Log!", "reallyDeletePhotoLog()", "doNotDelete()");
+    }
+}
+
+deletePhotoLog(){
+    if (!isNull(photolog_id)) {
+        showAlert("Confirm Deletion", "Press OK to Delete this Photograph Log!", "reallyDeletePhotoLog()", "doNotDelete()");
+    } else {
+        cancelTabGroup("Photograph_Log", true);
+    }
+}
+
+reallyDeletePhotoLog(){
+    deleteArchEnt(photolog_id);
+    showTabGroup("Photograph_Log");
+    cancelTabGroup("Photograph_Log", false);
+}
+
+doNotDelete(){
+    showToast("Delete Cancelled.");
+}
+
+updateAllContextPhotologs() {
+    Object contextPhotologs = new ArrayList();
+    if (!isNull(context_id)){
+        contextPhotologs = fetchAll("select uuid, aenttypename || ': ' || group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
+            "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
+            "            FROM latestNonDeletedArchentIdentifiers\n"+
+            "           WHERE aenttypename = 'Photograph Log'\n"+
+            "             AND uuid in (select uuid\n"+
+            "                            FROM latestNonDeletedAentReln\n"+
+            "                           where relationshipid in (select relationshipid\n"+
+            "                                                      FROM latestNonDeletedAentReln\n"+
+            "                                                      JOIN relationship using (relationshipid)\n"+
+            "                                                      JOIN relntype using (relntypeid)\n"+
+            "                                                     where uuid = "+context_id+"\n"+
+            "                                                       and relntypeName = 'ContextPhotographLog')\n"+
+            "                             and uuid != "+context_id+")\n"+
+            "        ORDER BY uuid, attributename ASC)\n"+
+            "group by uuid\n"+
+            "order by valuetimestamp desc, uuid, attributename;");
+    }
+    populateDropDown("Context/Context_Attachments/PhotoLogList",  contextPhotologs);
+}
+
+
 /*** MISC ***/
 
 saveEntitiesToRel(type, entity1, entity2) {
@@ -1619,3 +1933,5 @@ loadArtefactGroupAttributes();
 loadSampleAttributes();
 loadMatrixAttributes();
 loadSpecialFindAttributes();
+loadPhotoLogAttributes();
+loadAdobeAttributes();
