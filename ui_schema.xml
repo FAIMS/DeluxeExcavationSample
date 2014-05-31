@@ -639,7 +639,7 @@
           </item>
         </select1>
         <select1 ref="Area_Code">
-          <label>{Area_Code}</label>
+          <label>{Select_Area_Code}</label>
           <item>
             <label>{placeholder}</label>
             <value>placeholder</value>
