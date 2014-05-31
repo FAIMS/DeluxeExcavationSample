@@ -696,7 +696,7 @@
           </group>
         </group>
         <select1 appearance="compact" faims_annotation="false" faims_certainty="false" ref="ContextList">
-          <label>{Tap Context ID in list below to load it.}</label>
+          <label>{Tap_Context_ID_in_list_below_to_load_it}</label>
           <item>
             <label>{placeholder}</label>
             <value>placeholder</value>
@@ -709,7 +709,7 @@
           <label>{New_Context_Group}</label>
         </trigger>
         <select1 appearance="compact" faims_annotation="false" faims_certainty="false" ref="GroupList">
-          <label>{Tap Context Group in list below to load it.}</label>
+          <label>{Tap_Context_Group_in_list_below_to_load_it.}</label>
           <item>
             <label>{placeholder}</label>
             <value>placeholder</value>
@@ -1372,6 +1372,9 @@
       </group>
       <group ref="Context_Attachments">
         <label>{Attach}</label>
+         <input faims_attribute_name="Drawings" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Drawings">
+              <label>{Drawings}</label>
+            </input>
         <select faims_annotation="false" faims_attribute_name="Sketch" faims_attribute_type="freetext" faims_certainty="false" ref="Sketch" type="file">
           <label>{Sketch}</label>
           <item>
@@ -1379,10 +1382,6 @@
             <value>placeholder</value>
           </item>
         </select>
-
-         <input faims_attribute_name="Drawings" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Drawings">
-              <label>{Drawings}</label>
-            </input>
 
         <trigger ref="attachSketch">
           <label>{Attach_Sketch}</label>
