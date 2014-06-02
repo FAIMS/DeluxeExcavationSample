@@ -73,8 +73,6 @@ onEvent("Context", "load", "showTab(\"Context/Context_Structures\");");
 
 onEvent("Context/Context_GeneralInformation/Details","click","saveContextAndOpenContextTabs()");
 onEvent("Context/Context_GeneralInformation/close", "click", "fillInCloseDate()");
-onEvent("Context/Context_Deposits/Soil_Populate_Colour", "click", "populateSoilColour()");
-
 onEvent("Context/Context_Attachments/Update", "delayclick", "saveContext()");
 onEvent("Context/Context_GeneralInformation/Update", "delayclick", "saveContext()");
 onEvent("Context/Context_Deposits/Update", "delayclick", "saveContext()");
@@ -541,6 +539,7 @@ updateRelns(){
 loadContextAttributes(){
     populatePictureGallery("Context/Context_GeneralInformation/Context_Type", makePictureGallery("Context Type"));
     populateDropDown("Context/Context_GeneralInformation/Type_of_Definition", makeVocab("Type of Definition"));
+	populateDropDown("Context/Context_GeneralInformation/Excavation_Method", makeVocab("Excavation Method"));
     populateHierarchicalDropDown("Context/Context_Deposits/Soil_Compaction_Type", "Soil Compaction Type");
     populateHierarchicalDropDown("Context/Context_Deposits/Soil_Munsell_Colour", "Soil Munsell Colour");
     populateDropDown("Context/Context_Deposits/Soil_Texture_Actual", makeVocab("Soil Texture"));
@@ -615,15 +614,6 @@ returnToContext(){
     showTab("Context/Context_Deposits");
 }
 
-populateSoilColour() {
-    Object obj = fetchOne("select vocabName from vocabulary where vocabid = '"+getFieldValue("Context/Context_Deposits/Soil_Munsell_Colour")+"';");
-    print(obj);
-    String colour = "";
-    if(obj.size() > 0) {
-        colour = obj.get(0);
-    }
-    setFieldValue("Context/Context_Deposits/Soil_Colour", colour);
-}
 
 removeContextGroupReln() {
     context_group_id = getFieldValue("Context/Context_Interpretation/ContextGroupList");
