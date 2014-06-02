@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<dataSchema name="hdb_FAIMS_Community_Server" preparer="Heurist user:Penny Crook">
+<dataSchema name="Boncklu" preparer="Penny Crook">
 
   <RelationshipElement name="AboveBelow" type="hierarchical">
     <description>Implements a above below for contexts.</description>
@@ -65,15 +65,19 @@
     <property name="AreaCode" type="enum">
       <description>Area or Trench: the working subdivision of an archaeological site.</description>
       <lookup>
-        <term>A 
+        <term>H
         <description></description></term>
-        <term>B 
+        <term>K 
         <description></description></term>
-        <term>C 
+        <term>M 
         <description></description></term>
-        <term>D 
+        <term>N 
         <description></description></term>
-        <term>E 
+        <term>P 
+        <description></description></term>
+        <term>Q
+        <description></description></term>
+        <term>X
         <description></description></term>
       </lookup>
     </property>
@@ -102,13 +106,13 @@
     <property name="Excavation Method" type="enum">
       <description>Method and conditions of archaeological excavation.</description>
       <lookup>
-        <term>Hand-pick 
+        <term>{aHand_pick} 
         <description>Excavated by hand-pick.</description></term>
-        <term>Trowel 
+        <term>{bTrowel}
         <description>Excavated by trowel.</description></term>
-        <term>Pick 
+        <term>{cPick} 
         <description>Excavated by pick.</description></term>
-        <term>Other 
+        <term>{dOther} 
         <description>Excavated by another method.</description></term>
       </lookup>
     </property>
@@ -126,9 +130,6 @@
     </property>
     <property name="Depth" type="float">
       <description>Depth or Height in mm.</description>
-    </property>
-    <property name="Context Comments" type="blocktext">
-      <description>Additional comments on the description of the Context.</description>
     </property>
     <property name="Soil Compaction Type" type="enum">
       <description>The type of compaction of sediments in the deposit eg 'Compact' 'Cemented' or 'Loose'.</description>
@@ -275,6 +276,15 @@
         <description>Particles are very different sizes and very unevenly distributed.</description></term>
         <term pictureURL="files/data/gallery/Sorting/WellSorted.png">{4.Well_sorted} 
         <description>Particles are roughly the same size and evenly distributed.</description></term>
+      </lookup>
+    </property>
+    <property name="Sterile" type="enum">
+      <description>Whether or not the deposit is sterile, ie contains no artefacts</description>
+      <lookup>
+        <term>{Yes} 
+        <description>Deposit is sterile</description></term>
+        <term>{No} 
+        <description>Object is not sterile</description></term>
       </lookup>
     </property>
     <property name="Deposit Inclusions" type="blocktext">
@@ -507,8 +517,6 @@
     <property name="Deposit Your Interpretation" type="freetext">
       <description>Your Interpretation of the likely functional zone of the context whether inside a structure or part of the structure itself.</description>
       <lookup>
-        <term>{Your_Interpretation_Deposit} 
-        <description></description></term>
         <term>{Indeterminate} 
         <description></description></term>
         <term>{Packing} 
@@ -539,6 +547,8 @@
         <description>To be used for material that directly reflects the use of a surface or floor – artifact material on the surface perhaps thin deposits of occupation material. These contexts will be gridded into spatial units for closer control of artifact distributions.</description></term>
         <term>{Animal_or_Plant} 
         <description>Deposit derived from plant or animal activity</description></term>
+        <term>{zOther} 
+        <description>Other deposit</description></term>
       </lookup>
     </property>
     <property name="Your Discussion" type="blocktext">

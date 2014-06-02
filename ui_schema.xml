@@ -35,19 +35,27 @@
           <!--control tabgroup that contains button to manipulate entities: load, list, create-->
           <control>
             <data>
+              <container1>
+                <child1>
+                  <ContextIncrement/>
+                </child1>
+                <child2>
+                  <Help/>
+                </child2>
+              </container1>
               <newContext/>
-              <ContextIncrement/>
+              <guide/>
               <ContextFilter/>
               <ContextList/>
               <ContextLoad/>
-              <container1>
+              <container2>
                 <child1>
                   <Search/>
                 </child1>
                 <child2>
                   <searchButton/>
                 </child2>
-              </container1>
+              </container2>
             </data>
             <contextGroup>
               <newContextGroup/>
@@ -109,7 +117,6 @@
                 </child3>
               </container4>
               <Context_Type/>
-              <Context_Comments/>
               <CreatingUser/>
               <Excavators/>
               <Plans/>
@@ -123,6 +130,7 @@
               <Soil_Particle_Sorting/>
               <Soil_Texture/>
               <Texture_Helper/>
+              <Sterile/>
               <Deposit_Inclusions/>
               <Deposit_Thickness_Extent/>
               <Volume/>
@@ -433,7 +441,6 @@
 <bind nodeset="/faims/Context/Context_GeneralInformation/Excavators" type="string"/>
 
       <bind nodeset="/faims/user/help/guide" type="string"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/Context_Comments" type="string"/>
       <bind nodeset="/faims/Context/Context_GeneralInformation/container3/child1/Context_Highest_Level" type="decimal"/>
       <bind nodeset="/faims/Context/Context_GeneralInformation/container3/child2/Context_Lowest_Level" type="decimal"/>
       <bind nodeset="/faims/Context/Context_GeneralInformation/container4/child1/Length" type="decimal"/>
@@ -535,13 +542,37 @@
       <label/>
       <group faims_scrollable="false" ref="data">
         <label>Contexts</label>
-        <input faims_certainty="false" faims_read_only="false" ref="ContextIncrement">
-          <label>Context Starting ID</label>
-        </input>
+        <group faims_style="orientation" ref="container2">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input faims_certainty="false" faims_read_only="false" ref="ContextIncrement">
+              <label>Context Starting ID</label>
+            </input>
+          </group>
+          <group faims_style="large" ref="child2">
+            <label/>
+            <trigger ref="Help">
+              <label>Help</label>
+            </trigger>
+          </group>
+        </group>
         <trigger ref="newContext">
           <label>Create New Context</label>
         </trigger>
-        <group faims_style="orientation" ref="container1">
+        <select1 appearance="compact" ref="guide" >
+          <label></label>
+            <item>
+              <!-- I'm using fancy spaces here. Be careful of copying -->
+            <label> 
+
+
+Search will find Records that contain your search term or string to any field in the Context record.
+</label>
+            <value>Help</value>
+          </item>
+        </select1>
+        <group faims_style="orientation" ref="container2">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
@@ -751,6 +782,13 @@
           <label>Texture Helper</label>
         </trigger>
         <!--We would like to see Dropdown-->
+        <select1 faims_attribute_name="Sterile" faims_attribute_type="vocab" appearance="full" faims_certainty="false" faims_read_only="false" ref="Sterile">
+          <label>{Sterile}</label>
+            <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
         <input faims_attribute_name="Deposit Inclusions" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Deposit_Inclusions">
           <label>{Deposit_Inclusions}</label>
         </input>

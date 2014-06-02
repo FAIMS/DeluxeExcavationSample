@@ -124,12 +124,26 @@ String context_id = null;
 newContext(){
     context_id = null;
     newTabGroup("Context");
-    setFieldValue("Context/Context_GeneralInformation/AreaCode", areaCode);
-    setFieldValue("Context/Context_GeneralInformation/Site_Code","FAIMS13");
-    setFieldValue("Context/Context_GeneralInformation/Context_ID", getFieldValue("control/data/ContextIncrement"));
     date = fetchOne("select date('now');");
+    setFieldValue("Context/Context_GeneralInformation/AreaCode", areaCode);
+    setFieldValue("Context/Context_GeneralInformation/Site_Code","BK" + date.get(0).charAt(2) + date.get(0).charAt(3));
+    setFieldValue("Context/Context_GeneralInformation/Context_ID", getFieldValue("control/data/ContextIncrement"));
     setFieldValue("Context/Context_GeneralInformation/Date_Opened", date.get(0));
     setFieldValue("Context/Context_GeneralInformation/CreatingUser", username);
+}
+
+newContextFromControl() {
+    if(isNull(getFieldValue("control/data/ContextIncrement"))) {
+        showWarning("Validation Error", "You must enter a Context ID to create a Context record.");
+        return;
+    }
+    String query = "select count(distinct uuid) from latestnondeletedaentvalue where freetext = '"+getFieldValue("control/data/ContextIncrement")+"';";
+    Object obj = fetchOne(query);
+    if(obj.get(0).equals("0")) {
+        newContext();
+    } else {
+        showWarning("Validation Error", "That Context ID has been used for another Context. Please enter another one.");
+    }
 }
 
 loadContext() {
@@ -207,7 +221,7 @@ doNotDelete(){
 getCounterFromDB(){
     Object counter = fetchOne(""+
         "select response, deviceMatch, aenttimestamp "+
-        "from (select freetext, v.vocabName || ':'|| coalesce(substr('0000'||(substr(freetext,-4)+1),-4),'') as response, aenttimestamp,  "+
+        "from (select freetext, v.vocabName || ':0'|| coalesce(substr('0000'||(substr(freetext,-4)+1),-4),'') as response, aenttimestamp,  "+
         "             uuid in (select uuid "+
         "                        from latestnondeletedaentvalue AS av join attributekey using (attributeid), localSettings "+
         "                        where userid = value "+
@@ -220,7 +234,7 @@ getCounterFromDB(){
         "from (select vocabName || ':0001' as response, datetime(1, 'unixepoch') as aenttimestamp from localSettings join vocabulary on (value = vocabid) where key = 'Area') "+
         "order by deviceMatch desc, aenttimestamp desc limit 1;");
     String out = "";
-
+    print(counter);
     if (!isNull(counter)){
          out = counter.get(0);
          
@@ -422,6 +436,7 @@ loadContextAttributes(){
     populateHierarchicalPictureGallery("Context/Context_Deposits/Soil_Particle_Sorting", "Soil Particle Sorting");
     populateDropDown("Context/Context_Deposits/Horizon_Boundary", makeVocab("Horizon Boundary"));
     populateDropDown("Context/Context_Deposits/Your_Interpretation", makeVocab("Deposit Your Interpretation"));
+    populateRadioGroup("Context/Context_Deposits/Sterile", makeVocab("Sterile"));
 
     populateDropDown("Context/Context_Cuts/Shape_of_Cut", makeVocab("Shape of Cut"));
     populateRadioGroup("Context/Context_Cuts/Shape_of_Corners", makeVocab("Shape of Corners"));
@@ -1381,7 +1396,7 @@ login(){
 
         areaCode = fetchOne("select vocabid, vocabname from vocabulary join localSettings on (value=vocabid) where key = 'Area' ").get(1);
 
-        //getCounterFromDB();
+        getCounterFromDB();
     }
 
 }
