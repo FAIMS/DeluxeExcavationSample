@@ -103,6 +103,7 @@ onEvent("Context/Context_Artefacts/loadSpecialFind", "click", "loadSpecialFind()
 onEvent("Context/Context_Artefacts/deleteSpecialFind", "delayclick", "deleteSpecialFindFromContext()");
 onEvent("Context/Context_Artefacts/Update", "delayclick", "saveContext(\"\")");
 
+
 onEvent("Context/Context_Samples/newSample", "click", "saveContext(\"newSample();\")");
 onEvent("Context/Context_Samples/loadSample", "click", "loadSample()");
 onEvent("Context/Context_Samples/deleteSample", "click", "deleteSampleFromContext()");
