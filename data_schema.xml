@@ -42,6 +42,10 @@
   <RelationshipElement name="ContextSpecialFind" type="bidirectional">
     <description>Implements a 1:N between context and its special finds</description>
   </RelationshipElement>
+  <RelationshipElement name="ContextPhotographLog" type="bidirectional">
+    <description>Implements a 1:N between context and its photograph logs
+    </description>
+  </RelationshipElement>
   
   <!-- CONTEXT -->
   <ArchaeologicalElement name="Context">
@@ -100,6 +104,9 @@
     <property name="Date Opened" type="date">
       <description>Date on which the Context was first excavated.</description>
     </property>
+    <property name="Date Closed" type="date">
+      <description>Date closed.</description>
+    </property>
     <property name="Location Note" type="freetext">
       <description>For Approx location in area provide information on rough location eg centre of Area A or NW corner area A but also in relation to other archaeological contexts or features e.g. between walls x and y.</description>
     </property>
@@ -130,6 +137,9 @@
     </property>
     <property name="Depth" type="float">
       <description>Depth or Height in mm.</description>
+    </property>
+    <property name="Section Numbers" type="freetext">
+      <description>Reference numbers to section drawings of this Context</description>
     </property>
     <property name="Soil Compaction Type" type="enum">
       <description>The type of compaction of sediments in the deposit eg 'Compact' 'Cemented' or 'Loose'.</description>
@@ -278,6 +288,10 @@
         <description>Particles are roughly the same size and evenly distributed.</description></term>
       </lookup>
     </property>
+    <property name="Soil Colour" type="freetext">
+      <description>Simple description of the colour of the soil. This field is interpreted from the Soil Munsell Colour
+      </description>
+    </property>
     <property name="Sterile" type="enum">
       <description>Whether or not the deposit is sterile, ie contains no artefacts</description>
       <lookup>
@@ -315,24 +329,11 @@
     <property name="Horizon Boundary" type="enum">
       <description>Boundary to the next horizon</description>
       <lookup>
-        <term>No Observation 
-        <description>data not collected</description></term>
-        <term>{Broken} 
-        <description>The boundary is interrupted. (MoLAS 1994: 35)</description></term>
-        <term>{Clear} 
-        <description>Change occurs over a distance of 25-60 mm. (MoLAS 1994: 35)</description></term>
-        <term>{Diffuse} 
-        <description>Change occurs over a distance of 60-130 mm. (MoLAS 1994: 35)</description></term>
-        <term>{Irregular} 
-        <description>The boundary surface has pockets that are deeper than they are wide. (MoLAS 1994: 35)</description></term>
-        <term>{Sharp} 
-        <description>Change occurs over a distance of 5-25 mm (or less). (MoLAS 1994: 35)</description></term>
-        <term>{Smooth} 
-        <description>The boundary surface is plane with few irregularities. (MoLAS 1994: 35)</description></term>
-        <term>{Wavy} 
-        <description>The boundary surface has broad shallow relatively regular pockets. (MoLAS 1994: 35)</description></term>
-        <term>{Ambiguous} 
-        <description>You are uncertain as to whether there was a boundary between contexts</description></term>
+        <term>{Doubtful}<description>Description to come </description> </term>
+        <term>{Ambiguous}<description>Description to come </description> </term>
+        <term>{Merging}<description>Description to come </description> </term>
+        <term>{Clear}<description>Description to come </description> </term>
+        <term>{Arbitrary_Spit}<description>Description to come </description> </term>
       </lookup>
     </property>
     <property name="Shape of Cut" type="enum">
@@ -461,8 +462,6 @@
     <property name="Structure Your Interpretation" type="freetext">
       <description>Your Interpretation of the likely functional zone of the context whether inside a structure or part of the structure itself.</description>
       <lookup>
-        <term>{Your_Interpretation_Structure} 
-        <description></description></term>
         <term>{Your_Interpretation_Structure_Indeterminate} 
         <description></description></term>
         <term>{Floor_or_Surface} 
@@ -481,15 +480,13 @@
         <description></description></term>
         <term>{Pillar} 
         <description></description></term>
-        <term>{Other} 
+        <term>{zOther} 
         <description></description></term>
       </lookup>
     </property>
     <property name="Cut Your Interpretation" type="freetext">
       <description>Your Interpretation of the likely functional zone of the context whether inside a structure or part of the structure itself.</description>
       <lookup>
-        <term>{Your_Interpretation_Cut} 
-        <description></description></term>
         <term>{Your_Interpretation_Cut_Indeterminate} 
         <description></description></term>
         <term>{Animal_or_Plant_hole} 
@@ -510,7 +507,7 @@
         <description></description></term>
         <term>{Erosional_Feature} 
         <description></description></term>
-        <term>{Other} 
+        <term>{zOther} 
         <description></description></term>
       </lookup>
     </property>
@@ -556,42 +553,6 @@
     </property>
     <property name="Your description" type="blocktext">
       <description>Enter a simple descriptive interpretation. For example is it a floor midden brickearth wall gully or pit?</description>
-    </property>
-    <property name="Start date" type="date">
-      <description>Start Date (may also include time and/or have fuzzy limits)</description>
-    </property>
-    <property name="End date" type="date">
-      <description>End Date (may also include time and/or have fuzzy limits)</description>
-    </property>
-    <property name="Phase From" type="freetext">
-      <description>The earliest phase in which this Context was likely to have been created.</description>
-      <lookup>
-        <term>1 
-        <description>Pre-European occupation pre-1788</description></term>
-        <term>2 
-        <description>First settlement 1788-1820</description></term>
-        <term>3 
-        <description>Subdivision 1820-1860</description></term>
-        <term>4 
-        <description>Intense occupation 1860-1900</description></term>
-        <term>5 
-        <description>Industrial 1900-</description></term>
-      </lookup>
-    </property>
-    <property name="Phase To" type="freetext">
-      <description>The latest phase in which this Context was likely to have been deposited or sealed.</description>
-      <lookup>
-        <term>1 
-        <description>Pre-European occupation pre-1788</description></term>
-        <term>2 
-        <description>First settlement 1788-1820</description></term>
-        <term>3 
-        <description>Subdivision 1820-1860</description></term>
-        <term>4 
-        <description>Intense occupation 1860-1900</description></term>
-        <term>5 
-        <description>Industrial 1900-</description></term>
-      </lookup>
     </property>
     <property name="Sketch" type="file">
       <description>Sketch</description>
@@ -647,6 +608,8 @@
         <description>Sandy mortar with lime and burnt shell inlcusion</description></term></term>
         <term>{Unmortared} 
         <description>No visible bonding material ie unmortared</description></term>
+        <term>{Stones} 
+        <description>Description to come</description></term>
       </lookup>
     </property>
     <property name="Bond Type" type="enum">
@@ -679,6 +642,9 @@
         <term>{Uneven_courses} 
         <description>Lines or courses of different size</description></term></term>
       </lookup>
+    </property>
+    <property name="Bonding Details" type="freetext">
+      <description>Description to come </description>
     </property>
     <property name="Distinguishing Marks" type="freetext">
       <description>stinguishing marks on brick or stone.</description>
@@ -823,7 +789,7 @@
         <description></description></term>
       </lookup>
     </property>
-    <property name="Percentage" type="Numeric">
+    <property name="Percentage" type="float" isIdentifier="true">
       <description>Percentage</description>
     </property>
     <property name="Component" type="enum" isIdentifier="true">
@@ -835,26 +801,36 @@
         <description></description></term>
         <term>{Sand} 
         <description>Sand</description>
-        <term>{3_Coarse_Sand} 
-        <description>0.20–2.00mm</description></term>
-        <term>{1_Fine_sand} 
-        <description>0.02–0.06 mm</description></term>
-        <term>{2_Medium_Sand} 
-        <description>0.06–0.20mm</description></term></term>
+          <term>{3_Coarse_Sand} 
+          <description>0.20–2.00mm</description></term>
+          <term>{1_Fine_sand} 
+          <description>0.02–0.06 mm</description></term>
+          <term>{2_Medium_Sand} 
+          <description>0.06–0.20mm</description></term>
+        </term>
         <term>{Silt} 
         <description></description></term>
         <term>{Inclusion} 
         <description>Inclusion</description>
-        <term>{1.Grit} 
-        <description>Size up to 5 mm.</description></term>
-        <term>{2.Small_Stones} 
-        <description>Size up to 10 mm.</description></term>
-        <term>{3.Large_stones} 
-        <description>Size over 10 mm.</description></term>
-        <term>{4.Tauf} 
-        <description>Mud building material including mortar.</description></term>
-        <term>{5.Midden} 
-        <description>Organic debris e.g. bones carbonised material phytoliths etc</description></term></term>
+          <term>{1.Grit} 
+          <description>Size up to 5 mm.</description></term>
+          <term>{2.Small_Stones} 
+          <description>Size up to 10 mm.</description></term>
+          <term>{3.Large_stones} 
+          <description>Size over 10 mm.</description></term>
+          <term>{4.Tauf} 
+          <description>Mud building material including mortar.</description></term>
+          <term>{5.Midden} 
+          <description>Organic debris e.g. bones carbonised material phytoliths etc</description></term>
+        </term>
+        <term>{Plaster} 
+        <description>Description to come</description></term>
+        <term>{Mudbrick} 
+        <description>Description to come</description></term>
+        <term>{Ash} 
+        <description>Description to come</description></term>
+        <term>{Artefacts} 
+        <description>Description to come</description></term>
       </lookup>
     </property>
     <property name="Stone Size" type="freetext">
@@ -881,8 +857,12 @@
         <description>Some rounding to pebbles or stones.</description></term>
         <term pictureURL="files/data/gallery/Pebbles/RoundedWell.png">{Well-rounded} 
         <description>Very rounded pebble or stone.</description></term></term>
-        <term pictureURL="">{Dressed_Stone} 
+        <term pictureURL="files/data/gallery/Pebbles/DressedStone.png">{Dressed_Stone} 
         <description>Those that have been clearly shaped for use.</description></term>
+        <term pictureURL="files/data/gallery/Pebbles/Tabular.png">{Tabular} 
+        <description>Description to come</description></term>
+        <term pictureURL="files/data/gallery/Pebbles/Ground.png">{Ground} 
+        <description>Description to come</description></term>
       </lookup>
     </property>
     <property name="Stoniness" type="freetext">
@@ -907,40 +887,109 @@
       <lookup>
         <term>No Observation 
         <description>data not collected</description></term>
-        <term>{Ceramic} 
+        <term>{aChipped_Stone} 
         <description></description>
-        <term>{Coarse} 
-        <description></description></term>
-        <term>{Fine} 
-        <description></description></term>
-        <term>{Terracotta} 
-        <description></description></term>
-        <term>{Other} 
-        <description></description></term></term>
-        <term>{Glass} 
+          <term>{Blade} 
+          <description></description></term>
+          <term>{Core} 
+          <description></description></term>
+          <term>{Cache} 
+          <description></description></term>
+          <term>{zOther} 
+          <description></description></term>
+        </term>
+        <term>{bGround_Stone} 
         <description></description>
-        <term>{Black} 
-        <description></description></term>
-        <term>{Colourless} 
-        <description></description></term>
-        <term>{Coloured} 
-        <description></description></term></term>
-        <term>{Metal} 
+          <term>{Grinder} 
+          <description></description></term>
+          <term>{Pestle} 
+          <description></description></term>
+          <term>{Shaft_Straightener} 
+          <description></description></term>
+          <term>{Pendant} 
+          <description></description></term>
+          <term>{Incised_Stone} 
+          <description></description></term>
+          <term>{Polisher} 
+          <description></description></term>
+          <term>{zOther} 
+          <description></description></term>
+        </term>
+        <term>{cBone} 
         <description></description>
-        <term>{Ferrous} 
-        <description></description></term>
-        <term>{Copper-alloy} 
-        <description></description></term>
-        <term>{Other} 
-        <description></description></term></term>
-        <term>{Building_Materials} 
-        <description></description></term>
-        <term>{Organic} 
+          <term>{Point} 
+          <description></description></term>
+          <term>{Bead} 
+          <description></description></term>
+          <term>{zOther} 
+          <description></description></term>
+        </term>
+        <term>{dShell} 
         <description></description>
-        <term>{Bone} 
+          <term>{Bead} 
+          <description></description></term>
+          <term>{zOther} 
+          <description></description></term>
+        </term>
+        <term>{ePlant} 
+        <description></description>
+          <term>{Charcoal} 
+          <description></description></term>
+          <term>{Hackberry} 
+          <description></description></term>
+          <term>{Charred_Seed} 
+          <description></description></term>
+          <term>{Siliceous_Material} 
+          <description></description></term>
+          <term>{Phytolith} 
+          <description></description></term>
+          <term>{Impression_Cast} 
+          <description></description></term>
+          <term>{zOther} 
+          <description></description></term>
+        </term>
+        <term>{fOchre} 
         <description></description></term>
-        <term>{Shell} 
-        <description></description></term></term>
+        <term>{hClay_Object} 
+        <description></description>
+          <term>{Figurine} 
+          <description></description></term>
+          <term>{Token} 
+          <description></description></term>
+          <term>{zOther} 
+          <description></description></term>
+        </term>
+        <term>{iCeramic} 
+        <description></description>
+          <term>{Coarse} 
+          <description></description></term>
+          <term>{Fine} 
+          <description></description></term>
+          <term>{Terracotta} 
+          <description></description></term>
+          <term>{zOther} 
+          <description></description></term>
+        </term>
+        <term>{jGlass} 
+        <description></description>
+          <term>{Black} 
+          <description></description></term>
+          <term>{Colourless} 
+          <description></description></term>
+          <term>{Coloured} 
+          <description></description></term>
+        </term>
+        <term>{kMetal} 
+        <description></description>
+          <term>{Ferrous} 
+          <description></description></term>
+          <term>{Copper-alloy} 
+          <description></description></term>
+          <term>{zOther} 
+          <description></description></term>
+        </term>
+        <term>{lBuilding_Materials} 
+        <description></description></term>
         <term>{Miscellaneous} 
         <description></description></term>
       </lookup>
@@ -974,7 +1023,7 @@
     <property isIdentifier="true" name="Sample ID" type="freetext">
       <description>The unique code or reference for the Sample.</description>
     </property>
-    <property name="Sample Type" type="enum">
+    <property isIdentifier="true" name="Sample Type" type="enum">
       <description>The type of Sample collected eg Soil Wood Pollen.</description>
       <lookup>
         <term>No Observation 
@@ -985,17 +1034,19 @@
         <description>General collection of soil deposit from the Context.</description></term>
         <term>{Wood/Charcoal} 
         <description>Collection of wood or charcoal fragments from the Context.</description></term>
-        <term>{{C14_Sample}}
+        <term>{C14_Sample}
         <description /></term>
-        <term>{{Flot_Sample}}
+        <term>{Flot_Sample}
         <description /></term>
-        <term>{{Phytolith_Sample}}
+        <term>{Phytolith_Sample}
         <description /></term>
-        <term>{{Arch_Soil}}
+        <term>{Arch_Soil}
         <description /></term>
-        <term>{{Thin_Section}}
+        <term>{Thin_Section}
         <description /></term>
-        <term>{{Other}}
+        <term>{Wet_Sieve}
+        <description /></term>
+        <term>{zOther}
         <description /></term>
       </lookup>
     </property>
@@ -1020,6 +1071,15 @@
     </property>
     <property name="Sample Comments" type="blocktext">
       <description>Additional comments about this sample or its collection.</description>
+    </property>
+    <property name="Sample Location" type="blocktext">
+      <description>The location of the sample at the time of entry.</description>
+      <lookup>
+        <term>Location A<description>Locations to be filled in later </description> </term>
+        <term>Location B<description>Locations to be filled in later </description> </term>
+        <term>Location C<description>Locations to be filled in later </description> </term>
+        <term>Location D<description>Locations to be filled in later </description> </term>        
+      </lookup>
     </property>
     <property name="Structural Components" type="enum">
       <description>Primary components of structure or feature eg dry-pressed brick rough-hewn stone.</description>
@@ -1127,40 +1187,109 @@
       <lookup>
         <term>No Observation 
         <description>data not collected</description></term>
-        <term>{Ceramic} 
+        <term>{aChipped_Stone} 
         <description></description>
-        <term>{Coarse} 
-        <description></description></term>
-        <term>{Fine} 
-        <description></description></term>
-        <term>{Terracotta} 
-        <description></description></term>
-        <term>{Other} 
-        <description></description></term></term>
-        <term>{Glass} 
+          <term>{Blade} 
+          <description></description></term>
+          <term>{Core} 
+          <description></description></term>
+          <term>{Cache} 
+          <description></description></term>
+          <term>{zOther} 
+          <description></description></term>
+        </term>
+        <term>{bGround_Stone} 
         <description></description>
-        <term>{Black} 
-        <description></description></term>
-        <term>{Colourless} 
-        <description></description></term>
-        <term>{Coloured} 
-        <description></description></term></term>
-        <term>{Metal} 
+          <term>{Grinder} 
+          <description></description></term>
+          <term>{Pestle} 
+          <description></description></term>
+          <term>{Shaft_Straightener} 
+          <description></description></term>
+          <term>{Pendant} 
+          <description></description></term>
+          <term>{Incised_Stone} 
+          <description></description></term>
+          <term>{Polisher} 
+          <description></description></term>
+          <term>{zOther} 
+          <description></description></term>
+        </term>
+        <term>{cBone} 
         <description></description>
-        <term>{Ferrous} 
-        <description></description></term>
-        <term>{Copper-alloy} 
-        <description></description></term>
-        <term>{Other} 
-        <description></description></term></term>
-        <term>{Building_Materials} 
-        <description></description></term>
-        <term>{Organic} 
+          <term>{Point} 
+          <description></description></term>
+          <term>{Bead} 
+          <description></description></term>
+          <term>{zOther} 
+          <description></description></term>
+        </term>
+        <term>{dShell} 
         <description></description>
-        <term>{Bone} 
+          <term>{Bead} 
+          <description></description></term>
+          <term>{zOther} 
+          <description></description></term>
+        </term>
+        <term>{ePlant} 
+        <description></description>
+          <term>{Charcoal} 
+          <description></description></term>
+          <term>{Hackberry} 
+          <description></description></term>
+          <term>{Charred_Seed} 
+          <description></description></term>
+          <term>{Siliceous_Material} 
+          <description></description></term>
+          <term>{Phytolith} 
+          <description></description></term>
+          <term>{Impression_Cast} 
+          <description></description></term>
+          <term>{zOther} 
+          <description></description></term>
+        </term>
+        <term>{fOchre} 
         <description></description></term>
-        <term>{Shell} 
-        <description></description></term></term>
+        <term>{hClay_Object} 
+        <description></description>
+          <term>{Figurine} 
+          <description></description></term>
+          <term>{Token} 
+          <description></description></term>
+          <term>{zOther} 
+          <description></description></term>
+        </term>
+        <term>{iCeramic} 
+        <description></description>
+          <term>{Coarse} 
+          <description></description></term>
+          <term>{Fine} 
+          <description></description></term>
+          <term>{Terracotta} 
+          <description></description></term>
+          <term>{zOther} 
+          <description></description></term>
+        </term>
+        <term>{jGlass} 
+        <description></description>
+          <term>{Black} 
+          <description></description></term>
+          <term>{Colourless} 
+          <description></description></term>
+          <term>{Coloured} 
+          <description></description></term>
+        </term>
+        <term>{kMetal} 
+        <description></description>
+          <term>{Ferrous} 
+          <description></description></term>
+          <term>{Copper-alloy} 
+          <description></description></term>
+          <term>{zOther} 
+          <description></description></term>
+        </term>
+        <term>{lBuilding_Materials} 
+        <description></description></term>
         <term>{Miscellaneous} 
         <description></description></term>
       </lookup>
@@ -1226,6 +1355,31 @@
     </property>
     <property name="Last Name" type="freetext" isIdentifier="true">
       <description>Associated Investigator's Last Name</description>
+    </property>
+  </ArchaeologicalElement>
+
+  <!-- PHOTOGRAPH LOG -->
+  <ArchaeologicalElement name="Photograph Log">
+    <description>A record of images created and stored on another device, eg by a professional site photographer.</description>
+    <property name="Context ID" type="freetext">
+      <description>Unique number or code for each Context</description>
+    </property>
+    <property name="Photograph Reference ID" isIdentifier= "true" type="freetext">
+      <description>Unique number or code allocated by creator of the image. It could be a filename or a reference number</description>
+    </property>
+    <property name="Scene Type" type="enum">
+      <description>The type of scene captured, eg opening or closing view of the Context. (Vocab: Open, Close, Other)</description>
+      <lookup>
+        <term> Open
+          <description/>
+        </term>
+        <term> Close
+          <description/>
+        </term>
+        <term> Other
+          <description/>
+        </term>
+      </lookup>
     </property>
   </ArchaeologicalElement>
 </dataSchema>
