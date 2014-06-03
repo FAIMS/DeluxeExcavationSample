@@ -1420,20 +1420,20 @@
           <label>{View_Attached_Files}</label>
         </trigger>
         <trigger ref="newPhotoLog">
-          <label>Add {Photograph_Log}</label>
+          <label>{Add_Photograph_Log}</label>
         </trigger>
         <select1 faims_certainty="false" faims_read_only="false" ref="PhotoLogList">
-          <label>Select a {Photograph_Log}:</label>
+          <label>{Select_a_Photograph_Log}:</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
           </item>
         </select1>
         <trigger ref="loadPhotoLog">
-          <label>Load {Photograph_Log}</label>
+          <label>{Load_Photograph_Log}</label>
         </trigger>
         <trigger ref="deletePhotoLog">
-          <label>Delete {Photograph_Log}</label>
+          <label>{Delete_Photograph_Log}</label>
         </trigger>
         <trigger ref="Update">
           <label>{Save_Context}</label>
@@ -2058,14 +2058,9 @@
             <input faims_attribute_name="Photograph Reference ID" faims_attribute_type="freetext" faims_read_only="false" ref="Photograph_Reference_ID" faims_certainty="false">
               <label>{Photograph_Log}</label>
             </input>
-          <select1 faims_attribute_name="Scene Type" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Scene_Type">
+          <input faims_attribute_name="Scene Type" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Scene_Type">
             <label>{Scene_Type}</label>
-            <item>
-              <label>placeholder</label>
-              <value>placeholder</value>
-            </item>
-          </select1>
-
+           </input>
           <input faims_attribute_name="Caption" faims_attribute_type="freetext" faims_read_only="false" ref="Caption" faims_certainty="false">
               <label>{Caption}</label>
             </input>
