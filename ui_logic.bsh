@@ -104,7 +104,7 @@ onEvent("Context/Context_Attachments/attachPhoto", "click", "attachPictureTo(\"C
 onEvent("Context/Context_Attachments/attachSketch", "click", "attachFileTo(\"Context/Context_Attachments/Sketch\")");
 onEvent("Context/Context_Attachments/viewattached", "click", "viewArchEntAttachedFiles(context_id)");
 onEvent("Context/Context_Attachments/SaveAndNew", "delayclick", "saveContext(\"newContext();\")");
-onEvent("Context/Context_Attachments/Duplicate", "delayclick", "saveContext(\"setFieldValue(\\\"Context/Context_GeneralInformation/Context_ID\\\", getFieldValue(\\\"control/data/ContextIncrement\\\"));\")");
+onEvent("Context/Context_Attachments/Duplicate", "delayclick", "saveContext(\"context_id = null; setFieldValue(\\\"Context/Context_GeneralInformation/Context_ID\\\", getFieldValue(\\\"control/data/ContextIncrement\\\"));\")");
 onEvent("Context/Context_Attachments/Delete", "delayclick", "deleteContext()");
 
 onEvent("Context/Context_Artefacts/newArtefactGroup", "delayclick", "saveContext(\"newArtefactGroup();\")");
