@@ -8165,89 +8165,20 @@
       <description>Broad Artefact Class for each Artefact (eg Glass, Ceramic, Building Material).
       </description>
       <lookup>
-        <term>No Observation
-
-          <description>data not collected
-          </description>
-        </term>
-        <term HeuristID="1051-3137" StandardCode="">{Ceramic}
-
-          <description> </description>
-          <term HeuristID="0-3530" StandardCode="">
-            {Coarse}
-            <description> </description>
-          </term>
-          <term HeuristID="0-3531" StandardCode="">{Fine}
-            <description> </description>
-          </term>
-          <term HeuristID="0-3531" StandardCode="">{Terracotta}
-            <description> </description>
-          </term>
-          <term HeuristID="0-3531" StandardCode="">{Other}
-            <description> </description>
-          </term>
-        </term>
-        <term HeuristID="1051-3144" StandardCode="">{Glass}
-
-          <description> </description>
-          <term HeuristID="0-3531" StandardCode="">
-            {Black}
-            <description> </description>
-          </term>
-          <term HeuristID="0-3531" StandardCode="">{Colourless}
-            <description> </description>
-          </term>
-          <term HeuristID="0-3531" StandardCode="">{Coloured}
-            <description> </description>
-          </term>
-        </term>
-        <term HeuristID="1051-3138" StandardCode="">{Metal}
-
-          <description> </description>
-          <term HeuristID="10-3532" StandardCode="">
-            {Ferrous}
-            <description> </description>
-          </term>
-          <term HeuristID="10-3532" StandardCode="">{Copper-alloy}
-            <description> </description>
-          </term>
-          <term HeuristID="10-3532" StandardCode="">{Other}
-            <description> </description>
-          </term>
-        </term>
-        <term HeuristID="1051-3142" StandardCode="">{Building_Materials}
-
-          <description> </description>
-        </term>
-        <term HeuristID="10-3532" StandardCode="">{Organic}
-          <description> </description>
-          <term HeuristID="10-3532" StandardCode="">
-            {Bone}
-            <description> </description>
-          </term>
-          <term HeuristID="10-3532" StandardCode="">{Shell}
-            <description> </description>
-          </term>
-        </term>
-        <term HeuristID="10-3532" StandardCode="">{Miscellaneous}
-          <description> </description>
-        </term>
+        <term>{aFlakes}<description/></term>
+        <term>{bCores}<description/></term>
+        <term>{cFire_Cracked_Rock}<description/></term>
+        <term>{dHammerstone}<description/></term>
+        <term>{eManuport}<description/></term>
+        <term>{fBone}<description/></term>
+        <term>{gCharcoal}<description/></term>
+        <term>{hCeramic}<description/></term>
+        <term>{iRecent_Material}<description/></term>
+        <term>{jOther}<description/></term>
       </lookup>
     </property>
     <property name="Special Find Name" type="freetext">
       <description>Brief name or description for the Special Find, eg 'Wedgwood plate'.
-      </description>
-    </property>
-    <property name="X" type="float">
-      <description>The reading from the x-axis (horizontal) of an arbitrary site grid, corresponding to the location of the Special Find at the time of excavation.
-      </description>
-    </property>
-    <property name="Y" type="float">
-      <description>The reading from the y-axis (vertical) of an arbitrary site grid, corresponding to the location of the Special Find at the time of excavation.
-      </description>
-    </property>
-    <property name="Z" type="float">
-      <description>The elevation or depth of the Special Find at the time of excavation.
       </description>
     </property>
     <property name="Special Find Description" type="freetext">
@@ -8274,14 +8205,17 @@
   <!-- DEPOSIT VOLUME -->
   <ArchaeologicalElement name="Deposit Volume">
     <description>The volume of a deposit measured in lots, usually by the bucket and following sieving.</description>
-    <property isIdentifier="true" name="Context ID" type="freetext">
+    <property name="Context ID" type="freetext">
       <description>Unique number or code for each Context.</description>
-    </property>
-    <property isIdentifier="true" name="Number of Buckets" type="float">
-      <description>Number of Buckets </description>
     </property>
     <property isIdentifier="true" name="Volume of Bucket" type="float">
       <description>The volume in L of the deposit lot.</description>
+    </property>
+    <property name="Created By" type="freetext">
+      <description>User who created this record</description>
+    </property>
+    <property isIdentifier="true" name="Date Time" type="freetext">
+      <description>Date of first recording</description>
     </property>
   </ArchaeologicalElement>
 
@@ -8312,17 +8246,20 @@
 
   <!-- SPECIAL FIND LOCATION -->
   <ArchaeologicalElement name="Special Find Location">
-    <property name="Latitude" isIdentifier="true">
-      <description>Latitude of Special Find</description>
+    <property isIdentifier= "true" name="X" type="float">
+      <description>The reading from the x-axis (horizontal) of an arbitrary site grid, corresponding to the location of the Special Find at the time of excavation.
+      </description>
     </property>
-    <property name="Longitude" isIdentifier="true">
-      <description>Longitude of Special Find</description>
+    <property isIdentifier= "true" name="Y" type="float">
+      <description>The reading from the y-axis (vertical) of an arbitrary site grid, corresponding to the location of the Special Find at the time of excavation.
+      </description>
     </property>
-    <property name="Northing">
-      <description>Northing of Special Find</description>
+    <property isIdentifier= "true" name="Z" type="float">
+      <description>The elevation or depth of the Special Find at the time of excavation.
+      </description>
     </property>
-    <property name="Easting">
-      <description>Easting of Special Find</description>
+    <property isIdentifier= "true" name="Notes" type="freetext">
+      <description>Note about the part of the {Special_Find} from which the Location measurement was taken</description>
     </property>
   </ArchaeologicalElement>
 </dataSchema>
