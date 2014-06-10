@@ -104,17 +104,17 @@
       </lookup>
     </property>
     <property name="Minimum Context Thickness" type="float">
-      <description>The minimum thickness of the deposit base on the highest and lowest in each quadrant</description>
+      <description>The minimum thickness of the deposit based on the highest and lowest in each extent within the square.</description>
     </property>
     <property name="Maximum Context Thickness" type="float">
-      <description>The maximum thickness of the deposit base on the highest and lowest in each quadrant</description>
+      <description>The maximum thickness of the deposit based on the highest and lowest in each extent within the square.</description>
     </property>
     <property name="Context Comments" type="blocktext">
       <description>Additional comments on the description of the Context.
       </description>
     </property>
     <property name="Artefacts Present" type="enum">
-      <description>Whether or not artefacts where present in the {Context}</description>
+      <description>Whether or not artefacts were present in the {Context}.</description>
       <lookup>
         <term>{aFlakes}<description/></term>
         <term>{bCores}<description/></term>
@@ -7258,7 +7258,7 @@
       </description>
     </property>
     <property name="Deposit Inclusions" type="enum">
-      <description>Brief description of inclusions (eg stone flecks, artefacts).
+      <description>Brief description of inclusions.
       </description>
       <lookup>
         <term>Cobbles<description/></term>
@@ -7271,13 +7271,13 @@
       </description>
     </property>
     <property name="Your Interpretation" type="freetext">
-      <description>Your Interpretation of the likely functional zone of the context, whether inside a structure, or part of the structure itself.</description>
+      <description>Your interpretation of the likely depositional processes at work in forming the {Context}.</description>
       <lookup>
         <term>{Natural_Layer}<description/>
           <term>{Alluvial}<description/></term>
           <term>{Fluvial}<description/></term>
           <term>{Aeolian}<description/></term>
-          <term>{Lucastrine}<description/></term>
+          <term>{Lacustrine}<description/></term>
         </term>
 
         <term>{Feature_Disturbance}<description/>
@@ -7332,31 +7332,31 @@
       <description>A running 'lot' number that is a shorthand for Site-Area-Square-Context.</description>
     </property>
     <property name="Highest Level NE" type="float">
-      <description>The highest elevation, or 'opening level', recorded for the NE quadrant of the Context.</description>
+      <description>The highest elevation, or 'opening level', recorded for the NE extent within the square of the Context.</description>
     </property>
     <property name="Highest Level SE" type="float">
-      <description>The highest elevation, or 'opening level', recorded for the SE quadrant of the Context.</description>
+      <description>The highest elevation, or 'opening level', recorded for the SE extent within the square of the Context.</description>
     </property>
     <property name="Highest Level SW" type="float">
-      <description>The highest elevation, or 'opening level', recorded for the SW quadrant of the Context.</description>
+      <description>The highest elevation, or 'opening level', recorded for the SW extent within the square of the Context.</description>
     </property>
     <property name="Highest Level NW" type="float">
-      <description>The highest elevation, or 'opening level', recorded for the NW quadrant of the Context.</description>
+      <description>The highest elevation, or 'opening level', recorded for the NW extent within the square of the Context.</description>
     </property>
     <property name="Highest Level Ctr" type="float">
       <description>The highest elevation, or 'opening level', recorded for the centre of the Context.</description>
     </property>
     <property name="Lowest Level NE" type="float">
-      <description>The lowest elevation, or 'closing level', recorded for the NE quadrant of the Context.</description>
+      <description>The lowest elevation, or 'closing level', recorded for the NE extent within the square of the Context.</description>
     </property>
     <property name="Lowest Level SE" type="float">
-      <description>The lowest elevation, or 'closing level', recorded for the SE quadrant of the Context.</description>
+      <description>The lowest elevation, or 'closing level', recorded for the SE extent within the square of the Context.</description>
     </property>
     <property name="Lowest Level SW" type="float">
-      <description>The lowest elevation, or 'closing level', recorded for the SW quadrant of the Context.</description>
+      <description>The lowest elevation, or 'closing level', recorded for the SW extent within the square of the Context.</description>
     </property>
     <property name="Lowest Level NW" type="float">
-      <description>The lowest elevation, or 'closing level', recorded for the NW quadrant of the Context.</description>
+      <description>The lowest elevation, or 'closing level', recorded for the NW extent within the square of the Context.</description>
     </property>
     <property name="Lowest Level Ctr" type="float">
       <description>The lowest elevation, or 'closing level', recorded for the centre of the Context.</description>
@@ -7760,7 +7760,7 @@
       </lookup>
     </property>
     <property name="Trench Supervisor Review" type="enum">
-      <description>Has the Trench Supervisor reviewed this {Context} record and confirmed data is complete and accurate?</description>
+      <description>Has the Trench Supervisor reviewed this {Context} record and confirmed data are complete and accurate?</description>
       <lookup>
         <term> Yes
           <description/>
@@ -7771,7 +7771,7 @@
       </lookup>
     </property>
     <property name="Site Director Review" type="enum">
-      <description>Has the Site Director reviewed this {Context} record and confirmed data is complete and accurate?</description>
+      <description>Has the Site Director reviewed this {Context} record and confirmed data are complete and accurate?</description>
       <lookup>
         <term> Yes
           <description/>
@@ -7913,10 +7913,10 @@
       </lookup>
     </property>
     <property name="Artefact Quantity" type="float">
-      <description>The number of sherds in this group. </description>
+      <description>The number of {sherds} in this group. </description>
     </property>
     <property name="Artefact Weight" type="float">
-      <description>The total weight (in grams) of all sherds in this Group.
+      <description>The total weight (in grams) of all {sherds} in this Group.
       </description>
     </property>
     <property name="Artefact Group Comment" type="blocktext">

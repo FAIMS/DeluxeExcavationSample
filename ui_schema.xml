@@ -751,7 +751,7 @@
             </input>
           </group>
         </group>
-        <select1 faims_attribute_name="Your Interpretation" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Your_Interpretation">
+        <select1 faims_attribute_name="Your Interpretation" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Your_Interpretation">
           <label>{Your_Interpretation}</label>
           <item>
             <label>placeholder</label>
@@ -929,7 +929,7 @@ Closing Levels</label>
       </group>
 
       <group ref="Context_Deposits">
-        <label>Geology</label>
+        <label>Geol</label>
         <!--We would like to see Dropdown-->
         <group faims_style="orientation" ref="container1">
           <label/>
@@ -1122,7 +1122,7 @@ Closing Levels</label>
             <label> 
 
 
-Here you can group contexts into a single Context Group or Feature</label>
+Here you can group contexts into a single {Context_Group}.</label>
             <value>Help</value>
           </item>
         </select1>
@@ -1183,7 +1183,7 @@ Here you can group contexts into a single Context Group or Feature</label>
         </trigger>
       </group>
       <group ref="Context_Samples">
-        <label>Samples</label>
+        <label>Samp</label>
         <trigger ref="newSample">
           <label>Add Sample</label>
         </trigger>
@@ -1269,7 +1269,7 @@ Here you can add the Volume of individual lots of a single Context, eg a bucket 
             <label> 
 
 
-Here you can enter filenames or unique reference numbers for image stored on another device.</label>
+Here you can enter filenames or unique reference numbers for Context photos or associated images stored on another device.</label>
             <value>Help</value>
           </item>
         </select1>
@@ -1368,7 +1368,7 @@ Here you can enter filenames or unique reference numbers for image stored on ano
     <group faims_archent_type="Context Group" ref="ContextGroup">
       <label>{Context_Group}</label>
       <group ref="ContextGroup_Details">
-        <label>GEN</label>
+        <label>GENERAL</label>
          <group faims_style="orientation" ref="container1">
           <label/>
           <group faims_style="even" ref="child1">
@@ -1392,13 +1392,13 @@ Here you can enter filenames or unique reference numbers for image stored on ano
           <group faims_style="even" ref="child1">
             <label/>
             <input faims_attribute_name="Length" faims_attribute_type="measure" faims_read_only="false" ref="Length">
-              <label>Length</label>
+              <label>{Length}</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
             <input faims_attribute_name="Width" faims_attribute_type="measure" faims_read_only="false" ref="Width">
-              <label>Width</label>
+              <label>{Width}</label>
             </input>
           </group>
           <group faims_style="even" ref="child3">
