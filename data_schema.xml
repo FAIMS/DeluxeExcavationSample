@@ -7359,7 +7359,7 @@
       <description>The total number of buckets of sediment that was removed as part of the Context, estimated to the nearest 0.2 buckets; e.g. 1.2 buckets.</description>
     </property>
     <property name="Deposit Volume" type="float">
-      <description>The volume of deposit removed from the Context, measured in litres.</description>
+      <description>The total volume of sediment (in L) removed as part of the Context.</description>
     </property>
     <property name="Bucket Volume" type="float">
       <description>The default volume of a bucket in litres.</description>
