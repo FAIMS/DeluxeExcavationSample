@@ -769,7 +769,7 @@
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
-            <select faims_attribute_name="Excavation Method" faims_attribute_type="vocab" faims_certainty="false" faims_certainty="true" faims_read_only="false" ref="Excavation_Method">
+            <select faims_attribute_name="Excavation Method" faims_attribute_type="vocab" faims_certainty="false" faims_annotation="true" faims_read_only="false" ref="Excavation_Method">
               <label>{Excavation_Method}</label>
               <item>
                 <label>placeholder</label>
