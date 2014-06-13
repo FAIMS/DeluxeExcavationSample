@@ -37,10 +37,6 @@
     <description>Implements a 1:N between context and its special finds
     </description>
   </RelationshipElement>
-  <RelationshipElement name="ContextDepositVolume" type="bidirectional">
-    <description>Implements a 1:N between context and its deposit volumes
-    </description>
-  </RelationshipElement>
   <RelationshipElement name="ContextPhotographLog" type="bidirectional">
     <description>Implements a 1:N between context and its photograph logs
     </description>
@@ -74,13 +70,13 @@
     <property name="Excavation Method" type="enum">
       <description>Method and conditions of archaeological excavation.</description>
       <lookup>
-        <term>Hand-pick 
+        <term>{aHandPick} 
         <description>Excavated by hand-pick.</description></term>
-        <term>Trowel 
+        <term>{bTrowel} 
         <description>Excavated by trowel.</description></term>
-        <term>Pick 
+        <term>{cPick} 
         <description>Excavated by pick.</description></term>
-        <term>Other
+        <term>{zOther}
         <description>Excavated by another method.</description></term>
       </lookup>
     </property>
@@ -116,6 +112,7 @@
     <property name="Artefacts Present" type="enum">
       <description>Whether or not artefacts where present in the {Context}</description>
       <lookup>
+        <term>{0None}<description/></term>
         <term>{aFlakes}<description/></term>
         <term>{bCores}<description/></term>
         <term>{cFire_Cracked_Rock}<description/></term>
@@ -125,7 +122,7 @@
         <term>{gCharcoal}<description/></term>
         <term>{hCeramic}<description/></term>
         <term>{iRecent_Material}<description/></term>
-        <term>{jOther}<description/></term>
+        <term>{zOther}<description/></term>
       </lookup>
     </property>
     <property name="Soil Compaction Type" type="enum">
@@ -7273,6 +7270,7 @@
     <property name="Your Interpretation" type="freetext">
       <description>Your Interpretation of the likely functional zone of the context, whether inside a structure, or part of the structure itself.</description>
       <lookup>
+        <term>{0_No_Observation}<description/></term>
         <term>{Natural_Layer}<description/>
           <term>{Alluvial}<description/></term>
           <term>{Fluvial}<description/></term>
@@ -7293,10 +7291,6 @@
           <term>{Occasional_cultural_material}<description/></term>
         </term>
       </lookup>
-    </property>
-    <property name="Your Discussion" type="blocktext">
-      <description>Elaborate upon your basic interpretation.
-      </description>
     </property>
     <property name="Your description" type="blocktext">
       <description>Enter a simple descriptive interpretation. For example, is it a floor, midden, brickearth wall, gully or pit?
@@ -7328,7 +7322,7 @@
     <property name="Checked by Director" type="freetext">
       <description>The date on which the record was checked by the Square Supervisor.</description>
     </property>
-    <property name="LotID" type="float">
+    <property name="LotID" type="freetext" isIdentifier="true">
       <description>A running 'lot' number that is a shorthand for Site-Area-Square-Context.</description>
     </property>
     <property name="Highest Level NE" type="float">
@@ -7361,8 +7355,14 @@
     <property name="Lowest Level Ctr" type="float">
       <description>The lowest elevation, or 'closing level', recorded for the centre of the Context.</description>
     </property>
+    <property name="Final Bucket Count" type="float">
+      <description>The total number of buckets of sediment that was removed as part of the Context, estimated to the nearest 0.2 buckets; e.g. 1.2 buckets.</description>
+    </property>
     <property name="Deposit Volume" type="float">
       <description>The volume of deposit removed from the Context, measured in litres.</description>
+    </property>
+    <property name="Bucket Volume" type="float">
+      <description>The default volume of a bucket in litres.</description>
     </property>
     <property name="Texture Percentage Sand" type="float">
       <description>Percentage of sand in the deposit.</description>
@@ -7615,10 +7615,6 @@
           <description>In a loamy sand particles barely stick together and a moulded piece of soil just holds its shape. (VDEPI 2009: AG0058)
           </description>
         </term>
-        <term HeuristID="0-3586" StandardCode="">{Medium_ribbon_(2.5-5cm_long)}
-          <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is between 2.5 and 5cm long.
-          </description>
-        </term>
         <term HeuristID="0-3592" StandardCode="">{Silty_Clay_Loam}
           <description>A silty clay loam is like a clay loam but silty as well and smooth to the touch. (VDEPI 2009: AG0058)
           </description>
@@ -7680,7 +7676,7 @@
         <term> {dSaturated}
           <description/>
         </term>
-        <term> {eOther}
+        <term> {zOther}
           <description/>
         </term>
       </lookup>
@@ -7743,7 +7739,7 @@
         <term> {hRootlets}
           <description/>
         </term>
-        <term> {iOther}
+        <term> {zOther}
           <description/>
         </term>
       </lookup>
@@ -7797,20 +7793,15 @@
     <property name="Area Code" type="freetext">
       <description>Area or Trench: the working subdivision of an archaeological site. </description>
     </property>
+    <property name="Context Group ID" type="freetext">
+      <description>ID of the {Context_Group}</description>
+    </property>
     <property isIdentifier="true" name="Title" type="freetext">
       <description>Name of the context group
       </description>
     </property>
     <property name="Description" type="freetext">
       <description>
-      </description>
-    </property>
-    <property name="Length" type="float">
-      <description>Length of the longest side, in mm.
-      </description>
-    </property>
-    <property name="Width" type="float">
-      <description>Width or diameter, in mm.
       </description>
     </property>
     <property name="Depth" type="float">
@@ -7820,6 +7811,260 @@
     <property name="Your Discussion" type="freetext">
       <description>
       </description>
+    </property>
+    <property name="Profile Aspect" type="enum">
+      <description>Description TBD</description>
+      <lookup>
+        <term> {a_North}
+          <description>Description TBD</description>
+        </term>
+        <term> {b_South}
+          <description>Description TBD</description>
+        </term>
+        <term> {c_East}
+          <description>Description TBD</description>
+        </term>
+        <term> {d_West}
+          <description>Description TBD</description>
+        </term>
+        <term> {zOther}
+          <description>Description TBD</description>
+        </term>
+      </lookup>
+    </property>
+    <property name="UTM Easting" type="float">
+      <description>Description TBD</description>
+    </property>
+    <property name="UTM Northing" type="float">
+      <description>Description TBD</description>
+    </property>
+    <property name="Datum" type="freetext">
+      <description>Description TBD, comment: default to WGS84, otherwise type manually</description>
+    </property>
+    <property name="Elevation" type="float">
+      <description>Description TBD</description>
+    </property>
+    <property name="Elevation Determination" type="enum">
+      <description>Description TBD</description>
+      <lookup>
+        <term> {0_No_Observation}
+          <description>Description TBD</description>
+        </term>
+        <term> {Paper_Map}
+          <description>Description TBD</description>
+        </term>
+        <term> {Hand-Held_GPS}
+          <description>Description TBD</description>
+        </term>
+        <term> {Differential_GPS}
+          <description>Description TBD</description>
+        </term>
+        <term> {Calibrated_GPS}
+          <description>Description TBD</description>
+        </term>
+        <term> {Survey_Beacon}
+          <description>Description TBD</description>
+        </term>
+        <term> {zOther}
+          <description>Description TBD</description>
+        </term>
+      </lookup>
+    </property>
+    <property name="Geological Unit Number" type="freetext">
+      <description>Description TBD</description>
+    </property>
+    <property name="Start Depth" type="enum">
+      <description>Description TBD</description>
+    </property>
+    <property name="Start Depth Location" type="enum">
+      <description>Description TBD</description>
+      <lookup>
+        <term> {MBS}
+          <description>Meters Below Surface</description>
+        </term>
+        <term> {MBD}
+          <description>Meters below Datum</description>
+        </term>
+      </lookup>
+    </property>
+    <property name="Structure" type="enum">
+      <description>Description TBD</description>
+      <lookup>
+        <term> {Single_Grain}
+          <description>Description TBD</description>
+        </term>
+        <term> {Massive}
+          <description>Description TBD</description>
+        </term>
+        <term> {Laminated}
+          <description>Description TBD</description>
+        </term>
+        <term> {Platy}
+          <description>Description TBD</description>
+        </term>
+        <term> {Granular}
+          <description>Description TBD</description>
+        </term>
+        <term> {Blocky}
+          <description>Description TBD</description>
+        </term>
+        <term> {Prismatic}
+          <description>Description TBD</description>
+        </term>
+        <term> {Columnar}
+          <description>Description TBD</description>
+        </term>
+      </lookup>
+    </property>
+    <property name="Structure Modifiers" type="enum">
+      <description>Description TBD, comment: drop-down</description>
+      <lookup>
+        <term> {0_No_Observation}
+          <description>Description TBD</description>
+        </term>
+        <term> {None}
+          <description>Description TBD</description>
+        </term>
+        <term> {Weak}
+          <description>Description TBD</description>
+        </term>
+        <term> {Moderate}
+          <description>Description TBD</description>
+        </term>
+        <term> {Strong}
+          <description>Description TBD</description>
+        </term>
+      </lookup>
+    </property>
+    <property name="Inclusions Gravel Fraction" type="freetext">
+      <description>Include amounts and qualities; i.e. “Minor CaCO3 filaments” or “Minor cultural material present”.</description>
+    </property>
+    <property name="Upper Boundary" type="enum">
+      <description>Description TBD, comment: dropdown</description>
+      <lookup>
+        <term> {0_No_Observation}
+          <description>Description TBD</description>
+        </term>
+        <term> {Merging}
+          <description>Description TBD</description>
+        </term>
+        <term> {Clear}
+          <description>Description TBD</description>
+        </term>
+        <term> {Sharp/Straight}
+          <description>Description TBD</description>
+        </term>
+        <term> {Smooth}
+          <description>Description TBD</description>
+        </term>
+        <term> {Continuous}
+          <description>Description TBD</description>
+        </term>
+        <term> {Discontinuous}
+          <description>Description TBD</description>
+        </term>
+      </lookup>
+    </property>
+    <property name="Lower Boundary" type="enum">
+      <description>Description TBD</description>
+      <lookup>
+        <term> {0_No_Observation}
+          <description>Description TBD</description>
+        </term>
+        <term> {Merging}
+          <description>Description TBD</description>
+        </term>
+        <term> {Clear}
+          <description>Description TBD</description>
+        </term>
+        <term> {Sharp/Straight}
+          <description>Description TBD</description>
+        </term>
+        <term> {Smooth}
+          <description>Description TBD</description>
+        </term>
+        <term> {Continuous}
+          <description>Description TBD</description>
+        </term>
+        <term> {Discontinuous}
+          <description>Description TBD</description>
+        </term>
+      </lookup>
+    </property>
+    <property name="Compaction" type="enum">
+      <description>Description TBD</description>
+      <lookup>
+        <term HeuristID="0-3408" StandardCode="">{aLoose} <description>Description TBD</description></term>
+        <term HeuristID="0-3407" StandardCode="">{bSoft} <description>Description TBD</description></term>
+        <term HeuristID="0-3408" StandardCode="">{cSlightly_Hard} <description>Description TBD</description></term>
+        <term HeuristID="0-3408" StandardCode="">{dHard} <description>Description TBD</description></term>
+        <term HeuristID="0-3407" StandardCode="">{eVery_Hard} <description>Description TBD</description></term>
+        <term HeuristID="0-3408" StandardCode="">{fCemented} <description>Description TBD</description></term>
+      </lookup>
+    </property>
+    <property name="Disturbances" type="enum">
+      <description>Disturbances evident in the deposit</description>
+      <lookup>
+        <term> {aRecent_human_activity}
+          <description/>
+        </term>
+        <term> {bSediment_subsidence}
+          <description/>
+        </term>
+        <term> {cInsects}
+          <description/>
+        </term>
+        <term> {dLarge_burrows}
+          <description/>
+        </term>
+        <term> {eFaults}
+          <description/>
+        </term>
+        <term> {fErosion_gullies}
+          <description/>
+        </term>
+        <term> {gLarge_roots}
+          <description/>
+        </term>
+        <term> {hRootlets}
+          <description/>
+        </term>
+        <term> {zOther}
+          <description/>
+        </term>
+      </lookup>
+    </property>
+    <property name="Sorting" type="enum">
+      <description>Assessment of the frequency with which particles of the same size occur.
+      </description>
+      <lookup>
+        <term >{0_No_Observation}
+          <description>data not collected
+          </description>
+        </term>
+        <term>{aVery_poorly_sorted}
+          <description>Particles are very different sizes and very unevenly distributed.
+          </description>
+        </term>
+        <term>{bPoorly_sorted}
+          <description>Particles are different sizes and unevenly distributed.
+          </description>
+        </term>
+        <term>{cModerately_sorted}
+          <description>Particles are mostly the same size and evenly distributed, but there are some larger particles.
+          </description>
+        </term>
+        <term>{dWell_sorted}
+          <description>Particles are roughly the same size and evenly distributed.
+          </description>
+        </term>
+      </lookup>
+    </property>
+    <property name="Creation Date" type="date">
+      <description>Date group was created</description>
+    </property>
+    <property name="Created By" type="freetext">
+      <description>User who created this record</description>
     </property>
   </ArchaeologicalElement>
 
@@ -7838,7 +8083,7 @@
         <term>{Inclusion}
           <description> </description>
         </term>
-        <term>{Other}
+        <term>{zOther
           <description> </description>
         </term>
       </lookup>
@@ -7909,7 +8154,7 @@
         <term>{gCharcoal}<description/></term>
         <term>{hCeramic}<description/></term>
         <term>{iRecent_Material}<description/></term>
-        <term>{jOther}<description/></term>
+        <term>{zOther}<description/></term>
       </lookup>
     </property>
     <property name="Artefact Quantity" type="float">
@@ -7956,7 +8201,7 @@
         <term>{fIsotope}<description/></term>
         <term>{g14C}<description/></term>
         <term>{hArchaeomagnetic}<description/></term>
-        <term>{iOther}<description/></term>
+        <term>{zOther}<description/></term>
       </lookup>
     </property>
     <property name="Collection Method" type="enum">
@@ -7973,7 +8218,7 @@
           <description>Hand sample of building elements, for example.
           </description>
         </term>
-        <term HeuristID="0-3539" StandardCode="">{Other}
+        <term HeuristID="0-3539" StandardCode="">{zOther}
 
           <description>Other collection method.
           </description>
@@ -8031,7 +8276,7 @@
             <description>Finely dressed stone with flat face.
             </description>
           </term>
-          <term HeuristID="0-3545" StandardCode="">{Other}
+          <term HeuristID="0-3545" StandardCode="">{zOther}
             <description> </description>
           </term>
           <term HeuristID="0-3543" StandardCode="">{Roughly-hewn}
@@ -8174,7 +8419,7 @@
         <term>{gCharcoal}<description/></term>
         <term>{hCeramic}<description/></term>
         <term>{iRecent_Material}<description/></term>
-        <term>{jOther}<description/></term>
+        <term>{zOther}<description/></term>
       </lookup>
     </property>
     <property name="Special Find Name" type="freetext">
@@ -8202,23 +8447,6 @@
     </property>
   </ArchaeologicalElement>
 
-  <!-- DEPOSIT VOLUME -->
-  <ArchaeologicalElement name="Deposit Volume">
-    <description>The volume of a deposit measured in lots, usually by the bucket and following sieving.</description>
-    <property name="Context ID" type="freetext">
-      <description>Unique number or code for each Context.</description>
-    </property>
-    <property isIdentifier="true" name="Volume of Bucket" type="float">
-      <description>The volume in L of the deposit lot.</description>
-    </property>
-    <property name="Created By" type="freetext">
-      <description>User who created this record</description>
-    </property>
-    <property isIdentifier="true" name="Date Time" type="freetext">
-      <description>Date of first recording</description>
-    </property>
-  </ArchaeologicalElement>
-
   <!-- PHOTOGRAPH LOG -->
   <ArchaeologicalElement name="Photograph Log">
     <description>A record of images created and stored on another device, eg by a professional site photographer.</description>
@@ -8228,16 +8456,36 @@
     <property name="Photograph Reference ID" isIdentifier= "true" type="freetext">
       <description>Unique number or code allocated by creator of the image. It could be a filename or a reference number</description>
     </property>
+    <property name="Looking Toward" type="enum">
+      <description>The type of scene captured, eg opening or closing view of the Context. (Vocab: Open, Close, Other)</description>
+      <lookup>
+        <term> {a_North}
+          <description/>
+        </term>
+        <term> {b_South}
+          <description/>
+        </term>
+        <term> {c_East}
+          <description/>
+        </term>
+        <term> {d_West}
+          <description/>
+        </term>
+        <term> {zOther}
+          <description/>
+        </term>
+      </lookup>
+    </property>
     <property name="Scene Type" type="enum">
       <description>The type of scene captured, eg opening or closing view of the Context. (Vocab: Open, Close, Other)</description>
       <lookup>
-        <term> Open
+        <term> {Open}
           <description/>
         </term>
-        <term> Close
+        <term> {Close}
           <description/>
         </term>
-        <term> Other
+        <term> {zOther}
           <description/>
         </term>
       </lookup>
