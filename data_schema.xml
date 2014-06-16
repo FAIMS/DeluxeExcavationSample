@@ -11,15 +11,15 @@
     <description>Implements adjacent to for contexts
     </description>
   </RelationshipElement>
+  <RelationshipElement name="Equivalent" type="bidirectional">
+    <description>Implements equivalent to for contexts
+    </description>
+  </RelationshipElement>
   <RelationshipElement name="Contains - Contained By" type="hierarchical">
     <description>Implements a contains-containedby for contexts.
     </description>
     <parent>Contains</parent>
     <child>Contained By</child>
-  </RelationshipElement>
-  <RelationshipElement name="ContextMatrix" type="bidirectional">
-    <description>Implements a 1:N between contexts and matrices
-    </description>
   </RelationshipElement>
   <RelationshipElement name="ContextContextGroup" type="bidirectional">
     <description>Implements a N:N between contexts and context groups
@@ -43,6 +43,14 @@
   </RelationshipElement>
   <RelationshipElement name="SpecialFindSpecialFindLocation" type="bidirectional">
     <description>Implements a 1:N between special finds and their locations
+    </description>
+  </RelationshipElement>
+  <RelationshipElement name="ContextGroupSample" type="bidirectional">
+    <description>Implements a 1:N between context group and its samples
+    </description>
+  </RelationshipElement>
+  <RelationshipElement name="ContextGroupPhotographLog" type="bidirectional">
+    <description>Implements a 1:N between context group and its photograph logs
     </description>
   </RelationshipElement>
 
@@ -80,6 +88,15 @@
         <description>Excavated by another method.</description></term>
       </lookup>
     </property>
+    <property name="Elevation Datum Type" type="enum">
+      <description>Method and conditions of archaeological excavation.</description>
+      <lookup>
+        <term>{True} 
+        <description>Description TBD</description></term>
+        <term>{Local_Datum} 
+        <description>Description TBD</description></term>
+      </lookup>
+    </property>
     <property name="Highest Level" type="float">
       <description> The highest elevation, or 'starting level', recorded for that context. This may be relative to the site grid, or real world co-ordinates, depending on the method of measurement.
       </description>
@@ -91,12 +108,13 @@
     <property name="Target Spit Thickness" type="enum">
       <description>The minimum thickness of deposit</description>
       <lookup>
-       <term>{a2cm}<description/></term>
-       <term>{b5cm}<description/></term>
-       <term>{c10cm}<description/></term>
-       <term>{d20cm}<description/></term>
-       <term>{e25cm}<description/></term>
-       <term>{f50cm}<description/></term>
+        <term>{0_No_Observation}<description>Data not collected</description></term>
+        <term>{a2cm}<description/></term>
+        <term>{b5cm}<description/></term>
+        <term>{c10cm}<description/></term>
+        <term>{d20cm}<description/></term>
+        <term>{e25cm}<description/></term>
+        <term>{f50cm}<description/></term>
       </lookup>
     </property>
     <property name="Minimum Context Thickness" type="float">
@@ -7259,8 +7277,9 @@
       </description>
       <lookup>
         <term>Cobbles<description/></term>
+        <term>Organic Material<description/></term>
         <term>Pebbles<description/></term>
-        <term>Other<description/></term>
+        <term>{zOther}<description/></term>
       </lookup>
     </property>
     <property name="Deposit Thickness and Extent" type="blocktext">
@@ -7270,7 +7289,10 @@
     <property name="Your Interpretation" type="freetext">
       <description>Your interpretation of the likely depositional processes at work in forming the {Context}.</description>
       <lookup>
-        <term>{0_No_Observation}<description/></term>
+        <term>{0_No_Observation}
+          <description>Data not collected
+          </description>
+        </term>
         <term>{Natural_Layer}<description/>
           <term>{Alluvial}<description/></term>
           <term>{Fluvial}<description/></term>
@@ -7363,15 +7385,6 @@
     </property>
     <property name="Bucket Volume" type="float">
       <description>The default volume of a bucket in litres.</description>
-    </property>
-    <property name="Texture Percentage Sand" type="float">
-      <description>Percentage of sand in the deposit.</description>
-    </property>
-    <property name="Texture Percentage Silt" type="float">
-      <description>Percentage of silt in the deposit.</description>
-    </property>
-    <property name="Texture Percentage Clay" type="float">
-      <description>Percentage of clay in the deposit.</description>
     </property>
     <property name="Soil Texture" type="enum">
       <description>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.
@@ -7664,13 +7677,17 @@
     <property name="Soil Moisture" type="enum">
       <description>The overall moisture content of the soil.</description>
       <lookup>
-        <term> {aMoist}
+        <term>{0_No_Observation}
+          <description>Data not collected
+          </description>
+        </term>
+        <term> {aVery_Dry}
           <description/>
         </term>
         <term> {bDry}
           <description/>
         </term>
-        <term> {cVery_Dry}
+        <term> {cMoist}
           <description/>
         </term>
         <term> {dSaturated}
@@ -7815,6 +7832,9 @@
     <property name="Profile Aspect" type="enum">
       <description>Description TBD</description>
       <lookup>
+        <term>{0_No_Observation}
+          <description>Data not collected</description>
+        </term>
         <term> {a_North}
           <description>Description TBD</description>
         </term>
@@ -7847,8 +7867,8 @@
     <property name="Elevation Determination" type="enum">
       <description>Description TBD</description>
       <lookup>
-        <term> {0_No_Observation}
-          <description>Description TBD</description>
+        <term>{0_No_Observation}
+          <description>Data not collected</description>
         </term>
         <term> {Paper_Map}
           <description>Description TBD</description>
@@ -7874,10 +7894,6 @@
       <description>Description TBD</description>
     </property>
     <property name="Start Depth" type="enum">
-      <description>Description TBD</description>
-    </property>
-    <property name="Start Depth Location" type="enum">
-      <description>Description TBD</description>
       <lookup>
         <term> {MBS}
           <description>Meters Below Surface</description>
@@ -7890,6 +7906,9 @@
     <property name="Structure" type="enum">
       <description>Description TBD</description>
       <lookup>
+        <term>{0_No_Observation}
+          <description>Data not collected</description>
+        </term>
         <term> {Single_Grain}
           <description>Description TBD</description>
         </term>
@@ -7919,8 +7938,8 @@
     <property name="Structure Modifiers" type="enum">
       <description>Description TBD, comment: drop-down</description>
       <lookup>
-        <term> {0_No_Observation}
-          <description>Description TBD</description>
+        <term>{0_No_Observation}
+          <description>Data not collected</description>
         </term>
         <term> {None}
           <description>Description TBD</description>
@@ -7942,8 +7961,8 @@
     <property name="Upper Boundary" type="enum">
       <description>Description TBD, comment: dropdown</description>
       <lookup>
-        <term> {0_No_Observation}
-          <description>Description TBD</description>
+        <term>{0_No_Observation}
+          <description>Data not collected</description>
         </term>
         <term> {Merging}
           <description>Description TBD</description>
@@ -7968,8 +7987,8 @@
     <property name="Lower Boundary" type="enum">
       <description>Description TBD</description>
       <lookup>
-        <term> {0_No_Observation}
-          <description>Description TBD</description>
+        <term>{0_No_Observation}
+          <description>Data not collected</description>
         </term>
         <term> {Merging}
           <description>Description TBD</description>
@@ -7991,9 +8010,13 @@
         </term>
       </lookup>
     </property>
+    <property name="Soil Colour" type="freetext">
+      <description>This field will autopopulate on save</description>
+    </property>
     <property name="Compaction" type="enum">
       <description>Description TBD</description>
       <lookup>
+        <term>{0_No_Observation}<description>Data not collected</description></term>
         <term HeuristID="0-3408" StandardCode="">{aLoose} <description>Description TBD</description></term>
         <term HeuristID="0-3407" StandardCode="">{bSoft} <description>Description TBD</description></term>
         <term HeuristID="0-3408" StandardCode="">{cSlightly_Hard} <description>Description TBD</description></term>
@@ -8005,6 +8028,9 @@
     <property name="Disturbances" type="enum">
       <description>Disturbances evident in the deposit</description>
       <lookup>
+        <term>{0_No_Observation}
+          <description>Data not collected</description>
+        </term>
         <term> {aRecent_human_activity}
           <description/>
         </term>
@@ -8038,9 +8064,8 @@
       <description>Assessment of the frequency with which particles of the same size occur.
       </description>
       <lookup>
-        <term >{0_No_Observation}
-          <description>data not collected
-          </description>
+        <term>{0_No_Observation}
+          <description>Data not collected</description>
         </term>
         <term>{aVery_poorly_sorted}
           <description>Particles are very different sizes and very unevenly distributed.
@@ -8066,65 +8091,12 @@
     <property name="Created By" type="freetext">
       <description>User who created this record</description>
     </property>
-  </ArchaeologicalElement>
-
-  <!-- Matrix -->
-  <ArchaeologicalElement name="Matrix">
-    <description> </description>
-    <property name="Context ID" type="freetext">
-    </property>
-    <property name="Component Type" type="vocab">
-      <description>Component Type
+    <property name="Sketch" type="file">
+      <description>Sketch
       </description>
-      <lookup>
-        <term>{Soil}
-          <description> </description>
-        </term>
-        <term>{Inclusion}
-          <description> </description>
-        </term>
-        <term>{zOther
-          <description> </description>
-        </term>
-      </lookup>
     </property>
-    <property name="Component" type="enum" isIdentifier="true">
-      <description>Grains which comprise more than 10% deposit should be included here. </description>
-      <lookup>
-        <term>No Observation
-
-          <description>data not collected</description></term>
-        <term HeuristID="0-3420" StandardCode="">{Clay}
-
-          <description/></term>
-        <term HeuristID="0-3427" StandardCode="">{Coarse_Pebbles}
-
-          <description>20.00–60.00mm</description></term>
-        <term HeuristID="0-3424" StandardCode="">{Coarse_Sand}
-
-          <description>0.20–2.00mm</description></term>
-        <term HeuristID="0-3428" StandardCode="">{Cobbles}
-
-          <description>60mm–200mm</description></term>
-        <term HeuristID="0-3425" StandardCode="">{Fine_Pebbles}
-
-          <description>2.00–6.00mm</description></term>
-        <term HeuristID="0-3422" StandardCode="">{Fine_sand}
-
-          <description>0.02–0.06 mm</description></term>
-        <term HeuristID="0-3426" StandardCode="">{Medium_Pebbles}
-
-          <description>6.00–20.0mm</description></term>
-        <term HeuristID="0-3423" StandardCode="">{Medium_Sand}
-
-          <description>0.06–0.20mm</description></term>
-        <term HeuristID="0-3421" StandardCode="">{Silt}
-
-          <description/></term>
-      </lookup>
-    </property>
-    <property isIdentifier="true" name="Percentage" type="float">
-      <description>Percentage
+    <property name="Photo" type="file">
+      <description>Photo
       </description>
     </property>
   </ArchaeologicalElement>
@@ -8145,6 +8117,7 @@
       <description>Broad Artefact Class for each Artefact.
       </description>
       <lookup>
+        <term>{0_No_Observation}<description>Data not collected</description></term>
         <term>{aFlakes}<description/></term>
         <term>{bCores}<description/></term>
         <term>{cFire_Cracked_Rock}<description/></term>
@@ -8193,6 +8166,7 @@
       <description>The type of Sample collected, eg Soil, Wood, Pollen.
       </description>
       <lookup>
+        <term>{0_No_Observation}<description>Data not collected</description></term>
         <term>{aBulk}<description/></term>
         <term>{bOSL}<description/></term>
         <term>{cMicromorphology}<description/></term>
@@ -8208,22 +8182,22 @@
       <description>Method of collecting the sample.
       </description>
       <lookup>
-        <term>No Observation
+        <term>{0_No_Observation}
 
           <description>data not collected
           </description>
         </term>
-        <term HeuristID="0-3538" StandardCode="">{Hand_collection}
+        <term HeuristID="0-3538" StandardCode="">{aDirty_Trowel}
 
-          <description>Hand sample of building elements, for example.
+          <description>
           </description>
         </term>
-        <term HeuristID="0-3539" StandardCode="">{zOther}
+        <term HeuristID="0-3539" StandardCode="">{zOtherSpec}
 
           <description>Other collection method.
           </description>
         </term>
-        <term HeuristID="0-3537" StandardCode="">{Unsterilised}
+        <term HeuristID="0-3537" StandardCode="">{bClean_Trowel}
 
           <description>A collection using standard excavation tools into a sterilised container.
           </description>
@@ -8410,6 +8384,7 @@
       <description>Broad Artefact Class for each Artefact (eg Glass, Ceramic, Building Material).
       </description>
       <lookup>
+        <term>{0_No_Observation}<description>Data not collected</description></term>
         <term>{aFlakes}<description/></term>
         <term>{bCores}<description/></term>
         <term>{cFire_Cracked_Rock}<description/></term>
@@ -8479,13 +8454,20 @@
     <property name="Scene Type" type="enum">
       <description>The type of scene captured, eg opening or closing view of the Context. (Vocab: Open, Close, Other)</description>
       <lookup>
+        <term>{0_No_Observation}<description>Data not collected</description></term>
         <term> {Open}
           <description/>
         </term>
         <term> {Close}
           <description/>
         </term>
-        <term> {zOther}
+        <term> {Feature}
+          <description/>
+        </term>
+        <term> {Artefacts_In_Situ}
+          <description/>
+        </term>
+        <term> {zOther_specify}
           <description/>
         </term>
       </lookup>
