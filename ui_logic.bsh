@@ -509,8 +509,12 @@ newContextGroup(menu){
     }
     newTabGroup("ContextGroup");
     context_group_id = null;
+    date = fetchOne("select date('now');");
+    setFieldValue("ContextGroup/ContextGroup_Details/DateRecorded", date.get(0));
     setFieldValue("ContextGroup/ContextGroup_Details/Site_Code","FAIMS13");
     setFieldValue("ContextGroup/ContextGroup_Details/Area_Code", areaCode);
+    setFieldValue("ContextGroup/ContextGroup_Details/CreatingUser", username);
+
     populateContextGroup();
 }
 
@@ -519,6 +523,9 @@ loadContextGroup(){
     showToast("loading: "+context_group_id);
     showTabGroup("ContextGroup", context_group_id);
     populateContextGroup();
+    Object foo = fetchOne("select fname || ' ' || lname from user join archentity using (userid) where uuid = '"+context_id+"' group by uuid having min(aenttimestamp)");
+    setFieldValue("ContextGroup/ContextGroup_Details/CreatingUser", foo.get(0));
+    
 }
 
 loadContextGroupFromContext() {
@@ -526,6 +533,8 @@ loadContextGroupFromContext() {
     if (isNull(context_group_id)) return;
     showTabGroup("ContextGroup", context_group_id);
     populateContextGroup();
+    Object foo = fetchOne("select fname || ' ' || lname from user join archentity using (userid) where uuid = '"+context_id+"' group by uuid having min(aenttimestamp)");
+    setFieldValue("ContextGroup/ContextGroup_Details/CreatingUser", foo.get(0));
 }
 
 saveContextGroup(){
@@ -633,6 +642,33 @@ removeFromContextGroup() {
         
     }
 }
+
+// autoNumFeature(){
+//     Object counter = fetchOne(""+
+//         "select response, deviceMatch, aenttimestamp "+
+//         "from (select freetext, v.vocabName || ':0'|| coalesce(substr('0000'||(substr(freetext,-4)+1),-4),'') as response, aenttimestamp,  "+
+//         "             uuid in (select uuid "+
+//         "                        from latestnondeletedaentvalue AS av join attributekey using (attributeid), localSettings "+
+//         "                        where userid = value "+
+//         "                         and key = 'User') as deviceMatch, value "+
+//         " from latestnondeletedarchentidentifiers join (select uuid from latestnondeletedaentvalue av join vocabulary v on (av.vocabid = v.vocabname), localSettings where key = 'Area' and value = v.vocabid) using (uuid), localSettings join vocabulary v on (value = v.vocabid) "+
+//         " where attributename = 'Context ID' "+
+//         " and key = 'Area') "+
+//         " where response not in (select freetext from latestnondeletedarchentidentifiers where freetext is not null) "+
+//         "union select response, -1, aenttimestamp "+
+//         "from (select vocabName || ':0001' as response, datetime(1, 'unixepoch') as aenttimestamp from localSettings join vocabulary on (value = vocabid) where key = 'Area') "+
+//         "order by deviceMatch desc, aenttimestamp desc limit 1;");
+//     String out = "";
+
+//     if (!isNull(counter)){
+//          out = counter.get(0);
+         
+//          if (counter.get(1).equals("0"))
+//              showWarning("Alert!", "ID may be intruding in other Device's allocated ID range.");
+//     }
+
+//     setFieldValue("control/data/ContextIncrement", out);
+// }
 
 /*** Artefact Group ***/
 onEvent("Artefact_Group/Artefact_Group_GeneralInformation/attachPhoto", "click", "attachPictureTo(\"Artefact_Group/Artefact_Group_GeneralInformation/Photo\")");

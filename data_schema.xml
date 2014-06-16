@@ -690,6 +690,9 @@
     <property name="Area Code" type="freetext">
       <description>Area or Trench: the working subdivision of an archaeological site.</description>
     </property>
+    <property name="Context Group ID" type="freetext">
+      <description>Unique number or code for each {Context Group}.</description>
+    </property>
     <property isIdentifier="true" name="Title" type="freetext">
       <description>Name of the context group</description>
     </property>
@@ -772,6 +775,9 @@
         <term>5 
         <description>Industrial 1900-</description></term>
       </lookup>
+    </property>
+    <property name="Date Recorded CG" type="freetext">
+      <description>Date Recorded</description>
     </property>
   </ArchaeologicalElement>
 
