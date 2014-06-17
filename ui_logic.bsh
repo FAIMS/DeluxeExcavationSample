@@ -290,7 +290,7 @@ saveContext(String callback) {
         return;
     }
     if(!isNull(getFieldValue("Context/Context_GeneralInformation/LotID"))) {
-        Object obj = fetchOne("select count(distinct uuid) from latestnondeletedaentvalue where freetext = '" + getFieldValue("Context/Context_GeneralInformation/LotID") + "' and uuid != " + context_id + ";");
+        Object obj = fetchOne("select count(distinct uuid) from latestnondeletedaentvalue join attributekey using (attributeid) where freetext = '" + getFieldValue("Context/Context_GeneralInformation/LotID") + "' and (uuid != '" + context_id + "' or '" + context_id + "' = '') and attributename='LotID';");
         if(!obj.get(0).equals("0")) {
             showWarning("Validation Error", "LotID must be unique.");
             showTabGroup("Context");
@@ -550,91 +550,62 @@ calculateVol() {
 
 calculateMin() {
     ArrayList vals = new ArrayList();
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NW"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NW"));
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NW")) && !isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NW"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NW")) - Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NW")));
     }
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NE"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NE"));
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NE")) && !isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NE"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NE")) - Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NE")));
     }
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_Ctr"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_Ctr"));
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_Ctr")) && !isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_Ctr"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_Ctr")) - Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_Ctr")));
     }
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SW"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SW"));
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SW")) && !isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SW"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SW")) - Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SW")));
     }
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SE"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SE"));
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SE")) && !isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SE"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SE")) - Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SE")));
     }
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NW"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NW"));
-    }
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NE"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NE"));
-    }
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_Ctr"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_Ctr"));
-    }
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SW"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SW"));
-    }
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SE"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SE"));
-    }
+    
     if(vals.size() == 0) {
         setFieldValue("Context/Context_GeneralInformation/Min_Context_Thickness", 0);
     } else {
-        double min = Double.parseDouble(vals.get(0));
+        double min = vals.get(0);
         for(int i = 1; i < vals.size(); i++) {
-            if(Double.parseDouble(vals.get(i)) < min) {
-                min = Double.parseDouble(vals.get(i));
+            if(vals.get(i) < min) {
+                min = vals.get(i);
             }
         }
-        setFieldValue("Context/Context_GeneralInformation/Min_Context_Thickness", min);
+        setFieldValue("Context/Context_GeneralInformation/Min_Context_Thickness", (double)Math.round(min * 100) / 100);
     }
 }
 
 calculateMax() {
     ArrayList vals = new ArrayList();
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NW"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NW"));
+     if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NW")) && !isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NW"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NW")) - Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NW")));
     }
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NE"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NE"));
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NE")) && !isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NE"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_NE")) - Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NE")));
     }
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_Ctr"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_Ctr"));
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_Ctr")) && !isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_Ctr"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_Ctr")) - Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_Ctr")));
     }
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SW"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SW"));
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SW")) && !isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SW"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SW")) - Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SW")));
     }
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SE"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SE"));
-    }
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NW"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NW"));
-    }
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NE"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_NE"));
-    }
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_Ctr"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_Ctr"));
-    }
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SW"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SW"));
-    }
-    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SE"))) {
-        vals.add(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SE"));
+    if(!isNull(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SE")) && !isNull(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SE"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Highest_Level_SE")) - Double.parseDouble(getFieldValue("Context/Context_GeneralInformation/Context_Lowest_Level_SE")));
     }
     if(vals.size() == 0) {
         setFieldValue("Context/Context_GeneralInformation/Max_Context_Thickness", 0);
     } else {
-        double max = Double.parseDouble(vals.get(0));
+        double max = vals.get(0);
         for(int i = 1; i < vals.size(); i++) {
-            if(Double.parseDouble(vals.get(i)) > max) {
-                max = Double.parseDouble(vals.get(i));
+            if(vals.get(i) > max) {
+                max = vals.get(i);
             }
         }
-        setFieldValue("Context/Context_GeneralInformation/Max_Context_Thickness", max);
+        setFieldValue("Context/Context_GeneralInformation/Max_Context_Thickness", (double)Math.round(max * 100) / 100);
     }
 }
 
