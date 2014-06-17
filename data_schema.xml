@@ -66,14 +66,13 @@
       </description>
     </property>
     <property isIdentifier="true" name="AreaCode" type="freetext">
-      <description>Area or Trench: the working subdivision of an archaeological site. </description>
+      <description>Area or Trench: the working subdivision of an archaeological site.</description>
     </property>
     <property isIdentifier="true" name="Grid Location Reference" type="freetext">
-      <description>Reference number for the grid square(s) within which this Context falls. </description>
+      <description>Reference number for the grid square(s) within which this Context falls.</description>
     </property>
     <property name="Date Opened" type="date">
-      <description>Date on which the Context was first excavated.
-      </description>
+      <description>Date (YYYY-MM-DD) on which the Context was first excavated.</description>
     </property>
     <property name="Excavation Method" type="enum">
       <description>Method and conditions of archaeological excavation.</description>
@@ -89,7 +88,7 @@
       </lookup>
     </property>
     <property name="Elevation Datum Type" type="enum">
-      <description>Method and conditions of archaeological excavation.</description>
+      <description>The type of elevation.</description>
       <lookup>
         <term>{True} 
         <description>Description TBD</description></term>
@@ -7433,7 +7432,7 @@
           <description>Place approximately 25 g soil in palm. Add water dropwise and knead the soil to break down all aggregates. Soil is at the proper consistency when plastic and moldable, like moist putty.
           </description>
           <term HeuristID="0-3575" StandardCode="">
-            {TASK:_Roll_ribbon}
+            {TASK_Roll_ribbon}
 
             <description>Rub a ball of soil between thumb and forefinger to make a 'ribbon'
             </description>
@@ -7459,7 +7458,7 @@
                 <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is between 2.5 and 5cm long.
                 </description>
                 <term HeuristID="0-3587" StandardCode="">
-                  {TASK:_Wet_soil_and_rub_with_forefinger}
+                  {TASK_Wet_soil_and_rub_with_forefinger}
 
                   <description>Excessively wet a small pinch of soil in palm and rub with forefinger.
                   </description>
@@ -7498,7 +7497,6 @@
                     </description>
                     <term HeuristID="0-3589" StandardCode="">
                       {Sandy_Clay_Loam}
-
                       <description>A sandy clay loam is like a clay loam but sand grains can be felt (and heard - see Sandy Loam) (VDEPI 2009: AG0058)
                       </description>
                     </term>
@@ -7510,7 +7508,7 @@
                 <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is strong and over 5cm long.
                 </description>
                 <term HeuristID="0-3596" StandardCode="">
-                  {TASK:_Wet_soil_and_rub_with_forefinger}
+                  {TASK_Wet_soil_and_rub_with_forefinger}
 
                   <description>Excessively wet a small pinch of soil in palm and rub with forefinger.
                   </description>
@@ -7561,7 +7559,7 @@
                 <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is less than 2.5cm long.
                 </description>
                 <term HeuristID="0-3578" StandardCode="">
-                  {TASK:_Wet_soil_and_rub_with_forefinger}
+                  {TASK_Wet_soil_and_rub_with_forefinger}
 
                   <description>Excessively wet a small pinch of soil in palm and rub with forefinger.
                   </description>
@@ -7795,7 +7793,7 @@
       </lookup>
     </property>
     <property name="Date Closed" type="freetext">
-      <description>Date Closed</description>
+      <description>The date (YYYY-MM-DD) on which the Context was closed.</description>
     </property>
     <!--end memsap additions -->
   </ArchaeologicalElement>
@@ -8086,10 +8084,10 @@
       </lookup>
     </property>
     <property name="Creation Date" type="date">
-      <description>Date group was created</description>
+      <description>Date group was created. </description>
     </property>
     <property name="Created By" type="freetext">
-      <description>User who created this record</description>
+      <description>User who created this record.</description>
     </property>
     <property name="Sketch" type="file">
       <description>Sketch
@@ -8131,10 +8129,10 @@
       </lookup>
     </property>
     <property name="Artefact Quantity" type="float">
-      <description>The number of {sherds} in this group. </description>
+      <description>The number of {Sherds} in this group. </description>
     </property>
     <property name="Artefact Weight" type="float">
-      <description>The total weight (in grams) of all {sherds} in this Group.
+      <description>The total weight (in grams) of all {Sherds} in this Group.
       </description>
     </property>
     <property name="Artefact Group Comment" type="blocktext">

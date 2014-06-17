@@ -1106,7 +1106,7 @@ Closing Elevations</label>
             <label> 
 
 
-Here you can group contexts into a single {Context Group}</label>
+Here you can group contexts into a single {Context_Group}.</label>
             <value>Help</value>
           </item>
         </select1>
