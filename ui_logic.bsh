@@ -27,6 +27,10 @@ onEvent("control/contextGroup/GroupList", "click", "loadContextGroup();newContex
 onEvent("control/settings/connectexternal", "click", "startExternalGPS()");
 onEvent("control/settings/connectinternal", "click", "startInternalGPS()");
 onEvent("control/settings/Update", "delayclick", "saveDefaults()");
+onFocus("control/settings/Site", "", "replaceSite()");
+onFocus("control/settings/Area", "", "replaceArea()");
+onFocus("control/settings/Target_Spit_Thickness", "", "replaceTarget()");
+onFocus("control/settings/BucketVolume", "", "replaceVolume()");
 onEvent("control/data/SearchType", "click", "search()");
 
 onEvent("control/data/searchButton", "click", "search()");
