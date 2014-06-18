@@ -46,6 +46,13 @@
     <description>Implements a 1:N between context and its photograph logs
     </description>
   </RelationshipElement>
+  <RelationshipElement name="ContextGroupSample" type="bidirectional">
+    <description>Implements a 1:N between context group and its samples</description>
+  </RelationshipElement>
+  <RelationshipElement name="ContextGroupPhotographLog" type="bidirectional">
+    <description>Implements a 1:N between context group and its photograph logs
+    </description>
+  </RelationshipElement>
   
   <!-- CONTEXT -->
   <ArchaeologicalElement name="Context">
@@ -691,10 +698,13 @@
       <description>Area or Trench: the working subdivision of an archaeological site.</description>
     </property>
     <property name="Context Group ID" type="freetext">
-      <description>Unique number or code for each {Context Group}.</description>
+      <description>Unique number or code for each {Context_Group}.</description>
     </property>
     <property isIdentifier="true" name="Title" type="freetext">
       <description>Name of the context group</description>
+    </property>
+    <property name="Location Note CG" type="freetext">
+      <description>For Approx location in area provide information on rough location eg centre of Area A or NW corner area A but also in relation to other archaeological contexts or features e.g. between walls x and y.</description>
     </property>
     <property name="CG Context Type" type="enum">
       <description></description>
@@ -723,9 +733,21 @@
         <description /></term>
         <term>{Surface}
         <description /></term>
+        <term>{Space} <description>Description to come</description></term>
+        <term>{Posthole}<description>Description to come</description></term>
+        <term>{Stakehole}<description>Description to come</description></term>
+        <term>{Hearth}<description>Description to come</description></term>
+        <term>{Stakehole_row} <description>Description to come</description></term>
+        <term>{zOther}<description>Description to come</description></term>
       </lookup>
     </property>
-    <property name="Description" type="freetext">
+    <property name="CG Your Interpretation" type="blocktext">
+      <description>Your Interpretation</description>
+    </property>
+    <property name="CG Your description" type="blocktext">
+      <description>Enter a simple descriptive interpretation. For example is it a floor midden brickearth wall gully or pit?</description>
+    </property>
+    <property name="Your Discussion" type="freetext">
       <description></description>
     </property>
     <property name="Length" type="float">
@@ -737,14 +759,11 @@
     <property name="Depth" type="float">
       <description>Depth or Height in mm.</description>
     </property>
-    <property name="Your Discussion" type="freetext">
-      <description></description>
+    <property name="Mid X" type="float">
+      <description>Definition to come</description>
     </property>
-    <property name="Start date" type="date">
-      <description>Start Date (may also include time and/or have fuzzy limits)</description>
-    </property>
-    <property name="End date" type="date">
-      <description>End Date (may also include time and/or have fuzzy limits)</description>
+    <property name="Mid Y" type="float">
+      <description>Definition to come</description>
     </property>
     <property name="CG Phase From" type="freetext">
       <description>The earliest phase in which this Context was likely to have been created.</description>
@@ -776,8 +795,17 @@
         <description>Industrial 1900-</description></term>
       </lookup>
     </property>
-    <property name="Date Recorded CG" type="freetext">
-      <description>Date Recorded</description>
+    <property name="CG Plans" type="freetext">
+      <description>Reference numbers to plans or drawings of this Context.</description>
+    </property>
+    <property name="CG Section Numbers" type="freetext">
+      <description>Reference numbers to section drawings of this Context</description>
+    </property>
+    <property name="Sketch" type="file">
+      <description>Sketch</description>
+    </property>
+    <property name="Photo" type="file">
+      <description>Photo</description>
     </property>
   </ArchaeologicalElement>
 
