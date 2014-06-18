@@ -64,6 +64,7 @@
               <Area/>
               <Target_Spit_Thickness/>
               <BucketVolume/>
+              <Update/>
             </settings>
           </control>
           <!--list of tabgroups for entities-->
@@ -157,11 +158,16 @@
                 <child2>
                   <Deposit_Volume/>
                 </child2>
-                <child3>
-                  <calculateVol/>
-                </child3>
               </container8>
-              <CreatingUser/>
+              <calculateVol/>
+              <container9>
+                <child1>
+                  <CreatingUser/>
+                </child1>
+                <child2>
+                  <CreatingDate/>
+                </child2>
+              </container9>
               <Update/>
               <addGeological/>
             </Context_GeneralInformation>
@@ -214,8 +220,12 @@
               <listRelns/>
               <deleteReln/>
               <showReln/>
-              <guide/>
+              <guide1/>
               <AddContextGroup/>
+              <guide2/>
+              <ContextGroupListUnrelated/>
+              <AddContextGroupRel/>
+              <guide3/>
               <ContextGroupList/>
               <ShowContextGroup/>
               <RemoveFromContextGroup/>
@@ -334,8 +344,14 @@
               <Disturbances/>
               <Upper_Boundary/>
               <Lower_Boundary/>
-              <Creation_Date/>
-              <Created_By/>
+              <container6>
+                <child1>
+                  <Created_By/>
+                </child1>
+                <child2>
+                  <Creation_Date/>
+                </child2>
+              </container6>
               <Update/>
               <Delete/>
             </ContextGroup_Details>
@@ -439,16 +455,10 @@
               <Special_Find_Class/>
               <Special_Find_Name/>
               <Special_Find_Description/>
-              <container2>
-                <child1>
-                  <Date_From/>
-                </child1>
-                <child2>
-                  <Date_To/>
-                </child2>
-              </container2>
               <Special_Find_Comment/>
               <Photo/>
+              <Sketch/>
+              <attachSketch/>
               <attachPhoto/>
               <viewattached/>
               <Update/>
@@ -478,6 +488,7 @@
               </container1>
               <Notes/>
               <Update/>
+              <UpdateAndNew/>
               <Delete/>
             </Special_Find_Location>
           </Special_Find_Location>
@@ -527,8 +538,6 @@
       <bind nodeset="/faims/Sample/Sample_GeneralInformation/Sample_Volume" type="decimal"/>
       <bind nodeset="/faims/Sample/Sample_GeneralInformation/Sample_Comments" type="string"/>
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/Special_Find_Description" type="string"/>
-      <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container2/child1/Date_From" type="decimal"/>
-      <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container2/child2/Date_To" type="decimal"/>
       <bind nodeset="/faims/Special_Find_Location/Special_Find_Location/container1/child1/X" type="decimal"/>
       <bind nodeset="/faims/Special_Find_Location/Special_Find_Location/container1/child2/Y" type="decimal"/>
       <bind nodeset="/faims/Special_Find_Location/Special_Find_Location/container1/child3/Z" type="decimal"/>
@@ -584,10 +593,11 @@
         <select1 appearance="compact" ref="guide">
           <label>Module Guide</label>
             <item>
-            <label>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tincidunt imperdiet libero quis rutrum. Integer nec neque tortor. Mauris a tellus vitae tellus iaculis viverra at id ipsum. Etiam tincidunt ac purus in placerat. Donec suscipit et dui ut accumsan. Ut tincidunt, eros nec pellentesque facilisis, odio orci ultrices dolor, eget commodo tellus nibh ac tellus. Aenean tincidunt sapien sed eros ultricies varius. Sed et nunc erat. Nullam ligula tellus, laoreet et molestie pretium, pretium vel sem. Vivamus gravida ipsum a suscipit adipiscing. 
+            <label>The MEMSAP Excavation Module was prepared in 2014 for Dr Jessica Thompson, University of Queensland. It is an adaption of the standard FAIMS Excavation Module, and allows for the single context recording of deposits, which can be grouped into Geological Units.
 
+For more information, see the MEMSAP Excavation Module Guide. It provides an overview of the features and navigation of the Module.
 
-            Vestibulum non sodales tortor, sit amet euismod ligula. Morbi et risus sem. Maecenas feugiat, nisl id luctus suscipit, nibh mauris accumsan metus, ut semper arcu diam non tortor. Mauris at imperdiet neque, vel porta dui. Vestibulum a nibh pellentesque, pharetra sapien vel, bibendum lacus. Duis vehicula lacus id urna fermentum, quis commodo est commodo.</label>
+Definitions and vocabulary lists for each Attribute are accessible via the Help button alongside each attribute.</label>
             <value>Help</value>
           </item>
         </select1>
@@ -697,6 +707,9 @@
         <input faims_attribute_name="Bucket Volume" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" faims_annotation="false" ref="BucketVolume">
           <label>{Bucket_Volume}</label>
         </input>
+        <trigger ref="Update">
+          <label> Save Defaults </label>
+        </trigger>
       </group>
     </group>
 
@@ -937,17 +950,26 @@ Closing Elevations</label>
               <label>{Deposit_Volume}</label>
             </input>
           </group>
-          <group faims_style="even" ref="child3">
-            <label/>
-            <trigger ref="calculateVol">
-              <label>{Calculate_Volume}</label>
-            </trigger> 
-          </group>
         </group>
         <!--We would like to see Dropdown-->
-        <input faims_certainty="false" faims_read_only="true" ref="CreatingUser">
-          <label>Record Created By:</label>
-        </input>
+        <trigger ref="calculateVol">
+          <label>{Calculate_Volume}</label>
+        </trigger> 
+        <group faims_style="orientation" ref="container9">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input faims_certainty="false" faims_read_only="true" ref="CreatingUser">
+              <label>{Created_By}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input faims_certainty="false" faims_read_only="true" ref="CreatingDate">
+              <label>{Creation_Date}</label>
+            </input>
+          </group>
+        </group>
         <trigger ref="Update">
           <label>Save {Context}</label>
         </trigger>
@@ -1099,7 +1121,7 @@ Closing Elevations</label>
         <trigger ref="showReln">
           <label>Load Selected {Context} and Exit this Context</label>
         </trigger>
-      <select1 appearance="compact" ref="guide" >
+      <select1 appearance="compact" ref="guide1">
           <label></label>
             <item>
               <!-- I'm using fancy spaces here. Be careful of copying -->
@@ -1110,10 +1132,37 @@ Here you can group contexts into a single {Context_Group}.</label>
             <value>Help</value>
           </item>
         </select1>
-
         <trigger ref="AddContextGroup">
-          <label>Add New {Context_Group}</label>
+          <label>Create New {Context_Group}</label>
         </trigger>
+        <select1 appearance="compact" ref="guide2" >
+          <label></label>
+            <item>
+              <!-- I'm using fancy spaces here. Be careful of copying -->
+            <label> 
+You can add this Context to already existing {Context_Group}.</label>
+            <value>Help</value>
+          </item>
+        </select1>
+        <select1 faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="ContextGroupListUnrelated">
+          <label>Existing and unrelated {Context_Group}s</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <trigger ref="AddContextGroupRel">
+          <label>Add to {Context_Group}</label>
+        </trigger>
+<select1 appearance="compact" ref="guide3" >
+          <label></label>
+            <item>
+              <!-- I'm using fancy spaces here. Be careful of copying -->
+            <label>
+Here are the {Context_Group}s that this Context belongs to.</label>
+            <value>Help</value>
+          </item>
+        </select1>
         <select1 faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="ContextGroupList">
           <label>List of Related {Context_Group}s</label>
           <item>
@@ -1478,12 +1527,21 @@ Here you can enter filenames or unique reference numbers for Context photos or a
             <value>placeholder</value>
           </item>
         </select1>
-        <input ref="Creation_Date" faims_attribute_name="Creation Date" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="true">
-          <label>{Creation_Date}</label>
-        </input>
-        <input ref="Created_By" faims_attribute_name="Created By" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="true">
-          <label>{Created_By}</label>
-        </input>
+        <group faims_style="orientation" ref="container6">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input ref="Created_By" faims_certainty="false" faims_annotation="false" faims_read_only="true">
+              <label>{Created_By}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input ref="Creation_Date" faims_certainty="false" faims_annotation="false" faims_read_only="true">
+              <label>{Creation_Date}</label>
+            </input>
+          </group>
+        </group>
         <trigger ref="Update">
           <label>Save {Context_Group}</label>
         </trigger>
@@ -1793,24 +1851,19 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         <input faims_attribute_name="Special Find Description" faims_attribute_type="freetext" faims_read_only="false" ref="Special_Find_Description">
           <label>{Special_Find} Description</label>
         </input>
-        <group faims_style="orientation" ref="container2">
-          <label/>
-          <group faims_style="even" ref="child1">
-            <label/>
-            <input faims_attribute_name="Date From" faims_attribute_type="measure" faims_read_only="false" ref="Date_From">
-              <label>Date From</label>
-            </input>
-          </group>
-          <group faims_style="even" ref="child2">
-            <label/>
-            <input faims_attribute_name="Date To" faims_attribute_type="measure" faims_read_only="false" ref="Date_To">
-              <label>Date To</label>
-            </input>
-          </group>
-        </group>
         <input faims_attribute_name="Special Find Comment" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Special_Find_Comment">
           <label>{Special_Find} Comment</label>
         </input>
+        <select faims_annotation="false" faims_attribute_name="Sketch" faims_attribute_type="freetext" faims_certainty="false" ref="Sketch" type="file">
+          <label>{Sketch}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select>
+        <trigger ref="attachSketch">
+          <label>{Attach_Sketch}</label>
+        </trigger>
         <select faims_annotation="false" faims_attribute_name="Photo" faims_attribute_type="freetext" faims_certainty="true" faims_sync="true" ref="Photo" type="camera">
           <label>{Photo}</label>
           <item>
@@ -1882,7 +1935,10 @@ Here you can enter filenames or unique reference numbers for image stored on ano
           <label>{Special_Find_Location_Notes}</label>
         </input>
         <trigger ref="Update">
-          <label>Save {Special_Find} Location</label>
+          <label>Save and Close</label>
+        </trigger>
+        <trigger ref="UpdateAndNew">
+          <label>Save and New</label>
         </trigger>
         <trigger ref="Delete">
           <label>Delete {Special_Find} Location</label>

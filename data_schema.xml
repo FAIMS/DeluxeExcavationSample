@@ -145,6 +145,7 @@
     <property name="Soil Compaction Type" type="enum">
       <description>The type of compaction of sediments in the deposit, eg 'Compact', 'Cemented' or 'Loose'.</description>
       <lookup>
+        <term>{0_No_Observation} <description>Can be excavated with hoe or trowel. (MoLAS 2004: 30)</description></term>
         <term HeuristID="0-3408" StandardCode="">{aLoose} <description>Can be excavated with hoe or trowel. (MoLAS 2004: 30)</description></term>
         <term HeuristID="0-3407" StandardCode="">{bCompact} <description>Requires mattock for excavation.(MoLAS 2004: 30)</description></term>
         <term HeuristID="0-3408" StandardCode="">{cVery_Compact} <description></description></term>
@@ -7275,9 +7276,10 @@
       <description>Brief description of inclusions.
       </description>
       <lookup>
-        <term>Cobbles<description/></term>
-        <term>Organic Material<description/></term>
-        <term>Pebbles<description/></term>
+        <term>{0None}<description/></term>
+        <term>{Cobbles}<description/></term>
+        <term>{Organic_Material}<description/></term>
+        <term>{Pebbles}<description/></term>
         <term>{zOther}<description/></term>
       </lookup>
     </property>
@@ -7713,16 +7715,19 @@
     <property name="Natural Formations" type="enum">
       <description>Geological formations evident in the deposit</description>
       <lookup>
-        <term> Carbonates
+        <term> {0None}
           <description/>
         </term>
-        <term> Iron concretions
+        <term> {Carbonates}
           <description/>
         </term>
-        <term> Calcretions
+        <term> {Iron_concretions}
           <description/>
         </term>
-        <term> Other
+        <term> {Calcretions}
+          <description/>
+        </term>
+        <term> {zOther}
           <description/>
         </term>
       </lookup>
@@ -7730,6 +7735,9 @@
     <property name="Disturbances" type="enum">
       <description>Disturbances evident in the deposit</description>
       <lookup>
+        <term> {0None}
+          <description/>
+        </term>
         <term> {aRecent_human_activity}
           <description/>
         </term>
@@ -8083,12 +8091,6 @@
         </term>
       </lookup>
     </property>
-    <property name="Creation Date" type="date">
-      <description>Date group was created. </description>
-    </property>
-    <property name="Created By" type="freetext">
-      <description>User who created this record.</description>
-    </property>
     <property name="Sketch" type="file">
       <description>Sketch
       </description>
@@ -8403,19 +8405,16 @@
       <description>Description of the Special Find.
       </description>
     </property>
-    <property name="Date From" type="float">
-      <description>The earliest known or likely date that this artefact may have been manufactured. Enter only a year. Use the certainty slide for approximate dates ie 'circa'. </description>
-    </property>
-    <property name="Date To" type="float">
-      <description>The late known or likely date that this artefact may have been manufactured. Enter only a year. Use the certainty slide for approximate dates ie 'circa'.
-      </description>
-    </property>
     <property name="Special Find Comment" type="freetext">
       <description>
       </description>
     </property>
     <property name="Photo" type="file">
       <description>Photo
+      </description>
+    </property>
+    <property name="Sketch" type="file">
+      <description>Sketch
       </description>
     </property>
   </ArchaeologicalElement>
