@@ -902,8 +902,14 @@ autoNumContextGroup(){
                              "join latestnondeletedarchent using (uuid) join aenttype using (aenttypeid) " +
                             "where aenttypename = 'Context Group') " +
               "and attributename = 'Context Group ID');");
+    if(isNull(counter.get(0))){
+        String contextGroupID = getFieldValue("control/settings/Site") + "-" + getFieldValue("control/settings/Area") + "-" + "1";
+        setFieldValue("ContextGroup/ContextGroup_Details/Context_Group_ID", contextGroupID);
+    } else {
+        setFieldValue("ContextGroup/ContextGroup_Details/Context_Group_ID", counter.get(0));    
+    }
     
-    setFieldValue("ContextGroup/ContextGroup_Details/Context_Group_ID", counter.get(0));
+    
 }
 
 
