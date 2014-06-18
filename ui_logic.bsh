@@ -2,6 +2,8 @@
 User user; // don't touch
 String userid;
 
+Boolean newContextGroupRel;
+
 /*setSyncEnabled(true);
 setFileSyncEnabled(true);*/
 
@@ -21,8 +23,8 @@ onEvent("control/data", "show", "refreshEntities()");
 onEvent("control/data/ContextList", "click", "loadContext()");
 onEvent("control/data/newContext", "click", "newContext();");
 onEvent("control/data/Search", "click", "clearSearch()");
-onEvent("control/contextGroup/newContextGroup", "click", "newContextGroup(true);");
-onEvent("control/contextGroup/GroupList", "click", "loadContextGroup()");
+onEvent("control/contextGroup/newContextGroup", "click", "newContextGroup(true);newContextGroupRel = false;");
+onEvent("control/contextGroup/GroupList", "click", "loadContextGroup();newContextGroupRel = false;");
 onEvent("control/gps/connectexternal", "click", "startExternalGPS()");
 onEvent("control/gps/connectinternal", "click", "startInternalGPS()");
 
@@ -91,8 +93,8 @@ onEvent("Context/Context_Deposits/newMatrix", "click", "saveContextAndNewMatrix(
 onEvent("Context/Context_Deposits/loadMatrix", "click", "loadMatrix()");
 onEvent("Context/Context_Deposits/deleteMatrix", "click", "deleteMatrixFromContext()");
 
-onEvent("Context/Context_Interpretation/AddContextGroup", "click", "newContextGroup(false)");
-onEvent("Context/Context_Interpretation/ShowContextGroup", "click", "loadContextGroupFromContext()");
+onEvent("Context/Context_Interpretation/AddContextGroup", "click", "newContextGroup(false);newContextGroupRel = true;");
+onEvent("Context/Context_Interpretation/ShowContextGroup", "click", "loadContextGroupFromContext();newContextGroupRel = false;");
 onEvent("Context/Context_Interpretation/RemoveFromContextGroup", "click", "removeContextGroupReln()");
 
 onEvent("Context/Context_Attachments/attachPhoto", "click", "attachPictureTo(\"Context/Context_Attachments/Photo\")");
@@ -624,11 +626,11 @@ saveContextGroup(){
         showWarning("Validation Error", "Context Group requires a title to be saved.");
         return;
     }
-    saveTabGroup("ContextGroup", context_group_id, null, null, "context_group_id = getLastSavedRecordId(); onContextGroupSaved; populateContextGroup();");
+    saveTabGroup("ContextGroup", context_group_id, null, null, "context_group_id = getLastSavedRecordId(); onContextGroupSaved(); populateContextGroup();");
 }
 
 onContextGroupSaved(){
-    if(!isNull(context_id)) {
+    if(newContextGroupRel) {
         context_group_id = getLastSavedRecordId();
         saveEntitiesToRel("ContextContextGroup", context_id, context_group_id);
     }
