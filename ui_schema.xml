@@ -1135,15 +1135,8 @@ Here you can group contexts into a single {Context_Group}.</label>
         <trigger ref="AddContextGroup">
           <label>Create New {Context_Group}</label>
         </trigger>
-<!--         <select1 appearance="compact" ref="guide2" >
-          <label></label>
-            <item>
-              I'm using fancy spaces here. Be careful of copying
-            <label> 
-You can add this Context to already existing {Context_Group}.</label>
-            <value>Help</value>
-          </item>
-        </select1> -->
+
+
         <select1 faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="ContextGroupListUnrelated">
           <label>Existing and unrelated {Context_Group}s</label>
           <item>
@@ -1154,15 +1147,8 @@ You can add this Context to already existing {Context_Group}.</label>
         <trigger ref="AddContextGroupRel">
           <label>Add to {Context_Group}</label>
         </trigger>
-<!-- <select1 appearance="compact" ref="guide3" >
-          <label></label>
-            <item>
-              I'm using fancy spaces here. Be careful of copying
-            <label>
-Here are the {Context_Group}s that this Context belongs to.</label>
-            <value>Help</value>
-          </item>
-        </select1> -->
+
+
         <select1 faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="ContextGroupList">
           <label>List of Related {Context_Group}s</label>
           <item>
