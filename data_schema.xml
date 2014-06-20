@@ -91,9 +91,9 @@
       <description>The type of elevation.</description>
       <lookup>
         <term>{True} 
-        <description>Description TBD</description></term>
+        <description>TBD</description></term>
         <term>{Local_Datum} 
-        <description>Description TBD</description></term>
+        <description>TBD</description></term>
       </lookup>
     </property>
     <property name="Highest Level" type="float">
@@ -7830,68 +7830,68 @@
       </description>
     </property>
     <property name="Profile Aspect" type="enum">
-      <description>Description TBD</description>
+      <description>The direction you are facing when you are facing the profile.</description>
       <lookup>
         <term>{0_No_Observation}
           <description>Data not collected</description>
         </term>
         <term> {a_North}
-          <description>Description TBD</description>
+          <description>North.</description>
         </term>
         <term> {b_South}
-          <description>Description TBD</description>
+          <description>South</description>
         </term>
         <term> {c_East}
-          <description>Description TBD</description>
+          <description>East</description>
         </term>
         <term> {d_West}
-          <description>Description TBD</description>
+          <description>West</description>
         </term>
         <term> {zOther}
-          <description>Description TBD</description>
+          <description>Other. Please specify.</description>
         </term>
       </lookup>
     </property>
     <property name="UTM Easting" type="float">
-      <description>Description TBD</description>
+      <description>Your longitudinal location, in UTM metres (specify zone in comments).</description>
     </property>
     <property name="UTM Northing" type="float">
-      <description>Description TBD</description>
+      <description>Your latitudinal location, in UTM metres (specify zone in comments).</description>
     </property>
     <property name="Datum" type="freetext">
-      <description>Enter Zone number in Annotation Field</description>
+      <description>The datum used for establishing your global position. Comment: default to WGS84, otherwise type manually. Enter Zone in Annotation Field.</description>
     </property>
     <property name="Elevation" type="float">
-      <description>Description TBD</description>
+      <description>Elevation of the top of the profile, in m.</description>
     </property>
     <property name="Elevation Determination" type="enum">
-      <description>Description TBD</description>
+      <description>The means by which you established the elevation of the top of the profile.</description>
       <lookup>
         <term>{0_No_Observation}
-          <description>Data not collected</description>
+          <description>Data not collected.</description>
         </term>
         <term> {Paper_Map}
-          <description>Description TBD</description>
+          <description>Elevation read from topography of a printed map.</description>
         </term>
         <term> {Hand-Held_GPS}
-          <description>Description TBD</description>
+          <description>Commercial-grade GPS without calibration.</description>
         </term>
         <term> {Differential_GPS}
-          <description>Description TBD</description>
+          <description>Differential GPS read with a ‘fixed’ location.</description>
         </term>
         <term> {Calibrated_GPS}
-          <description>Description TBD</description>
+          <description>Hand-held GPS calibrated to a local elevation datum.</description>
         </term>
         <term> {Survey_Beacon}
-          <description>Description TBD</description>
+          <description>Elevation based on a local survey beacon.</description>
         </term>
         <term> {zOther}
-          <description>Description TBD</description>
+          <description>Describe other means of establishing elevation.</description>
         </term>
       </lookup>
     </property>
     <property name="Geological Unit Number" type="freetext">
-      <description>Description TBD</description>
+      <description>The geological unit of the layer assigned by the geologist (typically decreasing numbers with depth).</description>
     </property>
     <property name="Start Depth" type="enum">
       <lookup>
@@ -7904,125 +7904,125 @@
       </lookup>
     </property>
     <property name="Structure" type="enum">
-      <description>Description TBD</description>
+      <description>“The arrangement of primary soil particles into compound particles or aggregates.</description>
       <lookup>
         <term>{0_No_Observation}
           <description>Data not collected</description>
         </term>
         <term> {Single_Grain}
-          <description>Description TBD</description>
+          <description>Sediment that is broken into individual particles that do not stick together. Typically accompanies loose consistence in sandy sediments.</description>
         </term>
         <term> {Massive}
-          <description>Description TBD</description>
+          <description>Sediments that have no visible structure, are hard to break apart, and appear in very large clods.</description>
         </term>
         <term> {Laminated}
-          <description>Description TBD</description>
+          <description>Distinct bands of varying sediment texture (e.g. silts, medium sands, clays) that usually deposit at non-horizontal angles. Common in canals, reservoirs, and wells.</description>
         </term>
         <term> {Platy}
-          <description>Description TBD</description>
+          <description>Thin, flat plates of soil that lie horizontally. Usually found in compacted soil.</description>
         </term>
         <term> {Granular}
-          <description>Description TBD</description>
+          <description>Resembles cookie crumbs and is usually less than 0.5 cm in diameter. Commonly found in surface horizons where roots have been growing.</description>
         </term>
         <term> {Blocky}
-          <description>Description TBD</description>
+          <description>Irregular blocks that are usually 1.5 to 5.0 cm in diameter.</description>
         </term>
         <term> {Prismatic}
-          <description>Description TBD</description>
+          <description>Vertical columns of soil typically more than 5 cm long. Usually found in lower soil horizons.</description>
         </term>
         <term> {Columnar}
-          <description>Description TBD</description>
+          <description>Vertical columns of soil that have a white rounded salt 'cap' at the top. They occur very commonly in arid climates.</description>
         </term>
       </lookup>
     </property>
     <property name="Structure Modifiers" type="enum">
-      <description>Description TBD, comment: drop-down</description>
+      <description>Describe the degree to which the structure is developed. Also describe in the notes if the ped size is large, medium, or fine.</description>
       <lookup>
         <term>{0_No_Observation}
           <description>Data not collected</description>
         </term>
         <term> {None}
-          <description>Description TBD</description>
+          <description>There is no apparent structure.</description>
         </term>
         <term> {Weak}
-          <description>Description TBD</description>
+          <description>Some structure is apparent, but it is inconsistent within the horizon.</description>
         </term>
         <term> {Moderate}
-          <description>Description TBD</description>
+          <description>Structure is moderately developed throughout the horizon.</description>
         </term>
         <term> {Strong}
-          <description>Description TBD</description>
+          <description>Structure is well-developed throughout the horizon.</description>
         </term>
       </lookup>
     </property>
     <property name="Inclusions Gravel Fraction" type="freetext">
-      <description>Include amounts and qualities; i.e. “Minor CaCO3 filaments” or “Minor cultural material present”.</description>
+      <description>Include amounts and qualities; i.e. 'Minor CaCO3 filaments' or 'Minor cultural material present'.</description>
     </property>
     <property name="Upper Boundary" type="enum">
-      <description>Description TBD, comment: dropdown</description>
+      <description>Describe the overall way in which the upper boundary of the horizon contacts the one above it. If a secondary boundary type applies, describe it in the comments.</description>
       <lookup>
         <term>{0_No_Observation}
           <description>Data not collected</description>
         </term>
         <term> {Merging}
-          <description>Description TBD</description>
+          <description>Horizon merges gradually with the one above it.</description>
         </term>
         <term> {Clear}
-          <description>Description TBD</description>
+          <description>Boundary is clearly defined but not sharp.</description>
         </term>
         <term> {Sharp/Straight}
-          <description>Description TBD</description>
+          <description>Boundary is clearly defined and sharp.</description>
         </term>
         <term> {Smooth}
-          <description>Description TBD</description>
+          <description>Boundary is apparent but not clearly defined.</description>
         </term>
         <term> {Continuous}
-          <description>Description TBD</description>
+          <description>Boundary is continuous across the exposed profile, but takes more than one form.</description>
         </term>
         <term> {Discontinuous}
-          <description>Description TBD</description>
+          <description>Boundary is discontinuous across the exposed profile, and takes more than one form.</description>
         </term>
       </lookup>
     </property>
     <property name="Lower Boundary" type="enum">
-      <description>Description TBD</description>
+      <description>Describe the overall way in which the lower boundary of the horizon contacts the one above it. If a secondary boundary type applies, describe it in the comments.</description>
       <lookup>
         <term>{0_No_Observation}
           <description>Data not collected</description>
         </term>
         <term> {Merging}
-          <description>Description TBD</description>
+          <description>Horizon merges gradually with the one above it.</description>
         </term>
         <term> {Clear}
-          <description>Description TBD</description>
+          <description>Boundary is clearly defined but not sharp.</description>
         </term>
         <term> {Sharp/Straight}
-          <description>Description TBD</description>
+          <description>Boundary is clearly defined and sharp.</description>
         </term>
         <term> {Smooth}
-          <description>Description TBD</description>
+          <description>Boundary is apparent but not clearly defined.</description>
         </term>
         <term> {Continuous}
-          <description>Description TBD</description>
+          <description>Boundary is continuous across the exposed profile, but takes more than one form.</description>
         </term>
         <term> {Discontinuous}
-          <description>Description TBD</description>
+          <description>Boundary is discontinuous across the exposed profile, and takes more than one form.</description>
         </term>
       </lookup>
     </property>
     <property name="Soil Colour" type="freetext">
-      <description>This field will autopopulate on save</description>
+      <description>The colour of soil sediment.</description>
     </property>
     <property name="Compaction" type="enum">
-      <description>Description TBD</description>
+      <description>The degree to which the sediment particles adhere to one another and require force to be separated. Follow this procedure to determine soil compaction/consistence. Take a ped (an aggregate of soil) from the soil horizon. If the soil is very dry, moisten the face of the profile with a water bottle first. Holding the ped between your thumb and forefinger, gently squeeze it until it “pops” or falls apart. Loose soil will not need to be squeezed, while soft soil will fall apart immediately. Slightly hard soil takes some pressure, while hard soil takes a lot of pressure. Very hard soil can only be broken apart along its structure using a digging tool, and cemented soil cannot be broken apart along its structure at all.</description>
       <lookup>
         <term>{0_No_Observation}<description>Data not collected</description></term>
-        <term>{aLoose} <description>Description TBD</description></term>
-        <term>{bSoft} <description>Description TBD</description></term>
-        <term>{cSlightly_Hard} <description>Description TBD</description></term>
-        <term>{dHard} <description>Description TBD</description></term>
-        <term>{eVery_Hard} <description>Description TBD</description></term>
-        <term>{fCemented} <description>Description TBD</description></term>
+        <term>{aLoose} <description></description></term>
+        <term>{bSoft} <description></description></term>
+        <term>{cSlightly_Hard} <description></description></term>
+        <term>{dHard} <description></description></term>
+        <term>{eVery_Hard} <description></description></term>
+        <term>{fCemented} <description></description></term>
       </lookup>
     </property>
     <property name="Disturbances" type="enum">
