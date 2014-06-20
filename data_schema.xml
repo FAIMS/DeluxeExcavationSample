@@ -7640,10 +7640,7 @@
           <description>A sandy clay loam is like a clay loam but sand grains can be felt (and heard - see Sandy Loam) (VDEPI 2009: AG0058)
           </description>
         </term>
-        <term HeuristID="0-3595" StandardCode="">{Strong_ribbon}
-          <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is strong and over 5cm long.
-          </description>
-        </term>
+        
         <term HeuristID="0-3601" StandardCode="">{Silty_Clay}
           <description>A silty clay is like a clay but smoother. (VDEPI 2009: AG0058)
           </description>
@@ -7656,10 +7653,7 @@
           <description>A sandy clay is like a clay but sand grains can be felt (and heard - see Sandy Loam). (VDEPI 2009: AG0058)
           </description>
         </term>
-        <term HeuristID="0-3577" StandardCode="">{Weak_ribbon_(Less_than_2.5cm_long)}
-          <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is less than 2.5cm long.
-          </description>
-        </term>
+        
         <term HeuristID="0-3583" StandardCode="">{Silt_Loam}
           <description>A silty loam is like a loam but has a smooth silky feel when a moist sample is pushed between the index finger and thumb. On drying a sample can form a hard lump but this may be broken by hand. (VDEPI 2009: AG0058)
           </description>
@@ -7865,7 +7859,7 @@
       <description>Description TBD</description>
     </property>
     <property name="Datum" type="freetext">
-      <description>Description TBD, comment: default to WGS84, otherwise type manually</description>
+      <description>Enter Zone number in Annotation Field</description>
     </property>
     <property name="Elevation" type="float">
       <description>Description TBD</description>
@@ -8098,6 +8092,78 @@
     <property name="Photo" type="file">
       <description>Photo
       </description>
+    </property>
+  <property name="Soil Texture Actual" type="enum">
+      <description>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.
+      </description>
+      <lookup>
+        <term HeuristID="0-3608" StandardCode="">No Observation 
+          <description>No Observation. Use the Texture helper to prefil this.
+          </description>
+        </term>
+        <term HeuristID="0-3608" StandardCode="">{Sand}
+          <description>A sand has a loose gritty feel and does not stick together. Individual sand grains can be seen or felt. (VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3605" StandardCode="">{Loamy_Sand}
+          <description>In a loamy sand particles barely stick together and a moulded piece of soil just holds its shape. (VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3592" StandardCode="">{Silty_Clay_Loam}
+          <description>A silty clay loam is like a clay loam but silty as well and smooth to the touch. (VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3594" StandardCode="">{Clay_Loam}
+          <description>More easily moulded into a shape than a loam, a clay loam rolls out to a thin ribbon between the palms while a loam will break-up. When dry a clay loam will form a lump but is not as tough to break as a clay.(VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3589" StandardCode="">{Sandy_Clay_Loam}
+          <description>A sandy clay loam is like a clay loam but sand grains can be felt (and heard - see Sandy Loam) (VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3595" StandardCode="">{Strong_ribbon}
+          <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is strong and over 5cm long.
+          </description>
+        </term>
+        <term HeuristID="0-3601" StandardCode="">{Silty_Clay}
+          <description>A silty clay is like a clay but smoother. (VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3603" StandardCode="">{Clay}
+          <description>Clays are tough and can be moulded into shapes when moist. Clays form a long flexible ribbon when rubbed between the palms and the ribbon can often be bent into a U shape without breaking. Clays dry into very hard clods. (VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3598" StandardCode="">{Sandy_Clay} 
+          <description>A sandy clay is like a clay but sand grains can be felt (and heard - see Sandy Loam). (VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3577" StandardCode="">{Weak_ribbon_(Less_than_2.5cm_long)}
+          <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is less than 2.5cm long.
+          </description>
+        </term>
+        <term HeuristID="0-3583" StandardCode="">{Silt_Loam}
+          <description>A silty loam is like a loam but has a smooth silky feel when a moist sample is pushed between the index finger and thumb. On drying a sample can form a hard lump but this may be broken by hand. (VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3585" StandardCode="">{Loam}
+          <description>A loam breaks into crumbs but will tend to stick together. Sand grains cannot be felt in a moist sample which when squeezed will retain its shape when handled freely. Loams are usually soft to the feel. (VDEPI 2009: AG0058)
+          </description>
+        </term>
+        <term HeuristID="0-3580" StandardCode="">{Sandy_Loam}
+          <description>A sandy loam sticks together more than a loamy sand but can be easily broken. Individual sand grains can be felt and heard if a wet sample is rubbed between the index finger and thumb and held close to the ear. (VDEPI 2009: AG0058)
+          </description>
+        </term>
+      </lookup>
+    </property>    
+    <property name="Rounding" type="enum">
+      <description>TBD</description>
+      <lookup>
+        <term>No Observation<description/></term>
+        <term>{Angular}<description/></term>
+        <term>{Subangular}<description/></term>
+        <term>{Subrounded}<description/></term>
+        <term>{Rounded}<description/></term>
+      </lookup>
     </property>
   </ArchaeologicalElement>
 
@@ -8459,6 +8525,9 @@
           <description/>
         </term>
         <term> {Feature}
+          <description/>
+        </term>
+        <term> {Plan}
           <description/>
         </term>
         <term> {Artefacts_In_Situ}

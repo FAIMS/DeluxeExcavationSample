@@ -722,6 +722,8 @@ loadContextGroupAttributes(){
     populateRadioGroup("ContextGroup/ContextGroup_Details/Start_Depth_Location", makeVocab("Start Depth"));
     populateDropDown("ContextGroup/ContextGroup_Details/Compaction", makeVocab("Compaction"));
     populateDropDown("ContextGroup/ContextGroup_Details/Structure", makeVocab("Structure"));
+    populateDropDown("ContextGroup/ContextGroup_Details/Soil_Texture_Actual", makeVocab("Soil Texture Actual"));
+    populateDropDown("ContextGroup/ContextGroup_Details/Rounding", makeVocab("Rounding"));
     populateDropDown("ContextGroup/ContextGroup_Details/Structure_Modifiers", makeVocab("Structure Modifiers"));
     populateDropDown("ContextGroup/ContextGroup_Details/Sorting", makeVocab("Sorting"));
     populateDropDown("ContextGroup/ContextGroup_Details/Disturbances", makeVocab("Disturbances"));
