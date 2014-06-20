@@ -145,8 +145,8 @@ String context_id = null;
 newContext(){
     context_id = null;
     newTabGroup("Context");
-    date = fetchOne("select date('now');");
-    datetime = fetchOne("select datetime('now');");
+    date = fetchOne("select date('now', 'localtime');");
+    datetime = fetchOne("select datetime('now', 'localtime');");
     setFieldValue("Context/Context_GeneralInformation/Date_Opened", date.get(0));
     setFieldValue("Context/Context_GeneralInformation/CreatingDate", datetime.get(0));
     setFieldValue("Context/Context_GeneralInformation/CreatingUser", username);
