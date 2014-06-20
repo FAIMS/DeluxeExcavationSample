@@ -1560,7 +1560,7 @@ Here you can enter filenames or unique reference numbers for Context photos or a
           <label>Save {Context_Group}</label>
         </trigger>
         <select1 faims_certainty="false" faims_read_only="false" ref="AddContextList">
-          <label>Add Additional {Context}:</label>
+          <label>Click to select a {Context} to add to the {Context_Group}:</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
