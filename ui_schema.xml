@@ -1511,13 +1511,13 @@ Here you can enter filenames or unique reference numbers for Context photos or a
         <input ref="Inclusions_Gravel_Fraction" faims_attribute_name="Inclusions Gravel Fraction" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
           <label>{Inclusions_Gravel_Fraction}</label>
         </input>
-        <select1 ref="Disturbances" faims_attribute_name="Disturbances" faims_attribute_type="vocab" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+        <select ref="Disturbances" faims_attribute_name="Disturbances" faims_attribute_type="vocab" faims_certainty="true" faims_annotation="true" faims_read_only="false">
           <label>{Disturbances}</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
           </item>
-        </select1>
+        </select>
         <select1 ref="Upper_Boundary" faims_attribute_name="Upper Boundary" faims_attribute_type="vocab" faims_certainty="true" faims_annotation="true" faims_read_only="false">
           <label>{Upper_Boundary}</label>
           <item>

@@ -726,7 +726,7 @@ loadContextGroupAttributes(){
     populateDropDown("ContextGroup/ContextGroup_Details/Rounding", makeVocab("Rounding"));
     populateDropDown("ContextGroup/ContextGroup_Details/Structure_Modifiers", makeVocab("Structure Modifiers"));
     populateDropDown("ContextGroup/ContextGroup_Details/Sorting", makeVocab("Sorting"));
-    populateDropDown("ContextGroup/ContextGroup_Details/Disturbances", makeVocab("Disturbances"));
+    populateCheckBoxGroup("ContextGroup/ContextGroup_Details/Disturbances", makeVocab("Disturbances"));
     populateDropDown("ContextGroup/ContextGroup_Details/Upper_Boundary", makeVocab("Upper Boundary"));
     populateDropDown("ContextGroup/ContextGroup_Details/Lower_Boundary", makeVocab("Lower Boundary"));
 }
