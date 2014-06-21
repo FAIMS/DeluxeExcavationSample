@@ -720,7 +720,7 @@ Definitions and vocabulary lists for each Attribute are accessible via the Help 
     <group faims_archent_type="Context" ref="Context">
       <label>{Context}</label>
       <group ref="Context_GeneralInformation">
-        <label>General</label>
+        <label>Gen</label>
         <group faims_style="orientation" ref="container1_1">
           <label/>
           <group faims_style="even" ref="child1">
