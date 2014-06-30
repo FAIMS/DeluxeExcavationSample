@@ -87,6 +87,7 @@ onEvent("Context/Context_GeneralInformation/Add_Date_Closed", "click", "addClose
 
 onEvent("Context/Context_Attachments/Update", "delayclick", "saveContext(\"\")");
 onEvent("Context/Context_GeneralInformation/Update", "delayclick", "saveContext(\"\")");
+onEvent("Context/Context_GeneralInformation/Update2", "delayclick", "saveContext(\"\")");
 onEvent("Context/Context_Deposits/Update", "delayclick", "saveContext(\"\")");
 onEvent("Context/Context_Structures/Update", "delayclick", "saveContext(\"\")");
 onEvent("Context/Texture_Helper/Update_Texture", "click", "setTextureActual()");
@@ -94,6 +95,8 @@ onEvent("Context/Context_Deposits/Texture_Helper", "click", "helpSetTextureActua
 onEvent("Context/Context_Cuts/Update", "delayclick", "saveContext(\"\")");
 onEvent("Context/Context_Interpretation/Update", "delayclick", "saveContext(\"\")");
 onEvent("Context/Context_Artefacts/Update", "delayclick", "saveContext(\"\")");
+onEvent("Context/Context_Relationships_to_Other_Contexts/Update", "delayclick", "saveContext(\"\")");
+onEvent("Context/Context_Samples/Update", "delayclick", "saveContext(\"\")");
 
 onEvent("Context/Context_Deposits/newMatrix", "click", "saveContext(\"newMatrix();\")");
 onEvent("Context/Context_Deposits/loadMatrix", "click", "loadMatrix()");
@@ -104,6 +107,8 @@ onEvent("Context/Context_Interpretation/ShowContextGroup", "click", "loadContext
 onEvent("Context/Context_Interpretation/RemoveFromContextGroup", "click", "removeContextGroupReln()");
 
 onEvent("Context/Context_Attachments/attachPhoto", "click", "attachPictureTo(\"Context/Context_Attachments/Photo\")");
+onEvent("Context/Context_Attachments/attachAudio", "click", "attachAudioTo(\"Context/Context_Attachments/Audio\")");
+onEvent("Context/Context_Attachments/attachVideo", "click", "attachVideoTo(\"Context/Context_Attachments/Video\")");
 onEvent("Context/Context_Attachments/attachSketch", "click", "attachFileTo(\"Context/Context_Attachments/Sketch\")");
 onEvent("Context/Context_Attachments/viewattached", "click", "viewArchEntAttachedFiles(context_id)");
 onEvent("Context/Context_Attachments/SaveAndNew", "delayclick", "saveContext(\"newContext();\")");
@@ -158,6 +163,8 @@ newContext(){
     setFieldValue("Context/Context_GeneralInformation/Site_Code","BK" + date.get(0).charAt(2) + date.get(0).charAt(3));
     setFieldValue("Context/Context_GeneralInformation/Context_ID", getFieldValue("control/data/ContextIncrement"));
     setFieldValue("Context/Context_GeneralInformation/CreatingUser", username);
+    String date2 = new java.text.SimpleDateFormat("d-MMM-yy").format(new Date());
+    setFieldValue("Context/Context_GeneralInformation/Date_Opened", date2);
 }
 
 newContextFromControl() {
@@ -404,30 +411,28 @@ loadContextAttributes(){
     populatePictureGallery("Context/Context_GeneralInformation/Context_Type", makePictureGallery("Context Type"));
     populateCheckBoxGroup("Context/Context_GeneralInformation/Excavation_Method", makeVocab("Excavation Method"));
     populateDropDown("Context/Context_GeneralInformation/Horizon_Boundary", makeVocab("Horizon Boundary"));
-    
+    populateDropDown("Context/Context_GeneralInformation/Contamination", makeVocab("Contamination"));
+
     populateHierarchicalDropDown("Context/Context_Deposits/Soil_Compaction_Type", "Soil Compaction Type");
     populateDropDown("Context/Context_Deposits/Soil_Texture", makeVocab("Soil Texture"));
-    populateDropDown("Context/Context_Deposits/Contamination", makeVocab("Contamination"));
     populateRadioGroup("Context/Context_Deposits/Sterile", makeVocab("Sterile"));
     populateHierarchicalPictureGallery("Context/Context_Deposits/Soil_Particle_Sorting", "Soil Particle Sorting");
     populateDropDown("Context/Context_Deposits/Your_Interpretation", makeVocab("Deposit Your Interpretation"));
+    populateDropDown("Context/Context_Deposits/Composition_Type", makeVocab("Composition Type"));
+    populateDropDown("Context/Context_Deposits/Deposit_Bedding", makeVocab("Deposit Bedding"));
     populateRadioGroup("Context/Context_Deposits/Sterile", makeVocab("Sterile"));
 
     populateDropDown("Context/Context_Cuts/Shape_of_Cut", makeVocab("Shape of Cut"));
     populateRadioGroup("Context/Context_Cuts/Shape_of_Corners", makeVocab("Shape of Corners"));
     populateRadioGroup("Context/Context_Cuts/Break_of_Slope_Top", makeVocab("Break of Slope - Top"));
-    populateRadioGroup("Context/Context_Cuts/Break_of_slope_Base", makeVocab("Break of slope - Base"));
     populateHierarchicalDropDown("Context/Context_Cuts/Shape_of_Base", "Shape of Base");
     populateRadioGroup("Context/Context_Cuts/Orientation", makeVocab("Orientation"));
     populateDropDown("Context/Context_Cuts/Your_Interpretation", makeVocab("Cut Your Interpretation"));
     populateHierarchicalDropDown("Context/Context_Cuts/Sides_of_Cut", "Sides of Cut");
 
 
-    populateHierarchicalPictureGallery("Context/Context_Structures/Bond_Type", "Bond Type");
-    populateHierarchicalDropDown("Context/Context_Structures/Structural_Components", "Structural Components");
+    populateDropDown("Context/Context_Structures/Structural_Components", makeVocab("Structural Components"));
     populateDropDown("Context/Context_Structures/Bonding", makeVocab("Bonding"));
-    populateDropDown("Context/Context_Structures/Component_Finish", makeVocab("Component Finish"));
-    populateDropDown("Context/Context_Structures/Composition_Type", makeVocab("Composition Type"));
     populateDropDown("Context/Context_Structures/Your_Interpretation", makeVocab("Structure Your Interpretation"));
 
     populateHierarchicalDropDown("Context/Texture_Helper/Soil_Texture", "Soil Texture");
@@ -505,17 +510,23 @@ addCloseDate() {
 /*** RelnEnt: Context Group***/
 onEvent("ContextGroup/ContextGroup_Details/Update", "delayclick", "saveContextGroup(\"\")");
 onEvent("ContextGroup/ContextGroup_Details/Delete", "click", "deleteContextGroup()");
+
 onEvent("ContextGroup/ContextGroup_Contexts/AddContext", "click", "addToContextGroup()");
 onEvent("ContextGroup/ContextGroup_Contexts/ShowContext", "click", "loadContextFromContextGroup()");
 onEvent("ContextGroup/ContextGroup_Contexts/RemoveContext", "click", "removeFromContextGroup()");
+onEvent("ContextGroup/ContextGroup_Contexts/Update", "delayclick", "saveContextGroup(\"\")");
 
 onEvent("ContextGroup/Feature_Relationships_to_Other_Features/relate", "delayclick", "makeHierRelnCG()");
 onEvent("ContextGroup/Feature_Relationships_to_Other_Features", "show", "updateContextGroupRelationships()");
+onEvent("ContextGroup/Feature_Relationships_to_Other_Features/Update", "delayclick", "saveContextGroup(\"\")");
+
+
 
 onEvent("ContextGroup/ContextGroup_Samples", "show", "updateAllContextGroupSamples()");
 onEvent("ContextGroup/ContextGroup_Samples/newSample", "delayclick", "saveContextGroup(\"isContext=false;newSample();verb=\\\"ContextGroupSample\\\";archent_id=context_group_id;\");");
 onEvent("ContextGroup/ContextGroup_Samples/loadSample", "click", "loadContextGroupSample();verb=\"ContextGroupSample\";archent_id=context_group_id;isContext=false;");
 onEvent("ContextGroup/ContextGroup_Samples/deleteSample", "click", "deleteSampleFromContextGroup()");
+onEvent("ContextGroup/ContextGroup_Samples/Update", "delayclick", "saveContextGroup(\"\")");
 
 onEvent("ContextGroup/ContextGroup_Attachments", "show", "updateAllContextGroupPhotologs()");
 onEvent("ContextGroup/ContextGroup_Attachments/attachPhoto", "click", "attachPictureTo(\"ContextGroup/ContextGroup_Attachments/Photo\")");
@@ -574,7 +585,7 @@ loadContextGroupFromContext() {
 saveContextGroup(String callback){
     if (isNull(context_group_id)) context_group_id = null;
     if (isNull(getFieldValue("ContextGroup/ContextGroup_Details/Title"))) {
-        showWarning("Validation Error", "Context Group requires a title to be saved.");
+        showWarning("Validation Error", "Feature requires a title to be saved.");
         return;
     }
     saveTabGroup("ContextGroup", context_group_id, null, null, "context_group_id = getLastSavedRecordId();populateContextGroup();" + callback);
@@ -1174,8 +1185,7 @@ doNotDelete(){
 }
 
 loadMatrixAttributes(){
-    populateDropDown("Matrix/Matrix/Component_Type", makeVocab("Component Type"));
-    populateHierarchicalDropDown("Matrix/Matrix/Component", "Component");
+    populateDropDown("Matrix/Matrix/Component", makeVocab("Component"));
     populateHierarchicalPictureGallery("Matrix/Matrix/Shape", "Shape");
 }
 
