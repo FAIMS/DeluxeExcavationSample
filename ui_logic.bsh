@@ -5,6 +5,7 @@ String userid;
 String verb;
 String archent_id;
 Boolean isContext;
+Boolean newContextGroupRel;
 
 /*setSyncEnabled(true);
 setFileSyncEnabled(true);*/
@@ -102,9 +103,10 @@ onEvent("Context/Context_Deposits/newMatrix", "click", "saveContext(\"newMatrix(
 onEvent("Context/Context_Deposits/loadMatrix", "click", "loadMatrix()");
 onEvent("Context/Context_Deposits/deleteMatrix", "click", "deleteMatrixFromContext()");
 
-onEvent("Context/Context_Interpretation/AddContextGroup", "click", "saveContext(\"newContextGroup(false)\")");
-onEvent("Context/Context_Interpretation/ShowContextGroup", "click", "loadContextGroupFromContext()");
+onEvent("Context/Context_Interpretation/AddContextGroup", "click", "saveContext(\"newContextGroup(false)\");newContextGroupRel = true;");
+onEvent("Context/Context_Interpretation/ShowContextGroup", "click", "loadContextGroupFromContext();newContextGroupRel = false;");
 onEvent("Context/Context_Interpretation/RemoveFromContextGroup", "click", "removeContextGroupReln()");
+onEvent("Context/Context_Interpretation/AddContextGroupRel", "delayclick", "addContextGroupRel()");
 
 onEvent("Context/Context_Attachments/attachPhoto", "click", "attachPictureTo(\"Context/Context_Attachments/Photo\")");
 onEvent("Context/Context_Attachments/attachAudio", "click", "attachAudioTo(\"Context/Context_Attachments/Audio\")");
@@ -277,7 +279,7 @@ updateAllContextMatrices() {
 updateAllContextGroups() {
     Object contextGroups = new ArrayList();
     if (!isNull(context_id)){
-        contextGroups = fetchAll("select uuid, aenttypename || ': ' || group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
+        contextGroups = fetchAll("select uuid, group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
             "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
             "            FROM latestNonDeletedArchentIdentifiers\n"+
             "           WHERE aenttypename = 'Context Group'\n"+
@@ -295,6 +297,23 @@ updateAllContextGroups() {
             "order by valuetimestamp desc, uuid, attributename;");
     }
     populateDropDown("Context/Context_Interpretation/ContextGroupList",  contextGroups);
+    populateDropDown("Context/Context_Interpretation/ContextGroupListUnrelated", 
+        fetchAll("select uuid, group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
+            "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
+            "            FROM latestNonDeletedArchentIdentifiers\n"+
+            "           WHERE aenttypename = 'Context Group'\n"+
+            "             AND uuid not in (select uuid\n"+
+            "                            FROM latestNonDeletedAentReln\n"+
+            "                           where relationshipid in (select relationshipid\n"+
+            "                                                      FROM latestNonDeletedAentReln\n"+
+            "                                                      JOIN relationship using (relationshipid)\n"+
+            "                                                      JOIN relntype using (relntypeid)\n"+
+            "                                                     where uuid = "+context_id+"\n"+
+            "                                                       and relntypeName = 'ContextContextGroup')\n"+
+            "                             and uuid != "+context_id+")\n"+
+            "        ORDER BY uuid, attributename ASC)\n"+
+            "group by uuid\n"+
+            "order by valuetimestamp desc, uuid, attributename;"));
 }
 
 updateAllContextArtefacts(){
@@ -500,6 +519,15 @@ setTextureActual(){
     showTab("Context/Context_Deposits");
 }
 
+addContextGroupRel(){
+    if (isNull(context_id)) {
+        saveContext("saveEntitiesToRel(\"ContextContextGroup\", getFieldValue(\"Context/Context_Interpretation/ContextGroupListUnrelated\"), context_group_id);updateAllContextGroups();");
+    } else {
+        saveEntitiesToRel("ContextContextGroup", getFieldValue("Context/Context_Interpretation/ContextGroupListUnrelated"), context_id);
+        updateAllContextGroups();
+    }
+}
+
 removeContextGroupReln() {
     context_group_id = getFieldValue("Context/Context_Interpretation/ContextGroupList");
     if(!isNull(context_id) && !isNull(context_group_id)) {
@@ -609,7 +637,14 @@ saveContextGroup(String callback){
         showWarning("Validation Error", "Feature requires a title to be saved.");
         return;
     }
-    saveTabGroup("ContextGroup", context_group_id, null, null, "context_group_id = getLastSavedRecordId();populateContextGroup();" + callback);
+    saveTabGroup("ContextGroup", context_group_id, null, null, "context_group_id = getLastSavedRecordId();onContextGroupSaved();populateContextGroup();" + callback);
+}
+
+onContextGroupSaved(){
+    if(newContextGroupRel) {
+        context_group_id = getLastSavedRecordId();
+        saveEntitiesToRel("ContextContextGroup", context_id, context_group_id);
+    }
 }
 
 addToContextGroup() {

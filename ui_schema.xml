@@ -237,7 +237,12 @@
               <Your_description/>
               <Your_Discussion/>
               <Update/>
+              <guide1/>
               <AddContextGroup/>
+              <guide2/>
+              <ContextGroupListUnrelated/>
+              <AddContextGroupRel/>
+              <guide3/>
               <ContextGroupList/>
               <ShowContextGroup/>
               <RemoveFromContextGroup/>
@@ -267,7 +272,6 @@
                 </child2>
               </container4>
               <listOfRelns/>
-
             </Context_Relationships_to_Other_Contexts>
             <Context_Artefacts>
               <newArtefactGroup/>
@@ -1302,23 +1306,62 @@ Search will find Records that contain your search term or string to any field in
           <label>{Your_Discussion}</label>
         </input>
         <trigger ref="Update">
-          <label>Save Context</label>
+          <label>Save {Context}</label>
         </trigger>
+        <select1 appearance="compact" ref="guide1">
+          <label></label>
+            <item>
+              <!-- I'm using fancy spaces here. Be careful of copying -->
+            <label> 
+
+
+Here you can group contexts into a single {Context_Group}.</label>
+            <value>Help</value>
+          </item>
+        </select1>
         <trigger ref="AddContextGroup">
-          <label>Add New Feature</label>
+          <label>Create New {Context_Group}</label>
         </trigger>
-        <select1 faims_attribute_type="vocab" faims_certainty="false" faims_annotation="false" faims_read_only="false" ref="ContextGroupList">
-          <label>List of Related Features</label>
+        <select1 appearance="compact" ref="guide2" >
+          <label></label>
+            <item>
+              <!-- I'm using fancy spaces here. Be careful of copying -->
+            <label> 
+You can add this Context to already existing {Context_Group}.</label>
+            <value>Help</value>
+          </item>
+        </select1>
+        <select1 faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="ContextGroupListUnrelated">
+          <label>Existing and unrelated {Context_Group}s</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <trigger ref="AddContextGroupRel">
+          <label>Add to {Context_Group}</label>
+        </trigger>
+<select1 appearance="compact" ref="guide3" >
+          <label></label>
+            <item>
+              <!-- I'm using fancy spaces here. Be careful of copying -->
+            <label>
+Here are the {Context_Group}s that this Context belongs to.</label>
+            <value>Help</value>
+          </item>
+        </select1>
+        <select1 faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="ContextGroupList">
+          <label>List of Related {Context_Group}s</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
           </item>
         </select1>
         <trigger ref="ShowContextGroup">
-          <label>Load Feature</label>
+          <label>Load {Context_Group} and Exit Context</label>
         </trigger>
         <trigger ref="RemoveFromContextGroup">
-          <label>Remove From Feature</label>
+          <label>Remove From {Context_Group}</label>
         </trigger>
       </group>
       <group ref="Context_Relationships_to_Other_Contexts" faims_scrollable="false">
