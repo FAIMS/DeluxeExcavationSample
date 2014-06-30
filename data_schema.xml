@@ -469,6 +469,7 @@
     <property name="Structure Your Interpretation" type="freetext">
       <description>Your Interpretation of the likely functional zone of the context whether inside a structure or part of the structure itself.</description>
       <lookup>
+        <term>{0No_Observation}<description/></term>
         <term>{Your_Interpretation_Structure_Indeterminate} 
         <description></description></term>
         <term>{Floor_or_Surface} 
@@ -494,6 +495,7 @@
     <property name="Cut Your Interpretation" type="freetext">
       <description>Your Interpretation of the likely functional zone of the context whether inside a structure or part of the structure itself.</description>
       <lookup>
+        <term>{0No_Observation}<description/></term>
         <term>{Your_Interpretation_Cut_Indeterminate} 
         <description></description></term>
         <term>{Animal_or_Plant_hole} 
@@ -521,6 +523,7 @@
     <property name="Deposit Your Interpretation" type="freetext">
       <description>Your Interpretation of the likely functional zone of the context whether inside a structure or part of the structure itself.</description>
       <lookup>
+        <term>{0No_Observation}<description/></term>
         <term>{Indeterminate} 
         <description></description></term>
         <term>{Packing} 
