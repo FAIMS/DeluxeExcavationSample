@@ -8512,6 +8512,9 @@
         <term> {zOther}
           <description></description>
         </term>
+        <term> {Plan}
+          <description></description>
+        </term>
       </lookup>
     </property>
     <property name="Scene Type" type="enum">
@@ -8525,9 +8528,6 @@
           <description></description>
         </term>
         <term> {Feature}
-          <description></description>
-        </term>
-        <term> {Plan}
           <description></description>
         </term>
         <term> {Artefacts_In_Situ}
