@@ -268,6 +268,7 @@
                   <showReln/>
                 </child2>
               </container4>
+              <listOfRelns/>
             </Context_Relationships_to_Other_Contexts>
             <Context_Attachments>
               <Recorded_By/>
@@ -1254,7 +1255,7 @@
           <label>{Remove_From_Context_Group}</label>
         </trigger>
       </group>
-      <group ref="Context_Relationships_to_Other_Contexts">
+      <group ref="Context_Relationships_to_Other_Contexts" faims_scrollable="false">
         <label>{Rel}</label>
         <!-- Brian todo, figure out how to model this -->
         <input faims_certainty="false" faims_read_only="true" ref="spacer">
@@ -1314,6 +1315,13 @@
             </trigger>
           </group>
         </group>
+         <select1 ref="listOfRelns" appearance="compact">
+          <label>Associated Entities</label>
+          <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+        </select1>
       </group>
       
       <group ref="Context_Artefacts">

@@ -8,6 +8,9 @@ setFileSyncEnabled(true);*/
 
 makeLocalID(){
     fetchOne("CREATE TABLE IF NOT EXISTS localSettings (key text primary key, value text);");
+    fetchOne("drop view if exists identifierAsSpreadsheet;");
+    fetchOne("create view identifierAsSpreadsheet as select uuid, group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' ') as response from (select * from latestNonDeletedArchentIdentifiers order by attributename) group by uuid;");
+
 }
 
 makeLocalID();
@@ -41,8 +44,31 @@ refreshEntities() {
     context_id = null;
     context_group_id = null;
     menu = false;
-    search();
+    searchFew();
 }
+
+
+
+searchFew(){
+    populateList("control/data/ContextList", fetchAll(""+
+        "SELECT uuid, group_concat(coalesce(measure   || ' '  || vocabname || '('  ||  freetext ||'; '|| (certainty * 100.0) || '% certain)',  "+
+        "                                     measure   || ' (' || freetext  || '; ' || (certainty * 100.0) || '% certain)',  "+
+        "                                     vocabname || ' (' || freetext  || '; ' || (certainty * 100.0) || '% certain)',  "+
+        "                                     measure   || ' '  || vocabname || ' (' || (certainty * 100.0) || '% certain)',  "+
+        "                                     vocabname || ' (' || freetext  || ')',  "+
+        "                                     measure   || ' (' || freetext  || ')',  "+
+        "                                     measure   || ' (' ||(certainty * 100.0) || '% certain)',  "+
+        "                                     vocabname || ' (' ||(certainty * 100.0) || '% certain)',  "+
+        "                                     freetext  || ' (' ||(certainty * 100.0) || '% certain)',  "+
+        "                                     measure,  "+
+        "                                     vocabname,  "+
+        "                                     freetext), ' ') as response, valuetimestamp  "+
+        "FROM (select * from latestNonDeletedArchentIdentifiers order by attributename) "+
+        "WHERE aenttypename = 'Context' "+        
+        "GROUP BY uuid "+
+        "order by valuetimestamp desc limit 10;"));
+}
+
 
 search(){
     populateList("control/data/ContextList", fetchAll(""+
@@ -57,7 +83,7 @@ search(){
         "                                     freetext  || ' (' ||(certainty * 100.0) || '% certain)',  "+
         "                                     measure,  "+
         "                                     vocabname,  "+
-        "                                     freetext), ' ') as response  "+
+        "                                     freetext), ' ') as response, valuetimestamp  "+
         "FROM (select * from latestNonDeletedArchentIdentifiers order by attributename) "+
         "WHERE aenttypename = 'Context' "+
         "and uuid in (select uuid from latestnondeletedaentvalue left outer join vocabulary using (vocabid) where freetext like '%"+getFieldValue("control/data/Search")+"%' or vocabname like '%"+getFieldValue("control/data/Search")+"%' or measure like '%"+getFieldValue("control/data/Search")+"%') "+
@@ -127,15 +153,21 @@ onEvent("Context/Context_Samples/deleteSample", "click", "deleteSampleFromContex
 
 onEvent("Context/Context_Deposits", "show", "updateAllContextMatrices()");
 onEvent("Context/Context_Interpretation", "show", "updateAllContextGroups()");
-onEvent("Context/Context_Relationships_to_Other_Contexts", "show", "updateAllContext()");
-onEvent("Context/Context_Artefacts", "show", "updateAllContext()");
-onEvent("Context/Context_Samples", "show", "updateAllContext()");
+onEvent("Context/Context_Relationships_to_Other_Contexts", "show", "updateAllContextRelationships()");
+onEvent("Context/Context_Artefacts", "show", "updateAllContextArtefacts()");
+onEvent("Context/Context_Samples", "show", "updateAllContextSamples()");
 
 onEvent("Context/Context_Relationships_to_Other_Contexts/relate", "delayclick", "makeHierReln()");
 onEvent("Context/Context_Relationships_to_Other_Contexts/showReln", "click", "loadContextFromReln()");
 onEvent("Context/Context_Relationships_to_Other_Contexts/deleteReln", "delayclick", "deleteReln()");
+onEvent("Context/Context_Relationships_to_Other_Contexts/listOfRelns", "click", "showRelnFromList()");
+
 
 String context_id = null;
+
+
+Object dialog;
+
 
 newContext(){
 
@@ -168,10 +200,12 @@ newContext(){
 }
 
 loadContext() {
+    //print ("loadContext Start:" + new Date());
     context_id = getListItemValue();
     loadContextFrom(context_id);
     Object foo = fetchOne("select fname || ' ' || lname from user join archentity using (userid) where uuid = '"+context_id+"' group by uuid having min(aenttimestamp)");
     setFieldValue("Context/Context_GeneralInformation/CreatingUser", foo.get(0));
+    //print ("loadContext End:" + new Date());
     
 }
 
@@ -180,8 +214,8 @@ loadContextFrom(contextid) {
     if (isNull(context_id)) return;
     
     showTabGroup("Context", context_id);    
-    updateAllContext();
-    updateRelns();
+    //updateAllContext();
+    //updateRelns();
 }
 
 saveContext() {
@@ -320,6 +354,7 @@ doNotDelete(){
 }
 
 getCounterFromDB(){
+    //print ("Get Counter Start:" + new Date());
     Object counter = fetchOne(""+
         "select response, deviceMatch, aenttimestamp "+
         "from (select freetext, v.vocabName || coalesce(substr('000'||(substr(freetext,-3)+1),-3),'') as response, aenttimestamp,  "+
@@ -329,7 +364,7 @@ getCounterFromDB(){
         "                         and key = 'User') as deviceMatch, value "+
         " from latestnondeletedarchentidentifiers join (select uuid from latestnondeletedaentvalue av join vocabulary v on (av.vocabid = substr(v.vocabname,0,4)), localSettings where key = 'Area' and value = v.vocabid) using (uuid), localSettings join vocabulary v on (value = v.vocabid) "+
         " where attributename = 'Context ID' "+
-        " and key = 'Area') "+
+        " and key = 'Area' limit 1) "+
         " where response not in (select freetext from latestnondeletedarchentidentifiers where freetext is not null) "+
         "union select response, -1, aenttimestamp "+
         "from (select vocabName || '001' as response, datetime(1, 'unixepoch') as aenttimestamp from localSettings join vocabulary on (value = vocabid) where key = 'Area') "+
@@ -344,6 +379,7 @@ getCounterFromDB(){
     }
 
     setFieldValue("control/data/ContextIncrement", out);
+    //print ("Get Counter Stop:" + new Date());
 }
 
 loadContextFromReln(){
@@ -422,7 +458,7 @@ updateAllContextGroups() {
 }
 
 updateAllContext(){
-
+//print ("updateAllContext Start:" + new Date());
    setFieldValue("Context/Context_Relationships_to_Other_Contexts/context_id", getFieldValue("Context/Context_GeneralInformation/Context_ID"));
 
     Object localArtefactGroup = new ArrayList();
@@ -432,10 +468,15 @@ updateAllContext(){
     Object verbList = new ArrayList();
     Object contextList = new ArrayList();
 
+//print ("update all context relationship list Start:" + new Date());
+
     relnList = fetchAll("select relntypename||'~!~'||coalesce(nullif(parent||'~!~'||child,'~!~'),relntypename||'~!~'||relntypename) as relntypeid, coalesce(nullif(parent,''), relntypename) as name, relntypeid from relntype where relntypename not like '%Context%' union select relntypename||'~!~'||coalesce(nullif(child||'~!~'||parent,'~!~'),relntypename||'~!~'||relntypename), coalesce(nullif(child,''), relntypename) as name, relntypeid from relntype where relntypename not like '%Context%' order by relntypeid, name;");
     populateDropDown("Context/Context_Relationships_to_Other_Contexts/reln", relnList);
+//print ("update all context relationship list End:" + new Date());
 
     if (!isNull(context_id)){
+        //print ("update all context artefact group Start:" + new Date());
+
         localArtefactGroup = fetchAll("select uuid, aenttypename || ': ' || group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
             "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
             "            FROM latestNonDeletedArchentIdentifiers\n"+
@@ -452,6 +493,9 @@ updateAllContext(){
             "        ORDER BY uuid, attributename ASC)\n"+
             "group by uuid\n"+
             "order by valuetimestamp desc, uuid, attributename;");
+        //print ("update all context artefact group end:" + new Date());
+
+        //print ("update all context sample Start:" + new Date());
 
         localSample = fetchAll("select uuid, aenttypename || ': ' || group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
             "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
@@ -469,6 +513,8 @@ updateAllContext(){
             "        ORDER BY uuid, attributename ASC)\n"+
             "group by uuid\n"+
             "order by valuetimestamp desc, uuid, attributename;");
+//print ("update all context sample end:" + new Date());
+//print ("update all context special find Start:" + new Date());
 
         localSpecialFind = fetchAll("select uuid, aenttypename || ': ' || group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
             "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
@@ -486,8 +532,10 @@ updateAllContext(){
             "        ORDER BY uuid, attributename ASC)\n"+
             "group by uuid\n"+
             "order by valuetimestamp desc, uuid, attributename;");
-
+//print ("update all context special find end:" + new Date());
+//print ("update all context context list Start:" + new Date());
         contextList = fetchAll("select uuid, group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' ') as response from latestNonDeletedArchEntIdentifiers where aenttypename = 'Context' and uuid != '"+context_id+"' group by uuid;" );
+//print ("update all context context list end :" + new Date());        
     }
     populateDropDown("Context/Context_Artefacts/artefactGroupList", localArtefactGroup);
     populateDropDown("Context/Context_Artefacts/specialFindList", localSpecialFind);
@@ -496,6 +544,124 @@ updateAllContext(){
     populateDropDown("Context/Context_Relationships_to_Other_Contexts/context", contextList);
 
     updateRelns();    
+    //print ("updateAllContext End:" + new Date());
+}
+
+
+updateAllContextArtefacts(){
+//print ("updateAllContextArtefactGroups Start:" + new Date());
+
+    Object localArtefactGroup = new ArrayList();
+    if (!isNull(context_id)){
+        //print ("update all context artefact group Start:" + new Date());
+
+        localArtefactGroup = fetchAll("select uuid, aenttypename || ': ' || group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
+            "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
+            "            FROM latestNonDeletedArchentIdentifiers\n"+
+            "           WHERE aenttypename = 'Artefact Group'\n"+
+            "             AND uuid in (select uuid\n"+
+            "                            FROM latestNonDeletedAentReln\n"+
+            "                           where relationshipid in (select relationshipid\n"+
+            "                                                      FROM latestNonDeletedAentReln\n"+
+            "                                                      JOIN relationship using (relationshipid)\n"+
+            "                                                      JOIN relntype using (relntypeid)\n"+
+            "                                                    where uuid = "+context_id+"\n"+
+            "                                                       and relntypeName = 'ContextArtefactGroup')\n"+
+            "                             and uuid != "+context_id+")\n"+
+            "        ORDER BY uuid, attributename ASC)\n"+
+            "group by uuid\n"+
+            "order by valuetimestamp desc, uuid, attributename;");
+        //print ("update all context artefact group end:" + new Date());
+
+        //print ("update all context sample Start:" + new Date());
+ localSpecialFind = fetchAll("select uuid, aenttypename || ': ' || group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
+            "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
+            "            FROM latestNonDeletedArchentIdentifiers\n"+
+            "           WHERE aenttypename = 'Special Find'\n"+
+            "             AND uuid in (select uuid\n"+
+            "                            FROM latestNonDeletedAentReln\n"+
+            "                           where relationshipid in (select relationshipid\n"+
+            "                                                      FROM latestNonDeletedAentReln\n"+
+            "                                                      JOIN relationship using (relationshipid)\n"+
+            "                                                      JOIN relntype using (relntypeid)\n"+
+            "                                                     where uuid = "+context_id+"\n"+
+            "                                                       and relntypeName = 'ContextSpecialFind')\n"+
+            "                             and uuid != "+context_id+")\n"+
+            "        ORDER BY uuid, attributename ASC)\n"+
+            "group by uuid\n"+
+            "order by valuetimestamp desc, uuid, attributename;");
+
+//print ("update all context sample end:" + new Date());
+    }
+    populateDropDown("Context/Context_Artefacts/artefactGroupList", localArtefactGroup);
+    populateDropDown("Context/Context_Artefacts/specialFindList", localSpecialFind);
+    //print ("updateAllContextArtefactGroups End:" + new Date());
+}
+
+
+
+
+updateAllContextSamples(){
+//print ("updateAllContextSamples Start:" + new Date());
+    Object localSample = new ArrayList();
+    if (!isNull(context_id)){
+
+        //print ("update all context sample Start:" + new Date());
+
+        localSample = fetchAll("select uuid, aenttypename || ': ' || group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
+            "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
+            "            FROM latestNonDeletedArchentIdentifiers\n"+
+            "           WHERE aenttypename = 'Sample'\n"+
+            "             AND uuid in (select uuid\n"+
+            "                            FROM latestNonDeletedAentReln\n"+
+            "                           where relationshipid in (select relationshipid\n"+
+            "                                                      FROM latestNonDeletedAentReln\n"+
+            "                                                      JOIN relationship using (relationshipid)\n"+
+            "                                                      JOIN relntype using (relntypeid)\n"+
+            "                                                     where uuid = "+context_id+"\n"+
+            "                                                       and relntypeName = 'ContextSample')\n"+
+            "                             and uuid != "+context_id+")\n"+
+            "        ORDER BY uuid, attributename ASC)\n"+
+            "group by uuid\n"+
+            "order by valuetimestamp desc, uuid, attributename;");
+//print ("update all context sample end:" + new Date());
+    }
+    populateDropDown("Context/Context_Samples/sampleList", localSample);
+    //print ("updateAllContextSamples End:" + new Date());
+}
+
+
+
+
+
+updateAllContextRelationships(){
+    
+
+//print ("updateAllContextRelationships Start:" + new Date());
+   setFieldValue("Context/Context_Relationships_to_Other_Contexts/context_id", getFieldValue("Context/Context_GeneralInformation/Context_ID"));
+    Object relnList = new ArrayList();
+    Object verbList = new ArrayList();
+    Object contextList = new ArrayList();
+
+//print ("update all context relationship list Start:" + new Date());
+
+    relnList = fetchAll("select relntypename||'~!~'||coalesce(nullif(parent||'~!~'||child,'~!~'),relntypename||'~!~'||relntypename) as relntypeid, coalesce(nullif(parent,''), relntypename) as name, relntypeid from relntype where relntypename not like '%Context%' union select relntypename||'~!~'||coalesce(nullif(child||'~!~'||parent,'~!~'),relntypename||'~!~'||relntypename), coalesce(nullif(child,''), relntypename) as name, relntypeid from relntype where relntypename not like '%Context%' order by relntypeid, name;");
+    populateDropDown("Context/Context_Relationships_to_Other_Contexts/reln", relnList);
+//print ("update all context relationship list End:" + new Date());
+
+    if (!isNull(context_id)){
+
+
+//print ("update all context context list Start:" + new Date());
+        contextList = fetchAll("select uuid, group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' ') as response from latestNonDeletedArchEntIdentifiers where aenttypename = 'Context' and uuid != '"+context_id+"' group by uuid;" );
+//print ("update all context context list end :" + new Date());        
+    }
+  
+    
+    populateDropDown("Context/Context_Relationships_to_Other_Contexts/context", contextList);
+
+    updateRelns();    
+    //print ("updateAllContextRelationships End:" + new Date());
 }
 
 makeHierReln(){
@@ -513,27 +679,35 @@ makeHierReln(){
 
     saveEntitiesToHierRel(arguments[0], context_id, dest, arguments[1], arguments[2]);
     updateRelns();
+    
+}
+
+
+
+showRelnFromList(){
+    listID = getListItemValue();
+    
+    foo = fetchOne("select group_concat(response, '\n') from ( select attributename || ': ' || coalesce(vocabname, freetext) as response from ( select uuid from latestnondeletedarchent join latestnondeletedaentreln using (uuid) where uuid != "+context_id+" and relationshipid = "+listID+" ) join latestnondeletedaentvalue using (uuid) join attributekey using (attributeid) left outer join vocabulary using (attributeid, vocabid) where attributename in ('Context ID', 'Context Type', 'Brief Description', 'Date Opened', 'Date Closed', 'Your Interpretation', 'Your description')  and coalesce(vocabname, freetext) is not null group by uuid, attributename order by case attributename when 'Context ID' then 1 when 'Context Type' then 2 when 'Your Interpretation' then 3 when 'Your description' then 4 when 'Date Opened' then 5 when 'Date Closed' then 6 end); ");
+    if (!isNull(foo)){
+        showToast(foo.get(0));
+    }
 }
 
 
 updateRelns(){
-    Object contextRelnList = fetchAll("select relationshipid, group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' ') || ' ' || participatesVerb || ' "+getFieldValue("Context/Context_GeneralInformation/Context_ID")+"' as response, valuetimestamp, aentrelntimestamp "+
-        "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename, participatesVerb, relationshipid,aentrelntimestamp "+
-        "            FROM latestNonDeletedArchentIdentifiers join latestNonDeletedAentReln using (uuid) "+
-        "           WHERE aenttypename = 'Context'  "+
-        "             AND uuid in (select uuid "+
-        "                            FROM latestNonDeletedAentReln  "+
-        "                           where relationshipid in (select relationshipid  "+
-        "                                                      FROM latestNonDeletedAentReln  "+
-        "                                                      JOIN relationship using (relationshipid)  "+
-        "                                                      JOIN relntype using (relntypeid)  "+
-        "                                                     where uuid = "+context_id+" "+
-        "                                                       and relntypeName not like '%Context%')  "+
-        "                             and uuid != "+context_id+")  "+        
-        "        ORDER BY uuid, attributename ASC "+
-        "        ) "+
-        "group by uuid, relationshipid order by aentrelntimestamp desc ; ");
+    //print ("updateRelns Start:" + new Date());
+    Object contextRelnList = fetchAll("select parent.relationshipid, parent.participatesverb || ' ' || child.response "+
+        "from (latestNonDeletedAentReln) parent  "+
+        "join (latestNonDeletedAentReln join identifierAsSpreadsheet using (uuid)) child on (parent.relationshipid = child.relationshipid and parent.uuid != child.uuid) "+
+        "join latestNonDeletedRelationship using (relationshipid) join relntype using (relntypeid) "+
+        "where relntypename not like 'Context%' "+
+        "and parent.uuid = '"+context_id+"'  "+
+        "order by relntimestamp desc");
+    
     populateDropDown("Context/Context_Relationships_to_Other_Contexts/listRelns", contextRelnList);
+    populateList("Context/Context_Relationships_to_Other_Contexts/listOfRelns", contextRelnList);
+    //print ("updateRelns End:" + new Date());
+
 }
 
 loadContextAttributes(){
@@ -1885,9 +2059,16 @@ login(){
         fetchOne("REPLACE INTO localSettings(key, value) VALUES('User', '"+userid+"');");
         fetchOne("REPLACE INTO localSettings(key, value) VALUES('Area', '"+getFieldValue("user/usertab/Area_Code")+"');");
 
+
+
         areaCode = fetchOne("select vocabid, vocabname from vocabulary join localSettings on (value=vocabid) where key = 'Area' ").get(1);
+        
+        
 
         getCounterFromDB();
+        
+
+        
     }
 
 }
