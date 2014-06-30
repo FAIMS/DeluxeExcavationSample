@@ -5,11 +5,11 @@
   
   <!-- ****** -->
   <h:head>
-    <h:title>hdb FAIMS Community Server</h:title>
+    <h:title>Boncuklu</h:title>
     <!--model lists user interface tabgroups, tabs and content of tabs-->
     <model>
       <instance>
-        <faims id="hdb_FAIMS_Community_Server">
+        <faims id="Boncuklu">
           <style>
             <orientation>
               <orientation/>
@@ -76,30 +76,54 @@
                   <AreaCode/>
                 </child2>
                 <child3>
-                  <Grid_Location_Reference/>
+                  <Context_ID/>
                 </child3>
               </container1>
               <container2>
                 <child1>
-                  <Context_ID/>
+                  <Grid_X/>
                 </child1>
                 <child2>
-                  <Context_Name/>
+                  <Grid_Y/>
                 </child2>
+                <child3>
+                  <blank/>
+                </child3>
               </container2>
-              <Date_Opened/>
-              <Excavators/>
               <Location_Note/>
-              <Excavation_Method/>
               <container3>
+                <child1>
+                  <Date_Opened/>
+                </child1>
+                <child2>
+                  <Excavators/>   
+                </child2>
+                <child3>
+                  <Excavation_Method/>
+                </child3>
+              </container3>
+              <Context_Name/>
+              <container4>
+                <child1>
+                  <Horizon_Boundary/>
+                </child1>
+                <child2>
+                  <Contamination/>
+                </child2>
+              </container4>
+              <Context_Type/>
+              <Update/>
+              <Details/>
+
+              <container5>
                 <child1>
                   <Context_Highest_Level/>
                 </child1>
                 <child2>
                   <Context_Lowest_Level/>
                 </child2>
-              </container3>
-              <container4>
+              </container5>
+              <container6>
                 <child1>
                   <Length/>
                 </child1>
@@ -109,29 +133,44 @@
                 <child3>
                   <Depth/>
                 </child3>
-              </container4>
-              <Volume/>
-              <Context_Type/>
-              <Horizon_Boundary/>
-              <container5>
+              </container6>
+              <container7>
+                <child1>
+                  <Volume/>
+                </child1>
+                <child2>
+                  <blank/>
+                </child2>
+                <child3>
+                  <blank/>
+                </child3>
+              </container7>
+              
+              <container8>
                 <child1>
                   <Plans/>
                 </child1>
                 <child2>
                   <Section_Numbers/>
                 </child2>
-              </container5>
-              <Date_Closed/>
-              <container6>
+              </container8>
+              <container9>
                 <child1>
-                  <CreatingUser/>
+                  <Date_Closed/>
                 </child1>
                 <child2>
                   <Add_Date_Closed/>
                 </child2>
-              </container6>
-              <Update/>
-              <Details/>
+              </container9>
+              <container10>
+                <child1>
+                  <CreatingUser/>
+                </child1>
+                <child2>
+                  <CreatingDate/>
+                </child2>
+              </container10>
+              <Update2/> 
             </Context_GeneralInformation>
             <Context_Deposits>
               <Your_Interpretation/>
@@ -141,10 +180,11 @@
               <Soil_Texture/>
               <Soil_Colour/>
               <Texture_Helper/>
+              <Composition_Type/>
+              <Deposit_Bedding/>
               <Sterile/>
               <Deposit_Inclusions/>
               <Deposit_Thickness_Extent/>
-              <Contamination/>
               <newMatrix/>
               <matrixList/>
               <loadMatrix/>
@@ -163,9 +203,15 @@
               </container1>
               <Shape_of_Corners/>
               <Break_of_Slope_Top/>
-              <Break_of_slope_Base/>
-              <Sides_of_Cut/>
-              <Shape_of_Base/>
+              <container2>
+                <child1>
+                  <Sides_of_Cut/>
+                </child1>
+                <child2>
+                  <Shape_of_Base/>
+                </child2>
+              </container2>
+              <Cut_Function/>
               <Orientation/>
               <Inclination_of_axis/>
               <Truncation/>
@@ -175,19 +221,21 @@
               <Your_Interpretation/>
               <Structural_Components/>
               <Bonding/>
-              <Bond_Type/>
               <Bonding_Details/>
+              <BondingPacking/>
               <Distinguishing_Marks/>
               <Structure_Description/>
               <Number_Courses/>
+              <Set_In_Cut/>
+              <Structure_Shape/>
+              <Mudbrick_Shape/>
               <Component_Finish/>
-              <Composition_Type/>
               <Update/>
               <Delete/>
             </Context_Structures>
             <Context_Interpretation>
-              <Your_Discussion/>
               <Your_description/>
+              <Your_Discussion/>
               <Update/>
               <AddContextGroup/>
               <ContextGroupList/>
@@ -208,6 +256,7 @@
                 </child3>
               </container3>
               <relate/>
+              <Update/>
               <listRelns/>
               <container4>
                 <child1>
@@ -217,16 +266,30 @@
                   <showReln/>
                 </child2>
               </container4>
+              <listOfRelns/>
+
             </Context_Relationships_to_Other_Contexts>
             <Context_Artefacts>
               <newArtefactGroup/>
               <artefactGroupList/>
-              <loadArtefactGroup/>
-              <deleteArtefactGroup/>
+              <container1>
+                <child0>
+                  <deleteArtefactGroup/>
+                </child0>
+                <child1>
+                  <loadArtefactGroup/>
+                </child1>
+              </container1>
               <newSpecialFind/>
               <specialFindList/>
-              <loadSpecialFind/>
-              <deleteSpecialFind/>
+              <container2>
+                <child0>
+                  <deleteSpecialFind/>
+                </child0>
+                <child1>
+                  <loadSpecialFind/>
+                </child1>
+              </container2>
               <Update/>
             </Context_Artefacts>
             <Context_Samples>
@@ -234,6 +297,7 @@
               <sampleList/>
               <loadSample/>
               <deleteSample/>
+              <Update/>
             </Context_Samples>
             <Context_Attachments>
               <Recorded_By/>
@@ -241,6 +305,10 @@
               <attachSketch/>
               <Photo/>
               <attachPhoto/>
+              <Audio/>
+              <attachAudio/>
+              <Video/>
+              <attachVideo/>
               <viewattached/>
               <guide/>
               <newPhotoLog/>
@@ -338,6 +406,7 @@
                   <showReln/>
                 </child2>
               </container4>
+              <Update/>
             </Feature_Relationships_to_Other_Features>
             <ContextGroup_Contexts>
               <AddContextList/>
@@ -345,12 +414,14 @@
               <ContextList/>
               <ShowContext/>
               <RemoveContext/>
+              <Update/>
             </ContextGroup_Contexts>
             <ContextGroup_Samples>
               <newSample/>
               <sampleList/>
               <loadSample/>
               <deleteSample/>
+              <Update/>
             </ContextGroup_Samples>
             <ContextGroup_Attachments>
               <Recorded_By/>
@@ -358,6 +429,10 @@
               <attachSketch/>
               <Photo/>
               <attachPhoto/>
+              <Audio/>
+              <attachAudio/>
+              <Video/>
+              <attachVideo/>
               <viewattached/>
               <guide/>
               <newPhotoLog/>
@@ -384,13 +459,34 @@
                 </child3>
               </container1>
               <Artefact_Class/>
-              <Artefact_Quantity/>
-              <Artefact_Weight/>
+              <container2>
+                <child1>
+                  <Artefact_Quantity/>
+                </child1>
+                <child2>
+                  <Artefact_Weight/>
+                </child2>
+              </container2>
+              <container3>
+                <child1>
+                  <X/>
+                </child1>
+                <child2>
+                  <Y/>
+                </child2>
+                <child3>
+                  <Z/>
+                </child3>
+              </container3>
               <Artefact_Group_Comment/>
               <Sketch/>
               <attachSketch/>
               <Photo/>
               <attachPhoto/>
+              <Audio/>
+              <attachAudio/>
+              <Video/>
+              <attachVideo/>
               <viewattached/>
               <Update/>
               <Delete/>
@@ -430,11 +526,26 @@
                 </child2>
               </container3>
               <Sample_Location/>
+              <container4>
+                <child1>
+                  <X/>
+                </child1>
+                <child2>
+                  <Y/>
+                </child2>
+                <child3>
+                  <Z/>
+                </child3>
+              </container4>
               <Sample_Comments/>
               <Sketch/>
               <attachSketch/>
               <Photo/>
               <attachPhoto/>
+              <Audio/>
+              <attachAudio/>
+              <Video/>
+              <attachVideo/>
               <viewattached/>
               <Update/>
               <Delete/>
@@ -446,12 +557,15 @@
           <!--Matrix, a relationship on deposits -->
           <Matrix>
             <Matrix>
-              <Component_Type/>
-              <Percentage/>
-              <Component/>
-              <Stone_Size/>
+              <container1>
+                <child1>
+                  <Component/>
+                </child1>
+                <child2>
+                  <Percentage/>
+                </child2>
+              </container1>
               <Shape/>
-              <Stoniness/>
               <Update/>
               <Delete/>
               <SaveAndNew/>
@@ -505,6 +619,10 @@
               <Special_Find_Comment/>
               <Photo/>
               <attachPhoto/>
+              <Audio/>
+              <attachAudio/>
+              <Video/>
+              <attachVideo/>
               <viewattached/>
               <Update/>
               <Delete/>
@@ -529,19 +647,16 @@
       </instance>
       <!--list of numeric and blocktext(memo) attributes(fields)-->
       <bind nodeset="/faims/user/help/guide" type="string"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container3/child1/Context_Highest_Level" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container3/child2/Context_Lowest_Level" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container4/child1/Length" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container4/child2/Width" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/container4/child3/Depth" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/Volume" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_GeneralInformation/Date_Opened" type="date"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/container5/child1/Context_Highest_Level" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/container5/child2/Context_Lowest_Level" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/container6/child1/Length" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/container6/child2/Width" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/container6/child3/Depth" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_GeneralInformation/container7/child1/Volume" type="decimal"/>
       <bind nodeset="/faims/Context/Context_Deposits/Deposit_Inclusions" type="string"/>
-      <bind nodeset="/faims/Context/Context_Cuts/Truncation" type="string"/>
       <bind nodeset="/faims/Context/Context_Structures/Structure_Description" type="string"/>
       <bind nodeset="/faims/Context/Context_Interpretation/Your_Discussion" type="string"/>
       <bind nodeset="/faims/Context/Context_Interpretation/Your_description" type="string"/>
-      <bind nodeset="/faims/Context/Context_Interpretation/Associations" type="string"/>
       <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container2/child1/Length" type="decimal"/>
       <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container2/child2/Width" type="decimal"/>
       <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container2/child3/Depth" type="decimal"/>
@@ -550,11 +665,17 @@
       <bind nodeset="/faims/ContextGroup/ContextGroup_Details/CG_Your_description" type="string"/> 
       <bind nodeset="/faims/ContextGroup/ContextGroupDetails/Your_Discussion" type="string"/>
       <bind nodeset="/faims/ContextGroup/ContextGroupDetails/CG_Your_Interpretation" type="string"/>
-      <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/Artefact_Quantity" type="decimal"/>
-      <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/Artefact_Weight" type="decimal"/>
+      <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/container2/child1/Artefact_Quantity" type="decimal"/>
+      <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/container2/child2/Artefact_Weight" type="decimal"/>
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/Artefact_Group_Comment" type="string"/>
+      <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/container3/child1/X" type="decimal"/>
+      <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/container3/child2/Y" type="decimal"/>
+      <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/container3/child3/Z" type="decimal"/>
       <bind nodeset="/faims/Sample/Sample_GeneralInformation/container3/child1/Sample_Weight" type="decimal"/>
       <bind nodeset="/faims/Sample/Sample_GeneralInformation/container3/child2/Sample_Volume" type="decimal"/>
+      <bind nodeset="/faims/Sample/Sample_GeneralInformation/container4/child1/X" type="decimal"/>
+      <bind nodeset="/faims/Sample/Sample_GeneralInformation/container4/child2/Y" type="decimal"/>
+      <bind nodeset="/faims/Sample/Sample_GeneralInformation/container4/child3/Z" type="decimal"/>
       <bind nodeset="/faims/Sample/Sample_GeneralInformation/Sample_Comments" type="string"/>
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container2/child1/X" type="decimal"/>
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container2/child2/Y" type="decimal"/>
@@ -565,7 +686,7 @@
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container4/child2/Date_To" type="decimal"/>      
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/Special_Find_Description" type="string"/>
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/Special_Find_Comment" type="string"/>
-      <bind nodeset="/faims/Matrix/Matrix/Percentage" type="decimal"/>
+      <bind nodeset="/faims/Matrix/Matrix/container1/child2/Percentage" type="decimal"/>
     </model>
   </h:head>
   <h:body>
@@ -725,8 +846,8 @@ Search will find Records that contain your search term or string to any field in
           </group>
           <group faims_style="even" ref="child3">
             <label/>
-            <input faims_attribute_name="Grid Location Reference" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Grid_Location_Reference">
-              <label>{Grid_Location_Reference}</label>
+            <input faims_attribute_name="Context ID" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Context_ID">
+              <label>{Context_Number}</label>
             </input>
           </group>
         </group>
@@ -734,15 +855,79 @@ Search will find Records that contain your search term or string to any field in
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
-            <input faims_attribute_name="Context ID" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Context_ID">
-              <label>{Context_Number}</label>
+            <input faims_attribute_name="Grid X" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Grid_X">
+              <label>{Grid_X}</label>
+            </input>    
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input faims_attribute_name="Grid Y" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Grid_Y">
+              <label>{Grid_Y}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child3">
+            <label/>
+            <select1 appearance="compact" ref="blank" faims_annotation="false" faims_certainty="false">
+              <label/>
+              <item>
+                <label></label>
+                <value></value>
+              </item>
+            </select1>
+          </group>
+        </group>
+        <input faims_attribute_name="Location Note" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Location_Note">
+          <label>{Location_Note}</label>
+        </input>
+        <group faims_style="orientation" ref="container3">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input faims_attribute_name="Date Opened" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Date_Opened">
+              <label>{Date_Opened}</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
-            <input faims_attribute_name="Context Name" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Context_Name">
-              <label>{Context_Name}</label>
+            <input faims_certainty="false" faims_attribute_type="freetext" faims_attribute_name="Excavators" ref="Excavators">
+              <label>Excavators:</label>
             </input>
+          </group>
+          <group faims_style="even" ref="child3">
+            <label/>
+            <select faims_attribute_name="Excavation Method" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Excavation_Method">
+              <label>{Excavation_Method}</label>
+              <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select>
+          </group>
+        </group>
+        <input faims_attribute_name="Context Name" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Context_Name">
+          <label>{Context_Name}</label>
+        </input>
+        <group faims_style="orientation" ref="container4">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <select1 faims_attribute_name="Horizon Boundary" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Horizon_Boundary">
+              <label>{Horizon_Boundary}</label>
+              <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select1>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <select1 faims_attribute_name="Contamination" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Contamination">
+              <label>{Contamination}</label>
+              <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select1>
           </group>
         </group>
         <select1 faims_attribute_name="Context Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Context_Type" type="image">
@@ -752,31 +937,13 @@ Search will find Records that contain your search term or string to any field in
             <value>placeholder</value>
           </item>
         </select1>
-        <!--We would like to see Dropdown-->
-        <select1 faims_attribute_name="Horizon Boundary" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Horizon_Boundary">
-          <label>{Horizon_Boundary}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <input faims_attribute_name="Date Opened" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Date_Opened">
-          <label>{Date_Opened}</label>
-        </input>
-        <input faims_certainty="false" faims_attribute_type="freetext" faims_attribute_name="Excavators" ref="Excavators">
-          <label>Excavators:</label>
-        </input>
-        <input faims_attribute_name="Location Note" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Location_Note">
-          <label>{Location_Note}</label>
-        </input>
-        <select faims_attribute_name="Excavation Method" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Excavation_Method">
-          <label>{Excavation_Method}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select>
-        <group faims_style="orientation" ref="container3">
+        <trigger ref="Update">
+          <label>Save Context</label>
+        </trigger>
+        <trigger ref="Details">
+          <label>Fill in Context Type Details</label>
+        </trigger>
+        <group faims_style="orientation" ref="container5">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
@@ -791,7 +958,7 @@ Search will find Records that contain your search term or string to any field in
             </input>
           </group>
         </group>
-        <group faims_style="orientation" ref="container4">
+        <group faims_style="orientation" ref="container6">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
@@ -812,10 +979,36 @@ Search will find Records that contain your search term or string to any field in
             </input>
           </group>
         </group>
-        <input faims_attribute_name="Volume" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Volume">
-          <label>Volume</label>
-        </input>
-        <group faims_style="orientation" ref="container5">
+        <group faims_style="orientation" ref="container7">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input faims_attribute_name="Volume" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Volume">
+              <label>Volume</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <select1 appearance="compact" ref="blank" faims_annotation="false" faims_certainty="false">
+              <label/>
+              <item>
+                <label></label>
+                <value></value>
+              </item>
+            </select1>
+          </group>
+          <group faims_style="even" ref="child3">
+            <label/>
+            <select1 appearance="compact" ref="blank" faims_annotation="false" faims_certainty="false">
+              <label/>
+              <item>
+                <label></label>
+                <value></value>
+              </item>
+            </select1>
+          </group>
+        </group>
+        <group faims_style="orientation" ref="container8">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
@@ -830,15 +1023,12 @@ Search will find Records that contain your search term or string to any field in
             </input>
           </group>
         </group>
-        <input faims_certainty="false" faims_attribute_type="freetext" faims_attribute_name="Date Closed" ref="Date_Closed">
-          <label>{Date_Closed}</label>
-        </input>
-        <group faims_style="orientation" ref="container6">
+        <group faims_style="orientation" ref="container9">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
-            <input faims_certainty="false" faims_read_only="true" ref="CreatingUser">
-              <label>Record Created By:</label>
+            <input faims_certainty="false" faims_attribute_type="freetext" faims_attribute_name="Date Closed" ref="Date_Closed">
+              <label>{Date_Closed}</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
@@ -848,11 +1038,23 @@ Search will find Records that contain your search term or string to any field in
             </trigger>
           </group>
         </group>
-        <trigger ref="Update">
+        <group faims_style="orientation" ref="container10">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input faims_certainty="false" faims_read_only="true" ref="CreatingUser">
+              <label>Record Created By:</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input faims_certainty="false" faims_read_only="true" ref="CreatingDate">
+              <label>Record Created Date:</label>
+            </input>
+          </group>
+        </group>
+        <trigger ref="Update2">
           <label>Save Context</label>
-        </trigger>
-        <trigger ref="Details">
-          <label>Fill in Context Type Details</label>
         </trigger>
       </group>
 
@@ -897,6 +1099,20 @@ Search will find Records that contain your search term or string to any field in
         <input faims_attribute_name="Soil Colour" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Soil_Colour">
           <label>{Soil_Colour}</label>
         </input>
+        <select1 faims_attribute_name="Composition Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Composition_Type">
+          <label>{Composition_Type}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <select1 faims_attribute_name="Deposit Bedding" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Deposit_Bedding">
+          <label>{Deposit_Bedding}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
         <!--We would like to see Dropdown-->
         <select1 faims_attribute_name="Sterile" faims_attribute_type="vocab" appearance="full" faims_certainty="false" faims_read_only="false" ref="Sterile">
           <label>{Sterile}</label>
@@ -908,16 +1124,6 @@ Search will find Records that contain your search term or string to any field in
         <input faims_attribute_name="Deposit Inclusions" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Deposit_Inclusions">
           <label>{Deposit_Inclusions}</label>
         </input>
-        <input faims_attribute_name="Deposit Thickness and Extent" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Deposit_Thickness_Extent">
-          <label>{Deposit_Thickness_and_Extent}</label>
-        </input>
-        <select1 faims_attribute_name="Contamination" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Contamination">
-          <label>{Contamination}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
         <trigger ref="newMatrix">
           <label>Add New {Matrix}</label>
         </trigger>
@@ -983,29 +1189,33 @@ Search will find Records that contain your search term or string to any field in
             <value>placeholder</value>
           </item>
         </select1>
-        <!--We would like to see Radiogroup-->
-        <select1 appearance="full" faims_attribute_name="Break of slope - Base" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Break_of_slope_Base">
-          <label>{Break_of_slope_-_Base}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <select1 faims_attribute_name="Sides of Cut" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Sides_of_Cut">
-          <label>{Sides_of_Cut}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <!--We would like to see Dropdown-->
-        <select1 faims_attribute_name="Shape of Base" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Shape_of_Base">
-          <label>{Shape_of_Base}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
+        <group faims_style="orientation" ref="container2">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <select1 faims_attribute_name="Sides of Cut" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Sides_of_Cut">
+              <label>{Sides_of_Cut}</label>
+              <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select1>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <!--We would like to see Dropdown-->
+            <select1 faims_attribute_name="Shape of Base" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Shape_of_Base">
+              <label>{Shape_of_Base}</label>
+              <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select1>
+          </group>
+        </group>
+        <input faims_attribute_name="Cut Function" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Cut_Function">
+          <label>{Cut_Function}</label>
+        </input>
         <!--We would like to see Dropdown-->
         <select1 appearance="full" faims_attribute_name="Orientation" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Orientation">
           <label>{Orientation}</label>
@@ -1014,10 +1224,10 @@ Search will find Records that contain your search term or string to any field in
             <value>placeholder</value>
           </item>
         </select1>
-        <input faims_attribute_name="Inclination of axis" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Inclination_of_axis">
+        <input faims_attribute_name="Inclination of axis" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Inclination_of_axis">
           <label>{Inclination_of_axis}</label>
         </input>
-        <input faims_attribute_name="Truncation" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Truncation">
+        <input faims_attribute_name="Truncation" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Truncation">
           <label>{Truncation}</label>
         </input>
         <trigger ref="Update">
@@ -1041,6 +1251,9 @@ Search will find Records that contain your search term or string to any field in
             <value>placeholder</value>
           </item>
         </select1>
+        <input faims_attribute_name="Component Finish" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Component_Finish">
+          <label>{Component_Finish}</label>
+        </input>
         <!--We would like to see Dropdown-->
         <select1 faims_attribute_name="Bonding" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Bonding">
           <label>{Bonding}</label>
@@ -1049,17 +1262,10 @@ Search will find Records that contain your search term or string to any field in
             <value>placeholder</value>
           </item>
         </select1>
-        <!--We would like to see Dropdown-->
-        <select1 faims_attribute_name="Bond Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Bond_Type" type="image">
-          <label>{Bond_Type}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
         <input faims_attribute_name="Bonding Details" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Bonding_Details">
-          <label>{Bonding_Details}</label>
+          <label>{BondingPacking_Details}</label>
         </input>
+        <!--We would like to see Dropdown-->
         <input faims_attribute_name="Distinguishing Marks" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Distinguishing_Marks">
           <label>{Distinguishing_Marks}</label>
         </input>
@@ -1069,31 +1275,31 @@ Search will find Records that contain your search term or string to any field in
         <input faims_attribute_name="Number Courses" faims_attribute_type="freetext" faims_annotation="true" faims_certainty="true" faims_read_only="false" ref="Number_Courses">
           <label>{Number_Courses}</label>
         </input>
-        <select1 faims_attribute_name="Component Finish" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Component_Finish">
-          <label>{Component_Finish}</label>
+        <input faims_attribute_name="Set In Cut" faims_attribute_type="freetext" faims_annotation="true" faims_certainty="true" faims_read_only="false" ref="Set_In_Cut">
+          <label>{Set_Cut}</label>
+        </input>
+        <select1 faims_attribute_name="Structure Shape" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Structure_Shape">
+          <label>{Structure_Shape}</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
           </item>
         </select1>
-        <select1 faims_attribute_name="Composition Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Composition_Type">
-          <label>{Composition_Type}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
+
+        <input faims_attribute_name="Mudbrick Shape" faims_attribute_type="freetext" faims_annotation="true" faims_certainty="true" faims_read_only="false" ref="Mudbrick_Shape">
+          <label>{Mudbrick_Shape}</label>
+        </input>
         <trigger ref="Update">
           <label>Save Context</label>
         </trigger>
       </group>
       <group ref="Context_Interpretation">
         <label>Int</label>
-        <input faims_attribute_name="Your Discussion" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Your_Discussion">
-          <label>{Your_Discussion}</label>
-        </input>
         <input faims_attribute_name="Your description" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Your_description">
           <label>{Your_description}</label>
+        </input>
+        <input faims_attribute_name="Your Discussion" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Your_Discussion">
+          <label>{Your_Discussion}</label>
         </input>
         <trigger ref="Update">
           <label>Save Context</label>
@@ -1115,7 +1321,7 @@ Search will find Records that contain your search term or string to any field in
           <label>Remove From Feature</label>
         </trigger>
       </group>
-      <group ref="Context_Relationships_to_Other_Contexts">
+      <group ref="Context_Relationships_to_Other_Contexts" faims_scrollable="false">
         <label>Rel</label>
         <!-- Brian todo, figure out how to model this -->
         <input faims_certainty="false" faims_read_only="true" ref="spacer">
@@ -1153,6 +1359,9 @@ Search will find Records that contain your search term or string to any field in
         <trigger ref="relate">
           <label>Relate Contexts</label>
         </trigger>
+        <trigger ref="Update">
+          <label>Save Context</label>
+        </trigger>
         <select1 faims_certainty="false" faims_read_only="false" ref="listRelns">
           <label>Associated Entities:</label>
           <item>
@@ -1175,6 +1384,17 @@ Search will find Records that contain your search term or string to any field in
             </trigger>
           </group>
         </group>
+
+        <select1 faims_certainty="false" ref="listOfRelns" appearance="compact">
+          <label>Associated Entities</label>
+          <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+        </select1>
+
+
+
       </group>
       <group ref="Context_Artefacts">
         <label>Artefacts</label>
@@ -1188,12 +1408,21 @@ Search will find Records that contain your search term or string to any field in
             <value>placeholder</value>
           </item>
         </select1>
-        <trigger ref="loadArtefactGroup">
-          <label>Load Artefact Group</label>
-        </trigger>
-        <trigger ref="deleteArtefactGroup">
-          <label>Delete Artefact Group</label>
-        </trigger>
+        <group faims_style="orientation" ref="container1">
+          <label/>
+          <group faims_style="even" ref="child0">
+            <label/>
+            <trigger ref="deleteArtefactGroup">
+              <label>Delete Artefact Group</label>
+            </trigger>
+          </group>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <trigger ref="loadArtefactGroup">
+              <label>Load Artefact Group</label>
+            </trigger>
+          </group>
+        </group>
         <trigger ref="newSpecialFind">
           <label>Add {Special_Find}</label>
         </trigger>
@@ -1204,12 +1433,21 @@ Search will find Records that contain your search term or string to any field in
             <value>placeholder</value>
           </item>
         </select1>
-        <trigger ref="loadSpecialFind">
-          <label>Load {Special_Find}</label>
-        </trigger>
-        <trigger ref="deleteSpecialFind">
-          <label>Delete {Special_Find}</label>
-        </trigger>
+        <group faims_style="orientation" ref="container2">
+          <label/>
+          <group faims_style="even" ref="child0">
+            <label/>
+            <trigger ref="deleteSpecialFind">
+              <label>Delete {Special_Find}</label>
+            </trigger>
+          </group>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <trigger ref="loadSpecialFind">
+              <label>Load {Special_Find}</label>
+            </trigger>
+          </group>
+        </group>
         <trigger ref="Update">
           <label>Save Context</label>
         </trigger>
@@ -1232,6 +1470,9 @@ Search will find Records that contain your search term or string to any field in
         <trigger ref="deleteSample">
           <label>Delete {Sample}</label>
         </trigger>
+        <trigger ref="Update">
+          <label>Save Context</label>
+        </trigger>
       </group>
       <group ref="Context_Attachments">
         <label>ADD</label>
@@ -1245,11 +1486,8 @@ Search will find Records that contain your search term or string to any field in
         <trigger ref="attachSketch">
           <label>{Attach_Sketch}</label>
         </trigger>
-        <trigger ref="viewattached">
-          <label>{View_Attached_Sketches}</label>
-        </trigger>
         <select faims_annotation="false" faims_attribute_name="Photo" faims_attribute_type="freetext" faims_certainty="false" faims_sync="true" ref="Photo" type="camera">
-          <label>{Photo}</label>
+          <label>{Attached_Photos}</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
@@ -1257,6 +1495,29 @@ Search will find Records that contain your search term or string to any field in
         </select>
         <trigger ref="attachPhoto">
           <label>Take Picture</label>
+        </trigger>
+        <select ref="Audio" faims_attribute_name="Audio" faims_attribute_type="freetext" faims_annotation="false" faims_certainty="false" faims_sync="true" type="file">
+            <label>{Attached_Audio_Files}</label>
+            <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+            </item>
+        </select>
+        <trigger ref="attachAudio">
+          <label>{Record_Audio}</label>
+        </trigger>
+        <select ref="Video" faims_attribute_name="Video" faims_attribute_type="freetext" faims_annotation="false" faims_certainty="false" faims_sync="true" type="video">
+          <label>{Attached_Videos}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select>
+        <trigger ref="attachVideo">
+          <label>{Record_Video}</label>
+        </trigger>
+        <trigger ref="viewattached">
+          <label>{View_Attached_Files}</label>
         </trigger>
         <select1 appearance="compact" ref="guide" >
           <label></label>
@@ -1500,6 +1761,9 @@ Here you can enter filenames or unique reference numbers for image stored on ano
             </trigger>
           </group>
         </group>
+        <trigger ref="Update">
+          <label>Save Feature</label>
+        </trigger>
       </group>
       <group ref="ContextGroup_Contexts" faims_scrollable="false">
         <label>Contexts</label>
@@ -1526,6 +1790,9 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         <trigger ref="RemoveContext">
           <label>Remove Context from Feature</label>
         </trigger>
+        <trigger ref="Update">
+          <label>Save Feature</label>
+        </trigger>
       </group>
       <group ref="ContextGroup_Samples" faims_scrollable="false">
         <label>Samples</label>
@@ -1544,6 +1811,9 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         </trigger>
         <trigger ref="deleteSample">
           <label>Delete {Sample}</label>
+        </trigger>
+        <trigger ref="Update">
+          <label>Save Feature</label>
         </trigger>
       </group>
       <group ref="ContextGroup_Attachments">
@@ -1570,6 +1840,26 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         </select>
         <trigger ref="attachPhoto">
           <label>Take Picture</label>
+        </trigger>
+        <select ref="Audio" faims_attribute_name="Audio" faims_attribute_type="freetext" faims_annotation="false" faims_certainty="false" faims_sync="true" type="file">
+            <label>{Attached_Audio_Files}</label>
+            <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+            </item>
+        </select>
+        <trigger ref="attachAudio">
+          <label>{Record_Audio}</label>
+        </trigger>
+        <select ref="Video" faims_attribute_name="Video" faims_attribute_type="freetext" faims_annotation="false" faims_certainty="false" faims_sync="true" type="video">
+          <label>{Attached_Videos}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select>
+        <trigger ref="attachVideo">
+          <label>{Record_Video}</label>
         </trigger>
         <select1 appearance="compact" ref="guide" >
           <label></label>
@@ -1641,12 +1931,42 @@ Here you can enter filenames or unique reference numbers for image stored on ano
             <value>placeholder</value>
           </item>
         </select1>
-        <input faims_attribute_name="Artefact Quantity" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Artefact_Quantity">
-          <label>{Artefact_Quantity}</label>
-        </input>
-        <input faims_attribute_name="Artefact Weight" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Artefact_Weight">
-          <label>{Artefact_Weight}</label>
-        </input>
+        <group faims_style="orientation" ref="container2">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input faims_attribute_name="Artefact Quantity" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Artefact_Quantity">
+              <label>{Artefact_Quantity}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input faims_attribute_name="Artefact Weight" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Artefact_Weight">
+              <label>{Artefact_Weight}</label>
+            </input>
+          </group>
+        </group>
+        <group faims_style="orientation" ref="container3">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input faims_attribute_name="Artefact X" faims_attribute_type="measure" faims_read_only="false" ref="X">
+              <label>X</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input faims_attribute_name="Artefact Y" faims_attribute_type="measure" faims_read_only="false" ref="Y">
+              <label>Y</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child3">
+            <label/>
+            <input faims_attribute_name="Artefact Z" faims_attribute_type="measure" faims_read_only="false" ref="Z">
+              <label>Z</label>
+            </input>
+          </group>
+        </group>
         <input faims_attribute_name="Artefact Group Comment" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Artefact_Group_Comment">
           <label>{Artefact_Group_Comment}</label>
         </input>
@@ -1669,6 +1989,26 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         </select>
         <trigger ref="attachPhoto">
           <label>Take Picture</label>
+        </trigger>
+        <select ref="Audio" faims_attribute_name="Audio" faims_attribute_type="freetext" faims_annotation="false" faims_certainty="false" faims_sync="true" type="file">
+            <label>{Attached_Audio_Files}</label>
+            <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+            </item>
+        </select>
+        <trigger ref="attachAudio">
+          <label>{Record_Audio}</label>
+        </trigger>
+        <select ref="Video" faims_attribute_name="Video" faims_attribute_type="freetext" faims_annotation="false" faims_certainty="false" faims_sync="true" type="video">
+          <label>{Attached_Videos}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select>
+        <trigger ref="attachVideo">
+          <label>{Record_Video}</label>
         </trigger>
         <trigger ref="viewattached">
           <label>View Attached Files</label>
@@ -1759,6 +2099,27 @@ Here you can enter filenames or unique reference numbers for image stored on ano
             <value>placeholder</value>
           </item>
         </select1>
+        <group faims_style="orientation" ref="container4">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input faims_attribute_name="Sample X" faims_attribute_type="measure" faims_read_only="false" ref="X">
+              <label>X</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input faims_attribute_name="Sample Y" faims_attribute_type="measure" faims_read_only="false" ref="Y">
+              <label>Y</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child3">
+            <label/>
+            <input faims_attribute_name="Sample Z" faims_attribute_type="measure" faims_read_only="false" ref="Z">
+              <label>Z</label>
+            </input>
+          </group>
+        </group>
         <input faims_attribute_name="Sample Comments" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Sample_Comments">
           <label>{Sample_Comments}</label>
         </input>
@@ -1781,6 +2142,26 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         </select>
         <trigger ref="attachPhoto">
           <label>Take Picture</label>
+        </trigger>
+        <select ref="Audio" faims_attribute_name="Audio" faims_attribute_type="freetext" faims_annotation="false" faims_certainty="false" faims_sync="true" type="file">
+            <label>{Attached_Audio_Files}</label>
+            <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+            </item>
+        </select>
+        <trigger ref="attachAudio">
+          <label>{Record_Audio}</label>
+        </trigger>
+        <select ref="Video" faims_attribute_name="Video" faims_attribute_type="freetext" faims_annotation="false" faims_certainty="false" faims_sync="true" type="video">
+          <label>{Attached_Videos}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select>
+        <trigger ref="attachVideo">
+          <label>{Record_Video}</label>
         </trigger>
         <trigger ref="viewattached">
           <label>View Attached Files</label>
@@ -1806,26 +2187,25 @@ Here you can enter filenames or unique reference numbers for image stored on ano
       <label>{Matrix}</label>
       <group ref="Matrix">
         <label>{Matrix}</label>
-        <select1 faims_attribute_name="Component Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Component_Type">
-          <label>{Component_Type}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <input faims_attribute_name="Percentage" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Percentage">
-          <label>{Percentage}</label>
-        </input>
-        <select1 faims_attribute_name="Component" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Component">
-          <label>{Component}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-         <input faims_attribute_name="Stone Size" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Stone_Size">
-          <label>{Soil_Stone_Size}</label>
-        </input>
+        <group faims_style="orientation" ref="container1">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <select1 faims_attribute_name="Component" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Component">
+              <label>{Component}</label>
+              <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select1>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input faims_attribute_name="Percentage" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Percentage">
+              <label>{Percentage}</label>
+            </input>
+          </group>
+        </group>
         <select1 faims_attribute_name="Shape" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Shape" type="image">
           <label>{Soil_Stone_Shape}</label>
           <item>
@@ -1833,9 +2213,6 @@ Here you can enter filenames or unique reference numbers for image stored on ano
             <value>placeholder</value>
           </item>
         </select1>
-        <input faims_attribute_name="Stoniness" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Stoniness">
-          <label>{Soil_Stoniness}</label>
-        </input>
         <trigger ref="Update">
           <label>Save and Close</label>
         </trigger>
@@ -1888,19 +2265,19 @@ Here you can enter filenames or unique reference numbers for image stored on ano
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
-            <input faims_attribute_name="X" faims_attribute_type="measure" faims_read_only="false" ref="X">
+            <input faims_attribute_name="Special Find X" faims_attribute_type="measure" faims_read_only="false" ref="X">
               <label>X</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
-            <input faims_attribute_name="Y" faims_attribute_type="measure" faims_read_only="false" ref="Y">
+            <input faims_attribute_name="Special Find Y" faims_attribute_type="measure" faims_read_only="false" ref="Y">
               <label>Y</label>
             </input>
           </group>
           <group faims_style="even" ref="child3">
             <label/>
-            <input faims_attribute_name="Z" faims_attribute_type="measure" faims_read_only="false" ref="Z">
+            <input faims_attribute_name="Special Find Z" faims_attribute_type="measure" faims_read_only="false" ref="Z">
               <label>Z</label>
             </input>
           </group>
@@ -1950,6 +2327,26 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         </select>
         <trigger ref="attachPhoto">
           <label>Take Picture</label>
+        </trigger>
+        <select ref="Audio" faims_attribute_name="Audio" faims_attribute_type="freetext" faims_annotation="false" faims_certainty="false" faims_sync="true" type="file">
+            <label>{Attached_Audio_Files}</label>
+            <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+            </item>
+        </select>
+        <trigger ref="attachAudio">
+          <label>{Record_Audio}</label>
+        </trigger>
+        <select ref="Video" faims_attribute_name="Video" faims_attribute_type="freetext" faims_annotation="false" faims_certainty="false" faims_sync="true" type="video">
+          <label>{Attached_Videos}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select>
+        <trigger ref="attachVideo">
+          <label>{Record_Video}</label>
         </trigger>
         <trigger ref="viewattached">
           <label>View Attached Files</label>

@@ -6,8 +6,14 @@
     <parent>Above</parent>
     <child>Below</child>
   </RelationshipElement>
-  <RelationshipElement name="Same As" type="bidirectional">
-    <description>Implements a same as for contexts</description>
+  <RelationshipElement name="Arbitrarily separated from" type="bidirectional">
+    <description>When two or more context codes have been assigned to what is ultimately determined to be the same context</description>
+  </RelationshipElement>
+  <RelationshipElement name="Precisely contemporary with" type="bidirectional">
+    <description>Contexts unequivocally contemporary</description>
+  </RelationshipElement>
+  <RelationshipElement name="Broadly contemporary with" type="bidirectional">
+    <description>Contexts suspected to be contemporary but no direct physical relationship or evidence (i.e. adjacent buildings)</description>
   </RelationshipElement>
   <RelationshipElement name="Contains - Contained By" type="hierarchical">
     <description>Implements a contains-containedby for contexts.</description>
@@ -67,7 +73,7 @@
       <description>Brief name for the Context eg 'House A - west wall'</description>
     </property>
     <property name="Excavators" type="really shitty multivalued">
-      <description></description>
+      <description>Description TBD</description>
       <!-- Instead of UBAF-27, we're sticking in a textarea-->
     </property>
     <property name="Plans" type="freetext">
@@ -92,13 +98,16 @@
         <description></description></term>
       </lookup>
     </property>
-    <property name="Grid Location Reference" type="freetext">
-      <description>Reference number for the grid square(s) within which this Context falls.</description>
+    <property name="Grid X" type="freetext">
+      <description>The X coordinate on the SW corner of the context.</description>
+    </property>
+    <property name="Grid Y" type="freetext">
+      <description>The Y coordinate on the SW corner of the context.</description>
     </property>
     <property name="Context Type" type="enum">
       <description>Deposit cut or 'other' (feature).</description>
       <lookup>
-        <term pictureURL="files/data/gallery/ContextType/Other/NA.png">No Observation 
+        <term pictureURL="files/data/gallery/ContextType/Other/NA.png">{0No_Observation}
         <description>data not collected</description></term>
         <term pictureURL="files/data/gallery/ContextType/Orange/Cut.png">{Cut} 
         <description>Any Context which forms a negative interface eg pits ditches graves and foundation and robber trenches</description></term>
@@ -151,6 +160,7 @@
     <property name="Soil Compaction Type" type="enum">
       <description>The type of compaction of sediments in the deposit eg 'Compact' 'Cemented' or 'Loose'.</description>
       <lookup>
+        <term>{0No_Observation}<description/></term>
         <term>{1.Loose} 
         <description>Soft and uncemented/bonded</description></term>
         <term>{5.Compact} 
@@ -254,7 +264,7 @@
     <property name="Soil Texture" type="enum">
       <description>Proportions of different grain sizes within the deposit eg if there is more sand to silt it should be described as a 'silty sand'.</description>
       <lookup>
-        <term>No Observation 
+        <term>{0No_Observation}
         <description>No Observation. Use the Texture helper to prefil this.</description></term>
         <term>{1.Sand} 
         <description>A sand has a loose gritty feel and does not stick together. Individual sand grains can be seen or felt. (VDEPI 2009: AG0058)</description></term>
@@ -283,7 +293,7 @@
     <property name="Soil Particle Sorting" type="enum">
       <description>Assessment of the frequency with which particles of the same size occur.</description>
       <lookup>
-        <term pictureURL="files/data/gallery/Other/NA.png">No Observation 
+        <term pictureURL="files/data/gallery/Other/NA.png">{0No_Observation}
         <description>data not collected</description></term>
         <term pictureURL="files/data/gallery/Sorting/ModeratelySorted.png">{3.Moderately_sorted} 
         <description>Particles are mostly the same size and evenly distributed but there are some larger particles.</description></term>
@@ -311,15 +321,13 @@
     <property name="Deposit Inclusions" type="blocktext">
       <description>Brief description of inclusions (eg stone flecks artefacts).</description>
     </property>
-    <property name="Deposit Thickness and Extent" type="blocktext">
-      <description>Brief description of the thickness and extent of the deposit.</description>
-    </property>
     <property name="Volume" type="float">
       <description>All soil will be collected in buckets of a known volume – therefore a tally should be kept of buckets produced from a context and the total worked out from there.</description>
     </property>
     <property name="Contamination" type="enum">
-      <description>The extent to which the deposit has been contaminated.</description>
+      <description>The extent to which the context has been contaminated.</description>
       <lookup>
+        <term>{0No_Observation}<description/></term>
         <term>{5.Contaminated} 
         <description>Contaminated by later material eg by unidentified cut at time of initial excavation by large scale animal or root activity which were not isolated by excavation by excavation processes some annoying person mixed the material or stuff fell into deposit from the section.</description></term>
         <term>{3.Possibly_Contaminated} 
@@ -336,6 +344,7 @@
     <property name="Horizon Boundary" type="enum">
       <description>Boundary to the next horizon</description>
       <lookup>
+        <term>{0No_Observation}<description>data not collected</description></term>
         <term>{Doubtful}<description>Description to come </description> </term>
         <term>{Ambiguous}<description>Description to come </description> </term>
         <term>{Merging}<description>Description to come </description> </term>
@@ -346,7 +355,7 @@
     <property name="Shape of Cut" type="enum">
       <description>The shape at the top of the cut.</description>
       <lookup>
-        <term>No Observation 
+        <term>{0No_Observation}
         <description>data not collected</description></term>
         <term>{Circular} 
         <description>Round</description></term>
@@ -389,23 +398,15 @@
         <description>Well-rounded; there is no perceptible difference between the sides of the cut and the surface into which it protrudes.</description></term>
         <term>{Sharp} 
         <description>Clear sharp slope.</description></term>
-      </lookup>
-    </property>
-    <property name="Break of slope - Base" type="enum">
-      <description>The degree with which the sides break into the base of the cut.</description>
-      <lookup>
-        <term>{Gradual} 
-        <description>Some rounding to the top.</description></term>
-        <term>{Not_perceptible} 
-        <description>Well-rounded; there is no perceptible difference between the sides of the cut and the surface into which it protrudes.</description></term>
-        <term>{Sharp} 
-        <description>Clear sharp slope.</description></term>
+        <term>{Shallow} 
+        <description></description></term>
       </lookup>
     </property>
     <property name="Sides of Cut" type="enum">
       <description>Describe the sides in terms of their smoothness or irregularity and state whether they are 'vertical' 'convex' 'concave' or 'stepped' giving details for each side of a multi-sided cut. When describing post-holes note particularly whether the sides taper or drop vertically to the base since this may help define whether the post was set or driven. Where possible state the gradient of a sloping side. Where the side is 'concave' but meets the base at a sharp angle give an overall gradient.
       If' it is 'concave' and has no perceptible break of slope with the base then do not attempt to give a gradient. (Source: MoLAS 1994)</description>
       <lookup>
+        <term>{0No_Observation}<description/></term>
         <term>{Vertical} 
         <description /></term>
         <term>{Convex} 
@@ -425,7 +426,7 @@
     <property name="Shape of Base" type="enum">
       <description>The shape of the base of the cut in profile.</description>
       <lookup>
-        <term>No Observation 
+        <term>{0No_Observation}
         <description>data not collected</description></term>
         <term>{Concave} 
         <description></description></term>
@@ -445,10 +446,13 @@
         <description></description></term>
       </lookup>
     </property>
+    <property name="Cut Function" type="freetext">
+      <description>Make a comment about the function of the cut</description>
+    </property>
     <property name="Orientation" type="enum">
       <description>Orientation of linear cuts eg N-S.</description>
       <lookup>
-        <term>No Observation 
+        <term>{0No_Observation}
         <description>data not collected</description></term>
         <term>{E-W} 
         <description>Oriented East to West.</description></term>
@@ -469,6 +473,7 @@
     <property name="Structure Your Interpretation" type="freetext">
       <description>Your Interpretation of the likely functional zone of the context whether inside a structure or part of the structure itself.</description>
       <lookup>
+        <term>{0No_Observation}<description/></term>
         <term>{Your_Interpretation_Structure_Indeterminate} 
         <description></description></term>
         <term>{Floor_or_Surface} 
@@ -494,6 +499,7 @@
     <property name="Cut Your Interpretation" type="freetext">
       <description>Your Interpretation of the likely functional zone of the context whether inside a structure or part of the structure itself.</description>
       <lookup>
+        <term>{0No_Observation}<description/></term>
         <term>{Your_Interpretation_Cut_Indeterminate} 
         <description></description></term>
         <term>{Animal_or_Plant_hole} 
@@ -521,6 +527,7 @@
     <property name="Deposit Your Interpretation" type="freetext">
       <description>Your Interpretation of the likely functional zone of the context whether inside a structure or part of the structure itself.</description>
       <lookup>
+        <term>{0No_Observation}<description/></term>
         <term>{Indeterminate} 
         <description></description></term>
         <term>{Packing} 
@@ -567,45 +574,31 @@
     <property name="Photo" type="file">
       <description>Photo</description>
     </property>
+    <property name="Audio" type="file">
+      <description>Audio</description>
+    </property>
+    <property name="Video" type="file">
+      <description>Video</description>
+    </property>
     <property name="Structural Components" type="enum">
       <description>Primary components of structure or feature eg dry-pressed brick rough-hewn stone.</description>
       <lookup>
-        <term>No Observation 
+        <term>{0No_Observation}
         <description>data not collected</description></term>
-        <term>{Brick} 
-        <description>Fired or sun-dried clay block used in masonry construction.</description>
-        <term>{Dry-pressed} 
-        <description>Dry pressed brick</description></term>
-        <term>{Glazed_brick} 
-        <description></description></term>
-        <term>{Sandstock} 
-        <description>Hand-made colonial bricks</description></term></term>
-        <term>{Earth} 
-        <description>Compact earthen wall or floor.</description></term>
         <term>{Stone} 
-        <description>Worked or unworked stone used in masonry walls.</description>
-        <term>{Ashlar} 
-        <description>Finely dressed stone with flat face.</description></term>
+        <description>Worked or unworked stone used in masonry walls.</description></term>
+        <term>{Plaster} 
+        <description></description></term>
+        <term>{Mudbrick} 
+        <description></description></term>
         <term>{Other} 
         <description></description></term>
-        <term>{Roughly-hewn} 
-        <description>Roughly cut stone: shows some sign of shaping.</description></term>
-        <term>{Rubble} 
-        <description>Stone fragments with few signs of shaping</description></term></term>
-        <term>{Timber} 
-        <description>Timber uprights or other elements for a wall or fence.</description>
-        <term>{Beam} 
-        <description>Timber beam or support.</description></term>
-        <term>{Plank} 
-        <description>Timber plank for flooring or panelling.</description></term>
-        <term>{Post} 
-        <description>Round or square timber post.</description></term></term>
       </lookup>
     </property>
     <property name="Bonding" type="enum">
       <description>Primary bonding material of structure or feature eg mortar.</description>
       <lookup>
-        <term>No Observation 
+        <term>{0No_Observation}
         <description>data not collected</description></term>
         <term>{Mortar} 
         <description>Paste used to bind masonry blocks together.</description>
@@ -619,10 +612,13 @@
         <description>Description to come</description></term>
       </lookup>
     </property>
+    <property name="Bonding Details" type="freetext">
+      <description>What has been used to bind the major elements together? Is there mud mortar in a wall, or chinking stones? </description>
+    </property>
     <property name="Bond Type" type="enum">
       <description>The type of bonding course eg 'English bond'</description>
       <lookup>
-        <term>No Observation 
+        <term>{0No_Observation}
         <description>data not collected</description></term>
         <term>{Brick} 
         <description></description>
@@ -650,9 +646,6 @@
         <description>Lines or courses of different size</description></term></term>
       </lookup>
     </property>
-    <property name="Bonding Details" type="freetext">
-      <description>Description to come </description>
-    </property>
     <property name="Distinguishing Marks" type="freetext">
       <description>stinguishing marks on brick or stone.</description>
     </property>
@@ -662,28 +655,62 @@
     <property name="Number Courses" type="float">
       <description>Vertical layers of structural elements.</description>
     </property>
-    <property name="Component Finish" type="enum">
-      <description>How have the material types been prepared (i.e dressed stones polished/smoothed/painted plaster surface).</description>
+    <property name="Set In Cut" type="freetext">
+      <description>Give the cut context code if relevant. If not set in cut then put 'NA'.</description>
+    </property>
+    <property name="Structure Shape" type="enum">
+      <description>The shape of the structural element, in plan.</description>
       <lookup>
-        <term>{Dressed_stones} 
-        <description></description></term>
-        <term>{Polished_plaster} 
-        <description></description></term>
-        <term>{Smoothed_plaster} 
-        <description></description></term>
-        <term>{Painted_plaster} 
-        <description></description></term>
+        <term>{0No_Observation}
+        <description>data not collected</description></term>
+        <term>{Circular} 
+        <description>Round</description></term>
+        <term>{Linear} 
+        <description>Straight sided but not square or rectangular.</description></term>
+        <term>{Ovoid} 
+        <description>Oval or elliptical.</description></term>
+        <term>{Rectangular} 
+        <description>Two sides longer than the other.</description></term>
+        <term>{Semi-Circular} 
+        <description>Half circle.</description></term>
+        <term>{Square} 
+        <description>Equal on four sides.</description></term>
+        <term>{Sub-Circular} 
+        <description>Nearly circular.</description></term>
+        <term>{Sub-rectangular} 
+        <description>Nearly rectangular in shape.</description></term>
       </lookup>
+    </property>
+    <property name="Mudbrick Shape" type="freetext">
+      <description>The shape of mudbrick(s).</description>
+    </property>
+    <property name="Component Finish" type="freetext">
+      <description>How have the material types been prepared (i.e dressed stones polished/smoothed/painted plaster surface).</description>
     </property>
     <property name="Composition Type" type="enum">
       <description>The type of composition of the context whether Homogenous Heterogenous or Laminated.</description>
       <lookup>
+        <term>{0No_Observation}<description/></term>
         <term>{Homogenous} 
         <description>Homogenous Uniform throughout.</description></term>
         <term>{Heterogeneous} 
         <description>Heterogeneous Deposit with different mixed components which need to be described.</description></term>
         <term>{Laminated} 
         <description>Laminated Deposit consists of lots of fine lenses of the same material. Compact laminated Deposit consists of a number of fine lenses of different materials.</description></term>
+        <term>{Compact_Laminated}
+        <description>Deposit consists of a number of fine lenses of different materials</description></term>
+      </lookup>
+    </property>
+    <property name="Deposit Bedding" type="enum">
+      <description>Describes the base of the deposit</description>
+      <lookup>
+        <term>{0No_Observation}<description/></term>
+        <term>{Oblique_steep} 
+        <description>Steep slope.</description></term>
+        <term>{Oblique_shallow} 
+        <description>Shallow slope.</description></term>
+        <term>{Uneven} 
+        <description>Mix of horizontal, oblique and undulating - make sure you describe this</description></term>
       </lookup>
     </property>
   </ArchaeologicalElement>
@@ -709,7 +736,7 @@
     <property name="CG Context Type" type="enum">
       <description></description>
       <lookup>
-        <term pictureURL="files/data/gallery/ContextType/Other/NA.png">No Observation 
+        <term pictureURL="files/data/gallery/ContextType/Other/NA.png">{0No_Observation}
         <description>data not collected</description></term>
         <term pictureURL="files/data/gallery/ContextType/Orange/Cut.png">{Cut} 
         <description>Any Context which forms a negative interface eg pits ditches graves and foundation and robber trenches</description></term>
@@ -807,56 +834,35 @@
     <property name="Photo" type="file">
       <description>Photo</description>
     </property>
+    <property name="Audio" type="file">
+      <description>Audio</description>
+    </property>
+    <property name="Video" type="file">
+      <description>Video</description>
+    </property>
   </ArchaeologicalElement>
 
   <!-- Matrix -->
   <ArchaeologicalElement name="Matrix">
     <description></description>
-    <property name="Component Type" type="vocab">
-      <description>Component Type</description>
-      <lookup>
-        <term>{Soil} 
-        <description></description></term>
-        <term>{Inclusion} 
-        <description></description></term>
-        <term>{Other} 
-        <description></description></term>
-      </lookup>
-    </property>
     <property name="Percentage" type="float" isIdentifier="true">
       <description>Percentage</description>
     </property>
     <property name="Component" type="enum" isIdentifier="true">
       <description>Grains which comprise more than 10% deposit should be included here.</description>
       <lookup>
-        <term>No Observation 
+        <term>{0No_Observation}
         <description>data not collected</description></term>
-        <term>{Clay} 
-        <description></description></term>
-        <term>{Sand} 
-        <description>Sand</description>
-          <term>{3_Coarse_Sand} 
-          <description>0.20–2.00mm</description></term>
-          <term>{1_Fine_sand} 
-          <description>0.02–0.06 mm</description></term>
-          <term>{2_Medium_Sand} 
-          <description>0.06–0.20mm</description></term>
-        </term>
-        <term>{Silt} 
-        <description></description></term>
-        <term>{Inclusion} 
-        <description>Inclusion</description>
-          <term>{1.Grit} 
-          <description>Size up to 5 mm.</description></term>
-          <term>{2.Small_Stones} 
-          <description>Size up to 10 mm.</description></term>
-          <term>{3.Large_stones} 
-          <description>Size over 10 mm.</description></term>
-          <term>{4.Tauf} 
-          <description>Mud building material including mortar.</description></term>
-          <term>{5.Midden} 
-          <description>Organic debris e.g. bones carbonised material phytoliths etc</description></term>
-        </term>
+        <term>{1.Grit} 
+        <description>Size up to 5 mm.</description></term>
+        <term>{2.Small_Stones} 
+        <description>Size up to 10 mm.</description></term>
+        <term>{3.Large_stones} 
+        <description>Size over 10 mm.</description></term>
+        <term>{4.Tauf} 
+        <description>Mud building material including mortar.</description></term>
+        <term>{5.Midden} 
+        <description>Organic debris e.g. bones carbonised material phytoliths etc</description></term>
         <term>{Plaster} 
         <description>Description to come</description></term>
         <term>{Mudbrick} 
@@ -867,13 +873,10 @@
         <description>Description to come</description></term>
       </lookup>
     </property>
-    <property name="Stone Size" type="freetext">
-      <description>Give an estimate of the size range of stones present in the Deposit: for example 20mm -50mm.</description>
-    </property>
     <property name="Shape" type="enum">
       <description>Shape and roundness of stones and pebbles in the deposit.</description>
       <lookup>
-        <term pictureURL="files/data/gallery/Other/NA.png">No Observation 
+        <term pictureURL="files/data/gallery/Other/NA.png">{0No_Observation}
         <description>data not collected</description></term>
         <term pictureURL="files/data/gallery/Pebbles/Angular.png">{Angular} 
         <description>Sharp pebbles or stones.</description>
@@ -899,10 +902,8 @@
         <description>Description to come</description></term>
       </lookup>
     </property>
-    <property name="Stoniness" type="freetext">
-      <description>Stoniness</description>
-    </property>
   </ArchaeologicalElement>
+
 
   <!-- ARTEFACT GROUP-->
   <ArchaeologicalElement name="Artefact Group">
@@ -919,7 +920,7 @@
     <property isIdentifier="true" name="Artefact Class" type="enum">
       <description>Broad Artefact Class for each Artefact (eg Glass Ceramic Building Material).</description>
       <lookup>
-        <term>No Observation 
+        <term>{0No_Observation}
         <description>data not collected</description></term>
         <term>{aChipped_Stone} 
         <description></description>
@@ -1028,6 +1029,15 @@
         <description></description></term>
       </lookup>
     </property>
+    <property name="Artefact X" type="float">
+      <description>The reading from the x-axis (horizontal) of an arbitrary site grid corresponding to the location of the Artifact Group at the time of excavation.</description>
+    </property>
+    <property name="Artefact Y" type="float">
+      <description>The reading from the y-axis (vertical) of an arbitrary site grid corresponding to the location of the Artifact Group at the time of excavation.</description>
+    </property>
+    <property name="Artefact Z" type="float">
+      <description>The elevation or depth of the Artifact Group at the time of excavation.</description>
+    </property>
     <property name="Artefact Quantity" type="float">
       <description>The number of sherds in this group.</description>
     </property>
@@ -1042,6 +1052,12 @@
     </property>
     <property name="Photo" type="file">
       <description>Photo</description>
+    </property>
+    <property name="Audio" type="file">
+      <description>Audio</description>
+    </property>
+    <property name="Video" type="file">
+      <description>Video</description>
     </property>
   </ArchaeologicalElement>
 
@@ -1060,7 +1076,7 @@
     <property isIdentifier="true" name="Sample Type" type="enum">
       <description>The type of Sample collected eg Soil Wood Pollen.</description>
       <lookup>
-        <term>No Observation 
+        <term>{0No_Observation}
         <description>data not collected</description></term>
         <term>{Building_Materials} 
         <description>Sample of bricks or worked stone collected from this Context.</description></term>
@@ -1087,7 +1103,7 @@
     <property name="Collection Method" type="enum">
       <description>Method of collecting the sample.</description>
       <lookup>
-        <term>No Observation 
+        <term>{0No_Observation}
         <description>data not collected</description></term>
         <term>{Hand_collection} 
         <description>Hand sample of building elements for example.</description></term>
@@ -1109,11 +1125,21 @@
     <property name="Sample Location" type="blocktext">
       <description>The location of the sample at the time of entry.</description>
       <lookup>
-        <term>Location A<description>Locations to be filled in later </description> </term>
-        <term>Location B<description>Locations to be filled in later </description> </term>
-        <term>Location C<description>Locations to be filled in later </description> </term>
-        <term>Location D<description>Locations to be filled in later </description> </term>        
+        <term>{0No_Observation}<description>data not collected</description></term>
+        <term>{Site_depot}<description>L</description> </term>
+        <term>{Export_Liverpool}<description></description> </term>
+        <term>{Export_Turkey}<description></description> </term>
+        <term>{zaOther}<description></description> </term>        
       </lookup>
+    </property>
+    <property name="Sample X" type="float">
+      <description>The reading from the x-axis (horizontal) of an arbitrary site grid corresponding to the location of the Sample at the time of excavation.</description>
+    </property>
+    <property name="Sample Y" type="float">
+      <description>The reading from the y-axis (vertical) of an arbitrary site grid corresponding to the location of the Sample at the time of excavation.</description>
+    </property>
+    <property name="Sample Z" type="float">
+      <description>The elevation or depth of the Sample at the time of excavation.</description>
     </property>
     <property name="Structural Components" type="enum">
       <description>Primary components of structure or feature eg dry-pressed brick rough-hewn stone.</description>
@@ -1161,35 +1187,6 @@
         <description>No visible bonding material ie unmortared</description></term>
       </lookup>
     </property>
-    <property name="Bond Type" type="enum">
-      <description>The type of bonding course eg 'English bond'</description>
-      <lookup>
-        <term>{Brick} 
-        <description></description>
-        <term>{English_Bond} 
-        <description>Full courses of headers alternating with full courses of stretchers.</description></term>
-        <term>{Flemish_Bond} 
-        <description>Courses of alternating headers and stretchers.</description></term>
-        <term>{Header_Bond} 
-        <description>Courses of headers only.</description></term>
-        <term>{Stretcher} 
-        <description>Courses of full bricks where every course is offset half a brick from the course below.</description></term></term>
-        <term>{Stone} 
-        <description></description>
-        <term>{Quoins_stressed} 
-        <description>Large corner blocks set along side regular courses blocks.</description></term>
-        <term>{Random_coursed} 
-        <description>Patterning of different shaped rubble stone.</description></term>
-        <term>{Random_uncoursed} 
-        <description>No regular pattern</description></term>
-        <term>{Regular_courses} 
-        <description>Lines or courses of regular size.</description></term>
-        <term>{String_courses} 
-        <description>Long stones in regular lines or courses.</description></term>
-        <term>{Uneven_courses} 
-        <description>Lines or courses of different size</description></term></term>
-      </lookup>
-    </property>
     <property name="Distinguishing Marks" type="freetext">
       <description>stinguishing marks on brick or stone.</description>
     </property>
@@ -1201,6 +1198,12 @@
     </property>
     <property name="Photo" type="file">
       <description>Photo</description>
+    </property>
+    <property name="Audio" type="file">
+      <description>Audio</description>
+    </property>
+    <property name="Video" type="file">
+      <description>Video</description>
     </property>
   </ArchaeologicalElement>
 
@@ -1219,7 +1222,7 @@
     <property isIdentifier="true" name="Special Find Class" type="freetext">
       <description>Broad Artefact Class for each Artefact (eg Glass Ceramic Building Material).</description>
       <lookup>
-        <term>No Observation 
+        <term>{0No_Observation}
         <description>data not collected</description></term>
         <term>{aChipped_Stone} 
         <description></description>
@@ -1331,13 +1334,13 @@
     <property name="Special Find Name" type="freetext">
       <description>Brief name or description for the Special Find eg 'Wedgwood plate'.</description>
     </property>
-    <property name="X" type="float">
+    <property name="Special Find X" type="float">
       <description>The reading from the x-axis (horizontal) of an arbitrary site grid corresponding to the location of the Special Find at the time of excavation.</description>
     </property>
-    <property name="Y" type="float">
+    <property name="Special Find Y" type="float">
       <description>The reading from the y-axis (vertical) of an arbitrary site grid corresponding to the location of the Special Find at the time of excavation.</description>
     </property>
-    <property name="Z" type="float">
+    <property name="Special Find Z" type="float">
       <description>The elevation or depth of the Special Find at the time of excavation.</description>
     </property>
     <property name="Latitude" type="float">
@@ -1360,6 +1363,12 @@
     </property>
     <property name="Photo" type="file">
       <description>Photo</description>
+    </property>
+    <property name="Audio" type="file">
+      <description>Audio</description>
+    </property>
+    <property name="Video" type="file">
+      <description>Video</description>
     </property>
   </ArchaeologicalElement>
 
@@ -1404,6 +1413,8 @@
     <property name="Scene Type" type="enum">
       <description>The type of scene captured, eg opening or closing view of the Context. (Vocab: Open, Close, Other)</description>
       <lookup>
+        <term>{0No_Observation}
+        <description>data not collected</description></term>
         <term> Open
           <description/>
         </term>
