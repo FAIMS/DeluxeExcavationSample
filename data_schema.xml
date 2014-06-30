@@ -658,6 +658,29 @@
     <property name="Set In Cut" type="freetext">
       <description>Give the cut context code if relevant. If not set in cut then put 'NA'.</description>
     </property>
+    <property name="Structure Shape" type="enum">
+      <description>The shape of the structural element, in plan.</description>
+      <lookup>
+        <term>{0No_Observation}
+        <description>data not collected</description></term>
+        <term>{Circular} 
+        <description>Round</description></term>
+        <term>{Linear} 
+        <description>Straight sided but not square or rectangular.</description></term>
+        <term>{Ovoid} 
+        <description>Oval or elliptical.</description></term>
+        <term>{Rectangular} 
+        <description>Two sides longer than the other.</description></term>
+        <term>{Semi-Circular} 
+        <description>Half circle.</description></term>
+        <term>{Square} 
+        <description>Equal on four sides.</description></term>
+        <term>{Sub-Circular} 
+        <description>Nearly circular.</description></term>
+        <term>{Sub-rectangular} 
+        <description>Nearly rectangular in shape.</description></term>
+      </lookup>
+    </property>
     <property name="Mudbrick Shape" type="freetext">
       <description>The shape of mudbrick(s).</description>
     </property>
@@ -810,6 +833,12 @@
     </property>
     <property name="Photo" type="file">
       <description>Photo</description>
+    </property>
+    <property name="Audio" type="file">
+      <description>Audio</description>
+    </property>
+    <property name="Video" type="file">
+      <description>Video</description>
     </property>
   </ArchaeologicalElement>
 
@@ -1024,6 +1053,12 @@
     <property name="Photo" type="file">
       <description>Photo</description>
     </property>
+    <property name="Audio" type="file">
+      <description>Audio</description>
+    </property>
+    <property name="Video" type="file">
+      <description>Video</description>
+    </property>
   </ArchaeologicalElement>
 
   <!--SAMPLE-->
@@ -1163,6 +1198,12 @@
     </property>
     <property name="Photo" type="file">
       <description>Photo</description>
+    </property>
+    <property name="Audio" type="file">
+      <description>Audio</description>
+    </property>
+    <property name="Video" type="file">
+      <description>Video</description>
     </property>
   </ArchaeologicalElement>
 
@@ -1322,6 +1363,12 @@
     </property>
     <property name="Photo" type="file">
       <description>Photo</description>
+    </property>
+    <property name="Audio" type="file">
+      <description>Audio</description>
+    </property>
+    <property name="Video" type="file">
+      <description>Video</description>
     </property>
   </ArchaeologicalElement>
 

@@ -129,20 +129,18 @@ onEvent("Context/Context_Samples/deleteSample", "click", "deleteSampleFromContex
 onEvent("Context/Context_Attachments/newPhotoLog", "click", "saveContext(\"isContext=true;newPhotoLog();verb=\\\"ContextPhotographLog\\\";archent_id=context_id;\");");
 onEvent("Context/Context_Attachments/loadPhotoLog", "click", "loadPhotoLog();verb=\"ContextPhotographLog\";archent_id=context_id;isContext=true");
 onEvent("Context/Context_Attachments/deletePhotoLog", "click", "deletePhotoLogFromContext()");
-onEvent("Context/Context_Attachments", "show", "updateAllContextPhotologs()");
 
 onEvent("Context/Context_Deposits", "show", "updateAllContextMatrices()");
 onEvent("Context/Context_Interpretation", "show", "updateAllContextGroups()");
-onEvent("Context/Context_Relationships_to_Other_Contexts", "show", "updateAllContext()");
-onEvent("Context/Context_Artefacts", "show", "updateAllContext()");
-onEvent("Context/Context_Samples", "show", "updateAllContext()");
+onEvent("Context/Context_Relationships_to_Other_Contexts", "show", "updateAllContextRelationships()");
+onEvent("Context/Context_Artefacts", "show", "updateAllContextArtefacts()");
+onEvent("Context/Context_Samples", "show", "updateAllContextSamples()");
+onEvent("Context/Context_Attachments", "show", "updateAllContextPhotologs()");
 
 onEvent("Context/Context_Relationships_to_Other_Contexts/relate", "delayclick", "makeHierReln()");
 onEvent("Context/Context_Relationships_to_Other_Contexts/showReln", "click", "loadContextFromReln()");
 onEvent("Context/Context_Relationships_to_Other_Contexts/deleteReln", "delayclick", "deleteReln()");
 onEvent("Context/Context_Relationships_to_Other_Contexts/listOfRelns", "click", "showRelnFromList()");
-
-
 
 String context_id = null;
 
@@ -165,6 +163,8 @@ newContext(){
     setFieldValue("Context/Context_GeneralInformation/CreatingUser", username);
     String date2 = new java.text.SimpleDateFormat("d-MMM-yy").format(new Date());
     setFieldValue("Context/Context_GeneralInformation/Date_Opened", date2);
+    datetime = fetchOne("select datetime('now');");
+    setFieldValue("Context/Context_GeneralInformation/CreatingDate", datetime.get(0));
 }
 
 newContextFromControl() {
@@ -186,18 +186,15 @@ loadContext() {
     loadContextFrom(context_id);
     Object foo = fetchOne("select fname || ' ' || lname from user join archentity using (userid) where uuid = '"+context_id+"' group by uuid having min(aenttimestamp)");
     setFieldValue("Context/Context_GeneralInformation/CreatingUser", foo.get(0));
-    
+    Object bar = fetchOne("select datetime(aentTimestamp, 'localtime')  from archentity where uuid = '"+context_id+"' group by uuid having min(aenttimestamp);");
+    setFieldValue("Context/Context_GeneralInformation/CreatingDate", bar.get(0));   
 }
 
 loadContextFrom(contextid) {
     context_id = contextid;
     if (isNull(context_id)) return;
     
-    showTabGroup("Context", context_id);    
-    updateAllContext();
-    updateRelns();
-
-
+    showTabGroup("Context", context_id);
 }
 
 saveContext(String callback) {
@@ -257,7 +254,7 @@ deleteReln(){
 updateAllContextMatrices() {
     Object contextMatrices = new ArrayList();
     if (!isNull(context_id)){
-        contextMatrices = fetchAll("select uuid, group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
+        contextMatrices = fetchAll("select uuid, aenttypename || ': ' || group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
             "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
             "            FROM latestNonDeletedArchentIdentifiers\n"+
             "           WHERE aenttypename = 'Matrix'\n"+
@@ -277,11 +274,10 @@ updateAllContextMatrices() {
     populateDropDown("Context/Context_Deposits/matrixList",  contextMatrices);
 }
 
-
 updateAllContextGroups() {
     Object contextGroups = new ArrayList();
     if (!isNull(context_id)){
-        contextGroups = fetchAll("select uuid, group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
+        contextGroups = fetchAll("select uuid, aenttypename || ': ' || group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
             "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
             "            FROM latestNonDeletedArchentIdentifiers\n"+
             "           WHERE aenttypename = 'Context Group'\n"+
@@ -301,22 +297,11 @@ updateAllContextGroups() {
     populateDropDown("Context/Context_Interpretation/ContextGroupList",  contextGroups);
 }
 
-updateAllContext(){
-
-   setFieldValue("Context/Context_Relationships_to_Other_Contexts/context_id", getFieldValue("Context/Context_GeneralInformation/Context_ID"));
-
+updateAllContextArtefacts(){
     Object localArtefactGroup = new ArrayList();
     Object localSpecialFind = new ArrayList();
-    Object localSample = new ArrayList();
-    Object relnList = new ArrayList();
-    Object verbList = new ArrayList();
-    Object contextList = new ArrayList();
-
-    relnList = fetchAll("select relntypename||'~!~'||coalesce(nullif(parent||'~!~'||child,'~!~'),relntypename||'~!~'||relntypename) as relntypeid, coalesce(nullif(parent,''), relntypename) as name, relntypeid from relntype where relntypename not like '%Context%' union select relntypename||'~!~'||coalesce(nullif(child||'~!~'||parent,'~!~'),relntypename||'~!~'||relntypename), coalesce(nullif(child,''), relntypename) as name, relntypeid from relntype where relntypename not like '%Context%' order by relntypeid, name;");
-    populateDropDown("Context/Context_Relationships_to_Other_Contexts/reln", relnList);
-
     if (!isNull(context_id)){
-        localArtefactGroup = fetchAll("select uuid, group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
+        localArtefactGroup = fetchAll("select uuid, aenttypename || ': ' || group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
             "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
             "            FROM latestNonDeletedArchentIdentifiers\n"+
             "           WHERE aenttypename = 'Artefact Group'\n"+
@@ -332,25 +317,7 @@ updateAllContext(){
             "        ORDER BY uuid, attributename ASC)\n"+
             "group by uuid\n"+
             "order by valuetimestamp desc, uuid, attributename;");
-
-        localSample = fetchAll("select uuid, group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
-            "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
-            "            FROM latestNonDeletedArchentIdentifiers\n"+
-            "           WHERE aenttypename = 'Sample'\n"+
-            "             AND uuid in (select uuid\n"+
-            "                            FROM latestNonDeletedAentReln\n"+
-            "                           where relationshipid in (select relationshipid\n"+
-            "                                                      FROM latestNonDeletedAentReln\n"+
-            "                                                      JOIN relationship using (relationshipid)\n"+
-            "                                                      JOIN relntype using (relntypeid)\n"+
-            "                                                     where uuid = "+context_id+"\n"+
-            "                                                       and relntypeName = 'ContextSample')\n"+
-            "                             and uuid != "+context_id+")\n"+
-            "        ORDER BY uuid, attributename ASC)\n"+
-            "group by uuid\n"+
-            "order by valuetimestamp desc, uuid, attributename;");
-
-        localSpecialFind = fetchAll("select group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
+        localSpecialFind = fetchAll("select uuid, aenttypename || ': ' || group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
             "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
             "            FROM latestNonDeletedArchentIdentifiers\n"+
             "           WHERE aenttypename = 'Special Find'\n"+
@@ -366,16 +333,67 @@ updateAllContext(){
             "        ORDER BY uuid, attributename ASC)\n"+
             "group by uuid\n"+
             "order by valuetimestamp desc, uuid, attributename;");
-
-        contextList = fetchAll("select uuid, group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' ') as response from latestNonDeletedArchEntIdentifiers where aenttypename = 'Context' and uuid != '"+context_id+"' group by uuid;" );
     }
     populateDropDown("Context/Context_Artefacts/artefactGroupList", localArtefactGroup);
     populateDropDown("Context/Context_Artefacts/specialFindList", localSpecialFind);
-    populateDropDown("Context/Context_Samples/sampleList", localSample);
-    
-    populateDropDown("Context/Context_Relationships_to_Other_Contexts/context", contextList);
+}
 
-    updateRelns();    
+updateAllContextSamples(){
+    Object localSample = new ArrayList();
+    if (!isNull(context_id)){
+        localSample = fetchAll("select uuid, aenttypename || ': ' || group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
+            "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
+            "            FROM latestNonDeletedArchentIdentifiers\n"+
+            "           WHERE aenttypename = 'Sample'\n"+
+            "             AND uuid in (select uuid\n"+
+            "                            FROM latestNonDeletedAentReln\n"+
+            "                           where relationshipid in (select relationshipid\n"+
+            "                                                      FROM latestNonDeletedAentReln\n"+
+            "                                                      JOIN relationship using (relationshipid)\n"+
+            "                                                      JOIN relntype using (relntypeid)\n"+
+            "                                                     where uuid = "+context_id+"\n"+
+            "                                                       and relntypeName = 'ContextSample')\n"+
+            "                             and uuid != "+context_id+")\n"+
+            "        ORDER BY uuid, attributename ASC)\n"+
+            "group by uuid\n"+
+            "order by valuetimestamp desc, uuid, attributename;");
+    }
+    populateDropDown("Context/Context_Samples/sampleList", localSample);
+}
+
+updateAllContextRelationships(){
+    setFieldValue("Context/Context_Relationships_to_Other_Contexts/context_id", getFieldValue("Context/Context_GeneralInformation/Context_ID"));
+
+    Object contextList = new ArrayList();
+    
+    if (!isNull(context_id)){
+        contextList = fetchAll("select uuid, group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' ') as response from latestNonDeletedArchEntIdentifiers where aenttypename = 'Context' and uuid != '"+context_id+"' group by uuid;" );
+    }    
+    populateDropDown("Context/Context_Relationships_to_Other_Contexts/context", contextList);
+    updateRelns();
+}
+
+updateAllContextPhotologs() {
+    Object contextPhotologs = new ArrayList();
+    if (!isNull(context_id)){
+        contextPhotologs = fetchAll("select uuid, group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
+            "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
+            "            FROM latestNonDeletedArchentIdentifiers\n"+
+            "           WHERE aenttypename = 'Photograph Log'\n"+
+            "             AND uuid in (select uuid\n"+
+            "                            FROM latestNonDeletedAentReln\n"+
+            "                           where relationshipid in (select relationshipid\n"+
+            "                                                      FROM latestNonDeletedAentReln\n"+
+            "                                                      JOIN relationship using (relationshipid)\n"+
+            "                                                      JOIN relntype using (relntypeid)\n"+
+            "                                                     where uuid = "+context_id+"\n"+
+            "                                                       and relntypeName = 'ContextPhotographLog')\n"+
+            "                             and uuid != "+context_id+")\n"+
+            "        ORDER BY uuid, attributename ASC)\n"+
+            "group by uuid\n"+
+            "order by valuetimestamp desc, uuid, attributename;");
+    }
+    populateDropDown("Context/Context_Attachments/PhotoLogList",  contextPhotologs);
 }
 
 makeHierReln(){
@@ -396,13 +414,14 @@ makeHierReln(){
 }
 
 updateRelns(){
-    Object contextRelnList = fetchAll("select parent.relationshipid, parent.response || ' ' || parent.participatesverb || ' ' || child.response "+
-        "from (latestNonDeletedAentReln join identifierAsSpreadsheet using (uuid)) parent  "+
+    Object contextRelnList = fetchAll("select parent.relationshipid, parent.participatesverb || ' ' || child.response "+
+        "from (latestNonDeletedAentReln) parent  "+
         "join (latestNonDeletedAentReln join identifierAsSpreadsheet using (uuid)) child on (parent.relationshipid = child.relationshipid and parent.uuid != child.uuid) "+
         "join latestNonDeletedRelationship using (relationshipid) join relntype using (relntypeid) "+
         "where relntypename not like 'Context%' "+
         "and parent.uuid = '"+context_id+"'  "+
         "order by relntimestamp desc");
+    
     populateDropDown("Context/Context_Relationships_to_Other_Contexts/listRelns", contextRelnList);
     populateList("Context/Context_Relationships_to_Other_Contexts/listOfRelns", contextRelnList);
 }
@@ -430,14 +449,15 @@ loadContextAttributes(){
     populateDropDown("Context/Context_Cuts/Your_Interpretation", makeVocab("Cut Your Interpretation"));
     populateHierarchicalDropDown("Context/Context_Cuts/Sides_of_Cut", "Sides of Cut");
 
-
+    populateDropDown("Context/Context_Structures/Structure_Shape", makeVocab("Structure Shape"));
     populateDropDown("Context/Context_Structures/Structural_Components", makeVocab("Structural Components"));
     populateDropDown("Context/Context_Structures/Bonding", makeVocab("Bonding"));
     populateDropDown("Context/Context_Structures/Your_Interpretation", makeVocab("Structure Your Interpretation"));
 
     populateHierarchicalDropDown("Context/Texture_Helper/Soil_Texture", "Soil Texture");
 
-
+    relnList = fetchAll("select relntypename||'~!~'||coalesce(nullif(parent||'~!~'||child,'~!~'),relntypename||'~!~'||relntypename) as relntypeid, coalesce(nullif(parent,''), relntypename) as name, relntypeid from relntype where relntypename not like '%Context%' union select relntypename||'~!~'||coalesce(nullif(child||'~!~'||parent,'~!~'),relntypename||'~!~'||relntypename), coalesce(nullif(child,''), relntypename) as name, relntypeid from relntype where relntypename not like '%Context%' order by relntypeid, name;");
+    populateDropDown("Context/Context_Relationships_to_Other_Contexts/reln", relnList);
 }
 
 openContextTabs(){
@@ -458,7 +478,6 @@ openContextTabs(){
             showTab("Context/Context_Structures");
         }
     } else {
-
         cancelTab("Context/Context_Cuts", false);
         cancelTab("Context/Context_Deposits", false);
         cancelTab("Context/Context_Structures", false);
@@ -530,6 +549,8 @@ onEvent("ContextGroup/ContextGroup_Samples/Update", "delayclick", "saveContextGr
 
 onEvent("ContextGroup/ContextGroup_Attachments", "show", "updateAllContextGroupPhotologs()");
 onEvent("ContextGroup/ContextGroup_Attachments/attachPhoto", "click", "attachPictureTo(\"ContextGroup/ContextGroup_Attachments/Photo\")");
+onEvent("ContextGroup/ContextGroup_Attachments/attachAudio", "click", "attachAudioTo(\"ContextGroup/ContextGroup_Attachments/Audio\")");
+onEvent("ContextGroup/ContextGroup_Attachments/attachVideo", "click", "attachVideoTo(\"ContextGroup/ContextGroup_Attachments/Video\")");
 onEvent("ContextGroup/ContextGroup_Attachments/attachSketch", "click", "attachFileTo(\"ContextGroup/ContextGroup_Attachments/Sketch\")");
 onEvent("ContextGroup/ContextGroup_Attachments/viewattached", "click", "viewArchEntAttachedFiles(context_group_id)");
 onEvent("ContextGroup/ContextGroup_Attachments/Update", "delayclick", "saveContextGroup(\"\")");
@@ -815,6 +836,8 @@ updateRelnsCG(){
 
 /*** Artefact Group ***/
 onEvent("Artefact_Group/Artefact_Group_GeneralInformation/attachPhoto", "click", "attachPictureTo(\"Artefact_Group/Artefact_Group_GeneralInformation/Photo\")");
+onEvent("Artefact_Group/Artefact_Group_GeneralInformation/attachAudio", "click", "attachAudioTo(\"Artefact_Group/Artefact_Group_GeneralInformation/Audio\")");
+onEvent("Artefact_Group/Artefact_Group_GeneralInformation/attachVideo", "click", "attachVideoTo(\"Artefact_Group/Artefact_Group_GeneralInformation/Video\")");
 onEvent("Artefact_Group/Artefact_Group_GeneralInformation/attachSketch", "click", "attachFileTo(\"Artefact_Group/Artefact_Group_GeneralInformation/Sketch\")");
 onEvent("Artefact_Group/Artefact_Group_GeneralInformation/viewattached", "click", "viewArchEntAttachedFiles(artefact_group_id)");
 onEvent("Artefact_Group/Artefact_Group_GeneralInformation/Update", "delayclick", "saveArtefactGroup()");
@@ -971,6 +994,8 @@ loadArtefactGroupAttributes(){
 
 /*** Sample ***/
 onEvent("Sample/Sample_GeneralInformation/attachPhoto", "click", "attachPictureTo(\"Sample/Sample_GeneralInformation/Photo\")");
+onEvent("Sample/Sample_GeneralInformation/attachAudio", "click", "attachAudioTo(\"Sample/Sample_GeneralInformation/Audio\")");
+onEvent("Sample/Sample_GeneralInformation/attachVideo", "click", "attachVideoTo(\"Sample/Sample_GeneralInformation/Video\")");
 onEvent("Sample/Sample_GeneralInformation/attachSketch", "click", "attachFileTo(\"Sample/Sample_GeneralInformation/Sketch\")");
 onEvent("Sample/Sample_GeneralInformation/viewattached", "click", "viewArchEntAttachedFiles(sample_id)");
 onEvent("Sample/Sample_GeneralInformation/Update", "delayclick", "saveSample()");
@@ -1191,6 +1216,8 @@ loadMatrixAttributes(){
 
 /*** Special Find ***/
 onEvent("Special_Find/Special_Find_GeneralInformation/attachPhoto", "click", "attachPictureTo(\"Special_Find/Special_Find_GeneralInformation/Photo\")");
+onEvent("Special_Find/Special_Find_GeneralInformation/attachAudio", "click", "attachAudioTo(\"Special_Find/Special_Find_GeneralInformation/Audio\")");
+onEvent("Special_Find/Special_Find_GeneralInformation/attachVideo", "click", "attachVideoTo(\"Special_Find/Special_Find_GeneralInformation/Video\")");
 onEvent("Special_Find/Special_Find_GeneralInformation/Update", "delayclick", "saveSpecialFind()");
 onEvent("Special_Find/Special_Find_GeneralInformation/Delete", "delayclick", "deleteSpecialFind()");
 onEvent("Special_Find/Special_Find_GeneralInformation/SaveAndNew", "delayclick", "saveAndNewSpecialFind()");
@@ -1435,29 +1462,6 @@ reallyDeletePhotoLog(){
 
 doNotDelete(){
     showToast("Delete Cancelled.");
-}
-
-updateAllContextPhotologs() {
-    Object contextPhotologs = new ArrayList();
-    if (!isNull(context_id)){
-        contextPhotologs = fetchAll("select uuid, group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
-            "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
-            "            FROM latestNonDeletedArchentIdentifiers\n"+
-            "           WHERE aenttypename = 'Photograph Log'\n"+
-            "             AND uuid in (select uuid\n"+
-            "                            FROM latestNonDeletedAentReln\n"+
-            "                           where relationshipid in (select relationshipid\n"+
-            "                                                      FROM latestNonDeletedAentReln\n"+
-            "                                                      JOIN relationship using (relationshipid)\n"+
-            "                                                      JOIN relntype using (relntypeid)\n"+
-            "                                                     where uuid = "+context_id+"\n"+
-            "                                                       and relntypeName = 'ContextPhotographLog')\n"+
-            "                             and uuid != "+context_id+")\n"+
-            "        ORDER BY uuid, attributename ASC)\n"+
-            "group by uuid\n"+
-            "order by valuetimestamp desc, uuid, attributename;");
-    }
-    populateDropDown("Context/Context_Attachments/PhotoLogList",  contextPhotologs);
 }
 
 /*** MISC ***/

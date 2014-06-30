@@ -167,9 +167,10 @@
                   <CreatingUser/>
                 </child1>
                 <child2>
-                  <Update2/>    
+                  <CreatingDate/>
                 </child2>
               </container10>
+              <Update2/> 
             </Context_GeneralInformation>
             <Context_Deposits>
               <Your_Interpretation/>
@@ -226,6 +227,7 @@
               <Structure_Description/>
               <Number_Courses/>
               <Set_In_Cut/>
+              <Structure_Shape/>
               <Mudbrick_Shape/>
               <Component_Finish/>
               <Update/>
@@ -427,6 +429,10 @@
               <attachSketch/>
               <Photo/>
               <attachPhoto/>
+              <Audio/>
+              <attachAudio/>
+              <Video/>
+              <attachVideo/>
               <viewattached/>
               <guide/>
               <newPhotoLog/>
@@ -477,6 +483,10 @@
               <attachSketch/>
               <Photo/>
               <attachPhoto/>
+              <Audio/>
+              <attachAudio/>
+              <Video/>
+              <attachVideo/>
               <viewattached/>
               <Update/>
               <Delete/>
@@ -532,6 +542,10 @@
               <attachSketch/>
               <Photo/>
               <attachPhoto/>
+              <Audio/>
+              <attachAudio/>
+              <Video/>
+              <attachVideo/>
               <viewattached/>
               <Update/>
               <Delete/>
@@ -605,6 +619,10 @@
               <Special_Find_Comment/>
               <Photo/>
               <attachPhoto/>
+              <Audio/>
+              <attachAudio/>
+              <Video/>
+              <attachVideo/>
               <viewattached/>
               <Update/>
               <Delete/>
@@ -865,7 +883,7 @@ Search will find Records that contain your search term or string to any field in
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
-            <input faims_attribute_name="Date Opened" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="true" ref="Date_Opened">
+            <input faims_attribute_name="Date Opened" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Date_Opened">
               <label>{Date_Opened}</label>
             </input>
           </group>
@@ -1030,11 +1048,14 @@ Search will find Records that contain your search term or string to any field in
           </group>
           <group faims_style="even" ref="child2">
             <label/>
-            <trigger ref="Update2">
-              <label>Save Context</label>
-            </trigger>
+            <input faims_certainty="false" faims_read_only="true" ref="CreatingDate">
+              <label>Record Created Date:</label>
+            </input>
           </group>
         </group>
+        <trigger ref="Update2">
+          <label>Save Context</label>
+        </trigger>
       </group>
 
       <group faims_hidden="true" ref="Context_Deposits">
@@ -1257,6 +1278,14 @@ Search will find Records that contain your search term or string to any field in
         <input faims_attribute_name="Set In Cut" faims_attribute_type="freetext" faims_annotation="true" faims_certainty="true" faims_read_only="false" ref="Set_In_Cut">
           <label>{Set_Cut}</label>
         </input>
+        <select1 faims_attribute_name="Structure Shape" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Structure_Shape">
+          <label>{Structure_Shape}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+
         <input faims_attribute_name="Mudbrick Shape" faims_attribute_type="freetext" faims_annotation="true" faims_certainty="true" faims_read_only="false" ref="Mudbrick_Shape">
           <label>{Mudbrick_Shape}</label>
         </input>
@@ -1812,6 +1841,26 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         <trigger ref="attachPhoto">
           <label>Take Picture</label>
         </trigger>
+        <select ref="Audio" faims_attribute_name="Audio" faims_attribute_type="freetext" faims_annotation="false" faims_certainty="false" faims_sync="true" type="file">
+            <label>{Attached_Audio_Files}</label>
+            <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+            </item>
+        </select>
+        <trigger ref="attachAudio">
+          <label>{Record_Audio}</label>
+        </trigger>
+        <select ref="Video" faims_attribute_name="Video" faims_attribute_type="freetext" faims_annotation="false" faims_certainty="false" faims_sync="true" type="video">
+          <label>{Attached_Videos}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select>
+        <trigger ref="attachVideo">
+          <label>{Record_Video}</label>
+        </trigger>
         <select1 appearance="compact" ref="guide" >
           <label></label>
             <item>
@@ -1940,6 +1989,26 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         </select>
         <trigger ref="attachPhoto">
           <label>Take Picture</label>
+        </trigger>
+        <select ref="Audio" faims_attribute_name="Audio" faims_attribute_type="freetext" faims_annotation="false" faims_certainty="false" faims_sync="true" type="file">
+            <label>{Attached_Audio_Files}</label>
+            <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+            </item>
+        </select>
+        <trigger ref="attachAudio">
+          <label>{Record_Audio}</label>
+        </trigger>
+        <select ref="Video" faims_attribute_name="Video" faims_attribute_type="freetext" faims_annotation="false" faims_certainty="false" faims_sync="true" type="video">
+          <label>{Attached_Videos}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select>
+        <trigger ref="attachVideo">
+          <label>{Record_Video}</label>
         </trigger>
         <trigger ref="viewattached">
           <label>View Attached Files</label>
@@ -2073,6 +2142,26 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         </select>
         <trigger ref="attachPhoto">
           <label>Take Picture</label>
+        </trigger>
+        <select ref="Audio" faims_attribute_name="Audio" faims_attribute_type="freetext" faims_annotation="false" faims_certainty="false" faims_sync="true" type="file">
+            <label>{Attached_Audio_Files}</label>
+            <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+            </item>
+        </select>
+        <trigger ref="attachAudio">
+          <label>{Record_Audio}</label>
+        </trigger>
+        <select ref="Video" faims_attribute_name="Video" faims_attribute_type="freetext" faims_annotation="false" faims_certainty="false" faims_sync="true" type="video">
+          <label>{Attached_Videos}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select>
+        <trigger ref="attachVideo">
+          <label>{Record_Video}</label>
         </trigger>
         <trigger ref="viewattached">
           <label>View Attached Files</label>
@@ -2238,6 +2327,26 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         </select>
         <trigger ref="attachPhoto">
           <label>Take Picture</label>
+        </trigger>
+        <select ref="Audio" faims_attribute_name="Audio" faims_attribute_type="freetext" faims_annotation="false" faims_certainty="false" faims_sync="true" type="file">
+            <label>{Attached_Audio_Files}</label>
+            <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+            </item>
+        </select>
+        <trigger ref="attachAudio">
+          <label>{Record_Audio}</label>
+        </trigger>
+        <select ref="Video" faims_attribute_name="Video" faims_attribute_type="freetext" faims_annotation="false" faims_certainty="false" faims_sync="true" type="video">
+          <label>{Attached_Videos}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select>
+        <trigger ref="attachVideo">
+          <label>{Record_Video}</label>
         </trigger>
         <trigger ref="viewattached">
           <label>View Attached Files</label>
