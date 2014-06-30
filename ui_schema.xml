@@ -76,7 +76,7 @@
                 <child3>
                   <Grid_Location_Reference/>
                 </child3>
-				<child4>
+                <child4>
                   <Sub_Unit/>
                 </child4>
               </container1>
@@ -89,23 +89,23 @@
                 </child2>
               </container2>
               <container6>
-				<child1>
-					<Date_Opened/>
-				</child1>
+                <child1>
+                  <Date_Opened/>
+                </child1>
                 <child2>
-					<Excavator/>
-				</child2>
-			  </container6>
-			  <Context_Type/>
-			  <container7>
-                <child1>			  
-					<Type_of_Definition/>
-				</child1>
+                  <Excavator/>
+                </child2>
+              </container6>
+              <Context_Type/>
+              <container7>
+                <child1>        
+                  <Type_of_Definition/>
+                </child1>
                 <child2>
-					<Excavation_Method/>
-				</child2>
-			  </container7>
-			  <Context_Comments/>
+                  <Excavation_Method/>
+                </child2>
+              </container7>
+              <Context_Comments/>
               <container5>
                 <child1>
                   <CreatingUser/>
@@ -131,7 +131,7 @@
                 </child2>
               </container1>
               <Datum/>
-			       <container2>
+             <container2>
                 <child1>
                   <Context_Highest_Level_NW/>
                   <Context_Highest_Level_NE/>
@@ -157,8 +157,8 @@
                 <child3>
                   <Depth/>
                 </child3>
-				</container3>
-				<Volume/>
+              </container3>
+              <Volume/>
               <Update/>
             </Context_Measure>
             <Context_Deposits>
@@ -174,14 +174,14 @@
               </container1>
               <Soil_Particle_Sorting/>
              
-				<container8>
-                <child1>			  
-					<Soil_Texture_Actual/>
-				</child1>
+              <container8>
+                <child1>        
+                  <Soil_Texture_Actual/>
+                </child1>
                 <child2>
-					<Texture_Helper/>
-				</child2>
-			  </container8>
+                  <Texture_Helper/>
+                </child2>
+              </container8>
               <newMatrix/>
               <matrixList/>
               <loadMatrix/>
@@ -518,7 +518,6 @@
             </Special_Find_Location>
           </Special_Find_Location>
 
-
           <!-- ArchEnt: Adobe Element-->
           <Adobe_Element>
             <Adobe_Element>
@@ -537,8 +536,6 @@
             </Adobe_Element>
           </Adobe_Element>
 
-          
-
           <!-- ArchEnt: Photograph Log -->
           <Photograph_Log>
             <Photograph_Log>
@@ -553,9 +550,6 @@
               <ReturnToContext/>
             </Photograph_Log>
           </Photograph_Log>
-
-
-
         </faims>
       </instance>
       <!--list of numeric and blocktext(memo) attributes(fields)-->
@@ -765,7 +759,7 @@
               <label>{Grid_Location_Reference}</label>
             </input>
           </group>
-		  <group faims_style="even" ref="child4">
+      <group faims_style="even" ref="child4">
             <label/>
             <input faims_attribute_name="Sub Unit" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Sub_Unit">
               <label>{Sub_Unit}</label>
@@ -787,50 +781,50 @@
             </input>
           </group>
         </group>
-		
-	   <group faims_style="orientation" ref="container6">
-			<label/>
-			<group faims_style="even" ref="child1">
-			<label/>
-				<input faims_attribute_name="Date Opened" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Date_Opened">
-				<label>{Date_Opened}</label>
-				</input>
-			</group>
-			<group faims_style="even" ref="child2">
-			<label/>
-				<input faims_attribute_name="Excavator" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Excavator">
-				<label>{Excavator}</label>
-				</input>
-			</group>
-		</group>
-	
-		   <group faims_style="orientation" ref="container7">
-			<label/>
-			<group faims_style="even" ref="child1">
-			<label/>
-			<select1 faims_attribute_name="Type of Definition" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Type_of_Definition">
+    
+     <group faims_style="orientation" ref="container6">
+      <label/>
+      <group faims_style="even" ref="child1">
+      <label/>
+        <input faims_attribute_name="Date Opened" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Date_Opened">
+        <label>{Date_Opened}</label>
+        </input>
+      </group>
+      <group faims_style="even" ref="child2">
+      <label/>
+        <input faims_attribute_name="Excavator" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Excavator">
+        <label>{Excavator}</label>
+        </input>
+      </group>
+    </group>
+  
+       <group faims_style="orientation" ref="container7">
+      <label/>
+      <group faims_style="even" ref="child1">
+      <label/>
+      <select1 faims_attribute_name="Type of Definition" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Type_of_Definition">
           <label>{Type_of_Definition}</label>
           <item>
             <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
-			</select1>
-			
-			</group>
-			<group faims_style="even" ref="child2">
-			<label/>
-			<select1 faims_attribute_name="Excavation Method" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Excavation_Method">
+      </select1>
+      
+      </group>
+      <group faims_style="even" ref="child2">
+      <label/>
+      <select1 faims_attribute_name="Excavation Method" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Excavation_Method">
           <label>{Excavation_Method}</label>
           <item>
             <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
-			</select1>
-			
-			</group>
-		</group>
-		
-		
+      </select1>
+      
+      </group>
+    </group>
+    
+    
         <select1 faims_attribute_name="Context Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Context_Type" type="image">
           <label>{Context_Type}</label>
           <item>
@@ -844,9 +838,9 @@
           <label>{Your_description}</label>
         </input>
        
-	
-		
-		<input faims_attribute_name="Context Comments" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Context_Comments">
+  
+    
+    <input faims_attribute_name="Context Comments" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Context_Comments">
           <label>{Context_Comments}</label>
         </input>
         <!--We would like to see Dropdown-->
@@ -882,7 +876,7 @@
 
       <group ref="Context_Measure">
         <label>{Measure}</label>
-		<input faims_attribute_name="Datum" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Datum">
+    <input faims_attribute_name="Datum" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Datum">
           <label>{Datum}</label>
         </input>
         <group faims_style="orientation" ref="container2">
@@ -956,7 +950,7 @@
             </input>
           </group>
         </group>
-		<input faims_attribute_name="Volume" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Volume">
+    <input faims_attribute_name="Volume" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Volume">
          <label>{Volume}</label>
         </input>
       </group>
@@ -991,7 +985,7 @@
             <label/>
            <input faims_attribute_name="Soil Colour" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Soil_Colour">
                 <label>{Soil_Colour}</label>
-			</input>
+      </input>
           </group>
         </group>
         
@@ -1003,27 +997,27 @@
             <value>placeholder</value>
           </item>
         </select1>
-		
-		 <group faims_style="orientation" ref="container8">
-			<label/>
-			<group faims_style="even" ref="child1">
-			<label/>
-			<select1 faims_attribute_name="Soil Texture" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Soil_Texture_Actual">
+    
+     <group faims_style="orientation" ref="container8">
+      <label/>
+      <group faims_style="even" ref="child1">
+      <label/>
+      <select1 faims_attribute_name="Soil Texture" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Soil_Texture_Actual">
           <label>{Soil_Texture}</label>
             <item>
             <label>{placeholder}</label>
             <value>placeholder</value>
           </item>
         </select1>
-			</group>
-			<group faims_style="even" ref="child2">
-			<label/>
-			<trigger ref="Texture_Helper">
+      </group>
+      <group faims_style="even" ref="child2">
+      <label/>
+      <trigger ref="Texture_Helper">
           <label>{Texture_Helper}</label>
         </trigger>
-			</group>
-		</group>
-		
+      </group>
+    </group>
+    
         <trigger ref="newMatrix">
           <label>{Add_New_Matrix}</label>
         </trigger>
@@ -1995,55 +1989,53 @@
       <label>{Adobe} </label>
       <group ref="Adobe_Element">
         <label>{Adobe} </label>
- <input faims_attribute_name="Context ID" faims_attribute_type="freetext" faims_read_only="true" ref="Context_ID">
-              <label>{ContextID}</label>
-            </input>
-             <input faims_attribute_name="Site Code" faims_attribute_type="freetext" faims_read_only="true" ref="Site_Code">
-              <label>{Site_Code}</label>
-            </input>
-            
-            <input faims_attribute_name="Adobe Element ID" faims_attribute_type="freetext" faims_read_only="false" ref="Adobe_Element_ID" faims_certainty="false">
-              <label>{Adobe_Element_ID}</label>
-            </input>
+        <input faims_attribute_name="Context ID" faims_attribute_type="freetext" faims_read_only="true" ref="Context_ID">
+          <label>{ContextID}</label>
+        </input>
+         <input faims_attribute_name="Site Code" faims_attribute_type="freetext" faims_read_only="true" ref="Site_Code">
+          <label>{Site_Code}</label>
+        </input>
+        
+        <input faims_attribute_name="Adobe Element ID" faims_attribute_type="freetext" faims_read_only="false" ref="Adobe_Element_ID" faims_certainty="false">
+          <label>{Adobe_Element_ID}</label>
+        </input>
 
-            <input faims_attribute_name="Height" faims_attribute_type="measure" faims_read_only="false" ref="Height" faims_certainty="true">
-              <label>{Height}</label>
-            </input>
-             <input faims_attribute_name="Width" faims_attribute_type="measure" faims_read_only="false" ref="Width" faims_certainty="true">
-              <label>{Width}</label>
-            </input>
-             <input faims_attribute_name="Length" faims_attribute_type="measure" faims_read_only="false" ref="Length" faims_certainty="true">
-              <label>{Length}</label>
-            </input>
+        <input faims_attribute_name="Height" faims_attribute_type="measure" faims_read_only="false" ref="Height" faims_certainty="true">
+          <label>{Height}</label>
+        </input>
+         <input faims_attribute_name="Width" faims_attribute_type="measure" faims_read_only="false" ref="Width" faims_certainty="true">
+          <label>{Width}</label>
+        </input>
+         <input faims_attribute_name="Length" faims_attribute_type="measure" faims_read_only="false" ref="Length" faims_certainty="true">
+          <label>{Length}</label>
+        </input>
 
-<select1 faims_attribute_name="AdobeShape" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Shape">
-            <label>{Shape}</label>
-            <item>
-              <label>placeholder</label>
-              <value>placeholder</value>
-            </item>
-          </select1>
-          <select1 faims_attribute_name="Method_Manufacture" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Method_Manufacture">
-            <label>{Method_Manufacture}</label>
-            <item>
-              <label>placeholder</label>
-              <value>placeholder</value>
-            </item>
-          </select1>
-
-          
-          <trigger ref="Update">
-            <label>{Save_and_Close}</label>
-          </trigger>
-          <trigger ref="SaveAndNew">
-            <label>{Save_and_New}</label>
-          </trigger>
-          <trigger ref="Delete">
-            <label>{Delete_Adobe_Element}</label>
-          </trigger>
-          <trigger ref="ReturnToContext">
-            <label>{Return_To_Context}</label>
-          </trigger>        
+        <select1 faims_attribute_name="AdobeShape" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Shape">
+          <label>{Shape}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <select1 faims_attribute_name="Method_Manufacture" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Method_Manufacture">
+          <label>{Method_Manufacture}</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <trigger ref="Update">
+          <label>{Save_and_Close}</label>
+        </trigger>
+        <trigger ref="SaveAndNew">
+          <label>{Save_and_New}</label>
+        </trigger>
+        <trigger ref="Delete">
+          <label>{Delete_Adobe_Element}</label>
+        </trigger>
+        <trigger ref="ReturnToContext">
+          <label>{Return_To_Context}</label>
+        </trigger>
       </group>
     </group>
 
