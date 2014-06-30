@@ -451,12 +451,17 @@ updateAllContextSamples(){
 }
 
 updateAllContextRelationships(){
-    setFieldValue("Context/Context_Relationships_to_Other_Contexts/context_id", getFieldValue("Context/Context_GeneralInformation/Context_ID"));
+    String context_name = getFieldValue("Context/Context_GeneralInformation/Site_Code") + "-" +
+                          getFieldValue("Context/Context_GeneralInformation/AreaCode") + "-" +
+                          getFieldValue("Context/Context_GeneralInformation/Grid_Location_Reference") + "-" +
+                          getFieldValue("Context/Context_GeneralInformation/Context_ID") + "-" +
+                          getFieldValue("Context/Context_GeneralInformation/LotID");
+    setFieldValue("Context/Context_Relationships_to_Other_Contexts/context_id", context_name);
 
     Object contextList = new ArrayList();
     
     if (!isNull(context_id)){
-        contextList = fetchAll("select uuid, response from identifierAsSpreadsheet join latestNonDeletedArchent using (uuid) aenttype using (aenttypeid) where aenttypename = 'Context' and uuid != '"+context_id+"' group by uuid;" );
+        contextList = fetchAll("select uuid, response from identifierAsSpreadsheet join latestNonDeletedArchent using (uuid) join aenttype using (aenttypeid) where aenttypename = 'Context' and uuid != '"+context_id+"' group by uuid;" );
     }    
     populateDropDown("Context/Context_Relationships_to_Other_Contexts/context", contextList);
     updateRelns();

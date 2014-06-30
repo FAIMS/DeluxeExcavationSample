@@ -385,6 +385,7 @@
               <loadPhotoLog/>
               <deletePhotoLog/>
               <Update/>
+              <Delete/>
             </ContextGroup_Attachments>
           </ContextGroup>
 
@@ -1128,8 +1129,6 @@ Closing Elevations</label>
             <item>
               <!-- I'm using fancy spaces here. Be careful of copying -->
             <label> 
-
-
 Here you can group contexts into a single {Context_Group}.</label>
             <value>Help</value>
           </item>
