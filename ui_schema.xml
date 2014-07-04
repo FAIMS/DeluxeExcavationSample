@@ -967,19 +967,19 @@ Search will find Records that contain your search term or string to any field in
           <group faims_style="even" ref="child1">
             <label/>
             <input faims_attribute_name="Length" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Length">
-              <label>Length</label>
+              <label>{Length}</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
             <input faims_attribute_name="Width" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Width">
-              <label>Width</label>
+              <label>{Width}</label>
             </input>
           </group>
           <group faims_style="even" ref="child3">
             <label/>
             <input faims_attribute_name="Depth" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Depth">
-              <label>Depth</label>
+              <label>{Depth}</label>
             </input>
           </group>
         </group>
@@ -988,7 +988,7 @@ Search will find Records that contain your search term or string to any field in
           <group faims_style="even" ref="child1">
             <label/>
             <input faims_attribute_name="Volume" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Volume">
-              <label>Volume</label>
+              <label>{Volume}</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
@@ -1442,10 +1442,10 @@ Here are the {Context_Group}s that this Context belongs to.</label>
       <group ref="Context_Artefacts">
         <label>Artefacts</label>
         <trigger ref="newArtefactGroup">
-          <label>Add Artefact Group</label>
+          <label>Add {Artefact_Group}</label>
         </trigger>
         <select1 faims_certainty="false" faims_annotation="false" faims_read_only="false" ref="artefactGroupList">
-          <label>Select an Artefact Group:</label>
+          <label>Select an {Artefact_Group}:</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
@@ -1456,13 +1456,13 @@ Here are the {Context_Group}s that this Context belongs to.</label>
           <group faims_style="even" ref="child0">
             <label/>
             <trigger ref="deleteArtefactGroup">
-              <label>Delete Artefact Group</label>
+              <label>Delete {Artefact_Group}</label>
             </trigger>
           </group>
           <group faims_style="even" ref="child1">
             <label/>
             <trigger ref="loadArtefactGroup">
-              <label>Load Artefact Group</label>
+              <label>Load {Artefact_Group}</label>
             </trigger>
           </group>
         </group>
@@ -1596,7 +1596,7 @@ Here you can enter filenames or unique reference numbers for image stored on ano
           <label>Save and New {Context}</label>
         </trigger>
         <trigger ref="Duplicate">
-          <label>Save and Duplicate {Context} (will not duplicate relationships, samples, or artefact groups).</label>
+          <label>Save and Duplicate {Context} (will not duplicate relationships, samples, or artefacts).</label>
         </trigger>
         <trigger ref="Delete">
           <label>Delete {Context}</label>
@@ -1670,19 +1670,19 @@ Here you can enter filenames or unique reference numbers for image stored on ano
           <group faims_style="even" ref="child1">
             <label/>
             <input faims_attribute_name="Length" faims_attribute_type="measure" faims_read_only="false" ref="Length">
-              <label>Length</label>
+              <label>{Length}</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
             <input faims_attribute_name="Width" faims_attribute_type="measure" faims_read_only="false" ref="Width">
-              <label>Width</label>
+              <label>{Width}</label>
             </input>
           </group>
           <group faims_style="even" ref="child3">
             <label/>
             <input faims_attribute_name="Depth" faims_attribute_type="measure" faims_read_only="false" ref="Depth">
-              <label>Depth</label>
+              <label>{Depth}</label>
             </input>
           </group>
         </group>
@@ -1944,7 +1944,7 @@ Here you can enter filenames or unique reference numbers for image stored on ano
     <group faims_archent_type="Artefact Group" ref="Artefact_Group">
       <label>{Artefact_Group}</label>
       <group ref="Artefact_Group_GeneralInformation">
-        <label>Artefact Group</label>
+        <label>{Artefact_Group}</label>
         <group faims_style="orientation" ref="container1">
           <label/>
           <group faims_style="even" ref="child1">
@@ -2057,16 +2057,16 @@ Here you can enter filenames or unique reference numbers for image stored on ano
           <label>View Attached Files</label>
         </trigger>
         <trigger ref="Update">
-          <label>Save Artefact Group</label>
+          <label>Save {Artefact_Group}</label>
         </trigger>
         <trigger ref="SaveAndNew">
-          <label>Save and New Artefact Group</label>
+          <label>Save and New {Artefact_Group}</label>
         </trigger>
         <trigger ref="Duplicate">
-          <label>Save and Duplicate Artefact Group</label>
+          <label>Save and Duplicate {Artefact_Group}</label>
         </trigger>
         <trigger ref="Delete">
-          <label>Delete Artefact Group</label>
+          <label>Delete {Artefact_Group}</label>
         </trigger>
       </group>
     </group>
