@@ -934,7 +934,9 @@
         <description>Description to come</description></term>
         <term>{Artefacts} 
         <description>Description to come</description></term>
-      </lookup>
+      <term>{zOther} 
+        <description>Other: enter details in Annotation.</description></term>
+	  </lookup>
     </property>
     <property name="Shape" type="enum">
       <description>Shape and roundness of stones and pebbles in the deposit.</description>
