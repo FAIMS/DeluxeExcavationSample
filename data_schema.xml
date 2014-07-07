@@ -290,9 +290,9 @@
         <description>A sandy clay is like a clay but sand grains can be felt (and heard - see Sandy Loam). (VDEPI 2009: AG0058)</description></term>
        <term>{4.Silt} 
         <description>Silt.</description></term> 
-		<term>{4.Sandy_Silt} 
+    <term>{4.Sandy_Silt} 
         <description>Sandy silt.</description></term> 
-		<term>{5.Other} 
+    <term>{5.Other} 
         <description>Other: describe in Annotation.</description></term> 
  </lookup>
     </property>
@@ -723,6 +723,9 @@
         <description>Mix of horizontal, oblique and undulating - make sure you describe this</description></term>
       </lookup>
     </property>
+    <property name="SearchHelp" type="freetext">
+      <description>Search will find Records that contain your search term or string to any field in the Context record.</description>
+    </property>
   </ArchaeologicalElement>
 
   <!--CONTEXT GROUP-->
@@ -742,6 +745,12 @@
     </property>
     <property name="Location Note CG" type="freetext">
       <description>Record where the feature is within a space / building/area if relevant and in particular its relationship to other features or key contexts.</description>
+    </property>
+    <property name="Building" type="freetext">
+      <description>A building number is allocated where more than one internal space can be demonstrated to belong to a single structure.</description>
+    </property>
+    <property name="Space" type="freetext">
+      <description>A space number is allocated to internal and external areas as defined within the area of excavation. It can be, for example, a room, an ante-room, courtyard or external area.</description>
     </property>
     <property name="CG Context Type" type="enum">
       <description>Enter the type of feature you are describing.</description>
@@ -802,35 +811,8 @@
     <property name="Mid Y" type="float">
       <description>Definition to come</description>
     </property>
-    <property name="CG Phase From" type="freetext">
-      <description>The earliest phase in which this Context was likely to have been created.</description>
-      <lookup>
-        <term>1 
-        <description>Pre-European occupation pre-1788</description></term>
-        <term>2 
-        <description>First settlement 1788-1820</description></term>
-        <term>3 
-        <description>Subdivision 1820-1860</description></term>
-        <term>4 
-        <description>Intense occupation 1860-1900</description></term>
-        <term>5 
-        <description>Industrial 1900-</description></term>
-      </lookup>
-    </property>
-    <property name="CG Phase To" type="freetext">
-      <description>The latest phase in which this Context was likely to have been deposited or sealed.</description>
-      <lookup>
-        <term>1 
-        <description>Pre-European occupation pre-1788</description></term>
-        <term>2 
-        <description>First settlement 1788-1820</description></term>
-        <term>3 
-        <description>Subdivision 1820-1860</description></term>
-        <term>4 
-        <description>Intense occupation 1860-1900</description></term>
-        <term>5 
-        <description>Industrial 1900-</description></term>
-      </lookup>
+    <property name="CG Phase Notes" type="freetext">
+      <description>The phase(s) in which this Context was likely to have been deposited or sealed.</description>
     </property>
     <property name="CG Plans" type="freetext">
       <description>Reference numbers to plans or drawings of this Context.</description>
@@ -1109,22 +1091,6 @@
         <term>{zOther}
         <description /></term>
       </lookup>
-    </property>
-    <property name="Collection Method" type="enum">
-      <description>Method of collecting the sample.</description>
-      <lookup>
-        <term>{0No_Observation}
-        <description>data not collected</description></term>
-        <term>{Hand_collection} 
-        <description>Hand sample of building elements for example.</description></term>
-        <term>{Other} 
-        <description>Other collection method.</description></term>
-        <term>{Unsterilised} 
-        <description>A collection using standard excavation tools into a sterilised container.</description></term>
-      </lookup>
-    </property>
-    <property isIdentifier="true" name="Sample Weight" type="float">
-      <description>Weight (in grams) of the sample collected.</description>
     </property>
     <property name="Sample Volume" type="float">
       <description>Volume (in litres) of the sample collected.</description>

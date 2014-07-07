@@ -37,7 +37,6 @@
             <data>
               <ContextIncrement/>
               <newContext/>
-              <guide/>
               <ContextFilter/>
               <ContextList/>
               <ContextLoad/>
@@ -79,6 +78,7 @@
                   <Context_ID/>
                 </child3>
               </container1>
+              <Context_Name/>
               <container2>
                 <child1>
                   <Grid_X/>
@@ -94,15 +94,12 @@
               <container3>
                 <child1>
                   <Date_Opened/>
-                </child1>
-                <child2>
                   <Excavators/>   
-                </child2>
+                </child1>
                 <child3>
                   <Excavation_Method/>
                 </child3>
               </container3>
-              <Context_Name/>
               <container4>
                 <child1>
                   <Horizon_Boundary/>
@@ -180,15 +177,27 @@
               <Soil_Texture/>
               <Soil_Colour/>
               <Texture_Helper/>
-              <Composition_Type/>
-              <Deposit_Bedding/>
+              <container1>
+                <child1>
+                  <Composition_Type/>
+                </child1>
+                <child2>
+                  <Deposit_Bedding/>
+                </child2>
+              </container1>
               <Sterile/>
               <Deposit_Inclusions/>
               <Deposit_Thickness_Extent/>
               <newMatrix/>
               <matrixList/>
-              <loadMatrix/>
-              <deleteMatrix/>
+              <container2>
+                <child1>
+                  <deleteMatrix/>
+                </child1>
+                <child2>
+                  <loadMatrix/>
+                </child2>
+              </container2>
               <Update/>
             </Context_Deposits>
             <Context_Cuts>
@@ -238,11 +247,9 @@
               <Your_Discussion/>
               <Update/>
               <guide1/>
-              <AddContextGroup/>
-              <guide2/>
               <ContextGroupListUnrelated/>
               <AddContextGroupRel/>
-              <guide3/>
+              <AddContextGroup/>
               <ContextGroupList/>
               <ShowContextGroup/>
               <RemoveFromContextGroup/>
@@ -299,9 +306,16 @@
             <Context_Samples>
               <newSample/>
               <sampleList/>
-              <loadSample/>
-              <deleteSample/>
+              <container1>
+                <child0>
+                  <deleteSample/>
+                </child0>
+                <child1>
+                  <loadSample/>
+                </child1>
+              </container1>
               <Update/>
+              <listOfSamples/>
             </Context_Samples>
             <Context_Attachments>
               <Recorded_By/>
@@ -348,12 +362,20 @@
                 </child3>
               </container1>
               <Title/>
+              <container2>
+                <child1>
+                  <Building/>
+                </child1>
+                <child2>
+                  <Space/>
+                </child2>
+              </container2>
               <Location_Note_CG/>
               <Context_Type/>
               <CG_Your_description/>
               <CG_Your_Interpretation/>
               <Your_Discussion/>
-              <container2>
+              <container3>
                 <child1>
                   <Length/>
                 </child1>
@@ -363,19 +385,16 @@
                 <child3>
                   <Depth/>
                 </child3>
-              </container2>
-              <container3>
+              </container3>
+              <container4>
                 <child1>
                   <Mid_X/>
                 </child1>
                 <child2>
                   <Mid_Y/>
                 </child2>
-              </container3>
-              <Phase_From/>
-              <Phase_To/>
-              <DateRecorded/>
-              <CreatingUser/>
+              </container4>
+              <Phase_Notes/>
               <container5>
                 <child1>
                   <Plans/>
@@ -384,9 +403,31 @@
                   <Section_Numbers/>
                 </child2>
               </container5>
+              <container6>
+                <child1>
+                  <CreatingUser/>
+                </child1>
+                <child2>
+                  <DateRecorded/>
+                </child2>
+              </container6>   
               <Update/>
-              <Delete/>
             </ContextGroup_Details>
+            <ContextGroup_Contexts>
+              <AddContextList/>
+              <AddContext/>
+              <ContextList/>
+              <container1>
+                <child0>
+                  <RemoveContext/>
+                </child0>
+                <child1>
+                  <ShowContext/>
+                </child1>
+              </container1>
+              <Update/>
+              <listOfContexts/>
+            </ContextGroup_Contexts>
             <Feature_Relationships_to_Other_Features>
               <spacer/>
               <container3>
@@ -412,20 +453,19 @@
               </container4>
               <Update/>
             </Feature_Relationships_to_Other_Features>
-            <ContextGroup_Contexts>
-              <AddContextList/>
-              <AddContext/>
-              <ContextList/>
-              <ShowContext/>
-              <RemoveContext/>
-              <Update/>
-            </ContextGroup_Contexts>
             <ContextGroup_Samples>
               <newSample/>
               <sampleList/>
-              <loadSample/>
-              <deleteSample/>
+              <container1>
+                <child0>
+                  <deleteSample/>
+                </child0>
+                <child1>
+                  <loadSample/>
+                </child1>
+              </container1>
               <Update/>
+              <listOfSamples/>
             </ContextGroup_Samples>
             <ContextGroup_Attachments>
               <Recorded_By/>
@@ -444,6 +484,9 @@
               <loadPhotoLog/>
               <deletePhotoLog/>
               <Update/>
+              <SaveAndNew/>
+              <SaveAndClose/>
+              <Duplicate/>
               <Delete/>
             </ContextGroup_Attachments>
           </ContextGroup>
@@ -513,24 +556,9 @@
                   <Sample_ID/>
                 </child3>
               </container1>
+              <Sample_Type/>
+              <Sample_Volume/>
               <container2>
-                <child1>
-                  <Sample_Type/>
-                </child1>
-                <child2>
-                  <Collection_Method/>
-                </child2>
-              </container2>
-              <container3>
-                <child1>
-                  <Sample_Weight/>    
-                </child1>
-                <child2>
-                  <Sample_Volume/>
-                </child2>
-              </container3>
-              <Sample_Location/>
-              <container4>
                 <child1>
                   <X/>
                 </child1>
@@ -540,8 +568,21 @@
                 <child3>
                   <Z/>
                 </child3>
-              </container4>
-              <Sample_Comments/>
+              </container2>
+              <container3>
+                <child1>
+                  <Sample_Location/>
+                </child1>
+                <child2>
+                  <Sample_Comments/>
+                </child2>
+              </container3>
+              <Update/>
+              <Delete/>
+              <SaveAndNew/>
+              <Duplicate/>
+            </Sample_GeneralInformation>
+            <Sample_Attachments>
               <Sketch/>
               <attachSketch/>
               <Photo/>
@@ -555,7 +596,7 @@
               <Delete/>
               <SaveAndNew/>
               <Duplicate/>
-            </Sample_GeneralInformation>
+            </Sample_Attachments>
           </Sample>
 
           <!--Matrix, a relationship on deposits -->
@@ -592,6 +633,7 @@
               </container1>
               <Special_Find_Class/>
               <Special_Find_Name/>
+              <Special_Find_Description/>
               <container2>
                 <child1>
                   <X/>
@@ -611,7 +653,6 @@
                   <Longitude/>
                 </child2>
               </container3>
-              <Special_Find_Description/>
               <container4>
                 <child1>
                   <Date_From/>
@@ -661,26 +702,26 @@
       <bind nodeset="/faims/Context/Context_Structures/Structure_Description" type="string"/>
       <bind nodeset="/faims/Context/Context_Interpretation/Your_Discussion" type="string"/>
       <bind nodeset="/faims/Context/Context_Interpretation/Your_description" type="string"/>
-      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container2/child1/Length" type="decimal"/>
-      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container2/child2/Width" type="decimal"/>
-      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container2/child3/Depth" type="decimal"/>
-      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container3/child1/Mid_X" type="decimal"/>
-      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container3/child2/Mid_Y" type="decimal"/>
+      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container3/child1/Length" type="decimal"/>
+      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container3/child2/Width" type="decimal"/>
+      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container3/child3/Depth" type="decimal"/>
+      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container4/child1/Mid_X" type="decimal"/>
+      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container4/child2/Mid_Y" type="decimal"/>
       <bind nodeset="/faims/ContextGroup/ContextGroup_Details/CG_Your_description" type="string"/> 
-      <bind nodeset="/faims/ContextGroup/ContextGroupDetails/Your_Discussion" type="string"/>
-      <bind nodeset="/faims/ContextGroup/ContextGroupDetails/CG_Your_Interpretation" type="string"/>
+      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/Your_Discussion" type="string"/>
+      <bind nodeset="/faims/ContextGroup/ContextGroup_Details/CG_Your_Interpretation" type="string"/>
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/container2/child1/Artefact_Quantity" type="decimal"/>
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/container2/child2/Artefact_Weight" type="decimal"/>
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/Artefact_Group_Comment" type="string"/>
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/container3/child1/X" type="decimal"/>
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/container3/child2/Y" type="decimal"/>
       <bind nodeset="/faims/Artefact_Group/Artefact_Group_GeneralInformation/container3/child3/Z" type="decimal"/>
-      <bind nodeset="/faims/Sample/Sample_GeneralInformation/container3/child1/Sample_Weight" type="decimal"/>
-      <bind nodeset="/faims/Sample/Sample_GeneralInformation/container3/child2/Sample_Volume" type="decimal"/>
-      <bind nodeset="/faims/Sample/Sample_GeneralInformation/container4/child1/X" type="decimal"/>
-      <bind nodeset="/faims/Sample/Sample_GeneralInformation/container4/child2/Y" type="decimal"/>
-      <bind nodeset="/faims/Sample/Sample_GeneralInformation/container4/child3/Z" type="decimal"/>
-      <bind nodeset="/faims/Sample/Sample_GeneralInformation/Sample_Comments" type="string"/>
+      <bind nodeset="/faims/Sample/Sample_GeneralInformation/container1/child3/Sample_ID" type="decimal"/>
+      <bind nodeset="/faims/Sample/Sample_GeneralInformation/Sample_Volume" type="decimal"/>
+      <bind nodeset="/faims/Sample/Sample_GeneralInformation/container2/child1/X" type="decimal"/>
+      <bind nodeset="/faims/Sample/Sample_GeneralInformation/container2/child2/Y" type="decimal"/>
+      <bind nodeset="/faims/Sample/Sample_GeneralInformation/container2/child3/Z" type="decimal"/>
+      <bind nodeset="/faims/Sample/Sample_GeneralInformation/container3/child2/Sample_Comments" type="string"/>
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container2/child1/X" type="decimal"/>
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container2/child2/Y" type="decimal"/>
       <bind nodeset="/faims/Special_Find/Special_Find_GeneralInformation/container2/child3/Z" type="decimal"/>
@@ -765,22 +806,11 @@
         <trigger ref="newContext">
           <label>Create New Context</label>
         </trigger>
-        <select1 appearance="compact" ref="guide" >
-          <label></label>
-            <item>
-              <!-- I'm using fancy spaces here. Be careful of copying -->
-            <label> 
-
-Search will find Records that contain your search term or string to any field in the Context record.
-</label>
-            <value>Help</value>
-          </item>
-        </select1>
         <group faims_style="orientation" ref="container1">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
-            <input faims_certainty="false" faims_read_only="false" ref="Search">
+            <input faims_attribute_name="SearchHelp" faims_certainty="false" faims_read_only="false" ref="Search">
               <label>Search Term</label>
             </input>
           </group>
@@ -855,6 +885,9 @@ Search will find Records that contain your search term or string to any field in
             </input>
           </group>
         </group>
+        <input faims_attribute_name="Context Name" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Context_Name">
+          <label>{Context_Name}</label>
+        </input>
         <group faims_style="orientation" ref="container2">
           <label/>
           <group faims_style="even" ref="child1">
@@ -890,9 +923,6 @@ Search will find Records that contain your search term or string to any field in
             <input faims_attribute_name="Date Opened" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Date_Opened">
               <label>{Date_Opened}</label>
             </input>
-          </group>
-          <group faims_style="even" ref="child2">
-            <label/>
             <input faims_certainty="false" faims_attribute_type="freetext" faims_attribute_name="Excavators" ref="Excavators">
               <label>Excavators:</label>
             </input>
@@ -908,9 +938,6 @@ Search will find Records that contain your search term or string to any field in
             </select>
           </group>
         </group>
-        <input faims_attribute_name="Context Name" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Context_Name">
-          <label>{Context_Name}</label>
-        </input>
         <group faims_style="orientation" ref="container4">
           <label/>
           <group faims_style="even" ref="child1">
@@ -1103,20 +1130,29 @@ Search will find Records that contain your search term or string to any field in
         <input faims_attribute_name="Soil Colour" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Soil_Colour">
           <label>{Soil_Colour}</label>
         </input>
-        <select1 faims_attribute_name="Composition Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Composition_Type">
-          <label>{Composition_Type}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <select1 faims_attribute_name="Deposit Bedding" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Deposit_Bedding">
-          <label>{Deposit_Bedding}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
+        <group faims_style="orientation" ref="container1">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <select1 faims_attribute_name="Composition Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Composition_Type">
+              <label>{Composition_Type}</label>
+              <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select1>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <select1 faims_attribute_name="Deposit Bedding" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Deposit_Bedding">
+              <label>{Deposit_Bedding}</label>
+              <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select1>
+          </group>
+        </group>
         <!--We would like to see Dropdown-->
         <select1 faims_attribute_name="Sterile" faims_attribute_type="vocab" appearance="full" faims_certainty="false" faims_read_only="false" ref="Sterile">
           <label>{Sterile}</label>
@@ -1138,12 +1174,21 @@ Search will find Records that contain your search term or string to any field in
             <value>placeholder</value>
           </item>
         </select1>
-        <trigger ref="loadMatrix">
-          <label>Load {Matrix}</label>
-        </trigger>
-        <trigger ref="deleteMatrix">
-          <label>Delete {Matrix}</label>
-        </trigger>
+        <group faims_style="orientation" ref="container2">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <trigger ref="deleteMatrix">
+              <label>Delete {Matrix}</label>
+            </trigger>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <trigger ref="loadMatrix">
+              <label>Load {Matrix}</label>
+            </trigger>
+          </group>
+        </group>
         <trigger ref="Update">
           <label>Save Context</label>
         </trigger>
@@ -1319,46 +1364,28 @@ Here you can group contexts into a single {Context_Group}.</label>
             <value>Help</value>
           </item>
         </select1>
-        <trigger ref="AddContextGroup">
-          <label>Create New {Context_Group}</label>
-        </trigger>
-        <select1 appearance="compact" ref="guide2" >
-          <label></label>
-            <item>
-              <!-- I'm using fancy spaces here. Be careful of copying -->
-            <label> 
-You can add this Context to already existing {Context_Group}.</label>
-            <value>Help</value>
-          </item>
-        </select1>
         <select1 faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="ContextGroupListUnrelated">
-          <label>Existing and unrelated {Context_Group}s</label>
+          <label>Select an existing {Context_Group}:</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
           </item>
         </select1>
         <trigger ref="AddContextGroupRel">
-          <label>Add to {Context_Group}</label>
+          <label>Add Context to {Context_Group}</label>
         </trigger>
-<select1 appearance="compact" ref="guide3" >
-          <label></label>
-            <item>
-              <!-- I'm using fancy spaces here. Be careful of copying -->
-            <label>
-Here are the {Context_Group}s that this Context belongs to.</label>
-            <value>Help</value>
-          </item>
-        </select1>
+        <trigger ref="AddContextGroup">
+          <label>Create New {Context_Group}</label>
+        </trigger>
         <select1 faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="ContextGroupList">
-          <label>List of Related {Context_Group}s</label>
+          <label>Select the Feature to which this {Context} belongs:</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
           </item>
         </select1>
         <trigger ref="ShowContextGroup">
-          <label>Load {Context_Group} and Exit Context</label>
+          <label>Load Selected {Context_Group} and Exit Context</label>
         </trigger>
         <trigger ref="RemoveFromContextGroup">
           <label>Remove From {Context_Group}</label>
@@ -1406,7 +1433,7 @@ Here are the {Context_Group}s that this Context belongs to.</label>
           <label>Save Context</label>
         </trigger>
         <select1 faims_certainty="false" faims_read_only="false" ref="listRelns">
-          <label>Associated Entities:</label>
+          <label>Select to Delete or Load the other {Context}</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
@@ -1429,7 +1456,7 @@ Here are the {Context_Group}s that this Context belongs to.</label>
         </group>
 
         <select1 faims_certainty="false" ref="listOfRelns" appearance="compact">
-          <label>Associated Entities</label>
+          <label>Associated Relationships:</label>
           <item>
                 <label>placeholder</label>
                 <value>placeholder</value>
@@ -1492,7 +1519,7 @@ Here are the {Context_Group}s that this Context belongs to.</label>
           </group>
         </group>
         <trigger ref="Update">
-          <label>Save Context</label>
+          <label>Save {Context}</label>
         </trigger>
       </group>
       <group ref="Context_Samples" faims_scrollable="false">
@@ -1507,15 +1534,31 @@ Here are the {Context_Group}s that this Context belongs to.</label>
             <value>placeholder</value>
           </item>
         </select1>
-        <trigger ref="loadSample">
-          <label>Load {Sample}</label>
-        </trigger>
-        <trigger ref="deleteSample">
-          <label>Delete {Sample}</label>
-        </trigger>
+        <group faims_style="orientation" ref="container1">
+          <label/>
+          <group faims_style="even" ref="child0">
+            <label/>
+            <trigger ref="deleteSample">
+              <label>Delete {Sample}</label>
+            </trigger>
+          </group>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <trigger ref="loadSample">
+              <label>Load {Sample}</label>
+            </trigger>
+          </group>
+        </group>
         <trigger ref="Update">
-          <label>Save Context</label>
+          <label>Save {Context}</label>
         </trigger>
+        <select1 appearance="compact" ref="listOfSamples" faims_certainty="false" faims_annotation="false">
+          <label>{Sample}s:</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
       </group>
       <group ref="Context_Attachments">
         <label>ADD</label>
@@ -1644,13 +1687,28 @@ Here you can enter filenames or unique reference numbers for image stored on ano
           </group>
         </group>
         <input faims_attribute_name="Title" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Title">
-          <label>Feature Title</label>
+          <label>{Context_Group} Title</label>
         </input>
+        <group faims_style="orientation" ref="container2">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input faims_attribute_name="Building" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Building">
+              <label>{Building}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input faims_attribute_name="Space" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Space">
+              <label>{Space}</label>
+            </input>
+          </group>
+        </group>
         <input faims_attribute_name="Location Note CG" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Location_Note_CG">
           <label>{Location_Note}</label>
         </input>
         <select1 faims_attribute_name="CG Context Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Context_Type">
-          <label>Feature Type</label>
+          <label>{Context_Group} Type</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
@@ -1665,7 +1723,7 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         <input ref="Your_Discussion" faims_attribute_type="freetext" faims_attribute_name="Your Discussion">
           <label>Your Discussion</label>
         </input>
-        <group faims_style="orientation" ref="container2">
+        <group faims_style="orientation" ref="container3">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
@@ -1686,7 +1744,7 @@ Here you can enter filenames or unique reference numbers for image stored on ano
             </input>
           </group>
         </group>
-        <group faims_style="orientation" ref="container3">
+        <group faims_style="orientation" ref="container4">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
@@ -1701,25 +1759,8 @@ Here you can enter filenames or unique reference numbers for image stored on ano
             </input>
           </group>
         </group>
-        <select1 appearance="full" faims_attribute_name="CG Phase From" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_From">
-          <label>{Phase_From}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <select1 appearance="full" faims_attribute_name="CG Phase To" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Phase_To">
-          <label>{Phase_To}</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <input faims_certainty="false" faims_read_only="true" ref="DateRecorded">
-          <label>Date recorded:</label>
-        </input>
-        <input faims_certainty="false" faims_read_only="true" ref="CreatingUser">
-          <label>Record Created By:</label>
+        <input appearance="full" faims_attribute_name="CG Phase Notes" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Phase_Notes">
+          <label>Phase Notes</label>
         </input>
         <group faims_style="orientation" ref="container5">
           <label/>
@@ -1736,14 +1777,70 @@ Here you can enter filenames or unique reference numbers for image stored on ano
             </input>
           </group>
         </group>
+        <group faims_style="orientation" ref="container6">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input faims_certainty="false" faims_read_only="true" ref="CreatingUser">
+              <label>Record Created By:</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input faims_certainty="false" faims_read_only="true" ref="DateRecorded">
+              <label>Date recorded:</label>
+            </input>
+          </group>
+        </group>
+        <trigger ref="Update">
+          <label>Save {Context_Group}</label>
+        </trigger>
+      </group>
+      <group ref="ContextGroup_Contexts" faims_scrollable="false">
+        <label>Contexts</label>
+        <select1 faims_certainty="false" faims_read_only="false" ref="AddContextList">
+          <label>Add Additional Context:</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <trigger ref="AddContext">
+          <label>Add Context to Feature</label>
+        </trigger>
+        <select1 faims_certainty="false" faims_read_only="false" ref="ContextList">
+          <label>Contexts in Feature:</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <group faims_style="orientation" ref="container1">
+          <label/>
+          <group faims_style="even" ref="child0">
+            <label/>
+            <trigger ref="RemoveContext">
+              <label>Remove Context from Feature</label>
+            </trigger>
+          </group>
+          <group faims_style="even" ref="child1">
+            <label/>
+              <trigger ref="ShowContext">
+                <label>Load Context</label>
+              </trigger>
+          </group>
+        </group>
         <trigger ref="Update">
           <label>Save Feature</label>
         </trigger>
-        <trigger ref="Delete">
-          <label>Delete Feature</label>
-        </trigger>
+        <select1 appearance="compact" ref="listOfContexts" faims_certainty="false" faims_annotation="false">
+          <label>{Context}s:</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
       </group>
-
       <group ref="Feature_Relationships_to_Other_Features">
         <label>Rel</label>
         <!-- Brian todo, figure out how to model this -->
@@ -1800,41 +1897,12 @@ Here you can enter filenames or unique reference numbers for image stored on ano
           <group faims_style="even" ref="child2">
             <label/>
             <trigger ref="showReln">
-              <label>Load Context</label>
+              <label>Load {Context}</label>
             </trigger>
           </group>
         </group>
         <trigger ref="Update">
-          <label>Save Feature</label>
-        </trigger>
-      </group>
-      <group ref="ContextGroup_Contexts" faims_scrollable="false">
-        <label>Contexts</label>
-        <select1 faims_certainty="false" faims_read_only="false" ref="AddContextList">
-          <label>Add Additional Context:</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <trigger ref="AddContext">
-          <label>Add Context to Feature</label>
-        </trigger>
-        <select1 faims_certainty="false" faims_read_only="false" ref="ContextList">
-          <label>Contexts in Feature:</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <trigger ref="ShowContext">
-          <label>Load Context</label>
-        </trigger>
-        <trigger ref="RemoveContext">
-          <label>Remove Context from Feature</label>
-        </trigger>
-        <trigger ref="Update">
-          <label>Save Feature</label>
+          <label>Save {Context_Group}</label>
         </trigger>
       </group>
       <group ref="ContextGroup_Samples" faims_scrollable="false">
@@ -1849,15 +1917,31 @@ Here you can enter filenames or unique reference numbers for image stored on ano
             <value>placeholder</value>
           </item>
         </select1>
-        <trigger ref="loadSample">
-          <label>Load {Sample}</label>
-        </trigger>
-        <trigger ref="deleteSample">
-          <label>Delete {Sample}</label>
-        </trigger>
+        <group faims_style="orientation" ref="container1">
+          <label/>
+          <group faims_style="even" ref="child0">
+            <label/>
+            <trigger ref="deleteSample">
+              <label>Delete {Sample}</label>
+            </trigger>
+          </group>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <trigger ref="loadSample">
+              <label>Load {Sample}</label>
+            </trigger>
+          </group>
+        </group>
         <trigger ref="Update">
-          <label>Save Feature</label>
+          <label>Save {Context_Group}</label>
         </trigger>
+        <select1 appearance="compact" ref="listOfSamples" faims_certainty="false" faims_annotation="false">
+          <label>{Sample}s:</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
       </group>
       <group ref="ContextGroup_Attachments">
         <label>ADD</label>
@@ -1933,6 +2017,15 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         </trigger>
         <trigger ref="Update">
           <label>Save {Context_Group}</label>
+        </trigger>
+        <trigger ref="SaveAndNew">
+          <label>Save and New {Context_Group}</label>
+        </trigger>
+        <trigger ref="SaveAndClose">
+          <label>Save and Close {Context_Group}</label>
+        </trigger>
+        <trigger ref="Duplicate">
+          <label>Save and Duplicate {Context_Group}</label>
         </trigger>
         <trigger ref="Delete">
           <label>Delete {Context_Group}</label>
@@ -2087,62 +2180,27 @@ Here you can enter filenames or unique reference numbers for image stored on ano
           <group faims_style="even" ref="child2">
             <label/>
             <input faims_attribute_name="Context ID" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="true" ref="Context_ID">
-              <label>{Context_ID}</label>
+              <label>{Context_Feature_ID}</label>
             </input>
           </group>
           <group faims_style="even" ref="child3">
             <label/>
-            <input faims_attribute_name="Sample ID" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Sample_ID">
+            <input faims_attribute_name="Sample ID" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Sample_ID">
               <label>{Sample_ID}</label>
             </input>
           </group>
         </group>
-        <group faims_style="orientation" ref="container2">
-          <label/>
-          <group faims_style="even" ref="child1">
-            <label/>
-            <select1 faims_attribute_name="Sample Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Sample_Type">
-              <label>{Sample_Type}</label>
-              <item>
-                <label>placeholder</label>
-                <value>placeholder</value>
-              </item>
-            </select1>
-          </group>
-          <group faims_style="even" ref="child2">
-            <label/>
-            <select1 faims_attribute_name="Collection Method" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Collection_Method">
-              <label>{Collection_Method}</label>
-              <item>
-                <label>placeholder</label>
-                <value>placeholder</value>
-              </item>
-            </select1>
-          </group>
-        </group>
-        <group faims_style="orientation" ref="container3">
-          <label/>
-          <group faims_style="even" ref="child1">
-            <label/>
-            <input faims_attribute_name="Sample Weight" faims_attribute_type="measure" faims_certainty="true" faims_read_only="false" ref="Sample_Weight">
-              <label>{Sample_Weight}</label>
-            </input>
-          </group>
-          <group faims_style="even" ref="child2">
-            <label/>
-            <input faims_attribute_name="Sample Volume" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false" ref="Sample_Volume">
-              <label>Sample Volume</label>
-            </input>
-          </group>
-        </group>
-        <select1 faims_attribute_name="Sample Location" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Sample_Location">
-          <label>{Sample_Location}</label>
+        <select1 faims_attribute_name="Sample Type" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Sample_Type">
+          <label>{Sample_Type}</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
           </item>
         </select1>
-        <group faims_style="orientation" ref="container4">
+        <input faims_attribute_name="Sample Volume" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false" ref="Sample_Volume">
+          <label>{Sample_Volume}</label>
+        </input>
+        <group faims_style="orientation" ref="container2">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
@@ -2163,9 +2221,40 @@ Here you can enter filenames or unique reference numbers for image stored on ano
             </input>
           </group>
         </group>
-        <input faims_attribute_name="Sample Comments" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Sample_Comments">
-          <label>{Sample_Comments}</label>
-        </input>
+        <group faims_style="orientation" ref="container3">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <select1 faims_attribute_name="Sample Location" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Sample_Location">
+              <label>{Sample_Location}</label>
+              <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select1>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input faims_attribute_name="Sample Comments" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Sample_Comments">
+              <label>{Sample_Comments}</label>
+            </input>
+          </group>
+        </group>
+        <trigger ref="Update">
+          <label>Save Sample</label>
+        </trigger>
+        <trigger ref="SaveAndNew">
+          <label>Save and New Sample</label>
+        </trigger>
+        <trigger ref="Duplicate">
+          <label>Save and Duplicate Sample</label>
+        </trigger>
+        <trigger ref="Delete">
+          <label>Delete Sample</label>
+        </trigger>
+      </group>
+      <group ref="Sample_Attachments">
+        <label>ADD</label>
         <select faims_annotation="false" faims_attribute_name="Sketch" faims_attribute_type="freetext" faims_certainty="false" ref="Sketch" type="file">
           <label>{Sketch}</label>
           <item>
@@ -2304,6 +2393,9 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         <input faims_attribute_name="Special Find Name" faims_attribute_type="freetext" faims_read_only="false" ref="Special_Find_Name">
           <label>{Special_Find} Name</label>
         </input>
+        <input faims_attribute_name="Special Find Description" faims_attribute_type="freetext" faims_read_only="false" ref="Special_Find_Description">
+          <label>{Special_Find} Description</label>
+        </input>
         <group faims_style="orientation" ref="container2">
           <label/>
           <group faims_style="even" ref="child1">
@@ -2340,9 +2432,6 @@ Here you can enter filenames or unique reference numbers for image stored on ano
             </input>
           </group>
         </group>
-        <input faims_attribute_name="Special Find Description" faims_attribute_type="freetext" faims_read_only="false" ref="Special_Find_Description">
-          <label>{Special_Find} Description</label>
-        </input>
         <group faims_style="orientation" ref="container4">
           <label/>
           <group faims_style="even" ref="child1">
