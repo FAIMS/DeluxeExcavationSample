@@ -46,9 +46,22 @@
                 </child1>
                 <child2>
                   <searchButton/>
+                  <searchMyContext/>
                 </child2>
               </container1>
             </data>
+            <sample>
+              <container1>
+                <child1>
+                  <Search/>
+                </child1>
+                <child2>
+                  <searchButton/>
+                </child2>
+              </container1>
+              <SearchType/>
+              <SampleList/>
+            </sample>
             <contextGroup>
               <newContextGroup/>
               <GroupList/>
@@ -174,30 +187,41 @@
               <Soil_Compaction_Type/>
               <Soil_Compaction_Description/>
               <Soil_Particle_Sorting/>
-              <Soil_Texture/>
               <Soil_Colour/>
-              <Texture_Helper/>
               <container1>
+                <child1>
+                  <Soil_Texture/>
+                </child1>
+                <child2>
+                  <Texture_Helper/>
+                </child2>
+              </container1>              
+              <container2>
                 <child1>
                   <Composition_Type/>
                 </child1>
                 <child2>
                   <Deposit_Bedding/>
                 </child2>
-              </container1>
-              <Sterile/>
-              <Deposit_Inclusions/>
-              <Deposit_Thickness_Extent/>
+              </container2>
+              <container3>
+                <child1>
+                  <Sterile/>
+                </child1>
+                <child2>
+                  <Deposit_Inclusions/>
+                </child2>
+              </container3>
               <newMatrix/>
               <matrixList/>
-              <container2>
+              <container4>
                 <child1>
                   <deleteMatrix/>
                 </child1>
                 <child2>
                   <loadMatrix/>
                 </child2>
-              </container2>
+              </container4>
               <Update/>
             </Context_Deposits>
             <Context_Cuts>
@@ -242,17 +266,98 @@
               <Update/>
               <Delete/>
             </Context_Structures>
+            <Context_Skeletons>
+              <Space/>
+              <Building/>
+              <container1>
+                <child1>
+                  <Mid_X/>
+                </child1>
+                <child2>
+                  <Mid_Y/>
+                </child2>
+              </container1>
+              <Skeleton_Dimensions/>
+              <container2>
+                <child1>
+                  <Skeleton_Head/>
+                </child1>
+                <child2>
+                  <Skeleton_Body/>
+                </child2>
+              </container2>
+              <container3>
+                <child1>
+                  <Skeleton_Left_Arm/>
+                </child1>
+                <child2>
+                  <Skeleton_Right_Arm/>
+                </child2>
+              </container3>
+              <container4>
+                <child1>
+                  <Skeleton_Left_Leg/>
+                </child1>
+                <child2>
+                  <Skeleton_Right_Leg/>
+                </child2>
+              </container4>
+              <Skeleton_Condition/>
+              <Skeleton_Surface_Modifications/>
+              <Skeleton_Environment/>
+              <Skeleton_Days_Exposed/>
+              <container5>
+                <child1>
+                  <Target_A_X/>
+                </child1>
+                <child2>
+                  <Target_A_Y/>
+                </child2>
+              </container5>
+              <container6>
+                <child1>
+                  <Target_B_X/>
+                </child1>
+                <child2>
+                  <Target_B_Y/>
+                </child2>
+              </container6>
+              <container7>
+                <child1>
+                  <Target_C_X/>
+                </child1>
+                <child2>
+                  <Target_C_Y/>
+                </child2>
+              </container7>
+              <container8>
+                <child1>
+                  <Target_D_X/>
+                </child1>
+                <child2>
+                  <Target_D_Y/>
+                </child2>
+              </container8>
+              <Update/>
+            </Context_Skeletons>
             <Context_Interpretation>
               <Your_description/>
               <Your_Discussion/>
               <Update/>
               <guide1/>
-              <ContextGroupListUnrelated/>
-              <AddContextGroupRel/>
-              <AddContextGroup/>
-              <ContextGroupList/>
-              <ShowContextGroup/>
-              <RemoveFromContextGroup/>
+              <container3>
+                <child1>
+                  <ContextGroupListUnrelated/>
+                  <AddContextGroupRel/>
+                  <AddContextGroup/>
+                  <ContextGroupList/>
+                  <ShowContextGroup/>
+                  <RemoveFromContextGroup/>
+                </child1>
+                <child2>
+                  <RelatedContextGroups/>
+                </child2>
+              </container3>
             </Context_Interpretation>
             <Context_Relationships_to_Other_Contexts>
               <spacer/>
@@ -452,6 +557,7 @@
                 </child2>
               </container4>
               <Update/>
+              <listOfRelns/>
             </Feature_Relationships_to_Other_Features>
             <ContextGroup_Samples>
               <newSample/>
@@ -698,8 +804,19 @@
       <bind nodeset="/faims/Context/Context_GeneralInformation/container6/child2/Width" type="decimal"/>
       <bind nodeset="/faims/Context/Context_GeneralInformation/container6/child3/Depth" type="decimal"/>
       <bind nodeset="/faims/Context/Context_GeneralInformation/container7/child1/Volume" type="decimal"/>
-      <bind nodeset="/faims/Context/Context_Deposits/Deposit_Inclusions" type="string"/>
+      <bind nodeset="/faims/Context/Context_Deposits/container3/child2/Deposit_Inclusions" type="string"/>
       <bind nodeset="/faims/Context/Context_Structures/Structure_Description" type="string"/>
+      <bind nodeset="/faims/Context/Context_Skeletons/container1/child1/Mid_X" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Skeletons/container1/child2/Mid_Y" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Skeletons/Skeleton_Days_Exposed" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Skeletons/container5/child1/Target_A_X" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Skeletons/container5/child2/Target_A_Y" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Skeletons/container6/child1/Target_B_X" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Skeletons/container6/child2/Target_B_Y" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Skeletons/container7/child1/Target_C_X" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Skeletons/container7/child2/Target_C_Y" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Skeletons/container8/child1/Target_D_X" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Skeletons/container8/child2/Target_D_Y" type="decimal"/>
       <bind nodeset="/faims/Context/Context_Interpretation/Your_Discussion" type="string"/>
       <bind nodeset="/faims/Context/Context_Interpretation/Your_description" type="string"/>
       <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container3/child1/Length" type="decimal"/>
@@ -799,7 +916,7 @@
     <group ref="control" faims_archent_type="Context">
       <label/>
       <group faims_scrollable="false" ref="data">
-        <label>Contexts</label>
+        <label>{Contexts}</label>
         <input faims_certainty="false" faims_read_only="false" ref="ContextIncrement" faims_attribute_name="Context ID">
           <label>Context Starting ID</label>
         </input>
@@ -819,6 +936,9 @@
             <trigger ref="searchButton">
               <label>Search</label>
             </trigger>
+            <trigger ref="searchMyContext">
+              <label>My Contexts</label>
+            </trigger>
           </group>
         </group>
         <select1 appearance="compact" faims_annotation="false" faims_certainty="false" ref="ContextList">
@@ -829,8 +949,40 @@
           </item>
         </select1>
       </group>
+      <group faims_scrollable="false" ref="sample">
+        <label>{Samples}</label>
+        <group faims_style="orientation" ref="container1">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input faims_attribute_name="SearchHelp" faims_certainty="false" faims_read_only="false" ref="Search">
+              <label>Search Term</label>
+            </input>
+          </group>
+          <group faims_style="large" ref="child2">
+            <label/>
+            <trigger ref="searchButton">
+              <label>Search</label>
+            </trigger>
+          </group>
+        </group>
+        <select1 faims_annotation="false" faims_certainty="false" ref="SearchType">
+          <label>Search Type:</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <select1 appearance="compact" faims_annotation="false" faims_certainty="false" ref="SampleList">
+          <label>Tap Sample in list below to load it.</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+      </group>
       <group faims_scrollable="false" ref="contextGroup">
-        <label>Features</label>
+        <label>{Context_Groups}</label>
         <trigger ref="newContextGroup">
           <label>New Feature</label>
         </trigger>
@@ -1117,20 +1269,29 @@
             <value>placeholder</value>
           </item>
         </select1>
-        <select1 faims_attribute_name="Soil Texture" faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="Soil_Texture">
-          <label>{Soil_Texture}</label>
-            <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <trigger ref="Texture_Helper">
-          <label>Texture Helper</label>
-        </trigger>
+        <group faims_style="orientation" ref="container1">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <select1 faims_attribute_name="Soil Texture" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Soil_Texture">
+              <label>{Soil_Texture}</label>
+                <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select1>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <trigger ref="Texture_Helper">
+              <label>{Texture_Helper}</label>
+            </trigger>
+          </group>
+        </group>
         <input faims_attribute_name="Soil Colour" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Soil_Colour">
           <label>{Soil_Colour}</label>
         </input>
-        <group faims_style="orientation" ref="container1">
+        <group faims_style="orientation" ref="container2">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
@@ -1153,17 +1314,25 @@
             </select1>
           </group>
         </group>
-        <!--We would like to see Dropdown-->
-        <select1 faims_attribute_name="Sterile" faims_attribute_type="vocab" appearance="full" faims_certainty="false" faims_read_only="false" ref="Sterile">
-          <label>{Sterile}</label>
-            <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <input faims_attribute_name="Deposit Inclusions" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Deposit_Inclusions">
-          <label>{Deposit_Inclusions}</label>
-        </input>
+         <group faims_style="orientation" ref="container3">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <select1 faims_attribute_name="Sterile" faims_attribute_type="vocab" appearance="full" faims_certainty="true" faims_read_only="false" ref="Sterile">
+              <label>{Sterile}</label>
+                <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select1>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input faims_attribute_name="Deposit Inclusions" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Deposit_Inclusions">
+              <label>{Deposit_Inclusions}</label>
+            </input>
+          </group>
+        </group>
         <trigger ref="newMatrix">
           <label>Add New {Matrix}</label>
         </trigger>
@@ -1174,7 +1343,7 @@
             <value>placeholder</value>
           </item>
         </select1>
-        <group faims_style="orientation" ref="container2">
+        <group faims_style="orientation" ref="container4">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
@@ -1342,7 +1511,154 @@
           <label>Save Context</label>
         </trigger>
       </group>
-      <group ref="Context_Interpretation">
+      <group ref="Context_Skeletons" faims_hidden="true">
+        <label>{Skeleton}</label>
+        <input ref="Space" faims_attribute_name="Space" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+          <label>{Space}</label>
+        </input>
+        <input ref="Building" faims_attribute_name="Building" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+          <label>{Building}</label>
+        </input>
+        <group faims_style="orientation" ref="container1">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input ref="Mid_X" faims_attribute_name="Mid_X" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+              <label>{Mid_X}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input ref="Mid_Y" faims_attribute_name="Mid_Y" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+              <label>{Mid_Y}</label>
+            </input>
+          </group>
+        </group>
+        <input ref="Skeleton_Dimensions" faims_attribute_name="Skeleton Dimensions" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+          <label>{Skeleton_Dimensions}</label>
+        </input>
+        <group faims_style="orientation" ref="container2">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input ref="Skeleton_Head" faims_attribute_name="Skeleton Head" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+              <label>{Skeleton_Head}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input ref="Skeleton_Body" faims_attribute_name="Skeleton Body" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+              <label>{Skeleton_Body}</label>
+            </input>
+          </group>
+        </group>
+        <group faims_style="orientation" ref="container3">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input ref="Skeleton_Left_Arm" faims_attribute_name="Skeleton Left Arm" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+              <label>{Skeleton_Left_Arm}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input ref="Skeleton_Right_Arm" faims_attribute_name="Skeleton Right Arm" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+              <label>{Skeleton_Right_Arm}</label>
+            </input>
+          </group>
+        </group>
+        <group faims_style="orientation" ref="container4">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input ref="Skeleton_Left_Leg" faims_attribute_name="Skeleton Left Leg" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+              <label>{Skeleton_Left_Leg}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input ref="Skeleton_Right_Leg" faims_attribute_name="Skeleton Right Leg" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+              <label>{Skeleton_Right_Leg}</label>
+            </input>
+          </group>
+        </group>
+        <input ref="Skeleton_Condition" faims_attribute_name="Skeleton Condition" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+          <label>{Skeleton_Condition}</label>
+        </input>
+        <input ref="Skeleton_Surface_Modifications" faims_attribute_name="Skeleton Surface Modifications" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+          <label>{Skeleton_Surface_Modifications}</label>
+        </input>
+        <input ref="Skeleton_Environment" faims_attribute_name="Skeleton Environment" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+          <label>{Skeleton_Environment}</label>
+        </input>
+        <input ref="Skeleton_Days_Exposed" faims_attribute_name="Skeleton Days Exposed" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+          <label>{Skeleton_Days_Exposed}</label>
+        </input>
+        <group faims_style="orientation" ref="container5">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input ref="Target_A_X" faims_attribute_name="Target A X" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+              <label>{Target_A_X}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input ref="Target_A_Y" faims_attribute_name="Target A Y" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+              <label>{Target_A_Y}</label>
+            </input>
+          </group>
+        </group>
+        <group faims_style="orientation" ref="container6">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input ref="Target_B_X" faims_attribute_name="Target B X" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+              <label>{Target_B_X}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input ref="Target_B_Y" faims_attribute_name="Target B Y" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+              <label>{Target_B_Y}</label>
+            </input>
+          </group>
+        </group>
+        <group faims_style="orientation" ref="container7">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input ref="Target_C_X" faims_attribute_name="Target C X" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+              <label>{Target_C_X}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input ref="Target_C_Y" faims_attribute_name="Target C Y" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+              <label>{Target_C_Y}</label>
+            </input>
+          </group>
+        </group>
+        <group faims_style="orientation" ref="container8">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input ref="Target_D_X" faims_attribute_name="Target D X" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+              <label>{Target_D_X}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input ref="Target_D_Y" faims_attribute_name="Target D Y" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
+              <label>{Target_D_Y}</label>
+            </input>
+          </group>
+        </group>
+        <trigger ref="Update">
+          <label>Save {Context}</label>
+        </trigger>
+      </group>
+      <group ref="Context_Interpretation" faims_scrollable="false"> <!--  PUT THIS BACK IN BEFORE SENDING TO PENNY -->
         <label>Int</label>
         <input faims_attribute_name="Your description" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Your_description">
           <label>{Your_description}</label>
@@ -1357,39 +1673,53 @@
           <label></label>
             <item>
               <!-- I'm using fancy spaces here. Be careful of copying -->
-            <label> 
-
-
-Here you can group contexts into a single {Context_Group}.</label>
+            <label>Here you can group contexts into a single {Context_Group}.</label>
             <value>Help</value>
           </item>
         </select1>
-        <select1 faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="ContextGroupListUnrelated">
-          <label>Select an existing {Context_Group}:</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <trigger ref="AddContextGroupRel">
-          <label>Add Context to {Context_Group}</label>
-        </trigger>
-        <trigger ref="AddContextGroup">
-          <label>Create New {Context_Group}</label>
-        </trigger>
-        <select1 faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="ContextGroupList">
-          <label>Select the Feature to which this {Context} belongs:</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <trigger ref="ShowContextGroup">
-          <label>Load Selected {Context_Group} and Exit Context</label>
-        </trigger>
-        <trigger ref="RemoveFromContextGroup">
-          <label>Remove From {Context_Group}</label>
-        </trigger>
+        
+        <group faims_style="orientation" ref="container3">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <select1 faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" faims_annotation="false" ref="ContextGroupListUnrelated">
+              <label>Select an existing {Context_Group}:</label>
+              <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select1>
+            <trigger ref="AddContextGroupRel">
+              <label>Add Context to {Context_Group}</label>
+            </trigger>
+            <trigger ref="AddContextGroup">
+              <label>Create New {Context_Group}</label>
+            </trigger>
+            <select1 faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="ContextGroupList">
+              <label>Select the Feature to which this {Context} belongs:</label>
+              <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+            </select1>
+            <trigger ref="ShowContextGroup">
+              <label>Load {Context_Group} and Exit Context</label>
+            </trigger>
+            <trigger ref="RemoveFromContextGroup">
+              <label>Remove From {Context_Group}</label>
+            </trigger>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <select1 faims_certainty="false" ref="RelatedContextGroups" appearance="compact">
+              <label>Related {Context_Group}s:</label>
+              <item>
+                    <label>placeholder</label>
+                    <value>placeholder</value>
+                  </item>
+            </select1>
+          </group>
+        </group>
       </group>
       <group ref="Context_Relationships_to_Other_Contexts" faims_scrollable="false">
         <label>Rel</label>
@@ -1647,7 +1977,7 @@ Here you can enter filenames or unique reference numbers for image stored on ano
       </group>
       <group ref="Texture_Helper" faims_hidden="true">
         <label>Texture Helper</label>
-          <select1 faims_certainty="true" faims_read_only="false" ref="Soil_Texture">
+          <select1 faims_certainty="false" faims_annotation="false" faims_read_only="false" ref="Soil_Texture">
             <label>Texture Helper</label>
             <item>
               <label>placeholder</label>
@@ -1841,7 +2171,7 @@ Here you can enter filenames or unique reference numbers for image stored on ano
           </item>
         </select1>
       </group>
-      <group ref="Feature_Relationships_to_Other_Features">
+      <group ref="Feature_Relationships_to_Other_Features" faims_scrollable="false">
         <label>Rel</label>
         <!-- Brian todo, figure out how to model this -->
         <input faims_certainty="false" faims_read_only="true" ref="spacer">
@@ -1904,6 +2234,13 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         <trigger ref="Update">
           <label>Save {Context_Group}</label>
         </trigger>
+        <select1 faims_certainty="false" ref="listOfRelns" appearance="compact">
+          <label>Associated Relationships:</label>
+          <item>
+                <label>placeholder</label>
+                <value>placeholder</value>
+              </item>
+        </select1>
       </group>
       <group ref="ContextGroup_Samples" faims_scrollable="false">
         <label>Samples</label>
@@ -2185,7 +2522,7 @@ Here you can enter filenames or unique reference numbers for image stored on ano
           </group>
           <group faims_style="even" ref="child3">
             <label/>
-            <input faims_attribute_name="Sample ID" faims_attribute_type="measure" faims_certainty="false" faims_read_only="false" ref="Sample_ID">
+            <input faims_attribute_name="Sample ID" faims_attribute_type="freetext" faims_certainty="false" faims_read_only="false" ref="Sample_ID">
               <label>{Sample_ID}</label>
             </input>
           </group>

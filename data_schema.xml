@@ -115,6 +115,8 @@
         <description>Any Context with deposited soil eg natural deposits floor and road surfaces and pit ditch and grave fills</description></term>
         <term pictureURL="files/data/gallery/ContextType/Orange/Structure.png">{Structure} 
         <description>Any context formed independent of a Cut or negative interface eg walls hearths.</description></term>
+        <term pictureURL="files/data/gallery/ContextType/Orange/Skeleton.png">{Skeleton} 
+        <description>Human skeletal remains.</description></term>
       </lookup>
     </property>
     <property name="Date Opened" type="date">
@@ -722,6 +724,75 @@
         <term>{Uneven} 
         <description>Mix of horizontal, oblique and undulating - make sure you describe this</description></term>
       </lookup>
+    </property>
+    <property name="Space" type="freetext">
+      <description>Description TBD</description>
+    </property>
+    <property name="Building" type="freetext">
+      <description>Description TBD</description>
+    </property>
+    <property name="Mid_X" type="float">
+      <description>Description TBD</description>
+    </property>
+    <property name="Mid_Y" type="float">
+      <description>Description TBD</description>
+    </property>
+    <property name="Skeleton Dimensions" type="freetext">
+      <description>Description TBD</description>
+    </property>
+    <property name="Skeleton Body" type="freetext">
+      <description>Description TBD</description>
+    </property>
+    <property name="Skeleton Head" type="freetext">
+      <description>Description TBD</description>
+    </property>
+    <property name="Skeleton Right Arm" type="freetext">
+      <description>Description TBD</description>
+    </property>
+    <property name="Skeleton Left Arm" type="freetext">
+      <description>Description TBD</description>
+    </property>
+    <property name="Skeleton Right Leg" type="freetext">
+      <description>Description TBD</description>
+    </property>
+    <property name="Skeleton Left Leg" type="freetext">
+      <description>Description TBD</description>
+    </property>
+    <property name="Skeleton Condition" type="freetext">
+      <description>Description TBD</description>
+    </property>
+    <property name="Skeleton Surface Modifications" type="freetext">
+      <description>Description TBD</description>
+    </property>
+    <property name="Skeleton Environment" type="freetext">
+      <description>Description TBD</description>
+    </property>
+    <property name="Skeleton Days Exposed" type="float">
+      <description>Description TBD</description>
+    </property>
+    <property name="Target A X" type="float">
+      <description>Description TBD</description>
+    </property>
+    <property name="Target A Y" type="float">
+      <description>Description TBD</description>
+    </property>
+    <property name="Target B X" type="float">
+      <description>Description TBD</description>
+    </property>
+    <property name="Target B Y" type="float">
+      <description>Description TBD</description>
+    </property>
+    <property name="Target C X" type="float">
+      <description>Description TBD</description>
+    </property>
+    <property name="Target C Y" type="float">
+      <description>Description TBD</description>
+    </property>
+    <property name="Target D X" type="float">
+      <description>Description TBD</description>
+    </property>
+    <property name="Target D Y" type="float">
+      <description>Description TBD</description>
     </property>
     <property name="SearchHelp" type="freetext">
       <description>Search will find Records that contain your search term or string to any field in the Context record.</description>
