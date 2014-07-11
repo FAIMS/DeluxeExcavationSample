@@ -30,6 +30,13 @@
     <parent>Butts</parent>
     <child>Butted By</child>
   </RelationshipElement>
+  <RelationshipElement name="Rebuilt - Rebuilt By" type="hierarchical">
+        <description>Implements a Rebuilt - Rebuilt By</description>
+
+    <parent>Rebuilt</parent>
+    <child>Rebuilt By</child>
+  </RelationshipElement>  
+
   <RelationshipElement name="Bonded To" type="bidirectional">
     <description>Implements a bonded to for contexts</description>
   </RelationshipElement>
@@ -67,13 +74,13 @@
       <description>Short code to signify the excavation site and often the year of excavation.</description>
     </property>
     <property isIdentifier="true" name="Context ID" type="freetext">
-      <description>Unique number or code for each Context.</description>
+      <description>Every deposit or event defined is given an individual context code. Context codes are 3 letter codes. Each trench is designated with a separate letter, so it is immediately obvious whether a context belongs to a particular trench. For trench A the first context would be AAA, the second AAB and so on to AAZ. The next context was ABA and so on. It is possible to assign batches of codes to related sets of distinct contexts. For example at Boncuklu burial contexts will always have a Z as the first letter. Thus ZAA etc. Remember to fill out the context register each time you start a new context and when you complete one.</description>
     </property>
     <property isIdentifier="true" name="Context Name" type="freetext">
       <description>Brief name for the Context eg 'House A - west wall'</description>
     </property>
     <property name="Excavators" type="really shitty multivalued">
-      <description>Description TBD</description>
+      <description>Initials of the excavators that have worked on the context.</description>
       <!-- Instead of UBAF-27, we're sticking in a textarea-->
     </property>
     <property name="Plans" type="freetext">
@@ -115,6 +122,8 @@
         <description>Any Context with deposited soil eg natural deposits floor and road surfaces and pit ditch and grave fills</description></term>
         <term pictureURL="files/data/gallery/ContextType/Orange/Structure.png">{Structure} 
         <description>Any context formed independent of a Cut or negative interface eg walls hearths.</description></term>
+        <term pictureURL="files/data/gallery/ContextType/Orange/Skeleton.png">{Skeleton} 
+        <description>Human skeletal remains.</description></term>
       </lookup>
     </property>
     <property name="Date Opened" type="date">
@@ -146,13 +155,13 @@
       <description>The lowest elevation recorded for that context. This may be relative to the site grid or real world co-ordinates depending on the method of measurement.</description>
     </property>
     <property name="Length" type="float">
-      <description>Length of the longest side in mm.</description>
+      <description>Length of the longest side in metres.</description>
     </property>
     <property name="Width" type="float">
-      <description>Width or diameter in mm.</description>
+      <description>Width or diameter in metres.</description>
     </property>
     <property name="Depth" type="float">
-      <description>Depth or Height in mm.</description>
+      <description>Depth or Height in metres.</description>
     </property>
     <property name="Section Numbers" type="freetext">
       <description>Reference numbers to section drawings of this Context</description>
@@ -179,7 +188,7 @@
       <description>Description of the compaction of soil including changes throughout the deposit. Eg ‘Varies from loose to compact.</description>
     </property>
     <property name="Soil Texture Helper" type="enum">
-      <description>Proportions of different grain sizes within the deposit eg if there is more sand to silt it should be described as a 'silty sand'.</description>
+      <description>This helper is based on the standard flow chart for determining soil texture.</description>
       <lookup>
         <term>{Soil_does_NOT_remain_in_ball_when_squeezed} 
         <description>Place approximately 25 g soil in palm. Add water dropwise and knead the soil to break down all aggregates. Soil is at the proper consistency when plastic and moldable like moist putty.</description>
@@ -262,7 +271,7 @@
       </lookup>
     </property>
     <property name="Soil Texture" type="enum">
-      <description>Proportions of different grain sizes within the deposit eg if there is more sand to silt it should be described as a 'silty sand'.</description>
+      <description>The type of sediment, eg clay, silt, sand and loam. Use the {Texture_Helper} or a Soil Sediment diagram for assisance.</description>
       <lookup>
         <term>{0No_Observation}
         <description>No Observation. Use the Texture helper to prefil this.</description></term>
@@ -288,7 +297,13 @@
         <description>Clays are tough and can be moulded into shapes when moist. Clays form a long flexible ribbon when rubbed between the palms and the ribbon can often be bent into a U shape without breaking. Clays dry into very hard clods. (VDEPI 2009: AG0058)</description></term>
         <term>{3.Sandy_Clay} 
         <description>A sandy clay is like a clay but sand grains can be felt (and heard - see Sandy Loam). (VDEPI 2009: AG0058)</description></term>
-      </lookup>
+       <term>{4.Silt} 
+        <description>Silt.</description></term> 
+    <term>{4.Sandy_Silt} 
+        <description>Sandy silt.</description></term> 
+    <term>{5.Other} 
+        <description>Other: describe in Annotation.</description></term> 
+ </lookup>
     </property>
     <property name="Soil Particle Sorting" type="enum">
       <description>Assessment of the frequency with which particles of the same size occur.</description>
@@ -306,7 +321,7 @@
       </lookup>
     </property>
     <property name="Soil Colour" type="freetext">
-      <description>Simple description of the colour of the soil. This field is interpreted from the Soil Munsell Colour
+      <description>Broad colour  description of the soil, eg 'mid greyish brown'.
       </description>
     </property>
     <property name="Sterile" type="enum">
@@ -345,15 +360,15 @@
       <description>Boundary to the next horizon</description>
       <lookup>
         <term>{0No_Observation}<description>data not collected</description></term>
-        <term>{Doubtful}<description>Description to come </description> </term>
-        <term>{Ambiguous}<description>Description to come </description> </term>
-        <term>{Merging}<description>Description to come </description> </term>
+        <term>{Doubtful}<description>You are uncertain of whether you accurately excavated a boundary between deposits. </description> </term>
+        <term>{Ambiguous}<description>You are uncertain as to whether there was a boundary between contexts.</description> </term>
+        <term>{Merging}<description>Description to come</description> </term>
         <term>{Clear}<description>Description to come </description> </term>
         <term>{Arbitrary_Spit}<description>Description to come </description> </term>
       </lookup>
     </property>
     <property name="Shape of Cut" type="enum">
-      <description>The shape at the top of the cut.</description>
+      <description>Describe, the shape at the top i.e. circular, ovoid, square, rectangular, linear or irregular.</description>
       <lookup>
         <term>{0No_Observation}
         <description>data not collected</description></term>
@@ -379,7 +394,7 @@
       <description>Additional notes about the shape of the cut.</description>
     </property>
     <property name="Shape of Corners" type="enum">
-      <description>The shape of the corners of a Cut in plan: 'square' 'rounded' etc.</description>
+      <description>Rounded or square corners?</description>
       <lookup>
         <term>{Other} 
         <description>Other shapes</description></term>
@@ -397,14 +412,13 @@
         <term>{Not_perceptible} 
         <description>Well-rounded; there is no perceptible difference between the sides of the cut and the surface into which it protrudes.</description></term>
         <term>{Sharp} 
-        <description>Clear sharp slope.</description></term>
+        <description>Clear sharp slope, almost right-angled.</description></term>
         <term>{Shallow} 
         <description></description></term>
       </lookup>
     </property>
     <property name="Sides of Cut" type="enum">
-      <description>Describe the sides in terms of their smoothness or irregularity and state whether they are 'vertical' 'convex' 'concave' or 'stepped' giving details for each side of a multi-sided cut. When describing post-holes note particularly whether the sides taper or drop vertically to the base since this may help define whether the post was set or driven. Where possible state the gradient of a sloping side. Where the side is 'concave' but meets the base at a sharp angle give an overall gradient.
-      If' it is 'concave' and has no perceptible break of slope with the base then do not attempt to give a gradient. (Source: MoLAS 1994)</description>
+      <description>You need to describe the steepness and shape of the cut and indicate the break of slope at the top and bottom.</description>
       <lookup>
         <term>{0No_Observation}<description/></term>
         <term>{Vertical} 
@@ -447,7 +461,7 @@
       </lookup>
     </property>
     <property name="Cut Function" type="freetext">
-      <description>Make a comment about the function of the cut</description>
+      <description>Comment in more specific detail on your understanding of the reasons for the shape and nature of the cut.</description>
     </property>
     <property name="Orientation" type="enum">
       <description>Orientation of linear cuts eg N-S.</description>
@@ -509,6 +523,8 @@
         <term>{Posthole} 
         <description></description></term>
         <term>{Pit} 
+        <description></description></term>
+        <term>{Pit_Fill} 
         <description></description></term>
         <term>{Hearth_or_Fire_pit} 
         <description></description></term>
@@ -581,7 +597,8 @@
       <description>Video</description>
     </property>
     <property name="Structural Components" type="enum">
-      <description>Primary components of structure or feature eg dry-pressed brick rough-hewn stone.</description>
+      <description>What is structure made from.  E.g. Stone, Mud-Brick, Plaster. Mudbrick show on plans with double diagonals. Plaster surfaces as stippling.
+</description>
       <lookup>
         <term>{0No_Observation}
         <description>data not collected</description></term>
@@ -688,13 +705,13 @@
       <description>How have the material types been prepared (i.e dressed stones polished/smoothed/painted plaster surface).</description>
     </property>
     <property name="Composition Type" type="enum">
-      <description>The type of composition of the context whether Homogenous Heterogenous or Laminated.</description>
+      <description>The type of composition of the context whether Homogenous, Heterogenous or Laminated.</description>
       <lookup>
         <term>{0No_Observation}<description/></term>
         <term>{Homogenous} 
-        <description>Homogenous Uniform throughout.</description></term>
+        <description>Uniform throughout.</description></term>
         <term>{Heterogeneous} 
-        <description>Heterogeneous Deposit with different mixed components which need to be described.</description></term>
+        <description>Deposit with different mixed components which need to be described.</description></term>
         <term>{Laminated} 
         <description>Laminated Deposit consists of lots of fine lenses of the same material. Compact laminated Deposit consists of a number of fine lenses of different materials.</description></term>
         <term>{Compact_Laminated}
@@ -705,6 +722,8 @@
       <description>Describes the base of the deposit</description>
       <lookup>
         <term>{0No_Observation}<description/></term>
+        <term>{Horizontal} 
+        <description>Horizontal.</description></term>
         <term>{Oblique_steep} 
         <description>Steep slope.</description></term>
         <term>{Oblique_shallow} 
@@ -712,6 +731,78 @@
         <term>{Uneven} 
         <description>Mix of horizontal, oblique and undulating - make sure you describe this</description></term>
       </lookup>
+    </property>
+    <property name="Space" type="freetext">
+      <description>Enter the space number, which may define an internal or external area in which the skeleton is located.</description>
+    </property>
+    <property name="Building" type="freetext">
+      <description>A building can comprise one or more internal spaces so enter the building number in which the skeleton is located.</description>
+    </property>
+    <property name="Mid_X" type="float">
+      <description>An appropriate mid-point on the skeleton under excavation should be recorded on the X / Y co-ordinates. This will locate the skeleton on the site grid system.</description>
+    </property>
+    <property name="Mid_Y" type="float">
+      <description>An appropriate mid-point on the skeleton under excavation should be recorded on the X / Y co-ordinates. This will locate the skeleton on the site grid system.</description>
+    </property>
+    <property name="Skeleton Dimensions" type="freetext">
+      <description>Record the approximate extent of the skeletal remains (in meters or millimetres only) and the axis of measurement. Detailed dimensions can be taken from the plan.</description>
+    </property>
+    <property name="Skeleton Body" type="freetext">
+      <description>Describe the attitude of the body, whether it is extended, crouched, flexed, supine (front up), prone (face down) and the orientation.</description>
+    </property>
+    <property name="Skeleton Head" type="freetext">
+      <description>Which way up the head faces and/or points</description>
+    </property>
+    <property name="Skeleton Right Arm" type="freetext">
+      <description>Record whether right arm is straight or flexed, is along the side of the body, over the chest or on the pelvis, and the position of the hand.</description>
+    </property>
+    <property name="Skeleton Left Arm" type="freetext">
+      <description>Record whether left arm is straight or flexed, is along the side of the body, over the chest or on the pelvis, and the position of the hand.</description>
+    </property>
+    <property name="Skeleton Right Leg" type="freetext">
+      <description>Record whether the leg is straight or bent, crossed left over right or right over left and the position of the foot</description>
+    </property>
+    <property name="Skeleton Left Leg" type="freetext">
+      <description>Record whether the leg is straight or bent, crossed left over right or right over left and the position of the foot</description>
+    </property>
+    <property name="Skeleton Condition" type="freetext">
+      <description>Describe the general condition of the skeleton and any comments on articulation. Any degeneration of bone in situ is important to record as well as accidental damage during excavation and lifting. Record disturbances through later activity or animal/root activity as well as damage due to stone pressure on the bones. It is important to note whether the patellae, hyoid, phalanges, basi-occipital etc are present or not, and their location, as this may give an indication of the state of the body at the time of interment.</description>
+    </property>
+    <property name="Skeleton Surface Modifications" type="freetext">
+      <description>Note any cut marks, evidence of stains and/or colour during the course of the excavation, burning, chewing marks, root activity etc.</description>
+    </property>
+    <property name="Skeleton Environment" type="freetext">
+      <description>The physical environment at the time of excavation may affect the state of the bone therefore it is important to note the weather and conditions you are working in.</description>
+    </property>
+    <property name="Skeleton Days Exposed" type="float">
+      <description>It is important to excavate skeletal remains as quickly as possible as the state of the bone will change during exposure. Any conditional change should also be noted. Excavate as quickly as possible because the bones will degrade rapidly.</description>
+    </property>
+    <property name="Target A X" type="float">
+      <description>The X coordinate of Target A. Targets are white-painted, large-headed nails used to rectify photographs.</description>
+    </property>
+    <property name="Target A Y" type="float">
+      <description>The Y coordinate of Target A. Targets are white-painted, large-headed nails used to rectify photographs.</description>
+    </property>
+    <property name="Target B X" type="float">
+      <description>The X coordinate of Target B. Targets are white-painted, large-headed nails used to rectify photographs.</description>
+    </property>
+    <property name="Target B Y" type="float">
+      <description>The Y coordinate of Target B. Targets are white-painted, large-headed nails used to rectify photographs.</description>
+    </property>
+    <property name="Target C X" type="float">
+      <description>The X coordinate of Target C. Targets are white-painted, large-headed nails used to rectify photographs.</description>
+    </property>
+    <property name="Target C Y" type="float">
+      <description>The Y coordinate of Target C. Targets are white-painted, large-headed nails used to rectify photographs.</description>
+    </property>
+    <property name="Target D X" type="float">
+      <description>The X coordinate of Target D. Targets are white-painted, large-headed nails used to rectify photographs.</description>
+    </property>
+    <property name="Target D Y" type="float">
+      <description>The Y coordinate of Target D. Targets are white-painted, large-headed nails used to rectify photographs.</description>
+    </property>
+    <property name="SearchHelp" type="freetext">
+      <description>Search will find Records that contain your search term or string to any field in the Context record.</description>
     </property>
   </ArchaeologicalElement>
 
@@ -724,17 +815,23 @@
     <property name="Area Code" type="freetext">
       <description>Area or Trench: the working subdivision of an archaeological site.</description>
     </property>
-    <property name="Context Group ID" type="freetext">
-      <description>Unique number or code for each {Context_Group}.</description>
+    <property name="Context Group ID" type="freetext" isIdentifier="true">
+      <description>Individual numerical code taken from appropriate running list.</description>
     </property>
     <property isIdentifier="true" name="Title" type="freetext">
       <description>Name of the context group</description>
     </property>
     <property name="Location Note CG" type="freetext">
-      <description>For Approx location in area provide information on rough location eg centre of Area A or NW corner area A but also in relation to other archaeological contexts or features e.g. between walls x and y.</description>
+      <description>Record where the feature is within a space / building/area if relevant and in particular its relationship to other features or key contexts.</description>
+    </property>
+    <property name="Building" type="freetext">
+      <description>A building number is allocated where more than one internal space can be demonstrated to belong to a single structure.</description>
+    </property>
+    <property name="Space" type="freetext">
+      <description>A space number is allocated to internal and external areas as defined within the area of excavation. It can be, for example, a room, an ante-room, courtyard or external area.</description>
     </property>
     <property name="CG Context Type" type="enum">
-      <description></description>
+      <description>Enter the type of feature you are describing.</description>
       <lookup>
         <term pictureURL="files/data/gallery/ContextType/Other/NA.png">{0No_Observation}
         <description>data not collected</description></term>
@@ -769,22 +866,22 @@
       </lookup>
     </property>
     <property name="CG Your Interpretation" type="blocktext">
-      <description>Your Interpretation</description>
+      <description>Describe your overall impressions of the feature, phases etc.</description>
     </property>
     <property name="CG Your description" type="blocktext">
-      <description>Enter a simple descriptive interpretation. For example is it a floor midden brickearth wall gully or pit?</description>
+      <description>Describe the feature, any detailed dimensions, orientation etc. For example is it a floor midden brickearth wall gully or pit?</description>
     </property>
     <property name="Your Discussion" type="freetext">
-      <description></description>
+      <description>Add any relevant commentary.</description>
     </property>
     <property name="Length" type="float">
-      <description>Length of the longest side in mm.</description>
+      <description>Length of the longest side in metres.</description>
     </property>
     <property name="Width" type="float">
-      <description>Width or diameter in mm.</description>
+      <description>Width or diameter in metres.</description>
     </property>
     <property name="Depth" type="float">
-      <description>Depth or Height in mm.</description>
+      <description>Depth or Height in metres.</description>
     </property>
     <property name="Mid X" type="float">
       <description>Definition to come</description>
@@ -792,35 +889,8 @@
     <property name="Mid Y" type="float">
       <description>Definition to come</description>
     </property>
-    <property name="CG Phase From" type="freetext">
-      <description>The earliest phase in which this Context was likely to have been created.</description>
-      <lookup>
-        <term>1 
-        <description>Pre-European occupation pre-1788</description></term>
-        <term>2 
-        <description>First settlement 1788-1820</description></term>
-        <term>3 
-        <description>Subdivision 1820-1860</description></term>
-        <term>4 
-        <description>Intense occupation 1860-1900</description></term>
-        <term>5 
-        <description>Industrial 1900-</description></term>
-      </lookup>
-    </property>
-    <property name="CG Phase To" type="freetext">
-      <description>The latest phase in which this Context was likely to have been deposited or sealed.</description>
-      <lookup>
-        <term>1 
-        <description>Pre-European occupation pre-1788</description></term>
-        <term>2 
-        <description>First settlement 1788-1820</description></term>
-        <term>3 
-        <description>Subdivision 1820-1860</description></term>
-        <term>4 
-        <description>Intense occupation 1860-1900</description></term>
-        <term>5 
-        <description>Industrial 1900-</description></term>
-      </lookup>
+    <property name="CG Phase Notes" type="freetext">
+      <description>The phase(s) in which this Context was likely to have been deposited or sealed.</description>
     </property>
     <property name="CG Plans" type="freetext">
       <description>Reference numbers to plans or drawings of this Context.</description>
@@ -1099,22 +1169,6 @@
         <term>{zOther}
         <description /></term>
       </lookup>
-    </property>
-    <property name="Collection Method" type="enum">
-      <description>Method of collecting the sample.</description>
-      <lookup>
-        <term>{0No_Observation}
-        <description>data not collected</description></term>
-        <term>{Hand_collection} 
-        <description>Hand sample of building elements for example.</description></term>
-        <term>{Other} 
-        <description>Other collection method.</description></term>
-        <term>{Unsterilised} 
-        <description>A collection using standard excavation tools into a sterilised container.</description></term>
-      </lookup>
-    </property>
-    <property isIdentifier="true" name="Sample Weight" type="float">
-      <description>Weight (in grams) of the sample collected.</description>
     </property>
     <property name="Sample Volume" type="float">
       <description>Volume (in litres) of the sample collected.</description>
