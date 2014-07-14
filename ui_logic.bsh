@@ -670,7 +670,7 @@ loadContextAttributes(){
     populateDropDown("Context/Context_Structures/Bonding", makeVocab("Bonding"));
     populateDropDown("Context/Context_Structures/Your_Interpretation", makeVocab("Structure Your Interpretation"));
 
-    populateHierarchicalDropDown("Context/Texture_Helper/Soil_Texture", "Soil Texture");
+    populateHierarchicalDropDown("Context/Texture_Helper/Soil_Texture", "Soil Texture Helper");
 
     relnList = fetchAll("select relntypename||'~!~'||coalesce(nullif(parent||'~!~'||child,'~!~'),relntypename||'~!~'||relntypename) as relntypeid, coalesce(nullif(parent,''), relntypename) as name, relntypeid from relntype where relntypename not like '%Context%' and relntypename not like 'Rebuilt%' union select relntypename||'~!~'||coalesce(nullif(child||'~!~'||parent,'~!~'),relntypename||'~!~'||relntypename), coalesce(nullif(child,''), relntypename) as name, relntypeid from relntype where relntypename not like '%Context%' and relntypename not like 'Rebuilt%' order by relntypeid, name;");
     populateDropDown("Context/Context_Relationships_to_Other_Contexts/reln", relnList);
@@ -714,10 +714,10 @@ helpSetTextureActual(){
 }
 
 setTextureActual(){
-    Object textureToSet = fetchOne("select vocabid from vocabulary join attributekey using (attributeid)where attributeName = 'Soil Texture' and vocabname = (select vocabname"
-                + " from vocabulary join attributekey using (attributeid)"
-                + " where vocabid = '"+ getFieldValue("Context/Texture_Helper/Soil_Texture") +"'"
-                + " and attributeName = 'Soil Texture');");
+    Object textureToSet = fetchOne("select vocabid from vocabulary join attributekey using (attributeid)where attributeName = 'Soil Texture' and vocabname = (select vocabname "
+         + "from vocabulary join attributekey using (attributeid) "
+         + "where trim(vocabname,'{}1234567890.') like (select trim(vocabname,'{}1234567890.')  from vocabulary where vocabid = '"+ getFieldValue("Context/Texture_Helper/Soil_Texture") +"') "
+         + "and attributeName = 'Soil Texture'); ");
     print(textureToSet);
     if(!isNull(textureToSet)){
         setFieldValue("Context/Context_Deposits/Soil_Texture", textureToSet.get(0));
