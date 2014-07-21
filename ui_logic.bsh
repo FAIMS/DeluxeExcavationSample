@@ -6,6 +6,7 @@ String verb;
 String archent_id;
 Boolean isContext;
 Boolean newContextGroupRel;
+Boolean menu = true;
 
 /*setSyncEnabled(true);
 setFileSyncEnabled(true);*/
@@ -222,8 +223,8 @@ onEvent("Context/Context_Artefacts/newSpecialFind", "delayclick", "saveContext(\
 onEvent("Context/Context_Artefacts/loadSpecialFind", "click", "loadSpecialFind()");
 onEvent("Context/Context_Artefacts/deleteSpecialFind", "delayclick", "deleteSpecialFindFromContext()");
 
-onEvent("Context/Context_Samples/newSample", "click", "saveContext(\"isContext=true;newSample();verb=\\\"ContextSample\\\";archent_id=context_id;\")");
-onEvent("Context/Context_Samples/loadSample", "click", "loadSample();verb=\"ContextSample\";archent_id=context_id;isContext=true;");
+onEvent("Context/Context_Samples/newSample", "click", "saveContext(\"newSample();\")");
+onEvent("Context/Context_Samples/loadSample", "click", "loadSample();");
 onEvent("Context/Context_Samples/deleteSample", "click", "deleteSampleFromContext()");
 onEvent("Context/Context_Samples/listOfSamples", "click", "showSampleFromList()");
 
@@ -466,22 +467,6 @@ updateAllContextMatrices() {
 updateAllContextGroups() {
     Object contextGroups = new ArrayList();
     if (!isNull(context_id)){
-        // contextGroups = fetchAll("select uuid, group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
-        //     "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
-        //     "            FROM latestNonDeletedArchentIdentifiers\n"+
-        //     "           WHERE aenttypename = 'Context Group'\n"+
-        //     "             AND uuid in (select uuid\n"+
-        //     "                            FROM latestNonDeletedAentReln\n"+
-        //     "                           where relationshipid in (select relationshipid\n"+
-        //     "                                                      FROM latestNonDeletedAentReln\n"+
-        //     "                                                      JOIN relationship using (relationshipid)\n"+
-        //     "                                                      JOIN relntype using (relntypeid)\n"+
-        //     "                                                     where uuid = "+context_id+"\n"+
-        //     "                                                       and relntypeName = 'ContextContextGroup')\n"+
-        //     "                             and uuid != "+context_id+")\n"+
-        //     "        ORDER BY uuid, attributename ASC)\n"+
-        //     "group by uuid\n"+
-        //     "order by valuetimestamp desc, uuid, attributename;");
 
         contextGroups = fetchAll("select uuid, response " +
           "from identifierAsSpreadsheet " +
@@ -776,14 +761,6 @@ onEvent("ContextGroup/Feature_Relationships_to_Other_Features/Update", "delaycli
 onEvent("ContextGroup/Feature_Relationships_to_Other_Features/listOfRelns", "click", "showCGRelnFromList()");
 onEvent("ContextGroup/Feature_Relationships_to_Other_Features/deleteReln", "click", "deleteRelnCG()");
 
-
-onEvent("ContextGroup/ContextGroup_Samples", "show", "updateAllContextGroupSamples()");
-onEvent("ContextGroup/ContextGroup_Samples/newSample", "delayclick", "saveContextGroup(\"isContext=false;newSample();verb=\\\"ContextGroupSample\\\";archent_id=context_group_id;\");");
-onEvent("ContextGroup/ContextGroup_Samples/loadSample", "click", "loadContextGroupSample();verb=\"ContextGroupSample\";archent_id=context_group_id;isContext=false;");
-onEvent("ContextGroup/ContextGroup_Samples/deleteSample", "click", "deleteSampleFromContextGroup()");
-onEvent("ContextGroup/ContextGroup_Samples/Update", "delayclick", "saveContextGroup(\"\")");
-onEvent("ContextGroup/ContextGroup_Samples/listOfSamples", "click", "showSampleFromList()");
-
 onEvent("ContextGroup/ContextGroup_Attachments", "show", "updateAllContextGroupPhotologs()");
 onEvent("ContextGroup/ContextGroup_Attachments/attachPhoto", "click", "attachPictureTo(\"ContextGroup/ContextGroup_Attachments/Photo\")");
 onEvent("ContextGroup/ContextGroup_Attachments/attachAudio", "click", "attachAudioTo(\"ContextGroup/ContextGroup_Attachments/Audio\")");
@@ -908,6 +885,8 @@ populateContextGroup() {
 
 loadContextGroupAttributes(){
     populateDropDown("ContextGroup/ContextGroup_Details/Context_Type", makeVocab("CG Context Type"));
+    relnList = fetchAll("select relntypename||'~!~'||coalesce(nullif(parent||'~!~'||child,'~!~'),relntypename||'~!~'||relntypename) as relntypeid, coalesce(nullif(parent,''), relntypename) as name, relntypeid from relntype where relntypename not like '%Context%' and relntypename not like 'Rebuilt%' union select relntypename||'~!~'||coalesce(nullif(child||'~!~'||parent,'~!~'),relntypename||'~!~'||relntypename), coalesce(nullif(child,''), relntypename) as name, relntypeid from relntype where relntypename not like '%Context%' and relntypename not like 'Rebuilt%' order by relntypeid, name;");
+    populateDropDown("ContextGroup/Feature_Relationships_to_Other_Features/reln", relnList);
 }
 
 loadContextFromContextGroup(){
@@ -945,37 +924,6 @@ removeFromContextGroup() {
             populateContextGroup();
         }
         
-    }
-}
-
-updateAllContextGroupSamples() {
-    Object contextGroupSamples = new ArrayList();
-    if (!isNull(context_group_id)){
-        contextGroupSamples = fetchAll("select uuid, group_concat(coalesce(measure || ' ' || vocabname || '(' ||freetext||')',  measure || ' (' || freetext ||')',  vocabname || ' (' || freetext ||')',  measure || ' ' || vocabname ,  vocabname || ' (' || freetext || ')',  measure || ' (' || freetext || ')',  measure,  vocabname,  freetext,  measure,  vocabname,  freetext), ' | ') as response, valuetimestamp\n"+
-            "  FROM (  SELECT uuid, attributeid, vocabid, attributename, vocabname, measure, freetext, certainty, attributetype, valuetimestamp, aenttypename\n"+
-            "            FROM latestNonDeletedArchentIdentifiers\n"+
-            "           WHERE aenttypename = 'Sample'\n"+
-            "             AND uuid in (select uuid\n"+
-            "                            FROM latestNonDeletedAentReln\n"+
-            "                           where relationshipid in (select relationshipid\n"+
-            "                                                      FROM latestNonDeletedAentReln\n"+
-            "                                                      JOIN relationship using (relationshipid)\n"+
-            "                                                      JOIN relntype using (relntypeid)\n"+
-            "                                                     where uuid = "+context_group_id+"\n"+
-            "                                                       and relntypeName = 'ContextGroupSample')\n"+
-            "                             and uuid != "+context_group_id+")\n"+
-            "        ORDER BY uuid, attributename ASC)\n"+
-            "group by uuid\n"+
-            "order by valuetimestamp desc, uuid, attributename;");
-    }
-    populateDropDown("ContextGroup/ContextGroup_Samples/sampleList",  contextGroupSamples);
-    populateList("ContextGroup/ContextGroup_Samples/listOfSamples",  contextGroupSamples);
-}
-
-deleteSampleFromContextGroup() {
-    sample_id = getFieldValue("ContextGroup/ContextGroup_Samples/sampleList");
-    if (!isNull(sample_id)) {
-        showAlert("Confirm Deletion", "Press OK to Delete this Sample!", "reallyDeleteSample()", "doNotDelete()");
     }
 }
 
@@ -1033,11 +981,6 @@ updateContextGroupRelationships(){
         "as response from latestNonDeletedArchEntIdentifiers " +
             "where aenttypename = 'Context Group' and uuid != '"+context_group_id+"' group by uuid;");
     populateDropDown("ContextGroup/Feature_Relationships_to_Other_Features/feature", featureList);
-    Object relnList2 = fetchAll("select relntypename||'~!~'||coalesce(nullif(parent||'~!~'||child,'~!~'),relntypename||'~!~'||relntypename) " +
-        "as relntypeid, coalesce(nullif(parent,''), relntypename) as name, relntypeid " +
-        "from relntype where relntypename not like '%Context Group%' " +
-            "union select relntypename||'~!~'||coalesce(nullif(child||'~!~'||parent,'~!~'),relntypename||'~!~'||relntypename), coalesce(nullif(child,''), relntypename) as name, relntypeid from relntype where relntypename not like '%Context Group%' order by relntypeid, name;");
-    populateDropDown("ContextGroup/Feature_Relationships_to_Other_Features/reln", relnList2);   
     updateRelnsCG();
 }
 
@@ -1250,11 +1193,7 @@ String sample_id = null;
 newSample(){
     sample_id = null;
     newTabGroup("Sample");
-    if(isContext) {
-        setFieldValue("Sample/Sample_GeneralInformation/Context_ID", getFieldValue("Context/Context_GeneralInformation/Context_ID"));
-    } else {
-        setFieldValue("Sample/Sample_GeneralInformation/Context_ID", getFieldValue("ContextGroup/ContextGroup_Details/Context_Group_ID"));
-    }
+    setFieldValue("Sample/Sample_GeneralInformation/Context_ID", getFieldValue("Context/Context_GeneralInformation/Context_ID"));
     date = fetchOne("select date('now');");
     setFieldValue("Sample/Sample_GeneralInformation/Site_Code","BK" + date.get(0).charAt(2) + date.get(0).charAt(3));
 }
@@ -1271,12 +1210,6 @@ loadSample() {
     showTabGroup("Sample", sample_id);
 }
 
-loadContextGroupSample() {
-    sample_id = getFieldValue("ContextGroup/ContextGroup_Samples/sampleList");
-    if (isNull(sample_id)) return;
-    showTabGroup("Sample", sample_id);
-}
-
 saveSample() {
     if (isNull(getFieldValue("Sample/Sample_GeneralInformation/Sample_ID"))) {
         showWarning("Logic Error", "Cannot save record without id");
@@ -1288,10 +1221,8 @@ saveSample() {
     }
     if(menu) {
         saveTabGroup("Sample", sample_id, null, null, "sample_id = getLastSavedRecordId(); cancelTabGroup(\"Sample\", false); showTab(\"control/sample\")");
-    } else if(isContext) {
-        saveTabGroup("Sample", sample_id, null, null, "sample_id = getLastSavedRecordId(); onSampleSaved(); cancelTabGroup(\"Sample\", false); showTab(\"Context/Context_Samples\")");
     } else {
-        saveTabGroup("Sample", sample_id, null, null, "sample_id = getLastSavedRecordId(); onSampleSaved(); cancelTabGroup(\"Sample\", false); showTab(\"ContextGroup/ContextGroup_Samples\")");
+        saveTabGroup("Sample", sample_id, null, null, "sample_id = getLastSavedRecordId(); onSampleSaved(); cancelTabGroup(\"Sample\", false); showTab(\"Context/Context_Samples\")");
     }
     
 }
@@ -1330,7 +1261,7 @@ duplicateSample(){
 
 onSampleSaved(){
     sample_id = getLastSavedRecordId();
-    saveEntitiesToRel(verb, archent_id, sample_id);
+    saveEntitiesToRel("ContextSample", context_id, sample_id);
 }
 
 deleteSampleFromContext(){

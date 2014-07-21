@@ -267,8 +267,14 @@
               <Delete/>
             </Context_Structures>
             <Context_Skeletons>
-              <Space/>
-              <Building/>
+              <container0>
+                <child1>
+                  <Space/>
+                </child1>
+                <child2>
+                  <Building/>
+                </child2>
+              </container0>
               <container1>
                 <child1>
                   <Mid_X/>
@@ -338,6 +344,7 @@
                   <Target_D_Y/>
                 </child2>
               </container8>
+              <Skeleton_Notes/>
               <Update/>
             </Context_Skeletons>
             <Context_Interpretation>
@@ -347,16 +354,13 @@
             </Context_Interpretation>
             <Context_Feature>
               <guide1/>
-            
-                  <ContextGroupListUnrelated/>
-                  <AddContextGroupRel/>
-                  <AddContextGroup/>
-                  <ContextGroupList/>
-                  <ShowContextGroup/>
-                  <RemoveFromContextGroup/>
-                
-                  <RelatedContextGroups/>
-               
+              <ContextGroupListUnrelated/>
+              <AddContextGroupRel/>
+              <AddContextGroup/>
+              <ContextGroupList/>
+              <ShowContextGroup/>
+              <RemoveFromContextGroup/>
+              <RelatedContextGroups/>
             </Context_Feature>
             <Context_Relationships_to_Other_Contexts>
               <spacer/>
@@ -558,20 +562,6 @@
               <Update/>
               <listOfRelns/>
             </Feature_Relationships_to_Other_Features>
-            <ContextGroup_Samples>
-              <newSample/>
-              <sampleList/>
-              <container1>
-                <child0>
-                  <deleteSample/>
-                </child0>
-                <child1>
-                  <loadSample/>
-                </child1>
-              </container1>
-              <Update/>
-              <listOfSamples/>
-            </ContextGroup_Samples>
             <ContextGroup_Attachments>
               <Recorded_By/>
               <Sketch/>
@@ -816,6 +806,7 @@
       <bind nodeset="/faims/Context/Context_Skeletons/container7/child2/Target_C_Y" type="decimal"/>
       <bind nodeset="/faims/Context/Context_Skeletons/container8/child1/Target_D_X" type="decimal"/>
       <bind nodeset="/faims/Context/Context_Skeletons/container8/child2/Target_D_Y" type="decimal"/>
+      <bind nodeset="/faims/Context/Context_Skeletons/Skeleton_Notes" type="string"/>
       <bind nodeset="/faims/Context/Context_Interpretation/Your_Discussion" type="string"/>
       <bind nodeset="/faims/Context/Context_Interpretation/Your_description" type="string"/>
       <bind nodeset="/faims/ContextGroup/ContextGroup_Details/container3/child1/Length" type="decimal"/>
@@ -903,10 +894,11 @@
         <select1 appearance="compact" ref="guide">
           <label>Module Guide</label>
             <item>
-            <label>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tincidunt imperdiet libero quis rutrum. Integer nec neque tortor. Mauris a tellus vitae tellus iaculis viverra at id ipsum. Etiam tincidunt ac purus in placerat. Donec suscipit et dui ut accumsan. Ut tincidunt, eros nec pellentesque facilisis, odio orci ultrices dolor, eget commodo tellus nibh ac tellus. Aenean tincidunt sapien sed eros ultricies varius. Sed et nunc erat. Nullam ligula tellus, laoreet et molestie pretium, pretium vel sem. Vivamus gravida ipsum a suscipit adipiscing. 
+            <label>The Boncuklu Excavation Module was prepared in 2014 for Dr Andrew Fairbairn, University of Queensland. It is an adaptation of the standard FAIMS Excavation Module, and allows for the single context recording of deposits, which can be grouped into Features.
 
+For more information, see the Boncuklu Excavation Module Guide. It provides an overview of the features and navigation of the Module.
 
-            Vestibulum non sodales tortor, sit amet euismod ligula. Morbi et risus sem. Maecenas feugiat, nisl id luctus suscipit, nibh mauris accumsan metus, ut semper arcu diam non tortor. Mauris at imperdiet neque, vel porta dui. Vestibulum a nibh pellentesque, pharetra sapien vel, bibendum lacus. Duis vehicula lacus id urna fermentum, quis commodo est commodo.</label>
+Definitions and vocabulary lists for each Attribute are accessible via the Help button alongside each attribute.</label>
             <value>Help</value>
           </item>
         </select1>
@@ -1513,12 +1505,21 @@
       </group>
       <group ref="Context_Skeletons" faims_hidden="true">
         <label>{Skeleton}</label>
-        <input ref="Space" faims_attribute_name="Space" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
-          <label>{Space}</label>
-        </input>
-        <input ref="Building" faims_attribute_name="Building" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
-          <label>{Building}</label>
-        </input>
+        <group faims_style="orientation" ref="container0">
+          <label/>
+          <group faims_style="even" ref="child1">
+            <label/>
+            <input ref="Space" faims_attribute_name="Space" faims_attribute_type="freetext" faims_certainty="true" faims_annotation="false" faims_read_only="false">
+              <label>{Space}</label>
+            </input>
+          </group>
+          <group faims_style="even" ref="child2">
+            <label/>
+            <input ref="Building" faims_attribute_name="Building" faims_attribute_type="freetext" faims_certainty="true" faims_annotation="false" faims_read_only="false">
+              <label>{Building}</label>
+            </input>
+          </group>
+        </group>
         <group faims_style="orientation" ref="container1">
           <label/>
           <group faims_style="even" ref="child1">
@@ -1534,20 +1535,20 @@
             </input>
           </group>
         </group>
-        <input ref="Skeleton_Dimensions" faims_attribute_name="Skeleton Dimensions" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+        <input ref="Skeleton_Dimensions" faims_attribute_name="Skeleton Dimensions" faims_attribute_type="freetext" faims_certainty="true" faims_annotation="true" faims_read_only="false">
           <label>{Skeleton_Dimensions}</label>
         </input>
         <group faims_style="orientation" ref="container2">
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
-            <input ref="Skeleton_Head" faims_attribute_name="Skeleton Head" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+            <input ref="Skeleton_Head" faims_attribute_name="Skeleton Head" faims_attribute_type="freetext" faims_certainty="true" faims_annotation="true" faims_read_only="false">
               <label>{Skeleton_Head}</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
-            <input ref="Skeleton_Body" faims_attribute_name="Skeleton Body" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+            <input ref="Skeleton_Body" faims_attribute_name="Skeleton Body" faims_attribute_type="freetext" faims_certainty="true" faims_annotation="true" faims_read_only="false">
               <label>{Skeleton_Body}</label>
             </input>
           </group>
@@ -1556,13 +1557,13 @@
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
-            <input ref="Skeleton_Left_Arm" faims_attribute_name="Skeleton Left Arm" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+            <input ref="Skeleton_Left_Arm" faims_attribute_name="Skeleton Left Arm" faims_attribute_type="freetext" faims_certainty="true" faims_annotation="true" faims_read_only="false">
               <label>{Skeleton_Left_Arm}</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
-            <input ref="Skeleton_Right_Arm" faims_attribute_name="Skeleton Right Arm" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+            <input ref="Skeleton_Right_Arm" faims_attribute_name="Skeleton Right Arm" faims_attribute_type="freetext" faims_certainty="true" faims_annotation="true" faims_read_only="false">
               <label>{Skeleton_Right_Arm}</label>
             </input>
           </group>
@@ -1571,24 +1572,24 @@
           <label/>
           <group faims_style="even" ref="child1">
             <label/>
-            <input ref="Skeleton_Left_Leg" faims_attribute_name="Skeleton Left Leg" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+            <input ref="Skeleton_Left_Leg" faims_attribute_name="Skeleton Left Leg" faims_attribute_type="freetext" faims_certainty="true" faims_annotation="true" faims_read_only="false">
               <label>{Skeleton_Left_Leg}</label>
             </input>
           </group>
           <group faims_style="even" ref="child2">
             <label/>
-            <input ref="Skeleton_Right_Leg" faims_attribute_name="Skeleton Right Leg" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+            <input ref="Skeleton_Right_Leg" faims_attribute_name="Skeleton Right Leg" faims_attribute_type="freetext" faims_certainty="true" faims_annotation="true" faims_read_only="false">
               <label>{Skeleton_Right_Leg}</label>
             </input>
           </group>
         </group>
-        <input ref="Skeleton_Condition" faims_attribute_name="Skeleton Condition" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+        <input ref="Skeleton_Condition" faims_attribute_name="Skeleton Condition" faims_attribute_type="freetext" faims_certainty="true" faims_annotation="false" faims_read_only="false">
           <label>{Skeleton_Condition}</label>
         </input>
-        <input ref="Skeleton_Surface_Modifications" faims_attribute_name="Skeleton Surface Modifications" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+        <input ref="Skeleton_Surface_Modifications" faims_attribute_name="Skeleton Surface Modifications" faims_attribute_type="freetext" faims_certainty="true" faims_annotation="false" faims_read_only="false">
           <label>{Skeleton_Surface_Modifications}</label>
         </input>
-        <input ref="Skeleton_Environment" faims_attribute_name="Skeleton Environment" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="false" faims_read_only="false">
+        <input ref="Skeleton_Environment" faims_attribute_name="Skeleton Environment" faims_attribute_type="freetext" faims_certainty="false" faims_annotation="true" faims_read_only="false">
           <label>{Skeleton_Environment}</label>
         </input>
         <input ref="Skeleton_Days_Exposed" faims_attribute_name="Skeleton Days Exposed" faims_attribute_type="measure" faims_certainty="true" faims_annotation="true" faims_read_only="false">
@@ -1654,6 +1655,9 @@
             </input>
           </group>
         </group>
+        <input ref="Skeleton_Notes" faims_attribute_name="Skeleton Notes" faims_attribute_type="freetext" faims_certainty="true" faims_annotation="false" faims_read_only="false">
+              <label>{Skeleton_Notes}</label>
+            </input>
         <trigger ref="Update">
           <label>Save {Context}</label>
         </trigger>
@@ -2238,44 +2242,6 @@ Here you can enter filenames or unique reference numbers for image stored on ano
                 <label>placeholder</label>
                 <value>placeholder</value>
               </item>
-        </select1>
-      </group>
-      <group ref="ContextGroup_Samples" faims_scrollable="false">
-        <label>Samples</label>
-        <trigger ref="newSample">
-          <label>Add {Sample}</label>
-        </trigger>
-        <select1 faims_certainty="false" faims_read_only="false" ref="sampleList">
-          <label>Select a {Sample}:</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
-        </select1>
-        <group faims_style="orientation" ref="container1">
-          <label/>
-          <group faims_style="even" ref="child0">
-            <label/>
-            <trigger ref="deleteSample">
-              <label>Delete {Sample}</label>
-            </trigger>
-          </group>
-          <group faims_style="even" ref="child1">
-            <label/>
-            <trigger ref="loadSample">
-              <label>Load {Sample}</label>
-            </trigger>
-          </group>
-        </group>
-        <trigger ref="Update">
-          <label>Save {Context_Group}</label>
-        </trigger>
-        <select1 appearance="compact" ref="listOfSamples" faims_certainty="false" faims_annotation="false">
-          <label>{Sample}s:</label>
-          <item>
-            <label>placeholder</label>
-            <value>placeholder</value>
-          </item>
         </select1>
       </group>
       <group ref="ContextGroup_Attachments">

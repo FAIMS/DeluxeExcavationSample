@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dataSchema name="Boncklu" preparer="Penny Crook">
 
-  <RelationshipElement name="AboveBelow" type="hierarchical">
+  <RelationshipElement name="Above - Below" type="hierarchical">
     <description>Implements a above below for contexts.</description>
     <parent>Above</parent>
     <child>Below</child>
   </RelationshipElement>
-  <RelationshipElement name="Arbitrarily separated from" type="bidirectional">
+  <RelationshipElement name="Same As" type="bidirectional">
+    <description>Implements a same as for contexts.</description>
+  </RelationshipElement>
+  <RelationshipElement name="Stratigraphically - Arbitrarily separated from" type="bidirectional">
     <description>When two or more context codes have been assigned to what is ultimately determined to be the same context</description>
   </RelationshipElement>
-  <RelationshipElement name="Precisely contemporary with" type="bidirectional">
+  <RelationshipElement name="Stratigraphically - Precisely contemporary with" type="bidirectional">
     <description>Contexts unequivocally contemporary</description>
   </RelationshipElement>
-  <RelationshipElement name="Broadly contemporary with" type="bidirectional">
+  <RelationshipElement name="Stratigraphically - Broadly contemporary with" type="bidirectional">
     <description>Contexts suspected to be contemporary but no direct physical relationship or evidence (i.e. adjacent buildings)</description>
   </RelationshipElement>
   <RelationshipElement name="Contains - Contained By" type="hierarchical">
@@ -20,10 +23,20 @@
     <parent>Contains</parent>
     <child>Contained By</child>
   </RelationshipElement>
-  <RelationshipElement name="Cuts - Cut By" type="hierarchical">
+  <RelationshipElement name="Physically - Cuts - Cut By" type="hierarchical">
     <description>Implements a cuts-cutby for contexts.</description>
-    <parent>Cuts</parent>
-    <child>Cut By</child>
+    <parent>Physically - Cuts</parent>
+    <child>Physically - Cut by</child>
+  </RelationshipElement>
+  <RelationshipElement name="Physically - Fill Of - Filled With" type="hierarchical">
+    <description>Implements a fillof-filledwith for contexts.</description>
+    <parent>Physically - Fill Of </parent>
+    <child>Physically - Filled With</child>
+  </RelationshipElement>
+  <RelationshipElement name="EarlierLater" type="hierarchical">
+    <description>Implements a Stratigraphically Immediately Earlier-Later for contexts.</description>
+    <parent>Stratigraphically - Immediately Earlier Than</parent>
+    <child>Stratigraphically - Immediately Later Than</child>
   </RelationshipElement>
   <RelationshipElement name="Butts - Butted By" type="hierarchical">
     <description>Implements a Butts-ButtedBy for contexts.</description>
@@ -31,15 +44,14 @@
     <child>Butted By</child>
   </RelationshipElement>
   <RelationshipElement name="Rebuilt - Rebuilt By" type="hierarchical">
-        <description>Implements a Rebuilt - Rebuilt By</description>
-
+    <description>Implements a Rebuilt - Rebuilt By</description>
     <parent>Rebuilt</parent>
     <child>Rebuilt By</child>
   </RelationshipElement>  
-
   <RelationshipElement name="Bonded To" type="bidirectional">
     <description>Implements a bonded to for contexts</description>
   </RelationshipElement>
+
   <RelationshipElement name="ContextMatrix" type="bidirectional">
     <description>Implements a 1:N between contexts and matrices</description>
   </RelationshipElement>
@@ -58,9 +70,6 @@
   <RelationshipElement name="ContextPhotographLog" type="bidirectional">
     <description>Implements a 1:N between context and its photograph logs
     </description>
-  </RelationshipElement>
-  <RelationshipElement name="ContextGroupSample" type="bidirectional">
-    <description>Implements a 1:N between context group and its samples</description>
   </RelationshipElement>
   <RelationshipElement name="ContextGroupPhotographLog" type="bidirectional">
     <description>Implements a 1:N between context group and its photograph logs
@@ -777,6 +786,9 @@
     <property name="Skeleton Days Exposed" type="float">
       <description>It is important to excavate skeletal remains as quickly as possible as the state of the bone will change during exposure. Any conditional change should also be noted. Excavate as quickly as possible because the bones will degrade rapidly.</description>
     </property>
+    <property name="Skeleton Notes" type="freetext">
+      <description></description>
+    </property>
     <property name="Target A X" type="float">
       <description>The X coordinate of Target A. Targets are white-painted, large-headed nails used to rectify photographs.</description>
     </property>
@@ -1165,6 +1177,10 @@
         <term>{Thin_Section}
         <description /></term>
         <term>{Wet_Sieve}
+        <description /></term>
+        <term>{Animal_Bone}
+        <description /></term>
+        <term>{Human_Bone}
         <description /></term>
         <term>{zOther}
         <description /></term>
