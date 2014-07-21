@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<dataSchema name="Boncklu" preparer="Penny Crook">
-
+<dataSchema name="Boncuklu" preparer="Penny Crook">
   <RelationshipElement name="Above - Below" type="hierarchical">
     <description>Implements a above below for contexts.</description>
     <parent>Above</parent>
@@ -9,34 +8,10 @@
   <RelationshipElement name="Same As" type="bidirectional">
     <description>Implements a same as for contexts.</description>
   </RelationshipElement>
-  <RelationshipElement name="Stratigraphically - Arbitrarily separated from" type="bidirectional">
-    <description>When two or more context codes have been assigned to what is ultimately determined to be the same context</description>
-  </RelationshipElement>
-  <RelationshipElement name="Stratigraphically - Precisely contemporary with" type="bidirectional">
-    <description>Contexts unequivocally contemporary</description>
-  </RelationshipElement>
-  <RelationshipElement name="Stratigraphically - Broadly contemporary with" type="bidirectional">
-    <description>Contexts suspected to be contemporary but no direct physical relationship or evidence (i.e. adjacent buildings)</description>
-  </RelationshipElement>
   <RelationshipElement name="Contains - Contained By" type="hierarchical">
     <description>Implements a contains-containedby for contexts.</description>
     <parent>Contains</parent>
     <child>Contained By</child>
-  </RelationshipElement>
-  <RelationshipElement name="Physically - Cuts - Cut By" type="hierarchical">
-    <description>Implements a cuts-cutby for contexts.</description>
-    <parent>Physically - Cuts</parent>
-    <child>Physically - Cut by</child>
-  </RelationshipElement>
-  <RelationshipElement name="Physically - Fill Of - Filled With" type="hierarchical">
-    <description>Implements a fillof-filledwith for contexts.</description>
-    <parent>Physically - Fill Of </parent>
-    <child>Physically - Filled With</child>
-  </RelationshipElement>
-  <RelationshipElement name="EarlierLater" type="hierarchical">
-    <description>Implements a Stratigraphically Immediately Earlier-Later for contexts.</description>
-    <parent>Stratigraphically - Immediately Earlier Than</parent>
-    <child>Stratigraphically - Immediately Later Than</child>
   </RelationshipElement>
   <RelationshipElement name="Butts - Butted By" type="hierarchical">
     <description>Implements a Butts-ButtedBy for contexts.</description>
@@ -50,6 +25,30 @@
   </RelationshipElement>  
   <RelationshipElement name="Bonded To" type="bidirectional">
     <description>Implements a bonded to for contexts</description>
+  </RelationshipElement>
+  <RelationshipElement name="Physically - Cuts - Cut By" type="hierarchical">
+    <description>Implements a cuts-cutby for contexts.</description>
+    <parent>Physically - Cuts</parent>
+    <child>Physically - Cut by</child>
+  </RelationshipElement>
+  <RelationshipElement name="Physically - Fill Of - Filled With" type="hierarchical">
+    <description>Implements a fillof-filledwith for contexts.</description>
+    <parent>Physically - Fill Of </parent>
+    <child>Physically - Filled With</child>
+  </RelationshipElement>
+  <RelationshipElement name="Stratigraphically - Arbitrarily separated from" type="bidirectional">
+    <description>When two or more context codes have been assigned to what is ultimately determined to be the same context</description>
+  </RelationshipElement>
+  <RelationshipElement name="Stratigraphically - Precisely contemporary with" type="bidirectional">
+    <description>Contexts unequivocally contemporary</description>
+  </RelationshipElement>
+  <RelationshipElement name="Stratigraphically - Broadly contemporary with" type="bidirectional">
+    <description>Contexts suspected to be contemporary but no direct physical relationship or evidence (i.e. adjacent buildings)</description>
+  </RelationshipElement>
+  <RelationshipElement name="Stratigraphically - EarlierLater" type="hierarchical">
+    <description>Implements a Stratigraphically Immediately Earlier-Later for contexts.</description>
+    <parent>Stratigraphically - Immediately Earlier Than</parent>
+    <child>Stratigraphically - Immediately Later Than</child>
   </RelationshipElement>
 
   <RelationshipElement name="ContextMatrix" type="bidirectional">
