@@ -247,7 +247,6 @@
               <Cut_Function/>
               <Orientation/>
               <Inclination_of_axis/>
-              <Truncation/>
               <Update/>
             </Context_Cuts>
             <Context_Structures>
@@ -740,22 +739,6 @@
                   <Z/>
                 </child3>
               </container2>
-              <container3>
-                <child1>
-                  <Latitude/>
-                </child1>
-                <child2>
-                  <Longitude/>
-                </child2>
-              </container3>
-              <container4>
-                <child1>
-                  <Date_From/>
-                </child1>
-                <child2>
-                  <Date_To/>
-                </child2>
-              </container4>
               <Special_Find_Comment/>
               <Photo/>
               <attachPhoto/>
@@ -895,9 +878,9 @@
           <label>About this Module</label>
             <item>
             <label>
-			The Boncuklu Excavation Module was prepared in 2014 for Dr Andrew Fairbairn, University of Queensland, to record data about the contexts and features excavated at Boncuklu in Turkey. 
-			
-			It is an adaptation of the standard FAIMS Excavation Module, and allows for the single context recording of deposits, which can be grouped into Features.
+      The Boncuklu Excavation Module was prepared in 2014 for Dr Andrew Fairbairn, University of Queensland, to record data about the contexts and features excavated at Boncuklu in Turkey. 
+      
+      It is an adaptation of the standard FAIMS Excavation Module, and allows for the single context recording of deposits, which can be grouped into Features.
 
 To login:
 
@@ -1445,14 +1428,15 @@ Help can be found for individual entries by pressing the ? buttons throughout th
             <value>placeholder</value>
           </item>
         </select1>
-        <input faims_attribute_name="Inclination of axis" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Inclination_of_axis">
+        <select1 faims_attribute_name="Inclination of axis" faims_attribute_type="vocab" faims_certainty="true" faims_read_only="false" ref="Inclination_of_axis">
           <label>{Inclination_of_axis}</label>
-        </input>
-        <input faims_attribute_name="Truncation" faims_attribute_type="freetext" faims_certainty="true" faims_read_only="false" ref="Truncation">
-          <label>{Truncation}</label>
-        </input>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
         <trigger ref="Update">
-          <label>Save Context</label>
+          <label>Save {Context}</label>
         </trigger>
       </group>
       <group faims_hidden="true" ref="Context_Structures">
@@ -1506,12 +1490,15 @@ Help can be found for individual entries by pressing the ? buttons throughout th
             <value>placeholder</value>
           </item>
         </select1>
-
-        <input faims_attribute_name="Mudbrick Shape" faims_attribute_type="freetext" faims_annotation="true" faims_certainty="true" faims_read_only="false" ref="Mudbrick_Shape">
+        <select1 faims_attribute_name="Mudbrick Shape" faims_attribute_type="vocab" faims_annotation="true" faims_certainty="true" faims_read_only="false" ref="Mudbrick_Shape">
           <label>{Mudbrick_Shape}</label>
-        </input>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
         <trigger ref="Update">
-          <label>Save Context</label>
+          <label>Save {Context}</label>
         </trigger>
       </group>
       <group ref="Context_Skeletons" faims_hidden="true">
@@ -1691,48 +1678,43 @@ Help can be found for individual entries by pressing the ? buttons throughout th
           <label></label>
             <item>
               <!-- I'm using fancy spaces here. Be careful of copying -->
-            <label>Here you can group contexts into a single {Context_Group}.</label>
+          <label>Here you can group Contexts into a single {Context_Group}.</label>
             <value>Help</value>
           </item>
         </select1>
-        
-        
-            <select1 faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" faims_annotation="false" ref="ContextGroupListUnrelated">
-              <label>Select an existing {Context_Group}:</label>
-              <item>
-                <label>placeholder</label>
-                <value>placeholder</value>
-              </item>
-            </select1>
-            <trigger ref="AddContextGroupRel">
-              <label>Add Context to {Context_Group}</label>
-            </trigger>
-            <trigger ref="AddContextGroup">
-              <label>Create New {Context_Group}</label>
-            </trigger>
-            <select1 faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="ContextGroupList">
-              <label>Select the Feature to which this {Context} belongs:</label>
-              <item>
-                <label>placeholder</label>
-                <value>placeholder</value>
-              </item>
-            </select1>
-            <trigger ref="ShowContextGroup">
-              <label>Load {Context_Group} and Exit Context</label>
-            </trigger>
-            <trigger ref="RemoveFromContextGroup">
-              <label>Remove From {Context_Group}</label>
-            </trigger>
-          
-            <select1 faims_certainty="false" ref="RelatedContextGroups" appearance="compact">
-              <label>Related {Context_Group}s:</label>
-              <item>
-                    <label>placeholder</label>
-                    <value>placeholder</value>
-                  </item>
-            </select1>
-          
-        
+        <select1 faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" faims_annotation="false" ref="ContextGroupListUnrelated">
+          <label>Select an existing {Context_Group}:</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <trigger ref="AddContextGroupRel">
+          <label>Add Context to {Context_Group}</label>
+        </trigger>
+        <trigger ref="AddContextGroup">
+          <label>Create New {Context_Group}</label>
+        </trigger>
+        <select1 faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="ContextGroupList">
+          <label>Select the {Context_Group} to which this {Context} belongs:</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
+        <trigger ref="ShowContextGroup">
+          <label>Load {Context_Group} and Exit Context</label>
+        </trigger>
+        <trigger ref="RemoveFromContextGroup">
+          <label>Remove From {Context_Group}</label>
+        </trigger>
+        <select1 faims_certainty="false" ref="RelatedContextGroups" appearance="compact">
+          <label>Related {Context_Groups}:</label>
+          <item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
+        </select1>
       </group>
       <group ref="Context_Relationships_to_Other_Contexts" faims_scrollable="false">
         <label>Rel</label>
@@ -1745,7 +1727,7 @@ Help can be found for individual entries by pressing the ? buttons throughout th
           <group faims_style="even" ref="child0">
             <label/>
             <input faims_certainty="false" faims_read_only="true" ref="context_id">
-              <label>This Context:</label>
+              <label>This {Context}:</label>
             </input>
           </group>
           <group faims_style="even" ref="child1">
@@ -1761,7 +1743,7 @@ Help can be found for individual entries by pressing the ? buttons throughout th
           <group faims_style="even" ref="child3">
             <label/>
             <select1 faims_certainty="false" faims_read_only="false" ref="context">
-              <label>to Context</label>
+              <label>to {Context}</label>
               <item>
                 <label>placeholder</label>
                 <value>placeholder</value>
@@ -1770,10 +1752,10 @@ Help can be found for individual entries by pressing the ? buttons throughout th
           </group>
         </group>
         <trigger ref="relate">
-          <label>Relate Contexts</label>
+          <label>Relate {Contexts}</label>
         </trigger>
         <trigger ref="Update">
-          <label>Save Context</label>
+          <label>Save {Context}</label>
         </trigger>
         <select1 faims_certainty="false" faims_read_only="false" ref="listRelns">
           <label>Select to Delete or Load the other {Context}</label>
@@ -1793,7 +1775,7 @@ Help can be found for individual entries by pressing the ? buttons throughout th
           <group faims_style="even" ref="child2">
             <label/>
             <trigger ref="showReln">
-              <label>Load Context</label>
+              <label>Load {Context}</label>
             </trigger>
           </group>
         </group>
@@ -1801,16 +1783,13 @@ Help can be found for individual entries by pressing the ? buttons throughout th
         <select1 faims_certainty="false" ref="listOfRelns" appearance="compact">
           <label>Associated Relationships:</label>
           <item>
-                <label>placeholder</label>
-                <value>placeholder</value>
-              </item>
+            <label>placeholder</label>
+            <value>placeholder</value>
+          </item>
         </select1>
-
-
-
       </group>
       <group ref="Context_Artefacts">
-        <label>Artefacts</label>
+        <label>{Artefacts}</label>
         <trigger ref="newArtefactGroup">
           <label>Add {Artefact_Group}</label>
         </trigger>
@@ -1866,7 +1845,7 @@ Help can be found for individual entries by pressing the ? buttons throughout th
         </trigger>
       </group>
       <group ref="Context_Samples" faims_scrollable="false">
-        <label>Samples</label>
+        <label>{Samples}</label>
         <trigger ref="newSample">
           <label>Add {Sample}</label>
         </trigger>
@@ -1896,7 +1875,7 @@ Help can be found for individual entries by pressing the ? buttons throughout th
           <label>Save {Context}</label>
         </trigger>
         <select1 appearance="compact" ref="listOfSamples" faims_certainty="false" faims_annotation="false">
-          <label>{Sample}s:</label>
+          <label>{Samples}:</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
@@ -1989,23 +1968,23 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         </trigger>
       </group>
       <group ref="Texture_Helper" faims_hidden="true">
-        <label>Texture Helper</label>
-          <select1 faims_certainty="false" faims_annotation="false" faims_read_only="false" ref="Soil_Texture">
-            <label>Texture Helper</label>
+        <label>Material Helper</label>
+          <select1 faims_certainty="false" faims_annotation="false" faims_read_only="false" ref="Soil_Texture" faims_attribute_name="Soil Texture Helper">
+            <label>Material Helper</label>
             <item>
               <label>placeholder</label>
               <value>placeholder</value>
             </item>
           </select1>
           <trigger ref="Update_Texture">
-            <label>Update Texture</label>
+            <label>Update Material</label>
           </trigger>
       </group>
     </group>
 
     <!-- ArchEnt: CONTEXT_GROUP -->
     <group faims_archent_type="Context Group" ref="ContextGroup">
-      <label>Feature</label>
+      <label>{Context_Group}</label>
       <group ref="ContextGroup_Details">
         <label>GEN</label>
          <group faims_style="orientation" ref="container1">
@@ -2140,19 +2119,19 @@ Here you can enter filenames or unique reference numbers for image stored on ano
         </trigger>
       </group>
       <group ref="ContextGroup_Contexts" faims_scrollable="false">
-        <label>Contexts</label>
+        <label>{Contexts}</label>
         <select1 faims_certainty="false" faims_read_only="false" ref="AddContextList">
-          <label>Add Additional Context:</label>
+          <label>Add Additional {Context}:</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
           </item>
         </select1>
         <trigger ref="AddContext">
-          <label>Add Context to Feature</label>
+          <label>Add Context to {Context_Group}</label>
         </trigger>
         <select1 faims_certainty="false" faims_read_only="false" ref="ContextList">
-          <label>Contexts in Feature:</label>
+          <label>{Contexts} in Feature:</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
@@ -2163,21 +2142,21 @@ Here you can enter filenames or unique reference numbers for image stored on ano
           <group faims_style="even" ref="child0">
             <label/>
             <trigger ref="RemoveContext">
-              <label>Remove Context from Feature</label>
+              <label>Remove Context from {Context_Group}</label>
             </trigger>
           </group>
           <group faims_style="even" ref="child1">
             <label/>
               <trigger ref="ShowContext">
-                <label>Load Context</label>
+                <label>Load {Context}</label>
               </trigger>
           </group>
         </group>
         <trigger ref="Update">
-          <label>Save Feature</label>
+          <label>Save {Context_Group}</label>
         </trigger>
         <select1 appearance="compact" ref="listOfContexts" faims_certainty="false" faims_annotation="false">
-          <label>{Context}s:</label>
+          <label>{Contexts}:</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
@@ -2195,7 +2174,7 @@ Here you can enter filenames or unique reference numbers for image stored on ano
           <group faims_style="even" ref="child0">
             <label/>
             <input faims_certainty="false" faims_read_only="true" ref="feature_id">
-              <label>This Feature:</label>
+              <label>This {Context_Group}:</label>
             </input>
           </group>
           <group faims_style="even" ref="child1">
@@ -2211,7 +2190,7 @@ Here you can enter filenames or unique reference numbers for image stored on ano
           <group faims_style="even" ref="child3">
             <label/>
             <select1 faims_certainty="false" faims_read_only="false" ref="feature">
-              <label>to Feature</label>
+              <label>to {Context_Group}</label>
               <item>
                 <label>placeholder</label>
                 <value>placeholder</value>
@@ -2220,7 +2199,7 @@ Here you can enter filenames or unique reference numbers for image stored on ano
           </group>
         </group>
         <trigger ref="relate">
-          <label>Relate Contexts</label>
+          <label>Relate {Context_Groups}</label>
         </trigger>
         <select1 faims_certainty="false" faims_read_only="false" ref="listRelns">
           <label>Associated Entities:</label>
@@ -2240,7 +2219,7 @@ Here you can enter filenames or unique reference numbers for image stored on ano
           <group faims_style="even" ref="child2">
             <label/>
             <trigger ref="showReln">
-              <label>Load {Context}</label>
+              <label>Load {Context_Group}</label>
             </trigger>
           </group>
         </group>
@@ -2726,36 +2705,6 @@ Here you can enter filenames or unique reference numbers for image stored on ano
             <label/>
             <input faims_attribute_name="Special Find Z" faims_attribute_type="measure" faims_read_only="false" ref="Z">
               <label>Z</label>
-            </input>
-          </group>
-        </group>
-        <group faims_style="orientation" ref="container3">
-          <label/>
-          <group faims_style="even" ref="child1">
-            <label/>
-            <input faims_attribute_name="Latitude" faims_attribute_type="measure" faims_read_only="false" ref="Latitude">
-              <label>Latitude</label>
-            </input>
-          </group>
-          <group faims_style="even" ref="child2">
-            <label/>
-            <input faims_attribute_name="Longitude" faims_attribute_type="measure" faims_read_only="false" ref="Longitude">
-              <label>Longitude</label>
-            </input>
-          </group>
-        </group>
-        <group faims_style="orientation" ref="container4">
-          <label/>
-          <group faims_style="even" ref="child1">
-            <label/>
-            <input faims_attribute_name="Date From" faims_attribute_type="measure" faims_read_only="false" ref="Date_From">
-              <label>Date From</label>
-            </input>
-          </group>
-          <group faims_style="even" ref="child2">
-            <label/>
-            <input faims_attribute_name="Date To" faims_attribute_type="measure" faims_read_only="false" ref="Date_To">
-              <label>Date To</label>
             </input>
           </group>
         </group>

@@ -111,7 +111,7 @@
         <description></description></term>
         <term>L 
         <description></description></term>
-		<term>M 
+		    <term>M 
         <description></description></term>
         <term>N 
         <description></description></term>
@@ -497,11 +497,20 @@ When you have selected a context type you can proceed to open the “Fill in con
         <description>Oriented North-west to South-east.</description></term>
       </lookup>
     </property>
-    <property name="Inclination of axis" type="freetext">
+    <property name="Inclination of axis" type="enum">
       <description>Inclination of the axis of post- and stakeholes.</description>
-    </property>
-    <property name="Truncation" type="blocktext">
-      <description>Describe the nature of truncation to the cut (where appropriate).</description>
+      <lookup>
+        <term>{0No_Observation}
+        <description>data not collected</description></term>
+        <term>{aVertical} 
+        <description></description></term>
+        <term>{b45-90_degrees} 
+        <description></description></term>
+        <term>{c45_degrees} 
+        <description></description></term>
+        <term>{dless_than_45} 
+        <description></description></term>
+      </lookup>
     </property>
     <property name="Structure Your Interpretation" type="freetext">
       <description>Your interpretation of the likely function of the structure.</description>
@@ -533,7 +542,7 @@ When you have selected a context type you can proceed to open the “Fill in con
       <description>Your interpretation of the likely function of the Context using standardised definitions.</description>
       <lookup>
         <term>{0No_Observation}<description/></term>
-        <term>{Your_Interpretation_Cut_Indeterminate} 
+        <term>{aYour_Interpretation_Cut_Indeterminate} 
         <description></description></term>
         <term>{Animal_or_Plant_hole} 
         <description></description></term>
@@ -542,8 +551,6 @@ When you have selected a context type you can proceed to open the “Fill in con
         <term>{Posthole} 
         <description></description></term>
         <term>{Pit} 
-        <description></description></term>
-        <term>{Pit_Fill} 
         <description></description></term>
         <term>{Hearth_or_Fire_pit} 
         <description></description></term>
@@ -718,8 +725,21 @@ When you have selected a context type you can proceed to open the “Fill in con
         <description>Nearly rectangular in shape.</description></term>
       </lookup>
     </property>
-    <property name="Mudbrick Shape" type="freetext">
+    <property name="Mudbrick Shape" type="enum">
       <description>The shape of mudbrick(s).</description>
+      <lookup>
+        <term>{0No_Observation}<description/></term>
+        <term>{Rectangular}
+        <description>With straight edges, upper and lower surfaces.</description></term>
+        <term>{Elongated_oval} 
+        <description>Steep slope.</description></term>
+        <term>{Plano_convex} 
+        <description>Shallow slope.</description></term>
+        <term>{Boat_shaped} 
+        <description>Concave surface opposite convex surface</description></term>
+        <term>{Ovoid} 
+        <description></description></term>
+      </lookup>
     </property>
     <property name="Component Finish" type="freetext">
       <description>How have the material types been prepared (i.e dressed stones polished/smoothed/painted plaster surface).</description>
@@ -1118,7 +1138,7 @@ When you have selected a context type you can proceed to open the “Fill in con
         </term>
         <term>{lBuilding_Materials} 
         <description></description></term>
-        <term>{Miscellaneous} 
+        <term>{mMiscellaneous} 
         <description></description></term>
       </lookup>
     </property>
@@ -1408,7 +1428,7 @@ When you have selected a context type you can proceed to open the “Fill in con
         </term>
         <term>{lBuilding_Materials} 
         <description></description></term>
-        <term>{Miscellaneous} 
+        <term>{mMiscellaneous} 
         <description></description></term>
       </lookup>
     </property>
@@ -1424,20 +1444,8 @@ When you have selected a context type you can proceed to open the “Fill in con
     <property name="Special Find Z" type="float">
       <description>The elevation or depth of the Special Find at the time of excavation.</description>
     </property>
-    <property name="Latitude" type="float">
-      <description>The geographic latitude of the Special Find at the time of excavation.</description>
-    </property>
-    <property name="Longitude" type="float">
-      <description>The geographic longitude of the Special Find at the time of excavation.</description>
-    </property>
     <property name="Special Find Description" type="freetext">
       <description>Description of the Special Find.</description>
-    </property>
-    <property name="Date From" type="float">
-      <description>The earliest known or likely date that this artefact may have been manufactured. Enter only a year. Use the certainty slide for approximate dates ie 'circa'.</description>
-    </property>
-    <property name="Date To" type="float">
-      <description>The late known or likely date that this artefact may have been manufactured. Enter only a year. Use the certainty slide for approximate dates ie 'circa'.</description>
     </property>
     <property name="Special Find Comment" type="freetext">
       <description></description>
@@ -1503,7 +1511,7 @@ When you have selected a context type you can proceed to open the “Fill in con
           <description/>
         </term>
         <term> Other
-          <description/>
+          <description></description>
         </term>
       </lookup>
     </property>

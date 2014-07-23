@@ -649,10 +649,12 @@ loadContextAttributes(){
     populateRadioGroup("Context/Context_Cuts/Orientation", makeVocab("Orientation"));
     populateDropDown("Context/Context_Cuts/Your_Interpretation", makeVocab("Cut Your Interpretation"));
     populateHierarchicalDropDown("Context/Context_Cuts/Sides_of_Cut", "Sides of Cut");
+    populateDropDown("Context/Context_Cuts/Inclination_of_axis", makeVocab("Inclination of axis"));
 
     populateDropDown("Context/Context_Structures/Structure_Shape", makeVocab("Structure Shape"));
     populateDropDown("Context/Context_Structures/Structural_Components", makeVocab("Structural Components"));
     populateDropDown("Context/Context_Structures/Bonding", makeVocab("Bonding"));
+    populateDropDown("Context/Context_Structures/Mudbrick_Shape", makeVocab("Mudbrick Shape"));
     populateDropDown("Context/Context_Structures/Your_Interpretation", makeVocab("Structure Your Interpretation"));
 
     populateHierarchicalDropDown("Context/Texture_Helper/Soil_Texture", "Soil Texture Helper");
