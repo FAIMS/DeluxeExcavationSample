@@ -79,7 +79,7 @@
   <ArchaeologicalElement name="Context">
     <description>The physical result of any single action whether it leaves a positive or negative record within the stratigraphic sequence. (MoLAS 1994)</description>
     <property name="Site Code" type="freetext">
-      <description>Short code to signify the excavation site and often the year of excavation.</description>
+      <description>Short code to signify the excavation site and often the year of excavation. Assigned automatically by the module.</description>
     </property>
     <property isIdentifier="true" name="Context ID" type="freetext">
       <description>Every archaeological context (negative element (cut), deposit, structure, skeleton) is given a unique 3 or 4 letter context code. Each trench is designated with a separate letter which starts the code, so it is immediately obvious to which trench a context belongs. For example context HAA belongs to Trench H, context MQP to Trench M etc.
@@ -103,7 +103,7 @@
       <description>Reference numbers to plans or drawings of this Context.</description>
     </property>
     <property name="AreaCode" type="enum">
-      <description>Area or Trench: the working subdivision of an archaeological site.</description>
+      <description>The excavation trench, designated by a letter code and assigned automatically by the module.</description>
       <lookup>
         <term>H
         <description></description></term>
@@ -130,25 +130,26 @@
       <description>The Y coordinate on the SW corner of the context.</description>
     </property>
     <property name="Context Type" type="enum">
-      <description>Deposit cut or 'other' (feature).</description>
+      <description>Describe the context type by selecting an icon as defined below.
+When you have selected a context type you can proceed to open the “Fill in context type details” page. Note this page will not open unless you have selected a context type.</description>
       <lookup>
         <term pictureURL="files/data/gallery/ContextType/Other/NA.png">{0No_Observation}
         <description>data not collected</description></term>
         <term pictureURL="files/data/gallery/ContextType/Orange/Cut.png">{Cut} 
-        <description>Any Context which forms a negative interface eg pits ditches graves and foundation and robber trenches</description></term>
+        <description>Any Context which represents the removal of earlier deposit and thus forms a negative interface (cut) with another context, such as a cut for a pit, burial, ditch, wall foundation or robber trench.</description></term>
         <term pictureURL="files/data/gallery/ContextType/Orange/Deposit.png">{Deposit} 
-        <description>Any Context with deposited soil eg natural deposits floor and road surfaces and pit ditch and grave fills</description></term>
+        <description>Any Context with deposited sediment and soil, such as floor layers, pit and grave fills, hearth fills and natural sediments.</description></term>
         <term pictureURL="files/data/gallery/ContextType/Orange/Structure.png">{Structure} 
-        <description>Any context formed independent of a Cut or negative interface eg walls hearths.</description></term>
+        <description>Any Context consisting of deliberately constructed structural element, independent of a Negative Element (i.e. cut, such as a wall or a hearth).</description></term>
         <term pictureURL="files/data/gallery/ContextType/Orange/Skeleton.png">{Skeleton} 
         <description>Human skeletal remains.</description></term>
       </lookup>
     </property>
     <property name="Date Opened" type="date">
-      <description>Date on which the Context was first excavated.</description>
+      <description>Date on which the Context was first excavated. This will automatically be set to the date on which the context is recorded but can be edited using the keyboard.</description>
     </property>
     <property name="Date Closed" type="date">
-      <description>Date closed.</description>
+      <description>The date excavation of the Context ended and it was closed. Press the 'Add Date Closed' button to insert today’s date.</description>
     </property>
     <property name="Location Note" type="freetext">
       <description>For Approx location in area provide information on rough location eg centre of Area A or NW corner area A but also in relation to other archaeological contexts or features e.g. between walls x and y.</description>
@@ -173,7 +174,7 @@
       <description>The lowest elevation recorded for that context. This may be relative to the site grid or real world co-ordinates depending on the method of measurement.</description>
     </property>
     <property name="Length" type="float">
-      <description>Length of the longest side in metres.</description>
+      <description>Longest dimension in metres.</description>
     </property>
     <property name="Width" type="float">
       <description>Width or diameter in metres.</description>
@@ -185,7 +186,7 @@
       <description>Reference numbers to section drawings of this Context</description>
     </property>
     <property name="Soil Compaction Type" type="enum">
-      <description>The type of compaction of sediments in the deposit eg 'Compact' 'Cemented' or 'Loose'.</description>
+      <description>Describe the compaction of the sediments in the Context.</description>
       <lookup>
         <term>{0No_Observation}<description/></term>
         <term>{1.Loose} 
@@ -206,7 +207,7 @@
       <description>Description of the compaction of soil including changes throughout the deposit. Eg ‘Varies from loose to compact.</description>
     </property>
     <property name="Soil Texture Helper" type="enum">
-      <description>This helper is based on the standard flow chart for determining soil texture.</description>
+      <description>This helper is based on the standard flow chart for determining soil texture. Select each option and follow the prompts until you get a result, eg 'silty loam'. Then click the 'Update' button to have that value pasted onto your Deposit record.</description>
       <lookup>
         <term>{Soil_does_NOT_remain_in_ball_when_squeezed} 
         <description>Place approximately 25 g soil in palm. Add water dropwise and knead the soil to break down all aggregates. Soil is at the proper consistency when plastic and moldable like moist putty.</description>
@@ -224,7 +225,7 @@
         <description>A sand has a loose gritty feel and does not stick together. Individual sand grains can be seen or felt. (VDEPI 2009: AG0058)</description></term></term></term>
         <term>{Soil_remains_in_ball_when_squeezed} 
         <description>Place approximately 25 g soil in palm. Add water dropwise and knead the soil to break down all aggregates. Soil is at the proper consistency when plastic and moldable like moist putty.</description>
-        <term>{TASK:_Roll_ribbon} 
+        <term>{TASK_Roll_ribbon} 
         <description>Rub a ball of soil between thumb and forefinger to make a 'ribbon'</description>
         <term>{Does_NOT_form_a_ribbom} 
         <description>A 'ribbon' is NOT formed when a ball of soil is rubbed between thumb and forefinger.</description>
@@ -234,7 +235,7 @@
         <description>A 'ribbon' is formed when a ball of soil is rubbed between thumb and forefinger.</description>
         <term>{Medium_ribbon_(2.5-5cm_long)} 
         <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is between 2.5 and 5cm long.</description>
-        <term>{TASK:_Wet_soil_and_rub_with_forefinger} 
+        <term>{TASK_Wet_soil_and_rub_with_forefinger} 
         <description>Excessively wet a small pinch of soil in palm and rub with forefinger.</description>
         <term>{Does_NOT_feel_very_gritty} 
         <description>The wetted soil does NOT feel very gritty when rubbed on the palm and with forefinger.</description>
@@ -252,7 +253,7 @@
         <description>A sandy clay loam is like a clay loam but sand grains can be felt (and heard - see Sandy Loam) (VDEPI 2009: AG0058)</description></term></term></term></term>
         <term>{Strong_ribbon} 
         <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is strong and over 5cm long.</description>
-        <term>{TASK:_Wet_soil_and_rub_with_forefinger} 
+        <term>{TASK_Wet_soil_and_rub_with_forefinger} 
         <description>Excessively wet a small pinch of soil in palm and rub with forefinger.</description>
         <term>{Does_NOT_feel_very_gritty} 
         <description>The wetted soil does NOT feel very gritty when rubbed on the palm and with forefinger.</description>
@@ -270,7 +271,7 @@
         <description>A sandy clay is like a clay but sand grains can be felt (and heard - see Sandy Loam). (VDEPI 2009: AG0058)</description></term></term></term></term>
         <term>{Weak_ribbon} 
         <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is less than 2.5cm long.</description>
-        <term>{TASK:_Wet_soil_and_rub_with_forefinger} 
+        <term>{TASK_Wet_soil_and_rub_with_forefinger} 
         <description>Excessively wet a small pinch of soil in palm and rub with forefinger.</description>
         <term>{Does_NOT_feel_very_gritty} 
         <description>The wetted soil does NOT feel very gritty when rubbed on the palm and with forefinger.</description>
@@ -355,7 +356,7 @@
       <description>Brief description of inclusions (eg stone flecks artefacts).</description>
     </property>
     <property name="Volume" type="float">
-      <description>All soil will be collected in buckets of a known volume – therefore a tally should be kept of buckets produced from a context and the total worked out from there.</description>
+      <description>Estimate the volume of the context in litres. All soil will be collected in buckets of a known volume. A tally should be kept of buckets produced from a context and the total volume calculated using that tally.</description>
     </property>
     <property name="Contamination" type="enum">
       <description>The extent to which the context has been contaminated.</description>
@@ -375,18 +376,18 @@
       </lookup>
     </property>
     <property name="Horizon Boundary" type="enum">
-      <description>Boundary to the next horizon</description>
+      <description>Describe the boundary between this and the next context.</description>
       <lookup>
         <term>{0No_Observation}<description>data not collected</description></term>
         <term>{Doubtful}<description>You are uncertain of whether you accurately excavated a boundary between deposits. </description> </term>
         <term>{Ambiguous}<description>You are uncertain as to whether there was a boundary between contexts.</description> </term>
-        <term>{Merging}<description>Description to come</description> </term>
-        <term>{Clear}<description>Description to come </description> </term>
-        <term>{Arbitrary_Spit}<description>Description to come </description> </term>
+        <term>{Merging}<description>There is a distinction between the excavated context and earlier context(s) but the excavated contexts and the earlier contexts grade into each other. </description> </term>
+        <term>{Clear}<description>The boundary with the earlier context(s) was very clearly defined during excavation.</description> </term>
+        <term>{Arbitrary_Spit}<description>There is no meaningful boundary with an earlier context. The boundary has been artificially created by the excavation process.</description> </term>
       </lookup>
     </property>
     <property name="Shape of Cut" type="enum">
-      <description>Describe, the shape at the top i.e. circular, ovoid, square, rectangular, linear or irregular.</description>
+      <description>Describe the shape of the negative element/cut viewed from above.</description>
       <lookup>
         <term>{0No_Observation}
         <description>data not collected</description></term>
@@ -412,7 +413,7 @@
       <description>Additional notes about the shape of the cut.</description>
     </property>
     <property name="Shape of Corners" type="enum">
-      <description>Rounded or square corners?</description>
+      <description>Describe the shape of any visible corners of the negative element/cut.</description>
       <lookup>
         <term>{Other} 
         <description>Other shapes</description></term>
@@ -436,7 +437,7 @@
       </lookup>
     </property>
     <property name="Sides of Cut" type="enum">
-      <description>You need to describe the steepness and shape of the cut and indicate the break of slope at the top and bottom.</description>
+      <description>Describe the shape of the cut as seen in cross section.</description>
       <lookup>
         <term>{0No_Observation}<description/></term>
         <term>{Vertical} 
@@ -503,7 +504,7 @@
       <description>Describe the nature of truncation to the cut (where appropriate).</description>
     </property>
     <property name="Structure Your Interpretation" type="freetext">
-      <description>Your Interpretation of the likely functional zone of the context whether inside a structure or part of the structure itself.</description>
+      <description>Your interpretation of the likely function of the structure.</description>
       <lookup>
         <term>{0No_Observation}<description/></term>
         <term>{Your_Interpretation_Structure_Indeterminate} 
@@ -525,11 +526,11 @@
         <term>{Pillar} 
         <description></description></term>
         <term>{zOther} 
-        <description></description></term>
+        <description>Function not elsewhere described. Provide details in Annotation field.</description></term>
       </lookup>
     </property>
     <property name="Cut Your Interpretation" type="freetext">
-      <description>Your Interpretation of the likely functional zone of the context whether inside a structure or part of the structure itself.</description>
+      <description>Your interpretation of the likely function of the Context using standardised definitions.</description>
       <lookup>
         <term>{0No_Observation}<description/></term>
         <term>{Your_Interpretation_Cut_Indeterminate} 
@@ -555,15 +556,15 @@
         <term>{Erosional_Feature} 
         <description></description></term>
         <term>{zOther} 
-        <description></description></term>
+        <description>Function not elsewhere described. Provide details in Annotation field.</description></term>
       </lookup>
     </property>
     <property name="Deposit Your Interpretation" type="freetext">
-      <description>Your Interpretation of the likely functional zone of the context whether inside a structure or part of the structure itself.</description>
+      <description>Your interpretation of the likely function of the context.</description>
       <lookup>
         <term>{0No_Observation}<description/></term>
         <term>{Indeterminate} 
-        <description></description></term>
+        <description>You are unable to make an assessment of possible function.</description></term>
         <term>{Packing} 
         <description>Packing in a post hole for post material fulfilling a constructional purpose other than deliberate levelling deposits.</description></term>
         <term>{Levelling_Fill} 
@@ -573,11 +574,11 @@
         <term>{Midden} 
         <description>Distinct area of organic rubbish accumulation</description></term>
         <term>{Burial} 
-        <description></description></term>
+        <description>A fill or other deposit associated with a skeleton and forming part of a burial feature.</description></term>
         <term>{Structural_Debris} 
-        <description></description></term>
+        <description>Material derived from collapse of a wall, roof or other structure</description></term>
         <term>{Partly_naturally_derived} 
-        <description>Some of the deposit accumulating through the deposition of natural sediments through geomorphological processes eg wind borne sediments water-laid natural sediments material flaking from cave and rock shelter walls.</description></term>
+        <description>A deposit partly or wholly accumulating through natural sedimentary processes, such as water or wind deposition.</description></term>
         <term>{Wholly_naturally_derived} 
         <description>All of the deposit accumulating through the deposition of natural sediments through geomorphological processes eg wind borne sediments water-laid natural sediments material flaking from cave and rock shelter walls.</description></term>
         <term>{Erosional_products} 
@@ -585,38 +586,37 @@
         <term>{Artifact_cluster} 
         <description>A distinct concentration of artifacts or ecofacts. Make sure you record its xyz coordinates centre and edges.</description></term>
         <term>{Ash_or_Charcoal} 
-        <description></description></term>
+        <description>A deposit consisting largely of carbonized/charred plant material and/or ash</description></term>
         <term>{Arbitrary} 
         <description>This applies to artificial contexts excavated for excavational convenience eg section cleaning material whose precise provenience is unclear. Does not include arbitrary spits or spatial units deliberately excavated for finer control of horizontal and vert</description></term>
         <term>{Distinct_floor_contact} 
-        <description>To be used for material that directly reflects the use of a surface or floor – artifact material on the surface perhaps thin deposits of occupation material. These contexts will be gridded into spatial units for closer control of artifact distributions.</description></term>
+        <description>To be used for material that directly reflects the use of a surface or floor - artifact material on the surface perhaps thin deposits of occupation material. These contexts will be gridded into spatial units for closer control of artifact distributions.</description></term>
         <term>{Animal_or_Plant} 
         <description>Deposit derived from plant or animal activity</description></term>
         <term>{zOther} 
-        <description>Other deposit</description></term>
+        <description>Function not elsewhere described. Provide details in Annotation field.</description></term>
       </lookup>
     </property>
     <property name="Your Discussion" type="blocktext">
-      <description>Elaborate upon your basic interpretation.</description>
+      <description>Enter an interpretation of the function of the Context and its place in the stratigraphical sequence.</description>
     </property>
     <property name="Your description" type="blocktext">
-      <description>Enter a simple descriptive interpretation. For example is it a floor midden brickearth wall gully or pit?</description>
+      <description>Enter a verbal description of the Context, including its form, contexts, relationship to other Contexts and any other relevant information. This is the main place to record all other descriptive information that may be treated briefly or not covered elsewhere, including signs of disturbance  by burrowing animals etc.</description>
     </property>
     <property name="Sketch" type="file">
-      <description>Sketch</description>
+      <description>Upload the file of a sketch of the context/artefact etc drawn on another application using the button below</description>
     </property>
     <property name="Photo" type="file">
-      <description>Photo</description>
+      <description>Use this button to take a photo of the context/artefact etc using the camera on the tablet</description>
     </property>
     <property name="Audio" type="file">
-      <description>Audio</description>
+      <description>Use this button to record an audio file of your observations concerning this context/artefact</description>
     </property>
     <property name="Video" type="file">
-      <description>Video</description>
+      <description>Use this button to record a video using the tablet of this context/artefact etc</description>
     </property>
     <property name="Structural Components" type="enum">
-      <description>What is structure made from.  E.g. Stone, Mud-Brick, Plaster. Mudbrick show on plans with double diagonals. Plaster surfaces as stippling.
-</description>
+      <description>Describe what the structure is made from.</description>
       <lookup>
         <term>{0No_Observation}
         <description>data not collected</description></term>
@@ -627,24 +627,26 @@
         <term>{Mudbrick} 
         <description></description></term>
         <term>{Other} 
-        <description></description></term>
+        <description>Material not otherwise described. Add description and notes in Annotation field.</description></term>
       </lookup>
     </property>
     <property name="Bonding" type="enum">
-      <description>Primary bonding material of structure or feature eg mortar.</description>
+      <description>Additional details of the bonding/packing material.</description>
       <lookup>
         <term>{0No_Observation}
         <description>data not collected</description></term>
         <term>{Mortar} 
         <description>Paste used to bind masonry blocks together.</description>
         <term>{Cement_mortar} 
-        <description>Cement based mortar</description></term>
+        <description>Cement based mortar.</description></term>
         <term>{Lime-shell_mortar} 
-        <description>Sandy mortar with lime and burnt shell inlcusion</description></term></term>
+        <description>Sandy mortar with lime and burnt shell inclusion.</description></term></term>
         <term>{Unmortared} 
-        <description>No visible bonding material ie unmortared</description></term>
+        <description>No visible bonding material ie unmortared.</description></term>
         <term>{Stones} 
-        <description>Description to come</description></term>
+        <description>Unmortared stones.</description></term>
+        <term>{zOther} 
+        <description>Other bonding/packing material.</description></term>
       </lookup>
     </property>
     <property name="Bonding Details" type="freetext">
@@ -682,13 +684,13 @@
       </lookup>
     </property>
     <property name="Distinguishing Marks" type="freetext">
-      <description>stinguishing marks on brick or stone.</description>
+      <description>Describe and distinguishing marks on the bricks or stone, such as makers marks, score marks etc.</description>
     </property>
     <property name="Structure Description" type="blocktext">
-      <description>Other description about structural elements eg slate dry-proofing.</description>
+      <description>Describe the structure.</description>
     </property>
     <property name="Number Courses" type="float">
-      <description>Vertical layers of structural elements.</description>
+      <description>The number of vertical layers of structural elements such as bricks.</description>
     </property>
     <property name="Set In Cut" type="freetext">
       <description>Give the cut context code if relevant. If not set in cut then put 'NA'.</description>
@@ -723,7 +725,7 @@
       <description>How have the material types been prepared (i.e dressed stones polished/smoothed/painted plaster surface).</description>
     </property>
     <property name="Composition Type" type="enum">
-      <description>The type of composition of the context whether Homogenous, Heterogenous or Laminated.</description>
+      <description>Describe the structure of the Context sediment. The components making up the structure are added below as aggregates.</description>
       <lookup>
         <term>{0No_Observation}<description/></term>
         <term>{Homogenous} 
@@ -837,19 +839,19 @@
       <description>The excavation trench, designated by a letter code and assigned automatically by the module.</description>
     </property>
     <property name="Context Group ID" type="freetext" isIdentifier="true">
-      <description>Individual numerical code taken from appropriate running list.</description>
+      <description>Feature number taken from the appropriate running list.</description>
     </property>
     <property isIdentifier="true" name="Title" type="freetext">
-      <description>Name of the context group</description>
+      <description>Enter the Feature name e.g. Hearth in Building 2.</description>
     </property>
     <property name="Location Note CG" type="freetext">
       <description>Record where the feature is within a space / building/area if relevant and in particular its relationship to other features or key contexts.</description>
     </property>
     <property name="Building" type="freetext">
-      <description>A building number is allocated where more than one internal space can be demonstrated to belong to a single structure.</description>
+      <description>Identify the building in which the feature is located.</description>
     </property>
     <property name="Space" type="freetext">
-      <description>A space number is allocated to internal and external areas as defined within the area of excavation. It can be, for example, a room, an ante-room, courtyard or external area.</description>
+      <description>Identify the space in which the feature is located if relevant.</description>
     </property>
     <property name="CG Context Type" type="enum">
       <description>Enter the type of feature you are describing.</description>
@@ -857,46 +859,46 @@
         <term pictureURL="files/data/gallery/ContextType/Other/NA.png">{0No_Observation}
         <description>data not collected</description></term>
         <term pictureURL="files/data/gallery/ContextType/Orange/Cut.png">{Cut} 
-        <description>Any Context which forms a negative interface eg pits ditches graves and foundation and robber trenches</description></term>
+        <description>Any Context which forms a negative interface (cut) with another context, such as a cut for a pit, burial, ditch, wall foundation or robber trench.</description></term>
         <term pictureURL="files/data/gallery/ContextType/Orange/Deposit.png">{Deposit} 
-        <description>Any Context with deposited soil eg natural deposits floor and road surfaces and pit ditch and grave fills</description></term>
+        <description>Any Context with deposited sediment and soil, such as floor layers, pit and grave fills, hearth fills and natural sediments.</description></term>
         <term pictureURL="files/data/gallery/ContextType/Orange/Structure.png">{Structure} 
-        <description>Any context formed independent of a Cut or negative interface eg walls hearths.</description></term>
+        <description>Any Context consisting of deliberately constructed structures, independent of a Negative Element (i.e. cut, such as walls and hearths).</description></term>
         <term>{Wall}
-        <description>Wall</description></term>
+        <description>A structured vertical barrier made from durable materials defining a space.</description></term>
         <term>{Floor}
-        <description>Floor</description></term>
+        <description>A  prepared surface, internal or external, including those made from plaster, earth etc.</description></term>
         <term>{Well}
-        <description>Well</description></term>
+        <description>A deep pit excavated to reach the water table.</description></term>
         <term>{Pit}
-        <description>Pit</description></term>
+        <description>A large cut filled with sediment or other materials.</description></term>
         <term>{Room}
-        <description>Room</description></term>
+        <description>A discrete space within a house or other building.</description></term>
         <term>{Burial}
-        <description>Burial</description></term>
+        <description>The cut, fill plus any associated structures relating to the deposition of human remains, including those remains, such as a skeleton.</description></term>
         <term>{Building}
-        <description /></term>
+        <description>A building is defined when several walls surround a discrete space</description></term>
         <term>{Surface}
-        <description /></term>
-        <term>{Space} <description>Description to come</description></term>
-        <term>{Posthole}<description>Description to come</description></term>
-        <term>{Stakehole}<description>Description to come</description></term>
-        <term>{Hearth}<description>Description to come</description></term>
-        <term>{Stakehole_row} <description>Description to come</description></term>
-        <term>{zOther}<description>Description to come</description></term>
+        <description>A compacted horizontal layer, internal or external, on which activities took place.</description></term>
+        <term>{Space} <description>A space is an area bounded by a structure of some kind, either external or internal, and can be for example a courtyard, room, ante-room etc.</description></term>
+        <term>{Posthole}<description>A small pit cut to hold an upright post.</description></term>
+        <term>{Stakehole}<description>Cuts smaller than postholes, typically c. 1-5 cm diameter.</description></term>
+        <term>{Hearth}<description>A prepared structure in which a fire is set.</description></term>
+        <term>{Stakehole_row} <description>A row of cuts smaller than postholes, typically c. 1-5 cm diameter.</description></term>
+        <term>{zOther}<description>Function not elsewhere described. Provide details in Annotation field.</description></term>
       </lookup>
     </property>
     <property name="CG Your Interpretation" type="blocktext">
-      <description>Describe your overall impressions of the feature, phases etc.</description>
+      <description>Describe your understanding of the feature function, phasing etc.</description>
     </property>
     <property name="CG Your description" type="blocktext">
-      <description>Describe the feature, any detailed dimensions, orientation etc. For example is it a floor midden brickearth wall gully or pit?</description>
+      <description>Describe the feature, any details of dimensions, disturbance, orientation etc.</description>
     </property>
     <property name="Your Discussion" type="freetext">
-      <description>Add any relevant commentary.</description>
+      <description>Add here any elaborations on the interpretation and description.</description>
     </property>
     <property name="Length" type="float">
-      <description>Length of the longest side in metres.</description>
+      <description>Longest dimension in metres.</description>
     </property>
     <property name="Width" type="float">
       <description>Width or diameter in metres.</description>
@@ -905,13 +907,13 @@
       <description>Depth or Height in metres.</description>
     </property>
     <property name="Mid X" type="float">
-      <description>Definition to come</description>
+      <description>An appropriate mid-point on the feature should be recorded on the X/Y coordinates. This will locate the feature on the site grid system.</description>
     </property>
     <property name="Mid Y" type="float">
-      <description>Definition to come</description>
+      <description>An appropriate mid-point on the feature should be recorded on the X/Y coordinates. This will locate the feature on the site grid system.</description>
     </property>
     <property name="CG Phase Notes" type="freetext">
-      <description>The phase(s) in which this Context was likely to have been deposited or sealed.</description>
+      <description>The site or building phase in which this Feature was constructed or deposited.</description>
     </property>
     <property name="CG Plans" type="freetext">
       <description>Reference numbers to plans or drawings of this Context.</description>
@@ -920,16 +922,16 @@
       <description>Reference numbers to section drawings of this Context</description>
     </property>
     <property name="Sketch" type="file">
-      <description>Sketch</description>
+      <description>Upload the file of a sketch of the context/artefact etc drawn on another application using the button below</description>
     </property>
     <property name="Photo" type="file">
-      <description>Photo</description>
+      <description>Use this button to take a photo of the context/artefact etc using the camera on the tablet</description>
     </property>
     <property name="Audio" type="file">
-      <description>Audio</description>
+      <description>Use this button to record an audio file of your observations concerning this context/artefact</description>
     </property>
     <property name="Video" type="file">
-      <description>Video</description>
+      <description>Use this button to record a video using the tablet of this context/artefact etc</description>
     </property>
   </ArchaeologicalElement>
 
@@ -937,10 +939,10 @@
   <ArchaeologicalElement name="Matrix">
     <description></description>
     <property name="Percentage" type="float" isIdentifier="true">
-      <description>Percentage</description>
+      <description>Enter the approximate % volume of this material in the Context.</description>
     </property>
     <property name="Component" type="enum" isIdentifier="true">
-      <description>Grains which comprise more than 10% deposit should be included here.</description>
+      <description>Describe the components which make up 10% or more of the deposit.</description>
       <lookup>
         <term>{0No_Observation}
         <description>data not collected</description></term>
@@ -955,13 +957,13 @@
         <term>{5.Midden} 
         <description>Organic debris e.g. bones carbonised material phytoliths etc</description></term>
         <term>{Plaster} 
-        <description>Description to come</description></term>
+        <description>Fragments of plaster.</description></term>
         <term>{Mudbrick} 
-        <description>Description to come</description></term>
+        <description>Fragments of mudbrick or whole mudbricks not part of a coherent structural element.</description></term>
         <term>{Ash} 
-        <description>Description to come</description></term>
+        <description>White/grey fine material which may contain charcoal and other burnt plant material.</description></term>
         <term>{Artefacts} 
-        <description>Description to come</description></term>
+        <description>Human manufactured materials including lithics, beads, ground stone etc.</description></term>
       </lookup>
     </property>
     <property name="Shape" type="enum">
@@ -988,9 +990,9 @@
         <term pictureURL="files/data/gallery/Pebbles/DressedStone.png">{Dressed_Stone} 
         <description>Those that have been clearly shaped for use.</description></term>
         <term pictureURL="files/data/gallery/Pebbles/Tabular.png">{Tabular} 
-        <description>Description to come</description></term>
+        <description>Stones with flattened upper and lower surfaces.</description></term>
         <term pictureURL="files/data/gallery/Pebbles/Ground.png">{Ground} 
-        <description>Description to come</description></term>
+        <description>Stones that have been deliberately shaped smooth by grinding.</description></term>
       </lookup>
     </property>
   </ArchaeologicalElement>
@@ -1000,13 +1002,13 @@
   <ArchaeologicalElement name="Artefact Group">
     <description>The total group or assemblage of objects recovered from a single Context. These are sometimes referred to as 'Bulk Finds'.</description>
     <property name="Site Code" type="freetext">
-      <description>Short code to signify the excavation site and often the year of excavation.</description>
+      <description>Short code to signify the excavation site and often the year of excavation. Assigned automatically by the module.</description>
     </property>
     <property name="Context ID" type="freetext">
-      <description>Unique number or code for each Context.</description>
+      <description>Unique number or code for the Context from which this {Artefact_Group} was collected.</description>
     </property>
     <property isIdentifier="true" name="Artefact Group ID" type="freetext">
-      <description>Unique number or code for the artefact group.</description>
+      <description>Unique number or code for the {Artefact_Group}.</description>
     </property>
     <property isIdentifier="true" name="Artefact Class" type="enum">
       <description>Broad Artefact Class for each Artefact (eg Glass Ceramic Building Material).</description>
@@ -1121,34 +1123,34 @@
       </lookup>
     </property>
     <property name="Artefact X" type="float">
-      <description>The reading from the x-axis (horizontal) of an arbitrary site grid corresponding to the location of the Artifact Group at the time of excavation.</description>
+      <description>The reading from the x-axis (horizontal) of an arbitrary site grid corresponding to the location of the {Artefact_Group} at the time of excavation.</description>
     </property>
     <property name="Artefact Y" type="float">
-      <description>The reading from the y-axis (vertical) of an arbitrary site grid corresponding to the location of the Artifact Group at the time of excavation.</description>
+      <description>The reading from the y-axis (vertical) of an arbitrary site grid corresponding to the location of the {Artefact_Group} at the time of excavation.</description>
     </property>
     <property name="Artefact Z" type="float">
-      <description>The elevation or depth of the Artifact Group at the time of excavation.</description>
+      <description>The elevation or depth of the {Artefact_Group} at the time of excavation.</description>
     </property>
     <property name="Artefact Quantity" type="float">
-      <description>The number of sherds in this group.</description>
+      <description>The number of artefacts in this {Artefact_Group}.</description>
     </property>
     <property name="Artefact Weight" type="float">
-      <description>The total weight (in grams) of all sherds in this Group.</description>
+      <description>The total weight of all artefacts in this {Artefact_Group}.</description>
     </property>
     <property name="Artefact Group Comment" type="blocktext">
-      <description>General comment about this group of Artefacts from this Context eg 'Lots of early porcelain. Few marks.'</description>
+      <description>General comment about this {Artefact_Group} from this Context eg '8 obsidian blades in cache below wall.'</description>
     </property>
     <property name="Sketch" type="file">
-      <description>Sketch</description>
+      <description>Upload the file of a sketch of the context/artefact etc drawn on another application using the button below</description>
     </property>
     <property name="Photo" type="file">
-      <description>Photo</description>
+      <description>Use this button to take a photo of the context/artefact etc using the camera on the tablet</description>
     </property>
     <property name="Audio" type="file">
-      <description>Audio</description>
+      <description>Use this button to record an audio file of your observations concerning this context/artefact</description>
     </property>
     <property name="Video" type="file">
-      <description>Video</description>
+      <description>Use this button to record a video using the tablet of this context/artefact etc</description>
     </property>
   </ArchaeologicalElement>
 
@@ -1156,10 +1158,10 @@
   <ArchaeologicalElement name="Sample">
     <description>Deposit samples or samples of building elements recovered from this Context for the purpose of further analysis or ongoing reference.</description>
     <property name="Site Code" type="freetext">
-      <description>Short code to signify the excavation site and often the year of excavation.</description>
+      <description>Short code to signify the excavation site and often the year of excavation. Assigned automatically by the module.</description>
     </property>
     <property name="Context ID" type="freetext">
-      <description>Unique number or code for each Context.</description>
+      <description>Unique number or code for the Context from which this Artefact Cluster was collected.</description>
     </property>
     <property isIdentifier="true" name="Sample ID" type="freetext">
       <description>The unique code or reference for the Sample.</description>
@@ -1273,16 +1275,16 @@
       <description>Other description about structural elements eg slate dry-proofing.</description>
     </property>
     <property name="Sketch" type="file">
-      <description>Sketch</description>
+      <description>Upload the file of a sketch of the context/artefact etc drawn on another application using the button below</description>
     </property>
     <property name="Photo" type="file">
-      <description>Photo</description>
+      <description>Use this button to take a photo of the context/artefact etc using the camera on the tablet</description>
     </property>
     <property name="Audio" type="file">
-      <description>Audio</description>
+      <description>Use this button to record an audio file of your observations concerning this context/artefact</description>
     </property>
     <property name="Video" type="file">
-      <description>Video</description>
+      <description>Use this button to record a video using the tablet of this context/artefact etc</description>
     </property>
   </ArchaeologicalElement>
 
@@ -1290,7 +1292,7 @@
   <ArchaeologicalElement name="Special Find">
     <description></description>
     <property name="Site Code" type="freetext">
-      <description>Short code to signify the excavation site and often the year of excavation.</description>
+      <description>Short code to signify the excavation site and often the year of excavation. Assigned automatically by the module.</description>
     </property>
     <property name="Context ID" type="freetext">
       <description>Unique number or code for each Context.</description>
@@ -1441,13 +1443,13 @@
       <description></description>
     </property>
     <property name="Photo" type="file">
-      <description>Photo</description>
+      <description>Use this button to take a photo of the context/artefact etc using the camera on the tablet</description>
     </property>
     <property name="Audio" type="file">
-      <description>Audio</description>
+      <description>Use this button to record an audio file of your observations concerning this context/artefact</description>
     </property>
     <property name="Video" type="file">
-      <description>Video</description>
+      <description>Use this button to record a video using the tablet of this context/artefact etc</description>
     </property>
   </ArchaeologicalElement>
 
