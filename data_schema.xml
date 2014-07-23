@@ -82,7 +82,15 @@
       <description>Short code to signify the excavation site and often the year of excavation.</description>
     </property>
     <property isIdentifier="true" name="Context ID" type="freetext">
-      <description>Every deposit or event defined is given an individual context code. Context codes are 3 letter codes. Each trench is designated with a separate letter, so it is immediately obvious whether a context belongs to a particular trench. For trench A the first context would be AAA, the second AAB and so on to AAZ. The next context was ABA and so on. It is possible to assign batches of codes to related sets of distinct contexts. For example at Boncuklu burial contexts will always have a Z as the first letter. Thus ZAA etc. Remember to fill out the context register each time you start a new context and when you complete one.</description>
+      <description>Every archaeological context (negative element (cut), deposit, structure, skeleton) is given a unique 3 or 4 letter context code. Each trench is designated with a separate letter which starts the code, so it is immediately obvious to which trench a context belongs. For example context HAA belongs to Trench H, context MQP to Trench M etc.
+
+	  The contexts are labelled consecutively in alphabetical order using the letters following the trench letter. For Trench H the first context would be HAA, the second HAB, the third HAB and so on. In addition sets of letters can denote parts of trenches, buildings etc. E.g. HFs might denote contexts from a specific building.
+
+	  Burial context codes begin with the letter Z, followed by the trench letter. Hence burial ZHA is the first burial context from trench H.
+
+	  Check with the trench supervisor who will assign the context code. The module will not allow a context code to be used twice on a single device.
+
+	  When you have typed in the context code press the “Create New Context” bar to create the context record. Also remember to press the “Save Context” bar at the bottom of the “General” tab in the “Context Tab Group” or your context will not be saved. Press the “Save Context” whenever you finish entering data on a page or your input will not be saved.</description>
     </property>
     <property isIdentifier="true" name="Context Name" type="freetext">
       <description>Brief name for the Context eg 'House A - west wall'</description>
@@ -815,7 +823,7 @@
       <description>The Y coordinate of Target D. Targets are white-painted, large-headed nails used to rectify photographs.</description>
     </property>
     <property name="SearchHelp" type="freetext">
-      <description>Search will find Records that contain your search term or string to any field in the Context record.</description>
+      <description>This allows you to find any contexts that contain your search term or string in any field in a context record. Type in your term/string and press the “Search” button. Press “My Contexts” to return to the full list of contexts for this trench.</description>
     </property>
   </ArchaeologicalElement>
 
@@ -823,10 +831,10 @@
   <ArchaeologicalElement name="Context Group" type="container">
     <description>A group of contexts.</description>
     <property name="Site Code" type="freetext">
-      <description>Short code to signify the excavation site and often the year of excavation.</description>
+      <description>Short code to signify the excavation site and often the year of excavation. Assigned automatically by the module.</description>
     </property>
     <property name="Area Code" type="freetext">
-      <description>Area or Trench: the working subdivision of an archaeological site.</description>
+      <description>The excavation trench, designated by a letter code and assigned automatically by the module.</description>
     </property>
     <property name="Context Group ID" type="freetext" isIdentifier="true">
       <description>Individual numerical code taken from appropriate running list.</description>
