@@ -207,7 +207,7 @@ When you have selected a context type you can proceed to open the “Fill in con
       <description>Description of the compaction of soil including changes throughout the deposit. Eg ‘Varies from loose to compact.</description>
     </property>
     <property name="Soil Texture Helper" type="enum">
-      <description>This helper is based on the standard flow chart for determining soil texture. Select each option and follow the prompts until you get a result, eg 'silty loam'. Then click the 'Update' button to have that value pasted onto your Deposit record.</description>
+      <description>This helper is based on the standard flow chart for determining soil texture. Start by taking 25g of soil and placing it in your palm. Select each option and follow the prompts for TASKS (like roll ribbon) until you get a result, eg 'silty loam'. Then click the 'Update' button to have that value pasted onto your Context record.</description>
       <lookup>
         <term>{Soil_does_NOT_remain_in_ball_when_squeezed} 
         <description>Place approximately 25 g soil in palm. Add water dropwise and knead the soil to break down all aggregates. Soil is at the proper consistency when plastic and moldable like moist putty.</description>
@@ -1181,40 +1181,36 @@ When you have selected a context type you can proceed to open the “Fill in con
       <description>Short code to signify the excavation site and often the year of excavation. Assigned automatically by the module.</description>
     </property>
     <property name="Context ID" type="freetext">
-      <description>Unique number or code for the Context from which this Artefact Cluster was collected.</description>
+      <description>Unique number or code for the Context from which this Sample was collected.</description>
     </property>
     <property isIdentifier="true" name="Sample ID" type="freetext">
       <description>The unique code or reference for the Sample.</description>
     </property>
     <property isIdentifier="true" name="Sample Type" type="enum">
-      <description>The type of Sample collected eg Soil Wood Pollen.</description>
+      <description>Record the sample type.</description>
       <lookup>
         <term>{0No_Observation}
         <description>data not collected</description></term>
-        <term>{Building_Materials} 
-        <description>Sample of bricks or worked stone collected from this Context.</description></term>
-        <term>{Soil} 
-        <description>General collection of soil deposit from the Context.</description></term>
+        <term>{Building_Materials}<description>Sample of bricks or worked stone collected from this Context.</description></term>
+        <term>{Soil}<description>General collection of soil deposit from the Context.</description></term>
         <term>{Wood/Charcoal} 
         <description>Collection of wood or charcoal fragments from the Context.</description></term>
-        <term>{C14_Sample}
-        <description /></term>
-        <term>{Flot_Sample}
-        <description /></term>
+        <term>{C14_Sample}<description>An organic sample recovered for radiocarbon dating.</description></term>
+        <term>{Flot_Sample}<description>Flotation sample for recovery of plant remains.</description></term>
         <term>{Phytolith_Sample}
-        <description /></term>
+        <description>Small soil sample for phytolith analysis.</description></term>
         <term>{Arch_Soil}
-        <description /></term>
+        <description>A small archive soil sample.</description></term>
         <term>{Thin_Section}
-        <description /></term>
+       <description>Specially collected blocks for soil thin sectioning.</description></term>
         <term>{Wet_Sieve}
-        <description /></term>
+        <description>Bulk soil sample for wet-sieving.</description></term>
         <term>{Animal_Bone}
-        <description /></term>
+        <description>A sample of bone identified as animal.</description></term>
         <term>{Human_Bone}
-        <description /></term>
+        <description>A sample of bone identified as human.</description></term>
         <term>{zOther}
-        <description /></term>
+        <description>Sample not elsewhere described. Include details in Annotation field.</description></term>
       </lookup>
     </property>
     <property name="Sample Volume" type="float">
@@ -1227,7 +1223,7 @@ When you have selected a context type you can proceed to open the “Fill in con
       <description>The location of the sample at the time of entry.</description>
       <lookup>
         <term>{0No_Observation}<description>data not collected</description></term>
-        <term>{Site_depot}<description>L</description> </term>
+        <term>{Site_depot}<description></description> </term>
         <term>{Export_Liverpool}<description></description> </term>
         <term>{Export_Turkey}<description></description> </term>
         <term>{zaOther}<description></description> </term>        
@@ -1500,18 +1496,18 @@ When you have selected a context type you can proceed to open the “Fill in con
       <description>Unique number or code allocated by creator of the image. It could be a filename or a reference number</description>
     </property>
     <property name="Scene Type" type="enum">
-      <description>The type of scene captured, eg opening or closing view of the Context. (Vocab: Open, Close, Other)</description>
+      <description>The type of scene captured, eg opening or closing view of the Context.</description>
       <lookup>
         <term>{0No_Observation}
         <description>data not collected</description></term>
         <term> Open
-          <description/>
+          <description>Photograph taken on opening the Context.</description>
         </term>
         <term> Close
-          <description/>
+          <description>Photograph taken on closing the Context.</description>
         </term>
         <term> Other
-          <description></description>
+          <description>Scene not elsewhere described. Enter detail into Annotation field.</description>
         </term>
       </lookup>
     </property>
