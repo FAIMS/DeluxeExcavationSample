@@ -133,7 +133,7 @@
       <description>Describe the context type by selecting an icon as defined below.
 When you have selected a context type you can proceed to open the “Fill in context type details” page. Note this page will not open unless you have selected a context type.</description>
       <lookup>
-        <term pictureURL="files/data/gallery/ContextType/Other/NA.png">{0No_Observation}
+        <term pictureURL="files/data/gallery/ContextType/Blanks/Trail.png">{0No_Observation}
         <description>data not collected</description></term>
         <term pictureURL="files/data/gallery/ContextType/Orange/Cut.png">{Cut} 
         <description>Any Context which represents the removal of earlier deposit and thus forms a negative interface (cut) with another context, such as a cut for a pit, burial, ditch, wall foundation or robber trench.</description></term>
