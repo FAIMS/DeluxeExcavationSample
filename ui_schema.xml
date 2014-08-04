@@ -1695,8 +1695,8 @@ Help can be found for individual entries by pressing the ? buttons throughout th
         <trigger ref="AddContextGroup">
           <label>Create New {Context_Group}</label>
         </trigger>
-        <select1 faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" ref="ContextGroupList">
-          <label>Select the {Context_Group} to which this {Context} belongs:</label>
+        <select1 faims_attribute_type="vocab" faims_certainty="false" faims_read_only="false" faims_annotation="false" ref="ContextGroupList">
+          <label>Select the {Context_Group} to which this Context belongs:</label>
           <item>
             <label>placeholder</label>
             <value>placeholder</value>
